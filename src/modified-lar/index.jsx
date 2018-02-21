@@ -79,36 +79,39 @@ class ModifiedLar extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>Find an institution.</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <span>Institution required</span>
+      <div className="usa-grid">
+        <div className="usa-width-one-whole">
+          <h1>Find an institution.</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label for="institution-name">Institution name</label>
             <input
+              id="institution-name"
+              name="institution-name"
               type="text"
               value={this.state.textInputValue}
               onChange={this.handleTextInputChange}
             />
-          </label>
-        </form>
+          </form>
 
-        <ul>
-          {this.state.institutionsSearched.map((institution, index) => {
-            return (
-              <li key={index}>
-                {institution.name} ({institution.id}) -{' '}
-                <a
-                  href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/lar/${institution.id}.txt`}
-                  download
-                >
-                  Download Modified LAR
-                </a>
-              </li>
-            )
-          })}
-        </ul>
-      </React.Fragment>
+          <ul>
+            {this.state.institutionsSearched.map((institution, index) => {
+              return (
+                <li key={index}>
+                  {institution.name} ({institution.id}) -{' '}
+                  <a
+                    href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/lar/${
+                      institution.id
+                    }.txt`}
+                    download
+                  >
+                    Download Modified LAR
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </div>
     )
   }
 }
