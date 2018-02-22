@@ -2,6 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Results = props => {
+  if (!props.institutionsLoaded)
+    return (
+      <ul className="results">
+        <li className="error">
+          <h4>Please wait, we're still loading the institutions.</h4>
+        </li>
+      </ul>
+    )
   if (props.error === 404)
     return (
       <ul className="results">
