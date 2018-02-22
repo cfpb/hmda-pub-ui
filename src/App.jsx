@@ -11,7 +11,7 @@ import Report from './disclosure/report.jsx'
 
 const App = () => {
   return (
-    <Router basename="/reports">
+    <Router basename="/dist">
       <React.Fragment>
         <Header />
 

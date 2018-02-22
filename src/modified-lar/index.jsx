@@ -1,4 +1,5 @@
 import React from 'react'
+import Results from './Results.jsx'
 
 class ModifiedLar extends React.Component {
   constructor(props) {
@@ -42,20 +43,19 @@ class ModifiedLar extends React.Component {
 
     this.setState({
       institutionsFull: [
-        { name: 'Bank 0', id: '0' },
-        { name: 'Bank 1', id: '1' },
-        { name: 'Andrew Has No Money', id: '0' },
-        { name: 'We Have Lots of Money', id: '1' },
-        { name: 'Bank of GIF', id: '0' },
-        { name: 'Key Largo', id: '1' },
-        { name: "Baby Why Don't We Go", id: '0' }
+        { name: 'Bank 0', id: '012345' },
+        { name: 'Bank 1', id: '23423768' },
+        { name: 'Bank of Andrew', id: '9345482' },
+        { name: 'Manning of Omaha', id: '09433' },
+        { name: 'Fells Wargo', id: '342735' },
+        { name: 'Key Largo Federal', id: '49834' },
+        { name: 'Small Town Small Bank', id: '32453483634' }
       ]
     })
   }
 
   handleTextInputChange(event) {
-    this.setState({ textInputValue: event.target.value })
-
+    this.setState({ textInputValue: event.target.value, error: null })
     let institutionsFiltered = []
 
     if (event.target.value.length !== 0) {
@@ -68,6 +68,10 @@ class ModifiedLar extends React.Component {
           institutionsFiltered.push(institution)
         }
       })
+
+      if (institutionsFiltered.length === 0) {
+        this.setState({ error: 404 })
+      }
     }
 
     this.setState({ institutionsSearched: institutionsFiltered })
@@ -79,37 +83,30 @@ class ModifiedLar extends React.Component {
 
   render() {
     return (
-      <div className="usa-grid">
+      <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
-          <h1>Find an institution.</h1>
+          <h2>Modified LAR</h2>
+          <p>
+            Every institution that has filed has a download-able modified LAR.
+            Using this form you can search for an institution, by name, and
+            download their modified LAR file.
+          </p>
           <form onSubmit={this.handleSubmit}>
-            <label for="institution-name">Institution name</label>
+            <label htmlFor="institution-name">Enter an institution name</label>
             <input
               id="institution-name"
               name="institution-name"
               type="text"
               value={this.state.textInputValue}
               onChange={this.handleTextInputChange}
+              placeholder="Institution name"
             />
           </form>
 
-          <ul>
-            {this.state.institutionsSearched.map((institution, index) => {
-              return (
-                <li key={index}>
-                  {institution.name} ({institution.id}) -{' '}
-                  <a
-                    href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/lar/${
-                      institution.id
-                    }.txt`}
-                    download
-                  >
-                    Download Modified LAR
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
+          <Results
+            error={this.state.error}
+            institutions={this.state.institutionsSearched}
+          />
         </div>
       </div>
     )
