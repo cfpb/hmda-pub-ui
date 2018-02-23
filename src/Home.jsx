@@ -5,12 +5,10 @@ class Home extends Component {
     return (
       <div className="home usa-grid">
         <div className="usa-width-one-whole">
-          <header className="home-header">
-            <h1 className="home-title">Welcome to React</h1>
+          <header>
+            <h1>HMDA reporting</h1>
+            <p className="usa-font-lead">All things HMDA reporting.</p>
           </header>
-          <p className="home-intro">
-            To get started, edit <code>src/Home.js</code> and save to reload.
-          </p>
         </div>
       </div>
     )

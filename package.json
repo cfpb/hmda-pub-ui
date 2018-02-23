@@ -29,7 +29,8 @@
     "build": "yarn run js && yarn run sass && yarn run html && yarn run img",
     "pretty":
       "yarn run prettier --config ./.prettierrc --write './{src,__tests__}/**/*.{js*,scss}'",
-    "lint": "eslint --ext .js,.jsx ./src"
+    "lint": "eslint --ext .js,.jsx ./src",
+    "start": "superstatic -c superstatic.json"
   },
   "keywords": ["HMDA", "reports", "data"],
   "author": "Consumer Financial Protection Bureau",
@@ -65,6 +66,7 @@
     "postcss-cli": "5.0.0",
     "prettier": "1.10.2",
     "rimraf": "2.6.2",
+    "superstatic": "^5.0.1",
     "webpack": "3.11.0",
     "webpack-merge": "4.1.1",
     "webpack-shell-plugin": "0.5.0",
