@@ -17,7 +17,7 @@ const Header = () => {
         <div className="usa-nav-container">
           <div className="usa-logo" id="logo">
             <em className="usa-logo-text">
-              <img src="img/ffiec-logo.png" width="125px" />
+              <img src="/reports/img/ffiec-logo.png" width="125px" />
             </em>
           </div>
           <nav className="usa-nav">

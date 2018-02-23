@@ -1,5 +1,4 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
 import Results from './Results.jsx'
 import NotFound from '../common/NotFound.jsx'
 
@@ -124,10 +123,6 @@ class ModifiedLar extends React.Component {
             institutions={this.state.institutionsFiltered}
             institutionsLoaded={this.state.institutionsLoaded}
           />
-
-          <Switch>
-            <Route component={NotFound} />
-          </Switch>
         </div>
       </div>
     )
