@@ -23,6 +23,11 @@ const Header = () => {
           <nav className="usa-nav">
             <ul className="usa-nav-primary">
               <li>
+                <Link className="usa-nav-link" to="/">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <Link className="usa-nav-link" to="/modified-lar">
                   Modified LAR
                 </Link>

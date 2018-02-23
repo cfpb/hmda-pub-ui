@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import BannerUSA from './common/BannerUSA.jsx'
 import Header from './common/Header.jsx'
 import Home from './Home.jsx'
@@ -10,31 +10,15 @@ import Reports from './disclosure/reports.jsx'
 import Report from './disclosure/report.jsx'
 
 const App = () => {
+  console.log('routing')
   return (
-    <Router basename="/dist">
-      <React.Fragment>
-        <Header />
-
+    <React.Fragment>
+      <Header />
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/modified-lar" component={ModifiedLar} />
-        <Route exact path="/disclosure" component={Disclosure} />
-        <Route
-          exact
-          path="/disclosure/institution/:institutionId"
-          component={MsaMds}
-        />
-        <Route
-          exact
-          path="/disclosure/institution/:institutionId/msa-md/:msaMdId"
-          component={Reports}
-        />
-        <Route
-          exact
-          path="/disclosure/institution/:institutionId/msa-md/:msaMdId/report/:reportId"
-          component={Report}
-        />
-      </React.Fragment>
-    </Router>
+        <Route path="/modified-lar" component={ModifiedLar} />
+      </Switch>
+    </React.Fragment>
   )
 }
 
