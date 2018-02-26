@@ -25,4 +25,4 @@ USER $NGINX_USER
 
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["./docker-entrypoint.sh"]
