@@ -17,7 +17,7 @@ RUN yum install -y epel-release && \
     rm -rf /usr/share/nginx/ && \
     ls -d -1 /etc/nginx/* | grep -v '\/mime.types$' | xargs rm -rf && \
     mv nginx/* /etc/nginx && \
-    #ls -d -1 * | grep -v '^\(reports\|docker-entrypoint.sh\|env.sh\)$' | #xargs rm -rf && \
+    ls -d -1 * | grep -v '^\(reports\|docker-entrypoint.sh\|env.sh\)$' | xargs rm -rf && \
     touch /run/nginx.pid && \
     chown -R $NGINX_USER:$NGINX_USER reports/js/app.min.js /etc/nginx /run/nginx.pid
 
