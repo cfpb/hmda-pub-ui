@@ -23,13 +23,13 @@ const Header = () => {
           <nav className="usa-nav">
             <ul className="usa-nav-primary">
               <li>
-                <Link className="usa-nav-link" to="/">
+                <a href={window.HMDA_ENV.APP_URL} className="usa-nav-link">
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-                <Link className="usa-nav-link" to="/modified-lar">
-                  Modified LAR
+                <Link className="usa-nav-link" to="/">
+                  Reports
                 </Link>
               </li>
             </ul>

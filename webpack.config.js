@@ -19,6 +19,8 @@ module.exports = merge(common, {
     }),
     new UglifyJSPlugin({ sourceMap: true }),
     new WebpackShellPlugin({
+      onBuildStart: ['yarn run clearBackup'],
+      onBuildEnd: ['yarn run env'],
       dev: false
     })
   ]

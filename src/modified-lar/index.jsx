@@ -1,4 +1,5 @@
 import React from 'react'
+import SideNav from '../common/SideNav.jsx'
 import Results from './Results.jsx'
 import NotFound from '../common/NotFound.jsx'
 
@@ -98,7 +99,8 @@ class ModifiedLar extends React.Component {
 
     return (
       <div className="usa-grid modified-lar" id="main-content">
-        <div className="usa-width-one-whole">
+        <SideNav />
+        <div className="usa-width-three-fourths">
           <h2>Modified LAR</h2>
           <p>
             Every institution that has filed has a download-able modified LAR.

@@ -13,6 +13,11 @@ if (process.env.NODE_ENV !== 'production') {
   whyDidYouUpdate(React)
 }
 
+window.HMDA_ENV = {
+  APP_URL: '##APP_URL##',
+  HMDA_API: '##HMDA_API##'
+}
+
 render(
   <BrowserRouter basename="/reports">
     <App />
