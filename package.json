@@ -10,6 +10,8 @@
     "test": "jest",
     "clearDist":
       "rimraf ./reports && mkdirp ./reports ./reports/js ./reports/css ./reports/fonts ./reports/img",
+    "clearBackup": "rimraf ./reports/js/app.min.js.bak",
+    "env": "./env.sh",
     "js": "(export NODE_ENV=build; webpack --progress)",
     "js:dev":
       "export NODE_ENV=build && webpack --config webpack.dev.js --progress",
