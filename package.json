@@ -32,7 +32,7 @@
     "pretty":
       "yarn run prettier --config ./.prettierrc --write './{src,__tests__}/**/*.{js*,scss}'",
     "lint": "eslint --ext .js,.jsx ./src",
-    "start": "superstatic -c superstatic.json"
+    "start": "superstatic -c superstatic.json --port 8080"
   },
   "keywords": ["HMDA", "reports", "data"],
   "author": "Consumer Financial Protection Bureau",

@@ -1,9 +1,12 @@
 .modified-lar {
-  .usa-width-one-whole:first-child > :first-child {
-    margin-top: 2em;
-  }
   h2 {
-    margin-top: 2em;
+    margin-top: 2em !important;
     margin-bottom: 0;
+  }
+  p {
+    color: $color-gray;
+  }
+  .usa-font-lead {
+    margin-top: 0;
   }
 }

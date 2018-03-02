@@ -1,5 +1,5 @@
 import React from 'react'
-import SideNav from '../common/SideNav.jsx'
+import Header from '../common/Header.jsx'
 import Results from './Results.jsx'
 import NotFound from '../common/NotFound.jsx'
 
@@ -99,14 +99,13 @@ class ModifiedLar extends React.Component {
 
     return (
       <div className="usa-grid modified-lar" id="main-content">
-        <SideNav />
-        <div className="usa-width-three-fourths">
-          <h2>Modified LAR</h2>
-          <p>
-            Every institution that has filed has a download-able modified LAR.
+        <div className="usa-width-one-whole">
+          <Header
+            heading="Modified LAR"
+            lead="Every institution that has filed has a download-able modified LAR.
             Using this form you can search for an institution, by name, and
-            download their modified LAR file.
-          </p>
+            download their modified LAR file."
+          />
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="institution-name">Enter an institution name</label>
             <input
