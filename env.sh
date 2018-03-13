@@ -8,16 +8,16 @@ get_baseurl () {
 
 HMDA_API_SERVER=$(get_baseurl ${HMDA_API})
 
-if [ -f ./reports/js/app.min.js.bak ]; then
+if [ -f ./publication/js/app.min.js.bak ]; then
   sed \
     -e "s@##APP_URL##@${APP_URL:-https://192.168.99.100}@"\
     -e "s@##HMDA_API##@${HMDA_API:-https://192.168.99.100:4443/hmda}@"\
-    ./reports/js/app.min.js.bak > ./reports/js/app.min.js
+    ./publication/js/app.min.js.bak > ./publication/js/app.min.js
 else
   sed -i.bak \
     -e "s@##APP_URL##@${APP_URL:-https://192.168.99.100}@"\
     -e "s@##HMDA_API##@${HMDA_API:-https://192.168.99.100:4443/hmda}@"\
-    ./reports/js/app.min.js
+    ./publication/js/app.min.js
 fi
 
 if [ -f /etc/nginx/nginx.tmpl ]; then

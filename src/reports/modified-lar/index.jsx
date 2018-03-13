@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../common/Header.jsx'
+import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
-import NotFound from '../common/NotFound.jsx'
+import NotFound from '../../common/NotFound.jsx'
 
 const defaultState = {
   error: null,

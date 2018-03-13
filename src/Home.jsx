@@ -20,14 +20,14 @@ class Home extends Component {
         <div className="card-container">
           <div className="card">
             <h4>
-              <Link to="/modified-lar">Modified LAR</Link>
+              <Link to="/reports/modified-lar">Modified LAR</Link>
             </h4>
             <p>
               Loan-level data are also available as zipped raw flat files, which
               can be imported into statistical software packages or Microsoft
               Excel for analysis.
             </p>
-            <Link to="/modified-lar">Search Modified LAR</Link>
+            <Link to="/reports/modified-lar">Search Modified LAR</Link>
           </div>
 
           <div className="card">
