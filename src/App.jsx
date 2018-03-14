@@ -13,8 +13,8 @@ const App = () => {
       <AppHeader />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/reports/modified-lar/*" component={NotFound} />
-        <Route path="/reports/modified-lar" component={ModifiedLar} />
+        <Route path="/modified-lar/*" component={NotFound} />
+        <Route path="/modified-lar" component={ModifiedLar} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

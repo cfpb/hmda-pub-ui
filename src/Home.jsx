@@ -28,7 +28,7 @@ class Home extends Component {
         <div className="card-container">
           <div className="card">
             <Header
-              headingLink="/reports/modified-lar"
+              headingLink="/modified-lar"
               headingText="Modified Loan/Application Register (LAR)"
               paragraphText="The modified LAR includes a financial institution's loan-level data, as
               modified by the Bureau to protect applicant and borrower privacy.
