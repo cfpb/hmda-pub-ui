@@ -101,10 +101,11 @@ class ModifiedLar extends React.Component {
       <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
           <Header
-            heading="Modified LAR"
-            lead="Every institution that has filed has a download-able modified LAR.
-            Using this form you can search for an institution, by name, and
-            download their modified LAR file."
+            type="main"
+            headingText="Modified LAR"
+            paragraphText="A downloadable modified LAR file is available for every financial 
+            institution that has filed a 2017 HMDA LAR. Using this form, you can 
+            search for a financial institution by name and download their modified LAR."
           />
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="institution-name">Enter an institution name</label>
