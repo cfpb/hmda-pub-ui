@@ -19,7 +19,7 @@ window.HMDA_ENV = {
 }
 
 render(
-  <BrowserRouter basename="/publication">
+  <BrowserRouter basename="/data-publication">
     <App />
   </BrowserRouter>,
   document.getElementById('app')

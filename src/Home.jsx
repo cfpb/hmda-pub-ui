@@ -10,7 +10,7 @@ class Home extends Component {
           <div className="usa-width-one-whole">
             <Header
               type="main"
-              headingText="HMDA reporting"
+              headingText="HMDA Data Publication"
               paragraphText="HMDA data provide information regarding home mortgage lending
                 activity. The data and reports can be used along with the Census
                 demographic information for data analysis purposes."
@@ -28,43 +28,43 @@ class Home extends Component {
         <div className="card-container">
           <div className="card">
             <Header
-              type="sub"
-              headingText="Modified LAR"
-              paragraphText="This report includes a financial institution's loan-level data, as
+              headingLink="/reports/modified-lar"
+              headingText="Modified Loan/Application Register (LAR)"
+              paragraphText="The modified LAR includes a financial institution's loan-level data, as
               modified by the Bureau to protect applicant and borrower privacy.
               The data shows the geographic distribution of loans and
               applications; ethnicity, race, sex, age, and income of applicants
               and borrowers; and information about loan approvals and denials."
+              type="sub"
             />
-            <Link to="/reports/modified-lar">Search Modified LAR</Link>
           </div>
 
           <div className="card">
             <Header
-              type="sub"
               headingText="Aggregate Reports"
               paragraphText="Summary of lending activity by MSA/MD."
+              type="sub"
             />
             <span className="usa-label">Coming Soon</span>
           </div>
 
           <div className="card">
             <Header
-              type="sub"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
+              type="sub"
             />
             <span className="usa-label">Coming Soon</span>
           </div>
 
           <div className="card">
             <Header
-              type="sub"
               headingText="National Aggregates"
               paragraphText="These reports are a nationwide summation of the HMDA data. They
               indicate the number and dollar amounts of lending, cross-tabulated
               by loan applicant, and geographic characteristics."
+              type="sub"
             />
             <span className="usa-label">Coming Soon</span>
           </div>

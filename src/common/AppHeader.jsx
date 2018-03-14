@@ -17,7 +17,7 @@ const AppHeader = () => {
         <div className="usa-nav-container">
           <div className="usa-logo" id="logo">
             <em className="usa-logo-text">
-              <img src="/publication/img/ffiec-logo.png" width="125px" />
+              <img src="/data-publication/img/ffiec-logo.png" width="125px" />
             </em>
           </div>
           <nav className="usa-nav">
@@ -29,7 +29,7 @@ const AppHeader = () => {
               </li>
               <li>
                 <Link className="usa-nav-link" to="/">
-                  Publication
+                  Data Publication
                 </Link>
               </li>
               <li>
