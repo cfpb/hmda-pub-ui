@@ -31,10 +31,7 @@ class Home extends Component {
               headingLink="/modified-lar"
               headingText="Modified Loan/Application Register (LAR)"
               paragraphText="The modified LAR includes a financial institution's loan-level data, as
-              modified by the Bureau to protect applicant and borrower privacy.
-              The data shows the geographic distribution of loans and
-              applications; ethnicity, race, sex, age, and income of applicants
-              and borrowers; and information about loan approvals and denials."
+              modified by the Bureau to protect applicant and borrower privacy."
               type="sub"
             />
           </div>
@@ -42,7 +39,7 @@ class Home extends Component {
           <div className="card">
             <Header
               headingText="Aggregate Reports"
-              paragraphText="Summary of lending activity by MSA/MD."
+              paragraphText="These reports summarize lending activity by MSA/MD."
               type="sub"
             />
             <span className="usa-label">Coming Soon</span>
@@ -61,9 +58,9 @@ class Home extends Component {
           <div className="card">
             <Header
               headingText="National Aggregates"
-              paragraphText="These reports are a nationwide summation of the HMDA data. They
-              indicate the number and dollar amounts of lending, cross-tabulated
-              by loan applicant, and geographic characteristics."
+              paragraphText="These reports summarize nationwide lending activity. 
+                They indicate the number and dollar amounts of loan applications, 
+                cross-tabulated by loan, borrower and geographic characteristics."
               type="sub"
             />
             <span className="usa-label">Coming Soon</span>
