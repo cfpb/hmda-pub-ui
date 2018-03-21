@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
 import NotFound from '../../common/NotFound.jsx'
+import isomorphicFetch from 'isomorphic-fetch'
 
 const defaultState = {
   error: null,
@@ -22,7 +23,8 @@ class ModifiedLar extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://192.168.99.100:4443/public/filers')
+    // TODO: use prod URL
+    isomorphicFetch('https://192.168.99.100:4443/public/filers')
       .then(response => {
         if (response.ok) {
           return response.json()
