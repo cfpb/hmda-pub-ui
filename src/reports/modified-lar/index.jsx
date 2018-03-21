@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
 import NotFound from '../../common/NotFound.jsx'
+import LoadingIcon from '../../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
 const defaultState = {
@@ -87,6 +88,11 @@ class ModifiedLar extends React.Component {
       disabled = false
       placeholder = 'Institution name'
     }
+
+    let loading = null
+    if (this.state.status.id === 1 || this.state.status.id === 3) {
+      loading = <LoadingIcon />
+    }
     return (
       <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
@@ -108,7 +114,9 @@ class ModifiedLar extends React.Component {
               onChange={this.handleTextInputChange}
               placeholder={placeholder}
               disabled={disabled}
+              style={{ display: 'inline-block' }}
             />
+            {loading}
           </form>
 
           <Results

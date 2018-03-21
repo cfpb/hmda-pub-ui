@@ -2,14 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Results = props => {
-  if (props.status.id === 1)
-    return (
-      <ul className="results">
-        <li className="error">
-          <h4>Please wait, we're still loading the institutions.</h4>
-        </li>
-      </ul>
-    )
   if (props.status.id === -1)
     return (
       <ul className="results">
