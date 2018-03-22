@@ -82,17 +82,30 @@ class ModifiedLar extends React.Component {
   }
 
   render() {
-    let disabled = true
-    let placeholder = 'Sorry'
-    if (this.state.status.id >= 2) {
-      disabled = false
-      placeholder = 'Institution name'
+    let disabled = false
+    let inputClass = ''
+    let inputLabelClass = ''
+    let errorMessage = null
+    if (this.state.status.id === -1) {
+      disabled = true
+      inputClass = 'usa-input-error'
+      inputLabelClass = 'usa-input-error-label'
+      errorMessage = (
+        <span
+          className="usa-input-error-message"
+          id="input-error-message"
+          role="alert"
+        >
+          Sorry, we're unable to load the list of institutions that have filed.
+        </span>
+      )
     }
 
     let loading = null
     if (this.state.status.id === 1 || this.state.status.id === 3) {
       loading = <LoadingIcon />
     }
+
     return (
       <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
@@ -105,18 +118,23 @@ class ModifiedLar extends React.Component {
               download its modified LAR file."
           />
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="institution-name">Enter an institution name</label>
-            <input
-              id="institution-name"
-              name="institution-name"
-              type="text"
-              value={this.state.textInputValue}
-              onChange={this.handleTextInputChange}
-              placeholder={placeholder}
-              disabled={disabled}
-              style={{ display: 'inline-block' }}
-            />
-            {loading}
+            <div className={inputClass}>
+              <label className={inputLabelClass} htmlFor="institution-name">
+                Enter an institution name
+              </label>
+              {errorMessage}
+              <input
+                id="institution-name"
+                name="institution-name"
+                type="text"
+                value={this.state.textInputValue}
+                onChange={this.handleTextInputChange}
+                placeholder="Institution name"
+                disabled={disabled}
+                style={{ display: 'inline-block' }}
+              />
+              {loading}
+            </div>
           </form>
 
           <Results

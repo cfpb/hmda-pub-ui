@@ -4,19 +4,30 @@ import PropTypes from 'prop-types'
 const Results = props => {
   if (props.status.id === -1)
     return (
-      <ul className="results">
-        <li className="error">
-          <h4>We're unable to load the institutions.</h4>
-        </li>
-      </ul>
+      <div className="usa-alert usa-alert-error" role="alert">
+        <div className="usa-alert-body">
+          <h3 className="usa-alert-heading">
+            List of institutions unavailable
+          </h3>
+          <p className="usa-alert-text">
+            We're unable to load the institutions. Please try refreshing your
+            browser.
+          </p>
+        </div>
+      </div>
     )
   if (props.error === 'Not a filer')
     return (
-      <ul className="results">
-        <li className="error">
-          <h4>Sorry, we couldn't find that institution.</h4>
-        </li>
-      </ul>
+      <div className="usa-alert usa-alert-error" role="alert">
+        <div className="usa-alert-body">
+          <h3 className="usa-alert-heading">Institution not found</h3>
+          <p className="usa-alert-text">
+            Sorry, that insitution isn't in our list of filers. If you think
+            this is incorrect please contact{' '}
+            <a href="mailto:hmdahelp@cfpb.gov">hmdahelp@cfpb.gov</a>.
+          </p>
+        </div>
+      </div>
     )
 
   if (props.institutions.length === 0) return null
