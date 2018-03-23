@@ -155,6 +155,7 @@ class ModifiedLar extends React.Component {
           <Results
             error={this.state.error}
             institutions={this.state.institutionsFiltered}
+            inputValue={this.state.textInputValue}
             status={this.state.status}
           />
         </div>
