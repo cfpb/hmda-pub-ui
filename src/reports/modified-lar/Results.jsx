@@ -1,7 +1,8 @@
 import React from 'react'
 
 const defaultState = {
-  scrollPos: 0
+  start: 0,
+  end: 6
 }
 
 const HEIGHT = 102
@@ -43,7 +44,6 @@ class Results extends React.PureComponent {
 
     if (this.props.institutions.length === 0) return null
     const { start, end } = this.state
-
     const visibleInstitutions = this.props.institutions.slice(start, end)
     const oddIsGray = start % 2 === 0
 
