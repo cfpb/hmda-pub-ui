@@ -21,11 +21,13 @@ class ModifiedLar extends React.Component {
 
     this.handleTextInputChange = this.handleTextInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.makeDebouncer = this.makeDebouncer.bind(this)
+    this.searchInstitutions = this.searchInstitutions.bind(this)
   }
 
   componentDidMount() {
     // TODO: use prod URL
-    isomorphicFetch('https://192.168.99.100:4443/public/filers')
+    isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -47,21 +49,12 @@ class ModifiedLar extends React.Component {
       })
   }
 
-  handleTextInputChange(event) {
-    this.setState({
-      textInputValue: event.target.value,
-      error: null,
-      status: { id: 3, message: 'searching' }
-    })
+  searchInstitutions(value) {
     let institutionsFiltered = []
 
-    if (event.target.value.length !== 0) {
+    if (value.length !== 0) {
       this.state.institutions.forEach(institution => {
-        if (
-          institution.name
-            .toLowerCase()
-            .includes(event.target.value.toLowerCase())
-        ) {
+        if (institution.name.toLowerCase().includes(value.toLowerCase())) {
           institutionsFiltered.push(institution)
         }
       })
@@ -75,6 +68,28 @@ class ModifiedLar extends React.Component {
       institutionsFiltered: institutionsFiltered,
       status: { id: 2, message: 'ready' }
     })
+  }
+
+  makeDebouncer(delay) {
+    let timeout
+    let _this = this
+    return function(value) {
+      clearTimeout(timeout)
+      timeout = setTimeout(function() {
+        _this.searchInstitutions(value)
+      }, delay)
+    }
+  }
+
+  handleTextInputChange(event) {
+    this.setState({
+      textInputValue: event.target.value,
+      error: null,
+      status: { id: 3, message: 'searching' }
+    })
+
+    const debounceSearch = this.makeDebouncer(500)
+    debounceSearch(event.target.value)
   }
 
   handleSubmit(event) {
