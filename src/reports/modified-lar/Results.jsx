@@ -7,10 +7,23 @@ const defaultState = {
 
 const HEIGHT = 102
 
-class Results extends React.PureComponent {
+class Results extends React.Component {
   constructor(props) {
     super(props)
     this.state = defaultState
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.inputValue !== this.props.inputValue) return true
+    if (nextState.start !== this.state.start) return true
+    return false
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.inputValue !== this.props.inputValue) {
+      if (this.scrollWrapper) this.scrollWrapper.scrollTo(0, 0)
+      this.setState(defaultState)
+    }
   }
 
   render() {
@@ -43,6 +56,7 @@ class Results extends React.PureComponent {
       )
 
     if (this.props.institutions.length === 0) return null
+
     const { start, end } = this.state
     const visibleInstitutions = this.props.institutions.slice(start, end)
     const oddIsGray = start % 2 === 0
@@ -56,6 +70,9 @@ class Results extends React.PureComponent {
         </h4>
         <div
           className="results-wrapper"
+          ref={div => {
+            this.scrollWrapper = div
+          }}
           onScroll={e => {
             const start = (e.target.scrollTop / HEIGHT) >> 0
             const end = start + 6
