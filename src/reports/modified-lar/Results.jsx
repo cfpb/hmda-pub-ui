@@ -6,7 +6,7 @@ const defaultState = {
 
 const HEIGHT = 102
 
-class Results extends React.Component {
+class Results extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = defaultState
@@ -57,7 +57,6 @@ class Results extends React.Component {
         <div
           className="results-wrapper"
           onScroll={e => {
-            console.log('scrolling', e.target.scrollTop)
             const start = (e.target.scrollTop / HEIGHT) >> 0
             const end = start + 6
             this.setState({
