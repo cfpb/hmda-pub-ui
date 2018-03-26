@@ -8,17 +8,17 @@ class Home extends Component {
       <div className="home">
         <div className="usa-grid">
           <div className="usa-width-one-whole">
-            <Header
-              type="main"
-              headingText="HMDA Data Publication"
-              paragraphText="HMDA data provide information regarding home mortgage lending
-                activity. The data and reports can be used along with the Census
-                demographic information for data analysis purposes."
-            >
-              <p className="usa-text-small">
-                Learn more about a financial institutions obligations for{' '}
-                <a href="https://www.consumerfinance.gov/eregulations/1003-5/2017-18284_20180101#1003-5-a">
-                  disclosure and reporting
+            <Header type="main" headingText="HMDA Data Publication">
+              <p className="usa-font-lead">
+                The HMDA data and reports are the most comprehensive publicly
+                available information on mortgage market activity. The data and
+                reports can be used along with the{' '}
+                <a href="https://www.ffiec.gov/censusproducts.htm">Census</a>{' '}
+                demographic information for data analysis purposes. Available
+                below are the data and reports for HMDA data collected in or
+                after 2017. For HMDA data and reports for prior years, visit{' '}
+                <a href="https://www.ffiec.gov/hmda/hmdaproducts.htm">
+                  https://www.ffiec.gov/hmda/hmdaproducts.htm
                 </a>.
               </p>
             </Header>
@@ -30,19 +30,11 @@ class Home extends Component {
             <Header
               headingLink="/modified-lar"
               headingText="Modified Loan/Application Register (LAR)"
-              paragraphText="The modified LAR includes a financial institution's loan-level data, as
-              modified by the Bureau to protect applicant and borrower privacy."
+              paragraphText="The modified LAR provides loan-level data for an individual
+              financial institution, as modified by the Bureau to protect applicant and
+              borrower privacy."
               type="sub"
             />
-          </div>
-
-          <div className="card">
-            <Header
-              headingText="Aggregate Reports"
-              paragraphText="These reports summarize lending activity by MSA/MD."
-              type="sub"
-            />
-            <span className="usa-label">Coming Soon</span>
           </div>
 
           <div className="card">
@@ -57,7 +49,16 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingText="National Aggregates"
+              headingText="MSA/MD Aggregate Reports"
+              paragraphText="These reports summarize lending activity by MSA/MD."
+              type="sub"
+            />
+            <span className="usa-label">Coming Soon</span>
+          </div>
+
+          <div className="card">
+            <Header
+              headingText="National Aggregate Reports"
               paragraphText="These reports summarize nationwide lending activity. 
                 They indicate the number and dollar amounts of loan applications, 
                 cross-tabulated by loan, borrower and geographic characteristics."

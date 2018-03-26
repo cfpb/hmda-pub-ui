@@ -24,10 +24,14 @@ const Header = props => {
   if (props.headingLink)
     heading = makeHeadingLink(props.headingText, props.headingLink)
 
+  let paragraphText = null
+  if (props.paragraphText)
+    paragraphText = renderParagraph(props.type, props.paragraphText)
+
   return (
     <header className="header" style={style}>
       {renderHeading(props.type, heading)}
-      {renderParagraph(props.type, props.paragraphText)}
+      {paragraphText}
       {props.children}
     </header>
   )
