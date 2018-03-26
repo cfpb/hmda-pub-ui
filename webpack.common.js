@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
   output: {
-    path: path.resolve(__dirname, 'reports/js')
+    path: path.resolve(__dirname, 'data-publication/js')
   },
   devtool: 'source-map',
   plugins: [new webpack.optimize.ModuleConcatenationPlugin()],

@@ -1,43 +1,47 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import BannerUSA from './BannerUSA.jsx'
 
-const Header = () => {
+const makeHeadingLink = (headingText, headingLink) => {
+  return <Link to={headingLink}>{headingText}</Link>
+}
+
+const renderHeading = (type, heading) => {
+  if (type === 'main') return <h1>{heading}</h1>
+  if (type === 'sub') return <h4>{heading}</h4>
+}
+
+const renderParagraph = (type, paragraphText) => {
+  if (type === 'main') return <p className="usa-font-lead">{paragraphText}</p>
+  if (type === 'sub') return <p>{paragraphText}</p>
+}
+
+const Header = props => {
+  let style = { marginBottom: '3em' }
+  if (props.type === 'sub') style = { marginBottom: '1em' }
+
+  let heading = props.headingText
+  if (props.headingLink)
+    heading = makeHeadingLink(props.headingText, props.headingLink)
+
+  let paragraphText = null
+  if (props.paragraphText)
+    paragraphText = renderParagraph(props.type, props.paragraphText)
+
   return (
-    <React.Fragment>
-      <a key={1} className="usa-skipnav" href="#main-content">
-        Skip to main content
-      </a>
-      <header
-        key={2}
-        className="Header usa-header usa-header-basic"
-        role="banner"
-      >
-        <BannerUSA />
-        <div className="usa-nav-container">
-          <div className="usa-logo" id="logo">
-            <em className="usa-logo-text">
-              <img src="/reports/img/ffiec-logo.png" width="125px" />
-            </em>
-          </div>
-          <nav className="usa-nav">
-            <ul className="usa-nav-primary">
-              <li>
-                <a href={window.HMDA_ENV.APP_URL} className="usa-nav-link">
-                  Home
-                </a>
-              </li>
-              <li>
-                <Link className="usa-nav-link" to="/">
-                  Reports
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </React.Fragment>
+    <header className="header" style={style}>
+      {renderHeading(props.type, heading)}
+      {paragraphText}
+      {props.children}
+    </header>
   )
+}
+
+Header.propTypes = {
+  type: PropTypes.oneOf(['main', 'sub']),
+  headingText: PropTypes.string,
+  paragraphText: PropTypes.string,
+  headingLink: PropTypes.string
 }
 
 export default Header

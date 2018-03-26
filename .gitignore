@@ -28,7 +28,7 @@ coverage/
 #############
 node_modules/
 dist/
-reports/
+data-publication/
 env.json
 
 .snyk

@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/reports/**", "destination": "/reports/index.html" }
+    {
+      "source": "/data-publication/**",
+      "destination": "/data-publication/index.html"
+    }
   ]
 }

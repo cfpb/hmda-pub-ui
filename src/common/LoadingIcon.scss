@@ -1,0 +1,21 @@
+.LoadingIconWrapper {
+  display: inline-block;
+  position: relative;
+  transform: rotateX(180deg);
+  width: 40px;
+}
+
+.LoadingIcon {
+  animation: loading-spin 2s infinite linear;
+  position: absolute;
+  top: -7px;
+}
+
+@keyframes loading-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-359deg);
+  }
+}
