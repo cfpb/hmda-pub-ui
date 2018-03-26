@@ -21,12 +21,10 @@ class ModifiedLar extends React.Component {
 
     this.handleTextInputChange = this.handleTextInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.makeDebouncer = this.makeDebouncer.bind(this)
     this.searchInstitutions = this.searchInstitutions.bind(this)
   }
 
   componentDidMount() {
-    // TODO: use prod URL
     isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
       .then(response => {
         if (response.ok) {
@@ -53,11 +51,16 @@ class ModifiedLar extends React.Component {
     let institutionsFiltered = []
 
     if (value.length !== 0) {
-      this.state.institutions.forEach(institution => {
-        if (institution.name.toLowerCase().includes(value.toLowerCase())) {
+      const institutions = this.state.institutions
+      const len = institutions.length
+      const val = value.toUpperCase()
+
+      for (let i = 0; i < len; i++) {
+        const institution = institutions[i]
+        if (institution.name.indexOf(val) !== -1) {
           institutionsFiltered.push(institution)
         }
-      })
+      }
 
       if (institutionsFiltered.length === 0) {
         this.setState({ error: 'Not a filer' })
@@ -70,17 +73,6 @@ class ModifiedLar extends React.Component {
     })
   }
 
-  makeDebouncer(delay) {
-    let timeout
-    let _this = this
-    return function(value) {
-      clearTimeout(timeout)
-      timeout = setTimeout(function() {
-        _this.searchInstitutions(value)
-      }, delay)
-    }
-  }
-
   handleTextInputChange(event) {
     this.setState({
       textInputValue: event.target.value,
@@ -88,8 +80,7 @@ class ModifiedLar extends React.Component {
       status: { id: 3, message: 'searching' }
     })
 
-    const debounceSearch = this.makeDebouncer(500)
-    debounceSearch(event.target.value)
+    this.searchInstitutions(event.target.value)
   }
 
   handleSubmit(event) {
@@ -101,6 +92,7 @@ class ModifiedLar extends React.Component {
     let inputClass = ''
     let inputLabelClass = ''
     let errorMessage = null
+
     if (this.state.status.id === -1) {
       disabled = true
       inputClass = 'usa-input-error'
