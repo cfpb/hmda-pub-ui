@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from '../../common/Header.jsx'
 
 class Report extends React.Component {
   constructor(props) {
@@ -13,9 +14,11 @@ class Report extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/${this
-        .props.match.params.institutionId}/${this.props.match.params
-        .msaMdId}/${this.props.match.params.reportId}.json`
+      `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/${
+        this.props.match.params.institutionId
+      }/${this.props.match.params.msaMdId}/${
+        this.props.match.params.reportId
+      }.json`
     )
       .then(res => res.json())
       .then(
@@ -36,20 +39,17 @@ class Report extends React.Component {
 
   render() {
     return (
-      <h1>
-        Report{' '}
-        <code style={{ backgroundColor: '#f1f1f1', border: '1px solid #ddd' }}>
-          {this.props.match.params.reportId}
-        </code>{' '}
-        for institution{' '}
-        <code style={{ backgroundColor: '#f1f1f1', border: '1px solid #ddd' }}>
-          {this.props.match.params.institutionId}
-        </code>{' '}
-        in MSA/MD{' '}
-        <code style={{ backgroundColor: '#f1f1f1', border: '1px solid #ddd' }}>
-          {this.props.match.params.msaMdId}
-        </code>
-      </h1>
+      <div className="usa-grid report" id="main-content">
+        <Header
+          type="main"
+          headingText={`Report ${
+            this.props.match.params.reportId
+          } for institution ${
+            this.props.match.params.institutionId
+          } for MSA/MD ${this.props.match.params.msaMdId}`}
+          paragraphText="This is the report."
+        />
+      </div>
     )
   }
 }

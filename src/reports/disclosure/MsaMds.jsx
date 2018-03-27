@@ -1,14 +1,14 @@
 import React from 'react'
 import Header from '../../common/Header.jsx'
 
-class Reports extends React.Component {
+class MsaMds extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       error: null,
       isLoaded: false,
-      reports: [],
+      msamds: [],
       radioInputValue: null
     }
 
@@ -17,18 +17,17 @@ class Reports extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ reports: ['1', '2', '3'], isLoaded: true })
+    this.setState({ msamds: ['1234', '2345', '3456'], isLoaded: true })
     /*fetch(
-      `https://ffiec-api.cfpb.gov/public/filers/${
-        this.props.match.params.institutionId
-      }/msaMds/${this.props.match.params.msaMdId}`
+      `https://ffiec-api.cfpb.gov/public/filers/${this.props.match.params
+        .institutionId}/msamds`
     )
       .then(res => res.json())
       .then(
         result => {
           this.setState({
             isLoaded: true,
-            msaMds: result.msaMds
+            msamds: result.msamds
           })
         },
         error => {
@@ -45,8 +44,9 @@ class Reports extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(`${this.props.match.url}/msa-md/${this.state.radioInputValue}`)
     this.props.history.push({
-      pathname: `${this.props.match.url}/report/${this.state.radioInputValue}`
+      pathname: `${this.props.match.url}/msa-md/${this.state.radioInputValue}`
     })
     event.preventDefault()
   }
@@ -56,34 +56,35 @@ class Reports extends React.Component {
       this.state.radioInputValue === null ? true : false
 
     return (
-      <div className="usa-grid reports" id="main-content">
+      <div className="usa-grid msa-mds" id="main-content">
         <Header
           type="main"
-          headingText={`Choose a generated report for institution ${
+          headingText={`Choose an available MSA/MD for institution ${
             this.props.match.params.institutionId
-          } and MSA/MD ${this.props.match.params.msaMdId}`}
-          paragraphText="Listed below are all the reports available"
+          }`}
+          paragraphText="Listed below are all the MSA/MDs for this institution"
         />
+
         <form onSubmit={this.handleSubmit}>
           <ul className="usa-unstyled-list">
-            {this.state.reports.map((report, index) => {
+            {this.state.msamds.map((msamd, index) => {
               return (
                 <li key={index}>
                   <input
-                    id={report}
-                    name="reports"
+                    id={msamd}
+                    name="msamds"
                     type="radio"
-                    value={report}
-                    checked={this.state.radioInputValue === report}
+                    value={msamd}
+                    checked={this.state.radioInputValue === msamd}
                     onChange={this.handleRadioInputChange}
                   />
-                  <label htmlFor={report}>{report}</label>
+                  <label htmlFor={msamd}>{msamd}</label>
                 </li>
               )
             })}
             <input
               type="submit"
-              value="View the report"
+              value="Next - Find an MSA/MD"
               disabled={submitButtonDisabled}
             />
           </ul>
@@ -93,4 +94,4 @@ class Reports extends React.Component {
   }
 }
 
-export default Reports
+export default MsaMds
