@@ -21,6 +21,9 @@
     &:last-child {
       margin-right: 0;
     }
+    &.quarter {
+      max-width: 24%;
+    }
   }
   h4 {
     margin: 0;
