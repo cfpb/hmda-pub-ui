@@ -67,6 +67,19 @@ class Home extends Component {
             <span className="usa-label">Coming Soon</span>
           </div>
         </div>
+
+        <div className="card-container">
+          <div className="card quarter">
+            <Header
+              headingText="Snapshot National Loan-Level Dataset"
+              paragraphText="The snapshot file contains the national loan-level 
+              dataset as of a specific point in time for all HMDA reporters, as 
+              modified by the Bureau to protect applicant and borrower privacy."
+              type="sub"
+            />
+            <span className="usa-label">Expected May 2018</span>
+          </div>
+        </div>
       </div>
     )
   }
