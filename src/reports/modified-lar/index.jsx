@@ -36,7 +36,9 @@ class ModifiedLar extends React.Component {
       .then(result => {
         this.setState({
           status: { id: 2, message: 'ready' },
-          institutions: result.institutions
+          institutions: result.institutions.map(v => {
+            return { ...v, name: v.name.toUpperCase() }
+          })
         })
       })
       .catch(error => {
