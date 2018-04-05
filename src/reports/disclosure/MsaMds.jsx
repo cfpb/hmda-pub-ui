@@ -17,7 +17,7 @@ class MsaMds extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ msamds: ['1234', '2345', '3456'], isLoaded: true })
+    this.setState({ msamds: ['25420'], isLoaded: true })
     /*fetch(
       `https://ffiec-api.cfpb.gov/public/filers/${this.props.match.params
         .institutionId}/msamds`
