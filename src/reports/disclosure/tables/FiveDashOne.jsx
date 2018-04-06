@@ -133,6 +133,14 @@ const FiveDashOne = props => {
         </tr>
       </thead>
       <tbody>{renderData(props.report.applicantIncomes)}</tbody>
+      <tfoot>
+        <tr>
+          <th>Total</th>
+          {props.report.total.map((total, index) => {
+            return [<td>{total.count}</td>, <td>{total.value}</td>]
+          })}
+        </tr>
+      </tfoot>
     </table>
   )
 }

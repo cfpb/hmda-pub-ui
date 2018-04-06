@@ -115,7 +115,7 @@ class Disclosure extends React.Component {
       <div className="usa-grid disclosure" id="main-content">
         <div className="usa-width-one-whole">
           <Header
-            type="main"
+            type={1}
             headingText="Disclosure reports"
             paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."

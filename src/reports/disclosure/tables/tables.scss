@@ -1,10 +1,40 @@
 .report {
+  padding: 0 1em;
+  .report-date {
+    color: $color-gray;
+    text-align: right;
+  }
+
+  .header {
+    margin-bottom: 0 !important;
+    p {
+      color: $color-base;
+      font-weight: bold;
+      margin-bottom: 0;
+      margin-top: 1em;
+    }
+  }
+
   table {
+    margin-top: 0.5em;
+    width: 100%;
     thead th {
       text-align: center;
     }
     td {
       text-align: right;
+    }
+
+    tfoot {
+      th,
+      td {
+        border-top: 2px solid;
+      }
+
+      th {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
     }
   }
 }

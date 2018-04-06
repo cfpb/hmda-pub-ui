@@ -118,7 +118,7 @@ class ModifiedLar extends React.Component {
       <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
           <Header
-            type="main"
+            type={1}
             headingText="Modified Loan/Application Register (LAR)"
             paragraphText="A downloadable modified LAR file is available for every 
             financial institution that has completed a 2017 HMDA data submission. 

@@ -58,7 +58,7 @@ class Reports extends React.Component {
     return (
       <div className="usa-grid reports" id="main-content">
         <Header
-          type="main"
+          type={1}
           headingText={`Choose a generated report for institution ${
             this.props.match.params.institutionId
           } and MSA/MD ${this.props.match.params.msaMdId}`}

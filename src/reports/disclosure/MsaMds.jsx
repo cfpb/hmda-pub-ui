@@ -58,7 +58,7 @@ class MsaMds extends React.Component {
     return (
       <div className="usa-grid msa-mds" id="main-content">
         <Header
-          type="main"
+          type={1}
           headingText={`Choose an available MSA/MD for institution ${
             this.props.match.params.institutionId
           }`}

@@ -43,25 +43,36 @@ class Report extends React.Component {
 
     const report = this.state.report
     const headingText = report
-      ? `Table ${this.props.match.params.reportId}: ${report.description}`
+      ? `Table ${this.props.match.params.reportId}: ${report.description}, ${
+          report.year
+        }`
       : null
     return (
-      <div class="report" id="main-content">
-        <div className="usa-grid">
-          <Header type="main" headingText={headingText}>
-            {report ? (
-              <React.Fragment>
-                <p>
-                  Institution: {report.respondentId} - {report.institutionName}
-                </p>
-                <p>
-                  MSA/MD: {report.msa.id} - {report.msa.name}
-                </p>
-              </React.Fragment>
-            ) : null}
-          </Header>
-        </div>
+      <div className="report" id="main-content">
+        <Header type={4} headingText={headingText}>
+          {report ? (
+            <React.Fragment>
+              <p style={{ width: '50%', display: 'inline-block' }}>
+                Institution: {report.respondentId} - {report.institutionName}
+              </p>
+              <p
+                style={{
+                  width: '50%',
+                  display: 'inline-block',
+                  textAlign: 'right'
+                }}
+              >
+                MSA/MD: {report.msa.id} - {report.msa.name}
+              </p>
+            </React.Fragment>
+          ) : null}
+        </Header>
+
         <FiveDashOne report={report} />
+
+        <p className="usa-text-small report-date">
+          Report date: {report.reportDate}
+        </p>
       </div>
     )
   }
