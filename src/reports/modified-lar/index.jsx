@@ -127,7 +127,18 @@ class ModifiedLar extends React.Component {
             If you cannot find a particular financial institution using this form, the 
             institution may not have been required to report HMDA data for 2017 or it 
             may not have completed its 2017 HMDA data submission."
-          />
+          >
+            <p>
+              The{' '}
+              <a
+                target="_blank"
+                href="https://github.com/cfpb/hmda-platform/blob/master/Documents/2017_Modified_LAR_Spec.csv"
+              >
+                modified LAR file specification
+              </a>{' '}
+              is now available.
+            </p>
+          </Header>
           <form onSubmit={this.handleSubmit}>
             <div className={inputClass}>
               <label className={inputLabelClass} htmlFor="institution-name">
