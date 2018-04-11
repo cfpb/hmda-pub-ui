@@ -84,7 +84,7 @@ class MsaMds extends React.Component {
             })}
             <input
               type="submit"
-              value="Next - Find an MSA/MD"
+              value="Next - Find a Report"
               disabled={submitButtonDisabled}
             />
           </ul>
