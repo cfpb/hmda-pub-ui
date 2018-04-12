@@ -9,6 +9,7 @@ import Disclosure from './reports/disclosure/index.jsx'
 import MsaMds from './reports/disclosure/MsaMds.jsx'
 import Reports from './reports/disclosure/Reports.jsx'
 import Report from './reports/disclosure/Report.jsx'
+import Aggregate from './reports/aggregate/index.jsx'
 import NotFound from './common/NotFound.jsx'
 
 const App = () => {
@@ -32,6 +33,16 @@ const App = () => {
           component={MsaMds}
         />
         <Route path="/disclosure-reports" component={Disclosure} />
+        <Route
+          path="/aggregate-reports/state/:stateId/msa-md/:msaMdId/report/:reportId"
+          component={Aggregate}
+        />
+        <Route
+          path="/aggregate-reports/state/:stateId/msa-md/:msaMdId"
+          component={Aggregate}
+        />
+        <Route path="/aggregate-reports/state/:stateId" component={Aggregate} />
+        <Route path="/aggregate-reports" component={Aggregate} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
