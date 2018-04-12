@@ -3,6 +3,10 @@ const spawn = require('child_process').spawn
 
 http
   .createServer(function(req, res) {
+    if (req.url.match(/.txt$/))
+      return http.get('http://s3.amazonaws.com' + req.url, r => {
+        r.pipe(res)
+      })
     let url = 's3:/' + req.url
     if (url[url.length - 1] !== '/') url += '/'
     const urlPieces = url.split('/').length
