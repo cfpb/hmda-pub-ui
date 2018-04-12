@@ -17,17 +17,17 @@ class MsaMds extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ msamds: ['25420'], isLoaded: true })
-    /*fetch(
-      `https://ffiec-api.cfpb.gov/public/filers/${this.props.match.params
-        .institutionId}/msamds`
+    fetch(
+      `http://localhost:1337/cfpb-hmda-public/prod/reports/disclosure/2017/${
+        this.props.match.params.institutionId
+      }`
     )
       .then(res => res.json())
       .then(
         result => {
           this.setState({
             isLoaded: true,
-            msamds: result.msamds
+            msamds: result
           })
         },
         error => {
@@ -36,7 +36,7 @@ class MsaMds extends React.Component {
             error
           })
         }
-      )*/
+      )
   }
 
   handleRadioInputChange(event) {

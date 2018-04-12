@@ -3,6 +3,9 @@ const spawn = require('child_process').spawn
 
 http
   .createServer(function(req, res) {
+    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Access-Control-Allow-Origin', '*')
+
     if (req.url.match(/.txt$/))
       return http.get('http://s3.amazonaws.com' + req.url, r => {
         r.pipe(res)
