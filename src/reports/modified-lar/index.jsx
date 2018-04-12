@@ -111,7 +111,7 @@ class ModifiedLar extends React.Component {
 
     let loading = null
     if (this.state.status.id === 1 || this.state.status.id === 3) {
-      loading = <LoadingIcon />
+      loading = <LoadingIcon className="LoadingInline" />
     }
 
     return (
