@@ -131,7 +131,7 @@ class ModifiedLar extends React.Component {
             <p>
               The{' '}
               <a
-                target="_blank"
+                title="Modified LAR file specification"
                 href="https://github.com/cfpb/hmda-platform/blob/master/Documents/2017_Modified_LAR_Spec.csv"
               >
                 modified LAR file specification
