@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
 
+const REPORTS = ['5-1', '5-2', '5-3']
+
 class Reports extends React.Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,7 @@ class Reports extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ reports: ['5-1'], isLoaded: true })
+    this.setState({ reports: REPORTS, isLoaded: true, selectValue: REPORTS[0] })
     /*fetch(
       `https://ffiec-api.cfpb.gov/public/filers/${
         this.props.match.params.institutionId
@@ -52,15 +54,19 @@ class Reports extends React.Component {
   }
 
   render() {
-    const submitButtonDisabled = this.state.selectValue === null ? true : false
+    let reportsFor = ''
+    if (this.props.match.params.institutionId)
+      reportsFor = this.props.match.params.institutionId
+    if (this.props.match.params.stateId)
+      reportsFor = this.props.match.params.stateId
 
     return (
       <div className="usa-grid reports" id="main-content">
         <Header
           type={1}
-          headingText={`Choose a generated report for institution ${
-            this.props.match.params.institutionId
-          } and MSA/MD ${this.props.match.params.msaMdId}`}
+          headingText={`Choose a generated report for ${reportsFor} and MSA/MD ${
+            this.props.match.params.msaMdId
+          }`}
           paragraphText="Listed below are all the reports available"
         />
 
