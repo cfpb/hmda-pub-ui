@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
-import Header from '../../common/Header.jsx'
-import LoadingIcon from '../../common/LoadingIcon.jsx'
+import Header from '../common/Header.jsx'
+import LoadingIcon from '../common/LoadingIcon.jsx'
 
 class Selector extends React.Component {
   constructor(props) {

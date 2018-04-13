@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../../common/Header.jsx'
-import LoadingIcon from '../../common/LoadingIcon.jsx'
+import Header from '../common/Header.jsx'
+import LoadingIcon from '../common/LoadingIcon.jsx'
 import Five from './tables/Five.jsx'
 
 class Report extends React.Component {

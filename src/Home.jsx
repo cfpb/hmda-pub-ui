@@ -50,6 +50,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
+              headingLink="/aggregate-reports"
               headingText="MSA/MD Aggregate Reports"
               paragraphText="These reports summarize lending activity by MSA/MD."
               type={4}
