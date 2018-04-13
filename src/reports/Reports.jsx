@@ -9,10 +9,10 @@ class Reports extends React.Component {
       error: null,
       isLoaded: false,
       reports: [],
-      radioInputValue: null
+      selectValue: ''
     }
 
-    this.handleRadioInputChange = this.handleRadioInputChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -40,20 +40,19 @@ class Reports extends React.Component {
       )*/
   }
 
-  handleRadioInputChange(event) {
-    this.setState({ radioInputValue: event.target.value })
+  handleChange(event) {
+    this.setState({ selectValue: event.target.value })
   }
 
   handleSubmit(event) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/report/${this.state.radioInputValue}`
+      pathname: `${this.props.match.url}/report/${this.state.selectValue}`
     })
     event.preventDefault()
   }
 
   render() {
-    const submitButtonDisabled =
-      this.state.radioInputValue === null ? true : false
+    const submitButtonDisabled = this.state.selectValue === null ? true : false
 
     return (
       <div className="usa-grid reports" id="main-content">
@@ -64,29 +63,26 @@ class Reports extends React.Component {
           } and MSA/MD ${this.props.match.params.msaMdId}`}
           paragraphText="Listed below are all the reports available"
         />
+
         <form onSubmit={this.handleSubmit}>
-          <ul className="usa-unstyled-list">
+          <label htmlFor="reports">Select a Report</label>
+
+          <select
+            name="reports"
+            id="reports"
+            value={this.state.selectValue}
+            onChange={this.handleChange}
+          >
             {this.state.reports.map((report, index) => {
               return (
-                <li key={index}>
-                  <input
-                    id={report}
-                    name="reports"
-                    type="radio"
-                    value={report}
-                    checked={this.state.radioInputValue === report}
-                    onChange={this.handleRadioInputChange}
-                  />
-                  <label htmlFor={report}>{report}</label>
-                </li>
+                <option key={index} value={report}>
+                  {report}
+                </option>
               )
             })}
-            <input
-              type="submit"
-              value="View the report"
-              disabled={submitButtonDisabled}
-            />
-          </ul>
+          </select>
+
+          <input type="submit" value="View the report" />
         </form>
       </div>
     )
