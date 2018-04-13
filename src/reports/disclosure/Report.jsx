@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../common/Header.jsx'
-import FiveDashOne from './tables/FiveDashOne.jsx'
+import LoadingIcon from '../../common/LoadingIcon.jsx'
+import Five from './tables/Five.jsx'
 
 class Report extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class Report extends React.Component {
   }
 
   render() {
+    if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.report === null) return null
 
     const report = this.state.report
@@ -68,7 +70,7 @@ class Report extends React.Component {
           ) : null}
         </Header>
 
-        <p>{JSON.stringify(report)}</p>
+        <Five report={report} />
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}
         </p>

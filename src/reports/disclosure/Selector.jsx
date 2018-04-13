@@ -52,8 +52,6 @@ class Selector extends React.Component {
   }
 
   render() {
-    if (!this.state.isLoaded) return <LoadingIcon />
-
     return (
       <div className="usa-grid" id="main-content">
         <Header
@@ -61,16 +59,20 @@ class Selector extends React.Component {
           headingText={this.props.getHeader.call(this)}
           paragraphText={this.props.paragraphText}
         />
-        <Select
-          onChange={this.handleChange}
-          placeholder={this.props.placeholder}
-          searchable={false}
-          simpleValue
-          options={this.state[this.props.target].map(val => {
-            val = val.split('.txt')[0]
-            return { value: val, label: val }
-          })}
-        />
+        {this.state.isLoaded ? (
+          <Select
+            onChange={this.handleChange}
+            placeholder={this.props.placeholder}
+            searchable={false}
+            simpleValue
+            options={this.state[this.props.target].map(val => {
+              val = val.split('.txt')[0]
+              return { value: val, label: val }
+            })}
+          />
+        ) : (
+          <LoadingIcon />
+        )}
       </div>
     )
   }
