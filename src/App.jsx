@@ -6,10 +6,10 @@ import Footer from './common/Footer.jsx'
 import Home from './Home.jsx'
 import ModifiedLar from './reports/modified-lar/index.jsx'
 import Disclosure from './reports/disclosure/index.jsx'
-import MsaMds from './reports/disclosure/MsaMds.jsx'
-import Reports from './reports/disclosure/Reports.jsx'
-import Report from './reports/disclosure/Report.jsx'
 import Aggregate from './reports/aggregate/index.jsx'
+import MsaMds from './reports/MsaMds.jsx'
+import Reports from './reports/Reports.jsx'
+import Report from './reports/Report.jsx'
 import NotFound from './common/NotFound.jsx'
 
 const App = () => {
@@ -35,13 +35,13 @@ const App = () => {
         <Route path="/disclosure-reports" component={Disclosure} />
         <Route
           path="/aggregate-reports/state/:stateId/msa-md/:msaMdId/report/:reportId"
-          component={Aggregate}
+          component={Report}
         />
         <Route
           path="/aggregate-reports/state/:stateId/msa-md/:msaMdId"
-          component={Aggregate}
+          component={Reports}
         />
-        <Route path="/aggregate-reports/state/:stateId" component={Aggregate} />
+        <Route path="/aggregate-reports/state/:stateId" component={MsaMds} />
         <Route path="/aggregate-reports" component={Aggregate} />
         <Route component={NotFound} />
       </Switch>

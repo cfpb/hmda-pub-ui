@@ -61,7 +61,7 @@ class Aggregate extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { selectValue: 'AL' }
+    this.state = { selectValue: 'AK' }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -74,6 +74,9 @@ class Aggregate extends React.Component {
   }
 
   handleSubmit(event) {
+    this.props.history.push({
+      pathname: `${this.props.match.url}/state/${this.state.selectValue}`
+    })
     event.preventDefault()
   }
 
@@ -86,8 +89,10 @@ class Aggregate extends React.Component {
             headingText="MSA/MD Aggregate Reports"
             paragraphText="These reports summarize lending activity by MSA/MD."
           />
+
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="states">Select a state</label>
+
             <select
               name="states"
               id="states"
@@ -102,6 +107,8 @@ class Aggregate extends React.Component {
                 )
               })}
             </select>
+
+            <input type="submit" value="Next - Select an MSA/MD" />
           </form>
         </div>
       </div>
