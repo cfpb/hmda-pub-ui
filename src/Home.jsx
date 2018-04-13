@@ -8,7 +8,7 @@ class Home extends Component {
       <div className="home">
         <div className="usa-grid">
           <div className="usa-width-one-whole">
-            <Header type="main" headingText="HMDA Data Publication">
+            <Header type={1} headingText="HMDA Data Publication">
               <p className="usa-font-lead">
                 The HMDA data and reports are the most comprehensive publicly
                 available information on mortgage market activity. The data and
@@ -33,25 +33,27 @@ class Home extends Component {
               paragraphText="The modified LAR provides loan-level data for an individual
               financial institution, as modified by the Bureau to protect applicant and
               borrower privacy."
-              type="sub"
+              type={4}
             />
           </div>
 
           <div className="card">
             <Header
+              headingLink="/disclosure-reports"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
-              type="sub"
+              type={4}
             />
             <span className="usa-label">Coming Soon</span>
           </div>
 
           <div className="card">
             <Header
+              headingLink="/aggregate-reports"
               headingText="MSA/MD Aggregate Reports"
               paragraphText="These reports summarize lending activity by MSA/MD."
-              type="sub"
+              type={4}
             />
             <span className="usa-label">Coming Soon</span>
           </div>
@@ -62,7 +64,7 @@ class Home extends Component {
               paragraphText="These reports summarize nationwide lending activity. 
                 They indicate the number and dollar amounts of loan applications, 
                 cross-tabulated by loan, borrower and geographic characteristics."
-              type="sub"
+              type={4}
             />
             <span className="usa-label">Coming Soon</span>
           </div>
@@ -75,7 +77,7 @@ class Home extends Component {
               paragraphText="The snapshot file contains the national loan-level 
               dataset as of a specific point in time for all HMDA reporters, as 
               modified by the Bureau to protect applicant and borrower privacy."
-              type="sub"
+              type={4}
             />
             <span className="usa-label">Expected May 2018</span>
           </div>

@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
-import NotFound from '../../common/NotFound.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
@@ -119,7 +118,7 @@ class ModifiedLar extends React.Component {
       <div className="usa-grid modified-lar" id="main-content">
         <div className="usa-width-one-whole">
           <Header
-            type="main"
+            type={1}
             headingText="Modified Loan/Application Register (LAR)"
             paragraphText="A downloadable modified LAR file is available for every 
             financial institution that has completed a 2017 HMDA data submission. 
