@@ -118,14 +118,14 @@ class Results extends React.Component {
         )}
         <ul className="results">
           {visibleInstitutions.map((institution, index) => {
+            let url = this.props.match.url
+            if (!url.match(/\/$/)) url += '/'
             return (
               <li key={index}>
                 <h4>{institution.name}</h4>
                 <p>Respondent ID: {institution.respondentId}</p>
                 <Link
-                  to={`${this.props.match.url}/institution/${
-                    institution.institutionId
-                  }`}
+                  to={`${url}institution/${institution.institutionId}`}
                   className="usa-font-small"
                 >
                   View MSA/MDs

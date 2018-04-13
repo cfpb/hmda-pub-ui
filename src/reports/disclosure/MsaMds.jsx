@@ -1,97 +1,20 @@
 import React from 'react'
-import Header from '../../common/Header.jsx'
+import Selector from './Selector.jsx'
 
-class MsaMds extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      error: null,
-      isLoaded: false,
-      msamds: [],
-      radioInputValue: null
-    }
-
-    this.handleRadioInputChange = this.handleRadioInputChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  componentDidMount() {
-    fetch(
-      `http://localhost:1337/cfpb-hmda-public/prod/reports/disclosure/2017/${
-        this.props.match.params.institutionId
-      }`
-    )
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            msamds: result
-          })
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
-  }
-
-  handleRadioInputChange(event) {
-    this.setState({ radioInputValue: event.target.value })
-  }
-
-  handleSubmit(event) {
-    console.log(`${this.props.match.url}/msa-md/${this.state.radioInputValue}`)
-    this.props.history.push({
-      pathname: `${this.props.match.url}/msa-md/${this.state.radioInputValue}`
-    })
-    event.preventDefault()
-  }
-
-  render() {
-    const submitButtonDisabled =
-      this.state.radioInputValue === null ? true : false
-
-    return (
-      <div className="usa-grid msa-mds" id="main-content">
-        <Header
-          type={1}
-          headingText={`Choose an available MSA/MD for institution ${
-            this.props.match.params.institutionId
-          }`}
-          paragraphText="Listed below are all the MSA/MDs for this institution"
-        />
-
-        <form onSubmit={this.handleSubmit}>
-          <ul className="usa-unstyled-list">
-            {this.state.msamds.map((msamd, index) => {
-              return (
-                <li key={index}>
-                  <input
-                    id={msamd}
-                    name="msamds"
-                    type="radio"
-                    value={msamd}
-                    checked={this.state.radioInputValue === msamd}
-                    onChange={this.handleRadioInputChange}
-                  />
-                  <label htmlFor={msamd}>{msamd}</label>
-                </li>
-              )
-            })}
-            <input
-              type="submit"
-              value="Next - Find a Report"
-              disabled={submitButtonDisabled}
-            />
-          </ul>
-        </form>
-      </div>
-    )
-  }
+const MsaMds = props => {
+  return (
+    <Selector
+      target="msa-md"
+      placeholder="Select MSA/MD..."
+      paragraphText="Listed below are all the MSA/MDs for this institution"
+      getHeader={function() {
+        return `Choose an available MSA/MD for institution ${
+          this.props.match.params.institutionId
+        }`
+      }}
+      {...props}
+    />
+  )
 }
 
 export default MsaMds
