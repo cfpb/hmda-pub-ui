@@ -45,9 +45,7 @@ class Report extends React.Component {
 
     const report = this.state.report
     const headingText = report
-      ? `Table ${this.props.match.params.reportId.split('.txt')[0]}: ${
-          report.description
-        }, ${report.year}`
+      ? `Table ${report.table}: ${report.description}, ${report.year}`
       : null
     return (
       <div className="report" id="main-content">
