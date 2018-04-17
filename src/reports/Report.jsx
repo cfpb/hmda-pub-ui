@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
-import Five from './tables/Five.jsx'
+import Tables from './tables/index.jsx'
 
 class Report extends React.Component {
   constructor(props) {
@@ -39,6 +39,11 @@ class Report extends React.Component {
       )
   }
 
+  selectReport(report) {
+    if (report.table.match(/^4/)) return <Tables.Four report={report} />
+    if (report.table.match(/^5/)) return <Tables.Five report={report} />
+  }
+
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.report === null) return null
@@ -69,8 +74,7 @@ class Report extends React.Component {
             </React.Fragment>
           ) : null}
         </Header>
-
-        <Five report={report} />
+        {this.selectReport(report)}
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}
         </p>
