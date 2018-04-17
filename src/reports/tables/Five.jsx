@@ -87,7 +87,7 @@ const renderCharacteristicDetails = characteristic => {
     })
 }
 
-const FiveDashOne = props => {
+const Five = props => {
   console.log(props)
   if (!props.report) return null
 
@@ -102,7 +102,7 @@ const FiveDashOne = props => {
             Applications Received
           </th>
           <th colSpan={2} width="13.333%">
-            Loans Originate
+            Loans Originated
           </th>
           <th colSpan={2} width="13.333%">
             Apps. Approved But Not Accepted
@@ -145,8 +145,8 @@ const FiveDashOne = props => {
   )
 }
 
-FiveDashOne.propTypes = {
+Five.propTypes = {
   report: PropTypes.object
 }
 
-export default FiveDashOne
+export default Five

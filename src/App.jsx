@@ -1,6 +1,5 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import BannerUSA from './common/BannerUSA.jsx'
 import AppHeader from './common/AppHeader.jsx'
 import Footer from './common/Footer.jsx'
 import Home from './Home.jsx'

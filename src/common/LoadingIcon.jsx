@@ -1,13 +1,11 @@
 import React from 'react'
 
-const LoadingIcon = () => {
+const LoadingIcon = props => {
+  let className = 'LoadingIconWrapper'
+  if (props.className) className += ' ' + props.className
   return (
-    <div className="LoadingIconWrapper">
-      <img
-        src="/data-publication/img/LoadingIcon.png"
-        className="LoadingIcon"
-        alt="Loading"
-      />
+    <div className={className}>
+      <div className="LoadingIcon" />
     </div>
   )
 }
