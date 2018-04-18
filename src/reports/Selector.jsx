@@ -73,6 +73,18 @@ class Selector extends React.Component {
   }
 
   render() {
+    let options = []
+    if (this.props.target === 'report') {
+      options = this.state[this.props.target].map(val => {
+        return { value: val.id, label: `${val.id} ${val.name}` }
+      })
+    } else {
+      options = this.state[this.props.target].map(val => {
+        val = val.split('.txt')[0]
+        return { value: val, label: val }
+      })
+    }
+
     return (
       <div className="usa-grid" id="main-content">
         <Header
@@ -86,10 +98,7 @@ class Selector extends React.Component {
             placeholder={this.props.placeholder}
             searchable={false}
             simpleValue
-            options={this.state[this.props.target].map(val => {
-              val = val.split('.txt')[0]
-              return { value: val, label: val }
-            })}
+            options={options}
           />
         ) : (
           <LoadingIcon />
