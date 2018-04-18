@@ -2,6 +2,8 @@ import React from 'react'
 import Select from 'react-select'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
+import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
+import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 
 class Selector extends React.Component {
   constructor(props) {
@@ -16,22 +18,41 @@ class Selector extends React.Component {
   }
 
   componentDidMount() {
-    fetch(this.getUrl())
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            [this.props.target]: result
-          })
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
+    const { params } = this.props.match
+    // reports are always the same
+    if (this.props.target === 'report') {
+      // aggregate
+      if (params.stateId) {
+        this.setState({
+          isLoaded: true,
+          [this.props.target]: AGGREGATE_REPORTS
+        })
+      }
+      // disclosure
+      if (params.institutionId) {
+        this.setState({
+          isLoaded: true,
+          [this.props.target]: DISCLOSURE_REPORTS
+        })
+      }
+    } else {
+      fetch(this.getUrl())
+        .then(res => res.json())
+        .then(
+          result => {
+            this.setState({
+              isLoaded: true,
+              [this.props.target]: result
+            })
+          },
+          error => {
+            this.setState({
+              isLoaded: true,
+              error
+            })
+          }
+        )
+    }
   }
 
   getUrl() {

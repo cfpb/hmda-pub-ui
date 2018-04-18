@@ -1,6 +1,26 @@
 import React from 'react'
 import Selector from './Selector.jsx'
 
+const getHeader = params => {
+  let header = ''
+
+  // aggregate
+  if (params.stateId) {
+    header = `Choose a generated for state ${params.stateId} and MSA/MD ${
+      params.msaMdId
+    }`
+  }
+
+  // disclosure
+  if (params.institutionId) {
+    header = `Choose a generated report for institution ${
+      params.institutionId
+    } and MSA/MD ${params.msaMdId}`
+  }
+
+  return header
+}
+
 const Reports = props => {
   return (
     <Selector
@@ -8,9 +28,7 @@ const Reports = props => {
       placeholder="Select report..."
       paragraphText="Listed below are the available reports"
       getHeader={function() {
-        return `Choose a generated report for institution ${
-          this.props.match.params.institutionId
-        } and MSA/MD ${this.props.match.params.msaMdId}`
+        return getHeader(this.props.match.params)
       }}
       {...props}
     />
