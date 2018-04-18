@@ -11,7 +11,6 @@ const renderData = applicantIncomes => {
 }
 
 const renderApplicantIncome = (applicantIncome, index) => {
-  console.log('renderincomes', applicantIncome)
   return (
     <tr key={index}>
       <th
@@ -29,14 +28,12 @@ const renderApplicantIncome = (applicantIncome, index) => {
   )
 }
 const renderCharacteristics = borrowerCharacteristics => {
-  console.log('renderCharacteristics', borrowerCharacteristics)
   return borrowerCharacteristics.map((characteristic, index) => {
     return [
       <tr key={index}>
         <th
           colSpan={13}
           style={{
-            borderTopWidth: '2px',
             textTransform: 'uppercase',
             fontWeight: 'bold'
           }}
@@ -88,7 +85,6 @@ const renderCharacteristicDetails = characteristic => {
 }
 
 const Five = props => {
-  console.log(props)
   if (!props.report) return null
 
   return (
