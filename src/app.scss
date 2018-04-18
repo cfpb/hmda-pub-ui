@@ -1,5 +1,6 @@
 @import 'sass/uswds-customer-vars.scss';
 @import 'node_modules/uswds/src/stylesheets/all.scss';
+@import 'node_modules/react-select/dist/react-select';
 // HDMA customizations to USWDS
 @import 'sass/header.scss';
 @import 'sass/hero.scss';
@@ -14,3 +15,5 @@
 @import 'common/LoadingIcon.scss';
 @import 'reports/modified-lar/Modified-LAR.scss';
 @import 'reports/modified-lar/Results.scss';
+@import 'reports/disclosure/Disclosure.scss';
+@import 'reports/tables/tables.scss';
