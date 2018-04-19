@@ -109,7 +109,6 @@ class Results extends React.Component {
       visibleInstitutions = this.props.institutions
     }
 
-    console.log(this.props.match)
     return (
       <React.Fragment>
         {this.renderHeading(

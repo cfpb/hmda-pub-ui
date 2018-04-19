@@ -4,6 +4,8 @@ import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
+import stateToMsas from '../constants/stateToMsas.js'
+import msaToName from '../constants/msaToName.js'
 
 class Selector extends React.Component {
   constructor(props) {
@@ -36,23 +38,36 @@ class Selector extends React.Component {
         })
       }
     } else {
-      fetch(this.getUrl())
-        .then(res => res.json())
-        .then(
-          result => {
-            this.setState({
-              isLoaded: true,
-              [this.props.target]: result
-            })
-          },
-          error => {
-            this.setState({
-              isLoaded: true,
-              error
-            })
-          }
-        )
+      if (params.stateId) {
+        this.setState({
+          [this.props.target]: stateToMsas[params.stateId],
+          isLoaded: true
+        })
+      } else {
+        fetch(this.getUrl())
+          .then(res => res.json())
+          .then(
+            result => {
+              this.setState({
+                isLoaded: true,
+                [this.props.target]: this.getMsaNames(result)
+              })
+            },
+            error => {
+              this.setState({
+                isLoaded: true,
+                error
+              })
+            }
+          )
+      }
     }
+  }
+
+  getMsaNames(msas) {
+    return msas.map(msa => {
+      return { msa, name: msaToName[msa] }
+    })
   }
 
   getUrl() {
@@ -80,8 +95,10 @@ class Selector extends React.Component {
       })
     } else {
       options = this.state[this.props.target].map(val => {
-        val = val.split('.txt')[0]
-        return { value: val, label: val }
+        let label = val.msa
+        if (val.name) label += ' - ' + val.name
+        else label = val.msa.toUpperCase()
+        return { value: val.msa, label }
       })
     }
 

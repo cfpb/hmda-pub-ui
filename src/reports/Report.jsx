@@ -15,13 +15,16 @@ class Report extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/2017/${
-        this.props.match.params.institutionId
-      }/${this.props.match.params.msaMdId}/${
-        this.props.match.params.reportId
+    const { params } = this.props.match
+    let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
+    if (params.stateId) {
+      url += `aggregate/2017/${params.msaMdId}/${params.reportId}.txt`
+    } else {
+      url += `/disclosure/2017/${params.institutionId}/${params.msaMdId}/${
+        params.reportId
       }.txt`
-    )
+    }
+    fetch(url)
       .then(res => res.json())
       .then(
         result => {
@@ -40,11 +43,13 @@ class Report extends React.Component {
   }
 
   selectReport(report) {
-    if (report.table.match(/^1$/)) return <Tables.One report={report} />
-    if (report.table.match(/^4-/)) return <Tables.Four report={report} />
-    if (report.table.match(/^5-/)) return <Tables.Five report={report} />
-    if (report.table.match(/^8-/)) return <Tables.Eight report={report} />
-    if (report.table.match(/^11-/)) return <Tables.Eleven report={report} />
+    const table = report.table
+    if (table.match(/^1$/)) return <Tables.One report={report} />
+    if (table.match(/^4-/)) return <Tables.Four report={report} />
+    if (table.match(/^5-/)) return <Tables.Five report={report} />
+    if (table.match(/^8-/)) return <Tables.Eight report={report} />
+    if (table.match(/^11-/)) return <Tables.Eleven report={report} />
+    if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
   }
 
   render() {
