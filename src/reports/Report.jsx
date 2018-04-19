@@ -20,7 +20,7 @@ class Report extends React.Component {
     if (params.stateId) {
       url += `aggregate/2017/${params.msaMdId}/${params.reportId}.txt`
     } else {
-      url += `/disclosure/2017/${params.institutionId}/${params.msaMdId}/${
+      url += `disclosure/2017/${params.institutionId}/${params.msaMdId}/${
         params.reportId
       }.txt`
     }
