@@ -40,10 +40,12 @@ class Report extends React.Component {
   }
 
   selectReport(report) {
-    if (report.table.match(/^1$/)) return <Tables.One report={report} />
-    if (report.table.match(/^4-/)) return <Tables.Four report={report} />
-    if (report.table.match(/^5-/)) return <Tables.Five report={report} />
-    if (report.table.match(/^11-/)) return <Tables.Eleven report={report} />
+    const table = report.table
+    if (table.match(/^1$/)) return <Tables.One report={report} />
+    if (table.match(/^4-/)) return <Tables.Four report={report} />
+    if (table.match(/^5-/)) return <Tables.Five report={report} />
+    if (table.match(/^11-/)) return <Tables.Eleven report={report} />
+    if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
   }
 
   render() {
