@@ -15,13 +15,16 @@ class Report extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/disclosure/2017/${
-        this.props.match.params.institutionId
-      }/${this.props.match.params.msaMdId}/${
-        this.props.match.params.reportId
+    const { params } = this.props.match
+    let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
+    if (params.stateId) {
+      url += `aggregate/2017/${params.msaMdId}/${params.reportId}.txt`
+    } else {
+      url += `/disclosure/2017/${params.institutionId}/${params.msaMdId}/${
+        params.reportId
       }.txt`
-    )
+    }
+    fetch(url)
       .then(res => res.json())
       .then(
         result => {
