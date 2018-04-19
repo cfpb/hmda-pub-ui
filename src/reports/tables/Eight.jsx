@@ -59,7 +59,7 @@ const Eight = props => {
   if (!props.report) return null
 
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table className="table-large" style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
