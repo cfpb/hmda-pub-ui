@@ -16,13 +16,18 @@ class Report extends React.Component {
 
   componentDidMount() {
     const { params } = this.props.match
+
+    // temporary until 9 gets renamed correctly
+    let reportId = params.reportId
+    if (params.reportId === '9') reportId = 'A9'
+
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
-      url += `aggregate/2017/${params.msaMdId}/${params.reportId}.txt`
+      url += `aggregate/2017/${params.msaMdId}/${reportId}.txt`
     } else {
-      url += `/disclosure/2017/${params.institutionId}/${params.msaMdId}/${
-        params.reportId
-      }.txt`
+      url += `/disclosure/2017/${params.institutionId}/${
+        params.msaMdId
+      }/${reportId}.txt`
     }
     fetch(url)
       .then(res => res.json())
@@ -48,6 +53,7 @@ class Report extends React.Component {
     if (table.match(/^2$/)) return <Tables.Two report={report} />
     if (table.match(/^4-/)) return <Tables.Four report={report} />
     if (table.match(/^5-/)) return <Tables.Five report={report} />
+    if (table.match(/^9$/)) return <Tables.Nine report={report} />
     if (table.match(/^11-/)) return <Tables.Eleven report={report} />
     if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
   }
