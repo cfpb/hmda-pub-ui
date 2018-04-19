@@ -25,8 +25,7 @@ export default {
     { msa: 46340, name: 'TYLER' },
     { msa: 47020, name: 'VICTORIA' },
     { msa: 47380, name: 'WACO' },
-    { msa: 48660, name: 'WICHITA FALLS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48660, name: 'WICHITA FALLS' }
   ],
   PR: [
     { msa: 10380, name: 'AGUADILLA-ISABELA' },
@@ -35,8 +34,7 @@ export default {
     { msa: 32420, name: 'MAYAGÜEZ' },
     { msa: 38660, name: 'PONCE' },
     { msa: 41900, name: 'SAN GERMÁN' },
-    { msa: 41980, name: 'SAN JUAN-CAROLINA-CAGUAS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 41980, name: 'SAN JUAN-CAROLINA-CAGUAS' }
   ],
   OH: [
     { msa: 10420, name: 'AKRON' },
@@ -52,8 +50,7 @@ export default {
     { msa: 45780, name: 'TOLEDO' },
     { msa: 48260, name: 'WEIRTON-STEUBENVILLE' },
     { msa: 48540, name: 'WHEELING' },
-    { msa: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' }
   ],
   GA: [
     { msa: 10500, name: 'ALBANY' },
@@ -70,8 +67,7 @@ export default {
     { msa: 40660, name: 'ROME' },
     { msa: 42340, name: 'SAVANNAH' },
     { msa: 46660, name: 'VALDOSTA' },
-    { msa: 47580, name: 'WARNER ROBINS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 47580, name: 'WARNER ROBINS' }
   ],
   OR: [
     { msa: 10540, name: 'ALBANY' },
@@ -81,8 +77,7 @@ export default {
     { msa: 24420, name: 'GRANTS PASS' },
     { msa: 32780, name: 'MEDFORD' },
     { msa: 38900, name: 'PORTLAND-VANCOUVER-HILLSBORO' },
-    { msa: 41420, name: 'SALEM' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 41420, name: 'SALEM' }
   ],
   NY: [
     { msa: 10580, name: 'ALBANY-SCHENECTADY-TROY' },
@@ -98,15 +93,13 @@ export default {
     { msa: 40380, name: 'ROCHESTER' },
     { msa: 45060, name: 'SYRACUSE' },
     { msa: 46540, name: 'UTICA-ROME' },
-    { msa: 48060, name: 'WATERTOWN-FORT DRUM' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48060, name: 'WATERTOWN-FORT DRUM' }
   ],
   NM: [
     { msa: 10740, name: 'ALBUQUERQUE' },
     { msa: 22140, name: 'FARMINGTON' },
     { msa: 29740, name: 'LAS CRUCES' },
-    { msa: 42140, name: 'SANTA FE' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 42140, name: 'SANTA FE' }
   ],
   LA: [
     { msa: 10780, name: 'ALEXANDRIA' },
@@ -117,8 +110,7 @@ export default {
     { msa: 29340, name: 'LAKE CHARLES' },
     { msa: 33740, name: 'MONROE' },
     { msa: 35380, name: 'NEW ORLEANS-METAIRIE' },
-    { msa: 43340, name: 'SHREVEPORT-BOSSIER CITY' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 43340, name: 'SHREVEPORT-BOSSIER CITY' }
   ],
   PA: [
     { msa: 10900, name: 'ALLENTOWN-BETHLEHEM-EASTON' },
@@ -141,8 +133,7 @@ export default {
     { msa: 44300, name: 'STATE COLLEGE' },
     { msa: 48700, name: 'WILLIAMSPORT' },
     { msa: 49620, name: 'YORK-HANOVER' },
-    { msa: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49660, name: 'YOUNGSTOWN-WARREN-BOARDMAN' }
   ],
   NJ: [
     { msa: 10900, name: 'ALLENTOWN-BETHLEHEM-EASTON' },
@@ -164,8 +155,7 @@ export default {
     { msa: 26980, name: 'IOWA CITY' },
     { msa: 36540, name: 'OMAHA-COUNCIL BLUFFS' },
     { msa: 43580, name: 'SIOUX CITY' },
-    { msa: 47940, name: 'WATERLOO-CEDAR FALLS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 47940, name: 'WATERLOO-CEDAR FALLS' }
   ],
   CA: [
     { msa: 11244, name: 'ANAHEIM-SANTA ANA-IRVINE' },
@@ -196,13 +186,11 @@ export default {
     { msa: 44700, name: 'STOCKTON-LODI' },
     { msa: 46700, name: 'VALLEJO-FAIRFIELD' },
     { msa: 47300, name: 'VISALIA-PORTERVILLE' },
-    { msa: 49700, name: 'YUBA CITY' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49700, name: 'YUBA CITY' }
   ],
   AK: [
     { msa: 11260, name: 'ANCHORAGE' },
-    { msa: 21820, name: 'FAIRBANKS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 21820, name: 'FAIRBANKS' }
   ],
   MI: [
     { msa: 11460, name: 'ANN ARBOR' },
@@ -220,8 +208,7 @@ export default {
     { msa: 35660, name: 'NILES-BENTON HARBOR' },
     { msa: 40980, name: 'SAGINAW' },
     { msa: 43780, name: 'SOUTH BEND-MISHAWAKA' },
-    { msa: 47664, name: 'WARREN-TROY-FARMINGTON HILLS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 47664, name: 'WARREN-TROY-FARMINGTON HILLS' }
   ],
   AL: [
     { msa: 11500, name: 'ANNISTON-OXFORD-JACKSONVILLE' },
@@ -236,8 +223,7 @@ export default {
     { msa: 26620, name: 'HUNTSVILLE' },
     { msa: 33660, name: 'MOBILE' },
     { msa: 33860, name: 'MONTGOMERY' },
-    { msa: 46220, name: 'TUSCALOOSA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 46220, name: 'TUSCALOOSA' }
   ],
   WI: [
     { msa: 11540, name: 'APPLETON' },
@@ -254,8 +240,7 @@ export default {
     { msa: 36780, name: 'OSHKOSH-NEENAH' },
     { msa: 39540, name: 'RACINE' },
     { msa: 43100, name: 'SHEBOYGAN' },
-    { msa: 48140, name: 'WAUSAU' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48140, name: 'WAUSAU' }
   ],
   NC: [
     { msa: 11700, name: 'ASHEVILLE' },
@@ -274,8 +259,7 @@ export default {
     { msa: 40580, name: 'ROCKY MOUNT' },
     { msa: 47260, name: 'VIRGINIA BEACH-NORFOLK-NEWPORT NEWS' },
     { msa: 48900, name: 'WILMINGTON' },
-    { msa: 49180, name: 'WINSTON-SALEM' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49180, name: 'WINSTON-SALEM' }
   ],
   SC: [
     { msa: 12260, name: 'AUGUSTA-RICHMOND COUNTY' },
@@ -287,8 +271,7 @@ export default {
     { msa: 25940, name: 'HILTON HEAD ISLAND-BLUFFTON-BEAUFORT' },
     { msa: 34820, name: 'MYRTLE BEACH-CONWAY-NORTH MYRTLE BEACH' },
     { msa: 43900, name: 'SPARTANBURG' },
-    { msa: 44940, name: 'SUMTER' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 44940, name: 'SUMTER' }
   ],
   MD: [
     { msa: 12580, name: 'BALTIMORE-COLUMBIA-TOWSON' },
@@ -298,14 +281,12 @@ export default {
     { msa: 41540, name: 'SALISBURY' },
     { msa: 43524, name: 'SILVER SPRING-FREDERICK-ROCKVILLE' },
     { msa: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
-    { msa: 48864, name: 'WILMINGTON' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48864, name: 'WILMINGTON' }
   ],
   ME: [
     { msa: 12620, name: 'BANGOR' },
     { msa: 30340, name: 'LEWISTON-AUBURN' },
-    { msa: 38860, name: 'PORTLAND-SOUTH PORTLAND' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 38860, name: 'PORTLAND-SOUTH PORTLAND' }
   ],
   MA: [
     { msa: 12700, name: 'BARNSTABLE TOWN' },
@@ -314,8 +295,7 @@ export default {
     { msa: 38340, name: 'PITTSFIELD' },
     { msa: 39300, name: 'PROVIDENCE-WARWICK' },
     { msa: 44140, name: 'SPRINGFIELD' },
-    { msa: 49340, name: 'WORCESTER' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49340, name: 'WORCESTER' }
   ],
   WV: [
     { msa: 13220, name: 'BECKLEY' },
@@ -328,8 +308,7 @@ export default {
     { msa: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
     { msa: 48260, name: 'WEIRTON-STEUBENVILLE' },
     { msa: 48540, name: 'WHEELING' },
-    { msa: 49020, name: 'WINCHESTER' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49020, name: 'WINCHESTER' }
   ],
   WA: [
     { msa: 13380, name: 'BELLINGHAM' },
@@ -345,20 +324,17 @@ export default {
     { msa: 45104, name: 'TACOMA-LAKEWOOD' },
     { msa: 47460, name: 'WALLA WALLA' },
     { msa: 48300, name: 'WENATCHEE' },
-    { msa: 49420, name: 'YAKIMA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49420, name: 'YAKIMA' }
   ],
   MT: [
     { msa: 13740, name: 'BILLINGS' },
     { msa: 24500, name: 'GREAT FALLS' },
-    { msa: 33540, name: 'MISSOULA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 33540, name: 'MISSOULA' }
   ],
   ND: [
     { msa: 13900, name: 'BISMARCK' },
     { msa: 22020, name: 'FARGO' },
-    { msa: 24220, name: 'GRAND FORKS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 24220, name: 'GRAND FORKS' }
   ],
   VA: [
     { msa: 13980, name: 'BLACKSBURG-CHRISTIANSBURG-RADFORD' },
@@ -371,8 +347,7 @@ export default {
     { msa: 44420, name: 'STAUNTON-WAYNESBORO' },
     { msa: 47260, name: 'VIRGINIA BEACH-NORFOLK-NEWPORT NEWS' },
     { msa: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' },
-    { msa: 49020, name: 'WINCHESTER' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49020, name: 'WINCHESTER' }
   ],
   IL: [
     { msa: 14010, name: 'BLOOMINGTON' },
@@ -389,8 +364,7 @@ export default {
     { msa: 37900, name: 'PEORIA' },
     { msa: 40420, name: 'ROCKFORD' },
     { msa: 41180, name: 'ST. LOUIS' },
-    { msa: 44100, name: 'SPRINGFIELD' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 44100, name: 'SPRINGFIELD' }
   ],
   IN: [
     { msa: 14020, name: 'BLOOMINGTON' },
@@ -407,8 +381,7 @@ export default {
     { msa: 33140, name: 'MICHIGAN CITY-LA PORTE' },
     { msa: 34620, name: 'MUNCIE' },
     { msa: 43780, name: 'SOUTH BEND-MISHAWAKA' },
-    { msa: 45460, name: 'TERRE HAUTE' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 45460, name: 'TERRE HAUTE' }
   ],
   ID: [
     { msa: 14260, name: 'BOISE CITY' },
@@ -416,8 +389,7 @@ export default {
     { msa: 26820, name: 'IDAHO FALLS' },
     { msa: 30300, name: 'LEWISTON' },
     { msa: 30860, name: 'LOGAN' },
-    { msa: 38540, name: 'POCATELLO' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 38540, name: 'POCATELLO' }
   ],
   CO: [
     { msa: 14500, name: 'BOULDER' },
@@ -426,8 +398,7 @@ export default {
     { msa: 22660, name: 'FORT COLLINS' },
     { msa: 24300, name: 'GRAND JUNCTION' },
     { msa: 24540, name: 'GREELEY' },
-    { msa: 39380, name: 'PUEBLO' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 39380, name: 'PUEBLO' }
   ],
   KY: [
     { msa: 14540, name: 'BOWLING GREEN' },
@@ -438,20 +409,17 @@ export default {
     { msa: 26580, name: 'HUNTINGTON-ASHLAND' },
     { msa: 30460, name: 'LEXINGTON-FAYETTE' },
     { msa: 31140, name: 'LOUISVILLE/JEFFERSON COUNTY' },
-    { msa: 36980, name: 'OWENSBORO' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 36980, name: 'OWENSBORO' }
   ],
   CT: [
     { msa: 14860, name: 'BRIDGEPORT-STAMFORD-NORWALK' },
     { msa: 25540, name: 'HARTFORD-WEST HARTFORD-EAST HARTFORD' },
     { msa: 35300, name: 'NEW HAVEN-MILFORD' },
     { msa: 35980, name: 'NORWICH-NEW LONDON' },
-    { msa: 49340, name: 'WORCESTER' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49340, name: 'WORCESTER' }
   ],
   VT: [
-    { msa: 15540, name: 'BURLINGTON-SOUTH BURLINGTON' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 15540, name: 'BURLINGTON-SOUTH BURLINGTON' }
   ],
   FL: [
     { msa: 15980, name: 'CAPE CORAL-FORT MYERS' },
@@ -477,8 +445,7 @@ export default {
     { msa: 45220, name: 'TALLAHASSEE' },
     { msa: 45300, name: 'TAMPA-ST. PETERSBURG-CLEARWATER' },
     { msa: 45540, name: 'THE VILLAGES' },
-    { msa: 48424, name: 'WEST PALM BEACH-BOCA RATON-DELRAY BEACH' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48424, name: 'WEST PALM BEACH-BOCA RATON-DELRAY BEACH' }
   ],
   MO: [
     { msa: 16020, name: 'CAPE GIRARDEAU' },
@@ -489,19 +456,16 @@ export default {
     { msa: 28140, name: 'KANSAS CITY' },
     { msa: 41140, name: 'ST. JOSEPH' },
     { msa: 41180, name: 'ST. LOUIS' },
-    { msa: 44180, name: 'SPRINGFIELD' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 44180, name: 'SPRINGFIELD' }
   ],
   NV: [
     { msa: 16180, name: 'CARSON CITY' },
     { msa: 29820, name: 'LAS VEGAS-HENDERSON-PARADISE' },
-    { msa: 39900, name: 'RENO' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 39900, name: 'RENO' }
   ],
   WY: [
     { msa: 16220, name: 'CASPER' },
-    { msa: 16940, name: 'CHEYENNE' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 16940, name: 'CHEYENNE' }
   ],
   TN: [
     { msa: 16860, name: 'CHATTANOOGA' },
@@ -513,14 +477,12 @@ export default {
     { msa: 28940, name: 'KNOXVILLE' },
     { msa: 32820, name: 'MEMPHIS' },
     { msa: 34100, name: 'MORRISTOWN' },
-    { msa: 34980, name: 'NASHVILLE-DAVIDSON--MURFREESBORO--FRANKLIN' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 34980, name: 'NASHVILLE-DAVIDSON--MURFREESBORO--FRANKLIN' }
   ],
   DE: [
     { msa: 20100, name: 'DOVER' },
     { msa: 41540, name: 'SALISBURY' },
-    { msa: 48864, name: 'WILMINGTON' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48864, name: 'WILMINGTON' }
   ],
   MN: [
     { msa: 20260, name: 'DULUTH' },
@@ -530,16 +492,14 @@ export default {
     { msa: 31860, name: 'MANKATO-NORTH MANKATO' },
     { msa: 33460, name: 'MINNEAPOLIS-ST. PAUL-BLOOMINGTON' },
     { msa: 40340, name: 'ROCHESTER' },
-    { msa: 41060, name: 'ST. CLOUD' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 41060, name: 'ST. CLOUD' }
   ],
   OK: [
     { msa: 21420, name: 'ENID' },
     { msa: 22900, name: 'FORT SMITH' },
     { msa: 30020, name: 'LAWTON' },
     { msa: 36420, name: 'OKLAHOMA CITY' },
-    { msa: 46140, name: 'TULSA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 46140, name: 'TULSA' }
   ],
   AR: [
     { msa: 22220, name: 'FAYETTEVILLE-SPRINGDALE-ROGERS' },
@@ -549,8 +509,7 @@ export default {
     { msa: 30780, name: 'LITTLE ROCK-NORTH LITTLE ROCK-CONWAY' },
     { msa: 32820, name: 'MEMPHIS' },
     { msa: 38220, name: 'PINE BLUFF' },
-    { msa: 45500, name: 'TEXARKANA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 45500, name: 'TEXARKANA' }
   ],
   AZ: [
     { msa: 22380, name: 'FLAGSTAFF' },
@@ -559,27 +518,23 @@ export default {
     { msa: 39140, name: 'PRESCOTT' },
     { msa: 43420, name: 'SIERRA VISTA-DOUGLAS' },
     { msa: 46060, name: 'TUCSON' },
-    { msa: 49740, name: 'YUMA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 49740, name: 'YUMA' }
   ],
   NE: [
     { msa: 24260, name: 'GRAND ISLAND' },
     { msa: 30700, name: 'LINCOLN' },
     { msa: 36540, name: 'OMAHA-COUNCIL BLUFFS' },
-    { msa: 43580, name: 'SIOUX CITY' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 43580, name: 'SIOUX CITY' }
   ],
   MS: [
     { msa: 25060, name: 'GULFPORT-BILOXI-PASCAGOULA' },
     { msa: 25620, name: 'HATTIESBURG' },
     { msa: 27140, name: 'JACKSON' },
-    { msa: 32820, name: 'MEMPHIS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 32820, name: 'MEMPHIS' }
   ],
   HI: [
     { msa: 27980, name: 'KAHULUI-WAILUKU-LAHAINA' },
-    { msa: 46520, name: 'URBAN HONOLULU' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 46520, name: 'URBAN HONOLULU' }
   ],
   KS: [
     { msa: 28140, name: 'KANSAS CITY' },
@@ -587,28 +542,24 @@ export default {
     { msa: 31740, name: 'MANHATTAN' },
     { msa: 41140, name: 'ST. JOSEPH' },
     { msa: 45820, name: 'TOPEKA' },
-    { msa: 48620, name: 'WICHITA' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 48620, name: 'WICHITA' }
   ],
   UT: [
     { msa: 30860, name: 'LOGAN' },
     { msa: 36260, name: 'OGDEN-CLEARFIELD' },
     { msa: 39340, name: 'PROVO-OREM' },
     { msa: 41100, name: 'ST. GEORGE' },
-    { msa: 41620, name: 'SALT LAKE CITY' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 41620, name: 'SALT LAKE CITY' }
   ],
   NH: [
     { msa: 31700, name: 'MANCHESTER-NASHUA' },
-    { msa: 40484, name: 'ROCKINGHAM COUNTY-STRAFFORD COUNTY' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 40484, name: 'ROCKINGHAM COUNTY-STRAFFORD COUNTY' }
   ],
   RI: [{ msa: 39300, name: 'PROVIDENCE-WARWICK' }],
   SD: [
     { msa: 39660, name: 'RAPID CITY' },
     { msa: 43580, name: 'SIOUX CITY' },
-    { msa: 43620, name: 'SIOUX FALLS' },
-    { msa: 99999, name: 'NONMETRO PORTION' }
+    { msa: 43620, name: 'SIOUX FALLS' }
   ],
   DC: [{ msa: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }]
 }
