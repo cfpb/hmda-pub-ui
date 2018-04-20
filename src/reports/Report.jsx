@@ -49,6 +49,7 @@ class Report extends React.Component {
     if (table.match(/^4-/)) return <Tables.Four report={report} />
     if (table.match(/^5-/)) return <Tables.Five report={report} />
     if (table.match(/^7-/)) return <Tables.Seven report={report} />
+    if (table.match(/^8-/)) return <Tables.Eight report={report} />
     if (table.match(/^11-/)) return <Tables.Eleven report={report} />
     if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
     if (table.match(/^A/)) return <Tables.A report={report} />

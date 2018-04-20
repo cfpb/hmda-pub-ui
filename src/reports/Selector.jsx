@@ -118,6 +118,8 @@ class Selector extends React.Component {
             onChange={this.handleChange}
             placeholder={this.props.placeholder}
             searchable={false}
+            autoFocus
+            openOnFocus
             simpleValue
             options={options}
           />
