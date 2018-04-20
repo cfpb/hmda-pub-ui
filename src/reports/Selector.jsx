@@ -32,9 +32,13 @@ class Selector extends React.Component {
       }
       // disclosure
       if (params.institutionId) {
+        const disclosure =
+          params.msaMdId === 'nationwide'
+            ? DISCLOSURE_REPORTS.nationwide
+            : DISCLOSURE_REPORTS.msa
         this.setState({
           isLoaded: true,
-          [this.props.target]: DISCLOSURE_REPORTS
+          [this.props.target]: disclosure
         })
       }
     } else {
