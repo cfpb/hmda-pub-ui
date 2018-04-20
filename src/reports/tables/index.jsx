@@ -4,6 +4,7 @@ import Four from './Four.jsx'
 import Five from './Five.jsx'
 import Seven from './Seven.jsx'
 import Eight from './Eight.jsx'
+import Nine from './Nine.jsx'
 import Eleven from './Eleven.jsx'
 import TwelveTwo from './TwelveTwo.jsx'
 import A from './A.jsx'
@@ -15,6 +16,7 @@ export default {
   Five,
   Seven,
   Eight,
+  Nine,
   Eleven,
   TwelveTwo,
   A
