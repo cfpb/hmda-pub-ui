@@ -52,6 +52,7 @@ class Report extends React.Component {
     if (table.match(/^8-/)) return <Tables.Eight report={report} />
     if (table.match(/^11-/)) return <Tables.Eleven report={report} />
     if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
+    if (table.match(/^A/)) return <Tables.A report={report} />
   }
 
   render() {
@@ -77,7 +78,9 @@ class Report extends React.Component {
                   textAlign: 'right'
                 }}
               >
-                MSA/MD: {report.msa.id} - {report.msa.name}
+                {report.msa
+                  ? `MSA/MD: ${report.msa.id} - ${report.msa.name}`
+                  : 'Nationwide'}
               </p>
             </React.Fragment>
           ) : null}
