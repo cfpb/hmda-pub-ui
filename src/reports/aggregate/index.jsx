@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from 'react-select'
 import Header from '../../common/Header.jsx'
 import STATES from '../../constants/states.js'
 
@@ -6,26 +7,19 @@ class Aggregate extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { selectValue: 'AK' }
-
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
-    this.setState({
-      selectValue: event.target.value
-    })
-  }
-
-  handleSubmit(event) {
+  handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/state/${this.state.selectValue}`
+      pathname: `${this.props.match.url}/state/${val}`
     })
-    event.preventDefault()
   }
 
   render() {
+    const options = STATES.map(state => {
+      return { value: state.id, label: state.name }
+    })
     return (
       <div className="usa-grid aggregate" id="main-content">
         <div className="usa-width-one-whole">
@@ -34,27 +28,15 @@ class Aggregate extends React.Component {
             headingText="MSA/MD Aggregate Reports"
             paragraphText="These reports summarize lending activity by MSA/MD."
           />
-
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="states">Select a state</label>
-
-            <select
-              name="states"
-              id="states"
-              value={this.state.selectValue}
-              onChange={this.handleChange}
-            >
-              {STATES.map((state, index) => {
-                return (
-                  <option key={index} value={state.id}>
-                    {state.name}
-                  </option>
-                )
-              })}
-            </select>
-
-            <input type="submit" value="Next - Select an MSA/MD" />
-          </form>
+          <Select
+            onChange={this.handleChange}
+            placeholder="Select a state..."
+            searchable={false}
+            autoFocus
+            openOnFocus
+            simpleValue
+            options={options}
+          />
         </div>
       </div>
     )
