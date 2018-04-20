@@ -17,31 +17,144 @@ const renderData = medianAges => {
           {medianAge.medianAge}
         </th>
       </tr>,
-      renderLoanCategories(medianAge.loanCategories, index)
+      renderOriginated(medianAge.loanCategories, index),
+      renderNotAccepted(medianAge.loanCategories, index),
+      renderDenied(medianAge.loanCategories, index),
+      renderWithdrawn(medianAge.loanCategories, index),
+      renderIncomplete(medianAge.loanCategories, index)
     ]
   })
 }
 
-const renderLoanCategories = (loanCategories, key) => {
-  return loanCategories.map((loanCategory, index) => {
-    return (
-      <tr key={`${index}-${key}`}>
-        <th>{loanCategory.loanCategory}</th>
-        {renderDispositions(loanCategory.dispositions, index, key)}
-      </tr>
-    )
-  })
+const renderOriginated = (loanCategories, key) => {
+  return (
+    <tr key={loanCategories[0].dispositions[0].disposition + key}>
+      <th>{loanCategories[0].dispositions[0].disposition}</th>
+      {loanCategories.map((loanCategory, index) => {
+        return [
+          <td
+            key={`count-${
+              loanCategories[0].dispositions[0].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[0].count}
+          </td>,
+          <td
+            key={`value-${
+              loanCategories[0].dispositions[0].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[0].value}
+          </td>
+        ]
+      })}
+    </tr>
+  )
 }
 
-const renderDispositions = (dispositions, key, key2) => {
-  return dispositions.map((disposition, index) => {
-    return [
-      <td key={`count-${index}-${key}-${key2}`}>{disposition.count}</td>,
-      <td key={`value-${index}-${key}-${key2}`}>{disposition.value}</td>
-    ]
-  })
+const renderNotAccepted = (loanCategories, key) => {
+  return (
+    <tr key={loanCategories[0].dispositions[1].disposition + key}>
+      <th>{loanCategories[0].dispositions[1].disposition}</th>
+      {loanCategories.map((loanCategory, index) => {
+        return [
+          <td
+            key={`count-${
+              loanCategories[0].dispositions[1].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[1].count}
+          </td>,
+          <td
+            key={`value-${
+              loanCategories[0].dispositions[1].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[1].value}
+          </td>
+        ]
+      })}
+    </tr>
+  )
 }
 
+const renderDenied = (loanCategories, key) => {
+  return (
+    <tr key={loanCategories[0].dispositions[2].disposition + key}>
+      <th>{loanCategories[0].dispositions[2].disposition}</th>
+      {loanCategories.map((loanCategory, index) => {
+        return [
+          <td
+            key={`count-${
+              loanCategories[0].dispositions[2].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[2].count}
+          </td>,
+          <td
+            key={`value-${
+              loanCategories[0].dispositions[2].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[2].value}
+          </td>
+        ]
+      })}
+    </tr>
+  )
+}
+
+const renderWithdrawn = (loanCategories, key) => {
+  return (
+    <tr key={loanCategories[0].dispositions[3].disposition + key}>
+      <th>{loanCategories[0].dispositions[3].disposition}</th>
+      {loanCategories.map((loanCategory, index) => {
+        return [
+          <td
+            key={`count-${
+              loanCategories[0].dispositions[3].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[3].count}
+          </td>,
+          <td
+            key={`value-${
+              loanCategories[0].dispositions[3].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[3].value}
+          </td>
+        ]
+      })}
+    </tr>
+  )
+}
+
+const renderIncomplete = (loanCategories, key) => {
+  return (
+    <tr key={loanCategories[0].dispositions[4].disposition + key}>
+      <th>{loanCategories[0].dispositions[4].disposition}</th>
+      {loanCategories.map((loanCategory, index) => {
+        return [
+          <td
+            key={`count-${
+              loanCategories[0].dispositions[4].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[4].count}
+          </td>,
+          <td
+            key={`value-${
+              loanCategories[0].dispositions[4].disposition
+            }-${key}`}
+          >
+            {loanCategory.dispositions[4].value}
+          </td>
+        ]
+      })}
+    </tr>
+  )
+}
 const Nine = props => {
   if (!props.report) return null
 
@@ -49,7 +162,7 @@ const Nine = props => {
     <table style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={5}>
+          <th width="20%" rowSpan={6}>
             CENSUS TRACTS BY MEDIAN AGE OF HOMES
           </th>
         </tr>
