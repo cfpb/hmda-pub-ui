@@ -9,6 +9,7 @@ import Eleven from './Eleven.jsx'
 import TwelveOne from './TwelveOne.jsx'
 import TwelveTwo from './TwelveTwo.jsx'
 import A from './A.jsx'
+import B from './B.jsx'
 
 export default {
   One,
@@ -21,5 +22,6 @@ export default {
   Eleven,
   TwelveOne,
   TwelveTwo,
-  A
+  A,
+  B
 }
