@@ -17,17 +17,22 @@ class Report extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
 
-    // temporary until 9 gets renamed correctly
+    let msaMdId = params.msaMdId
     let reportId = params.reportId
+    // temporary until 9 gets renamed correctly
     if (params.reportId === '9') reportId = 'A9'
 
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
-      url += `aggregate/2017/${params.msaMdId}/${reportId}.txt`
+      url += `aggregate/2017/${msaMdId}/${reportId}.txt`
     } else {
-      url += `disclosure/2017/${params.institutionId}/${params.msaMdId}/${
-        params.reportId
-      }.txt`
+      if (reportId === 'R1') {
+        msaMdId = 'nationwide'
+        reportId = 'IRS'
+      }
+      url += `disclosure/2017/${
+        params.institutionId
+      }/${msaMdId}/${reportId}.txt`
     }
     fetch(url)
       .then(res => res.json())
@@ -61,6 +66,7 @@ class Report extends React.Component {
     if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
     if (table.match(/^A/)) return <Tables.A report={report} />
     if (table.match(/^B/)) return <Tables.B report={report} />
+    if (table.match(/^IRS/)) return <Tables.R report={report} />
   }
 
   render() {
@@ -68,8 +74,12 @@ class Report extends React.Component {
     if (this.state.report === null) return null
 
     const report = this.state.report
+    let table = report.table
+    if (table === 'IRS') table = 'R1'
     const headingText = report
-      ? `Table ${report.table}: ${report.description}, ${report.year}`
+      ? `Table ${table}: ${report.description}${
+          table === 'R1' ? '' : `, ${report.year}`
+        }`
       : null
     return (
       <div className="report" id="main-content">
