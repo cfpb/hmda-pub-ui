@@ -51,6 +51,7 @@ export const DISCLOSURE_REPORTS = {
     { id: 'A1W', name: 'Loan Sale by Loan Type 1 to 4 Families - Nationwide' },
     { id: 'A2W', name: 'Loan Sale by Loan Type Manufactured - Nationwide' },
     { id: 'A3W', name: 'Loan Sale by Loan Type Multi-Family - Nationwide' },
-    { id: 'BW', name: 'Conv Price Info by Incidence and Level - Nationwide' }
+    { id: 'BW', name: 'Conv Price Info by Incidence and Level - Nationwide' },
+    { id: 'R1', name: 'IRS Table' }
   ]
 }
