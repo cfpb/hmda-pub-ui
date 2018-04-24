@@ -6,6 +6,7 @@ import Seven from './Seven.jsx'
 import Eight from './Eight.jsx'
 import Nine from './Nine.jsx'
 import Eleven from './Eleven.jsx'
+import TwelveOne from './TwelveOne.jsx'
 import TwelveTwo from './TwelveTwo.jsx'
 import A from './A.jsx'
 
@@ -18,6 +19,7 @@ export default {
   Eight,
   Nine,
   Eleven,
+  TwelveOne,
   TwelveTwo,
   A
 }
