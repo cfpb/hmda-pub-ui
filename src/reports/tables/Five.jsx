@@ -53,7 +53,10 @@ const renderCharacteristicDetails = characteristic => {
         <tr key={index}>
           <th>{race.race}</th>
           {race.dispositions.map((disposition, index) => {
-            return [<td>{disposition.count}</td>, <td>{disposition.value}</td>]
+            return [
+              <td key="count">{disposition.count}</td>,
+              <td key="value">{disposition.value}</td>
+            ]
           })}
         </tr>
       )
@@ -65,7 +68,10 @@ const renderCharacteristicDetails = characteristic => {
         <tr key={index}>
           <th>{ethnicity.ethnicity}</th>
           {ethnicity.dispositions.map((disposition, index) => {
-            return [<td>{disposition.count}</td>, <td>{disposition.value}</td>]
+            return [
+              <td key="count">{disposition.count}</td>,
+              <td key="value">{disposition.value}</td>
+            ]
           })}
         </tr>
       )
@@ -77,7 +83,10 @@ const renderCharacteristicDetails = characteristic => {
         <tr key={index}>
           <th>{minorityStatus.minorityStatus}</th>
           {minorityStatus.dispositions.map((disposition, index) => {
-            return [<td>{disposition.count}</td>, <td>{disposition.value}</td>]
+            return [
+              <td key="count">{disposition.count}</td>,
+              <td key="value">{disposition.value}</td>
+            ]
           })}
         </tr>
       )
@@ -133,7 +142,10 @@ const Five = props => {
         <tr>
           <th>Total</th>
           {props.report.total.map((total, index) => {
-            return [<td>{total.count}</td>, <td>{total.value}</td>]
+            return [
+              <td key="count">{total.count}</td>,
+              <td key="value">{total.value}</td>
+            ]
           })}
         </tr>
       </tfoot>

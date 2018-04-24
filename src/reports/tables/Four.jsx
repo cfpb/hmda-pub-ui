@@ -55,19 +55,26 @@ const renderCharacteristic = (characteristic, key) => {
       </th>
     </tr>,
     characteristic.genders.map((gender, index) => {
+      const key = currChar + index
       return (
-        <tr key={currChar + index}>
+        <tr key={key}>
           <th>{gender.gender}</th>
-          {gender.dispositions.map((disposition, index) => {
-            return [<td>{disposition.count}</td>, <td>{disposition.value}</td>]
+          {gender.dispositions.map(disposition => {
+            return [
+              <td key="count">{disposition.count}</td>,
+              <td key="value">{disposition.value}</td>
+            ]
           })}
         </tr>
       )
     }),
     <tr key={currChar + 'total'}>
       <th>Total</th>
-      {characteristic.dispositions.map((disposition, index) => {
-        return [<td>{disposition.count}</td>, <td>{disposition.value}</td>]
+      {characteristic.dispositions.map(disposition => {
+        return [
+          <td key="count">{disposition.count}</td>,
+          <td key="value">{disposition.value}</td>
+        ]
       })}
     </tr>
   ]
@@ -122,7 +129,10 @@ const Four = props => {
         <tr>
           <th>Total</th>
           {props.report.total.map((total, index) => {
-            return [<td>{total.count}</td>, <td>{total.value}</td>]
+            return [
+              <td key={'count' + index}>{total.count}</td>,
+              <td key={'value' + index}>{total.value}</td>
+            ]
           })}
         </tr>
       </tfoot>

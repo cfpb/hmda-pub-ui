@@ -68,7 +68,9 @@ const renderCharacteristic = (characteristic, label) => {
           <th>{detail}</th>
           {pricing.map((priceObj, index) => {
             return (
-              <td>{label === 'NUMBER' ? priceObj.count : priceObj.value}</td>
+              <td key={index}>
+                {label === 'NUMBER' ? priceObj.count : priceObj.value}
+              </td>
             )
           })}
         </tr>
