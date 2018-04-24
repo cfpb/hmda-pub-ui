@@ -60,6 +60,7 @@ class Report extends React.Component {
     if (table.match(/^12-1$/)) return <Tables.TwelveOne report={report} />
     if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
     if (table.match(/^A/)) return <Tables.A report={report} />
+    if (table.match(/^B/)) return <Tables.B report={report} />
   }
 
   render() {
