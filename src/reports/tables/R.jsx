@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const renderData = report => {
-  return [...report.msas, report.total].map(renderRow)
+  return report.msas.map(renderRow)
 }
 
 const renderRow = (row, i) => {
@@ -46,6 +46,7 @@ const R = props => {
         </tr>
       </thead>
       <tbody>{renderData(props.report)}</tbody>
+      <tfoot>{renderRow(props.report.total, 'foot')}</tfoot>
     </table>
   )
 }
