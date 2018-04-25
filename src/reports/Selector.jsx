@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
@@ -122,6 +123,7 @@ class Selector extends React.Component {
             openOnFocus
             simpleValue
             options={options}
+            optionComponent={Option}
           />
         ) : (
           <LoadingIcon />
