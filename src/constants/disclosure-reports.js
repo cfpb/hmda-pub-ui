@@ -39,8 +39,6 @@ export const DISCLOSURE_REPORTS = {
     { id: '11-9', name: 'Conv Home-Imp Pricing Info First' },
     { id: '12-1', name: 'Conv Manuf Home-Pur First' },
     { id: '12-2', name: 'Conv Manuf Home-Pur Pricing Info First' },
-    { id: 'S1', name: 'Supplemental Table 1' },
-    { id: 'S2', name: 'Supplemental Table 2' },
     { id: 'R1', name: 'IRS Table' },
     { id: 'A1', name: 'Loan Sale by Loan Type 1 to 4 Families' },
     { id: 'A2', name: 'Loan Sale by Loan Type Manufactured' },
