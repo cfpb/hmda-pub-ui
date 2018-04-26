@@ -19,9 +19,6 @@ class Report extends React.Component {
 
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    // temporary until 9 gets renamed correctly
-    if (params.reportId === '9') reportId = 'A9'
-
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
       url += `aggregate/2017/${msaMdId}/${reportId}.txt`
