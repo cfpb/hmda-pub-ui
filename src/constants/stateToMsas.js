@@ -188,10 +188,7 @@ export default {
     { msa: 47300, name: 'VISALIA-PORTERVILLE' },
     { msa: 49700, name: 'YUBA CITY' }
   ],
-  AK: [
-    { msa: 11260, name: 'ANCHORAGE' },
-    { msa: 21820, name: 'FAIRBANKS' }
-  ],
+  AK: [{ msa: 11260, name: 'ANCHORAGE' }, { msa: 21820, name: 'FAIRBANKS' }],
   MI: [
     { msa: 11460, name: 'ANN ARBOR' },
     { msa: 12980, name: 'BATTLE CREEK' },
@@ -418,9 +415,7 @@ export default {
     { msa: 35980, name: 'NORWICH-NEW LONDON' },
     { msa: 49340, name: 'WORCESTER' }
   ],
-  VT: [
-    { msa: 15540, name: 'BURLINGTON-SOUTH BURLINGTON' }
-  ],
+  VT: [{ msa: 15540, name: 'BURLINGTON-SOUTH BURLINGTON' }],
   FL: [
     { msa: 15980, name: 'CAPE CORAL-FORT MYERS' },
     { msa: 18880, name: 'CRESTVIEW-FORT WALTON BEACH-DESTIN' },
@@ -463,10 +458,7 @@ export default {
     { msa: 29820, name: 'LAS VEGAS-HENDERSON-PARADISE' },
     { msa: 39900, name: 'RENO' }
   ],
-  WY: [
-    { msa: 16220, name: 'CASPER' },
-    { msa: 16940, name: 'CHEYENNE' }
-  ],
+  WY: [{ msa: 16220, name: 'CASPER' }, { msa: 16940, name: 'CHEYENNE' }],
   TN: [
     { msa: 16860, name: 'CHATTANOOGA' },
     { msa: 17300, name: 'CLARKSVILLE' },
