@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 const renderData = report => {
   const { races, ethnicities } = report
   return (
-    <React.Fragment>
+    <>
       {mapCharacteristic(races, 'race')}
       {mapCharacteristic(ethnicities, 'ethnicity')}
-    </React.Fragment>
+    </>
   )
 }
 

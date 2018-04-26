@@ -13,7 +13,7 @@ import NotFound from './common/NotFound.jsx'
 
 const App = () => {
   return (
-    <React.Fragment>
+    <>
       <AppHeader />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -45,7 +45,7 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
       <Footer />
-    </React.Fragment>
+    </>
   )
 }
 

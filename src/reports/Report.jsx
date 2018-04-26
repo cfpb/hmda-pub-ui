@@ -83,7 +83,7 @@ class Report extends React.Component {
       <div className="report" id="main-content">
         <Header type={4} headingText={headingText}>
           {report ? (
-            <React.Fragment>
+            <>
               <p style={{ width: '50%', display: 'inline-block' }}>
                 Institution: {report.respondentId} - {report.institutionName}
               </p>
@@ -98,7 +98,7 @@ class Report extends React.Component {
                   ? `MSA/MD: ${report.msa.id} - ${report.msa.name}`
                   : 'Nationwide'}
               </p>
-            </React.Fragment>
+            </>
           ) : null}
         </Header>
         {this.selectReport(report)}
