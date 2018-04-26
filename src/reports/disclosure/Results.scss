@@ -1,0 +1,28 @@
+.results {
+  padding: 0;
+  max-width: 46rem;
+
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+
+    &.error {
+      background-color: $color-secondary-lightest !important;
+      border-left: 3px solid $color-secondary;
+    }
+
+    &:nth-child(odd) {
+      background-color: $color-gray-lightest;
+    }
+
+    h4 {
+      margin: 0;
+    }
+
+    p {
+      color: $color-gray;
+      margin: 0;
+    }
+  }
+}
