@@ -120,7 +120,7 @@ const renderCharacteristicDetails = characteristic => {
     })
 }
 
-const Five = props => {
+const ThreeOne = props => {
   if (!props.report) return null
 
   return (
@@ -224,8 +224,8 @@ const Five = props => {
   )
 }
 
-Five.propTypes = {
+ThreeOne.propTypes = {
   report: PropTypes.object
 }
 
-export default Five
+export default ThreeOne
