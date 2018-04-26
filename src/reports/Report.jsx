@@ -56,6 +56,7 @@ class Report extends React.Component {
     const table = report.table
     if (table.match(/^1$/)) return <Tables.One report={report} />
     if (table.match(/^2$/)) return <Tables.Two report={report} />
+    if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
     if (table.match(/^4-/)) return <Tables.Four report={report} />
     if (table.match(/^5-/)) return <Tables.Five report={report} />
     if (table.match(/^7-/)) return <Tables.Seven report={report} />
