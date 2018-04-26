@@ -2,77 +2,11 @@ import React from 'react'
 import Select from 'react-select'
 import Option from '../Option.js'
 import Header from '../common/Header.jsx'
-import LoadingIcon from '../common/LoadingIcon.jsx'
-import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
-import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
-import stateToMsas from '../constants/stateToMsas.js'
 
 class Selector extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      error: null,
-      isLoaded: false,
-      [props.target]: []
-    }
-
     this.handleChange = this.handleChange.bind(this)
-  }
-
-  componentDidMount() {
-    const { params } = this.props.match
-    // reports are always the same
-    if (this.props.target === 'report') {
-      // aggregate
-      if (params.stateId) {
-        this.setState({
-          isLoaded: true,
-          [this.props.target]: AGGREGATE_REPORTS
-        })
-      }
-      // disclosure
-      if (params.institutionId) {
-        const disclosure =
-          params.msaMdId === 'nationwide'
-            ? DISCLOSURE_REPORTS.nationwide
-            : DISCLOSURE_REPORTS.msa
-        this.setState({
-          isLoaded: true,
-          [this.props.target]: disclosure
-        })
-      }
-    } else {
-      if (params.stateId) {
-        this.setState({
-          [this.props.target]: stateToMsas[params.stateId],
-          isLoaded: true
-        })
-      } else {
-        fetch(this.getMsaUrl())
-          .then(res => res.json())
-          .then(
-            result => {
-              this.setState({
-                isLoaded: true,
-                [this.props.target]: result.msaMds
-              })
-            },
-            error => {
-              this.setState({
-                isLoaded: true,
-                error
-              })
-            }
-          )
-      }
-    }
-  }
-
-  getMsaUrl() {
-    const { params } = this.props.match
-    return `http://localhost:1337/cfpb-hmda-public/prod/reports/disclosure/2017/${
-      params.institutionId
-    }`
   }
 
   handleChange(val) {
@@ -84,41 +18,23 @@ class Selector extends React.Component {
   }
 
   render() {
-    let options = []
-    if (this.props.target === 'report') {
-      options = this.state[this.props.target].map(val => {
-        return { value: val.id, label: `${val.id} ${val.name}` }
-      })
-    } else {
-      options = this.state[this.props.target].map(val => {
-        let label = val.id
-        if (val.name) label += ' - ' + val.name
-        else label = val.id.toUpperCase()
-        return { value: val.id, label }
-      })
-    }
-
     return (
       <div className="usa-grid" id="main-content">
         <Header
           type={1}
-          headingText={this.props.getHeader.call(this)}
+          headingText={this.props.header}
           paragraphText={this.props.paragraphText}
         />
-        {this.state.isLoaded ? (
-          <Select
-            onChange={this.handleChange}
-            placeholder={this.props.placeholder}
-            searchable={false}
-            autoFocus
-            openOnFocus
-            simpleValue
-            options={options}
-            optionComponent={Option}
-          />
-        ) : (
-          <LoadingIcon />
-        )}
+        <Select
+          onChange={this.handleChange}
+          placeholder={this.props.placeholder}
+          searchable={false}
+          autoFocus
+          openOnFocus
+          simpleValue
+          options={this.props.options}
+          optionComponent={Option}
+        />
       </div>
     )
   }
