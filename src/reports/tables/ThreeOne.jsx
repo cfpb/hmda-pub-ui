@@ -29,95 +29,31 @@ const renderCharacteristicTitle = (characteristic, key) => {
 }
 
 const renderCharacteristicDetails = characteristic => {
-  if (characteristic.characteristic === 'Race')
-    return characteristic.races.map((race, index) => {
-      return (
-        <tr key={index}>
-          <th>{race.race}</th>
-          {race.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
+  let name, currentCharacteristic
+  Object.keys(characteristic).forEach(key => {
+    if (key === 'characteristic') name = characteristic[key]
+    else currentCharacteristic = characteristic[key]
+  })
+
+  return currentCharacteristic.map((detailObj, index) => {
+    let detail, purchasers
+    Object.keys(detailObj).forEach(key => {
+      if (key === 'purchasers') purchasers = detailObj[key]
+      else detail = detailObj[key]
     })
 
-  if (characteristic.characteristic === 'Ethnicity')
-    return characteristic.ethnicities.map((ethnicity, index) => {
-      return (
-        <tr key={index}>
-          <th>{ethnicity.ethnicity}</th>
-          {ethnicity.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
-    })
-
-  if (characteristic.characteristic === 'Minority Status')
-    return characteristic.minorityStatuses.map((minorityStatus, index) => {
-      return (
-        <tr key={index}>
-          <th>{minorityStatus.minorityStatus}</th>
-          {minorityStatus.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
-    })
-
-  if (characteristic.characteristic === 'Applicant Income')
-    return characteristic.applicantIncomes.map((applicantIncome, index) => {
-      return (
-        <tr key={index}>
-          <th>{applicantIncome.applicantIncome}</th>
-          {applicantIncome.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
-    })
-
-  if (characteristic.characteristic === 'Racial/Ethnic Composition')
-    return characteristic.tractPctMinorities.map((tractPctMinority, index) => {
-      return (
-        <tr key={index}>
-          <th>{tractPctMinority.tractPctMinority}</th>
-          {tractPctMinority.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
-    })
-
-  if (characteristic.characteristic === 'Income')
-    return characteristic.incomeLevels.map((incomeLevel, index) => {
-      return (
-        <tr key={index}>
-          <th>{incomeLevel.incomeLevel}</th>
-          {incomeLevel.purchasers.map((purchaser, index) => {
-            return [
-              <td key="count">{purchaser.count}</td>,
-              <td key="value">{purchaser.value}</td>
-            ]
-          })}
-        </tr>
-      )
-    })
+    return (
+      <tr key={name + index}>
+        <th>{detail}</th>
+        {purchasers.map((purchaser, index) => {
+          return [
+            <td key={'count' + index}>{purchaser.count}</td>,
+            <td key={'value' + index}>{purchaser.value}</td>
+          ]
+        })}
+      </tr>
+    )
+  })
 }
 
 const ThreeOne = props => {
