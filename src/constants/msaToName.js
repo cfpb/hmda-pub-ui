@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   10180: 'ABILENE',
   10380: 'AGUADILLA-ISABELA',
   10420: 'AKRON',

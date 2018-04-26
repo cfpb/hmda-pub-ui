@@ -6,7 +6,6 @@ import LoadingIcon from '../common/LoadingIcon.jsx'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import stateToMsas from '../constants/stateToMsas.js'
-import msaToName from '../constants/msaToName.js'
 
 class Selector extends React.Component {
   constructor(props) {
@@ -49,13 +48,13 @@ class Selector extends React.Component {
           isLoaded: true
         })
       } else {
-        fetch(this.getUrl())
+        fetch(this.getMsaUrl())
           .then(res => res.json())
           .then(
             result => {
               this.setState({
                 isLoaded: true,
-                [this.props.target]: this.getMsaNames(result)
+                [this.props.target]: result.msaMds
               })
             },
             error => {
@@ -69,19 +68,11 @@ class Selector extends React.Component {
     }
   }
 
-  getMsaNames(msas) {
-    return msas.map(msa => {
-      return { msa, name: msaToName[msa] }
-    })
-  }
-
-  getUrl() {
+  getMsaUrl() {
     const { params } = this.props.match
-    let url = `http://localhost:1337/cfpb-hmda-public/prod/reports/disclosure/2017/${
+    return `http://localhost:1337/cfpb-hmda-public/prod/reports/disclosure/2017/${
       params.institutionId
     }`
-    if (params.msaMdId) url += `/${params.msaMdId}`
-    return url
   }
 
   handleChange(val) {
@@ -100,10 +91,10 @@ class Selector extends React.Component {
       })
     } else {
       options = this.state[this.props.target].map(val => {
-        let label = val.msa
+        let label = val.id
         if (val.name) label += ' - ' + val.name
-        else label = val.msa.toUpperCase()
-        return { value: val.msa, label }
+        else label = val.id.toUpperCase()
+        return { value: val.id, label }
       })
     }
 
