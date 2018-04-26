@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 const defaultState = {
@@ -110,7 +109,7 @@ class Results extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {this.renderHeading(
           this.props.institutions.length,
           this.props.inputValue
@@ -134,7 +133,7 @@ class Results extends React.Component {
           })}
         </ul>
         {this.renderViewAllButton(this.props.institutions.length)}
-      </React.Fragment>
+      </>
     )
   }
 }

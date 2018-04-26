@@ -4,7 +4,7 @@ import BannerUSA from './BannerUSA.jsx'
 
 const AppHeader = () => {
   return (
-    <React.Fragment>
+    <>
       <a key={1} className="usa-skipnav" href="#main-content">
         Skip to main content
       </a>
@@ -41,7 +41,7 @@ const AppHeader = () => {
           </nav>
         </div>
       </header>
-    </React.Fragment>
+    </>
   )
 }
 
