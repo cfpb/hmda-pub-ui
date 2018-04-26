@@ -3,6 +3,8 @@ import Selector from './Selector.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import stateToMsas from '../constants/stateToMsas.js'
 
+const MSA_MDS = {}
+
 class MsaMds extends React.Component {
   constructor(props) {
     super(props)
@@ -21,10 +23,17 @@ class MsaMds extends React.Component {
         isLoaded: true
       })
     } else {
+      if (MSA_MDS[params.institutionId]) {
+        return this.setState({
+          isLoaded: true,
+          msaMds: MSA_MDS[params.institutionId]
+        })
+      }
       fetch(this.getMsaUrl(params))
         .then(res => res.json())
         .then(
           result => {
+            MSA_MDS[params.institutionId] = result.msaMds
             this.setState({
               isLoaded: true,
               msaMds: result.msaMds
