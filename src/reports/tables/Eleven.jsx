@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 const renderData = (report, label) => {
   return (
-    <React.Fragment>
+    <>
       {renderCharacteristicTitle('Borrower Characteristics')}
       {mapCharacteristic(report.borrowerCharacteristics, label)}
       {renderCharacteristicTitle('Census Tract Characteristics')}
       {mapCharacteristic(report.censusTractCharacteristics, label)}
-    </React.Fragment>
+    </>
   )
 }
 
@@ -120,10 +120,10 @@ const Eleven = props => {
   if (!report) return null
 
   return (
-    <React.Fragment>
+    <>
       {makeTable(report, 'NUMBER')}
       {makeTable(report, "$000's")}
-    </React.Fragment>
+    </>
   )
 }
 

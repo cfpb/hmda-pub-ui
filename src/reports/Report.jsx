@@ -19,9 +19,6 @@ class Report extends React.Component {
 
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    // temporary until 9 gets renamed correctly
-    if (params.reportId === '9') reportId = 'A9'
-
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
       url += `aggregate/2017/${msaMdId}/${reportId}.txt`
@@ -56,6 +53,7 @@ class Report extends React.Component {
     const table = report.table
     if (table.match(/^1$/)) return <Tables.One report={report} />
     if (table.match(/^2$/)) return <Tables.Two report={report} />
+    if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
     if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
     if (table.match(/^4-/)) return <Tables.Four report={report} />
     if (table.match(/^5-/)) return <Tables.Five report={report} />
@@ -86,7 +84,7 @@ class Report extends React.Component {
       <div className="report" id="main-content">
         <Header type={4} headingText={headingText}>
           {report ? (
-            <React.Fragment>
+            <>
               <p style={{ width: '50%', display: 'inline-block' }}>
                 Institution: {report.respondentId} - {report.institutionName}
               </p>
@@ -101,7 +99,7 @@ class Report extends React.Component {
                   ? `MSA/MD: ${report.msa.id} - ${report.msa.name}`
                   : 'Nationwide'}
               </p>
-            </React.Fragment>
+            </>
           ) : null}
         </Header>
         {this.selectReport(report)}

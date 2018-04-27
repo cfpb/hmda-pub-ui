@@ -1,5 +1,6 @@
 import One from './One.jsx'
 import Two from './Two.jsx'
+import ThreeOne from './ThreeOne.jsx'
 import ThreeTwo from './ThreeTwo.jsx'
 import Four from './Four.jsx'
 import Five from './Five.jsx'
@@ -16,6 +17,7 @@ import R from './R.jsx'
 export default {
   One,
   Two,
+  ThreeOne,
   ThreeTwo,
   Four,
   Five,

@@ -30,6 +30,7 @@ node_modules/
 dist/
 data-publication/
 env.json
+yarn-error.log
 
 .snyk
 .yarnclean
