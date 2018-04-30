@@ -1,18 +1,16 @@
 import React from 'react'
 import Selector from './Selector.jsx'
+import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
+import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 
 const getHeader = params => {
   let header = ''
 
-  // aggregate
   if (params.stateId) {
-    header = `Choose a generated for state ${params.stateId} and MSA/MD ${
-      params.msaMdId
-    }`
-  }
-
-  // disclosure
-  if (params.institutionId) {
+    header = `Choose a generated report for state ${
+      params.stateId
+    } and MSA/MD ${params.msaMdId}`
+  } else {
     header = `Choose a generated report for institution ${
       params.institutionId
     } and MSA/MD ${params.msaMdId}`
@@ -22,14 +20,28 @@ const getHeader = params => {
 }
 
 const Reports = props => {
+  const { params } = props.match
+  let data
+  if (params.stateId) {
+    data = AGGREGATE_REPORTS
+  } else {
+    data =
+      params.msaMdId === 'nationwide'
+        ? DISCLOSURE_REPORTS.nationwide
+        : DISCLOSURE_REPORTS.msa
+  }
+
+  const options = data.map(val => {
+    return { value: val.id, label: `${val.id} ${val.name}` }
+  })
+
   return (
     <Selector
       target="report"
+      options={options}
       placeholder="Select report..."
       paragraphText="Listed below are the available reports"
-      getHeader={function() {
-        return getHeader(this.props.match.params)
-      }}
+      header={getHeader(params)}
       {...props}
     />
   )

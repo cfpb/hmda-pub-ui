@@ -1,23 +1,19 @@
 const http = require('http')
+const msaToName = require('./constants/msaToName.js')
 const spawn = require('child_process').spawn
 
 http
   .createServer(function(req, res) {
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('Access-Control-Allow-Origin', '*')
-
-    if (req.url.match(/.txt$/))
-      return http.get('http://s3.amazonaws.com' + req.url, r => {
-        r.pipe(res)
-      })
     let url = 's3:/' + req.url
     if (url[url.length - 1] !== '/') url += '/'
-    const urlPieces = url.split('/').length
+    const splitUrl = url.split('/')
+    const urlPieces = splitUrl.length
+    console.log(splitUrl, urlPieces)
     let awk
     if (urlPieces === 9) {
       awk = spawn('awk', ['BEGIN{RS="/\\n"}{print $2}'])
-    } else if (urlPieces === 10) {
-      awk = spawn('awk', ['{print $4}'])
     } else {
       return res.end('"invalid request"')
     }
@@ -27,7 +23,25 @@ http
     let str = ''
     awk.stdout.on('data', d => (str += d))
     awk.stdout.on('end', () => {
-      res.end(JSON.stringify(str.split('\n').slice(0, -1)))
+      const year = splitUrl[6]
+      const instId = splitUrl[7]
+      const msas = str.split('\n').slice(0, -1)
+      const output = {
+        year: year,
+        institution: {
+          name: 'someName',
+          id: instId,
+          respondentId: 'respo'
+        },
+        msaMds: msas.map(msa => {
+          return {
+            id: msa,
+            name: msaToName[msa]
+          }
+        })
+      }
+
+      res.end(JSON.stringify(output))
     })
   })
   .listen(1337)
