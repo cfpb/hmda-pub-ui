@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 
 const renderData = institutions => {
   const sortedInstitutions = institutions.sort()
-  return renderRows(sortedInstitutions)
+  return getRows(sortedInstitutions)
 }
 
-const renderRows = institutions => {
+const getRows = institutions => {
   let toRender = []
   let institutionsToRender = []
 
-  // build the list of 3 institutions
   institutions.map((institution, index) => {
     institutionsToRender.push(institution)
 
