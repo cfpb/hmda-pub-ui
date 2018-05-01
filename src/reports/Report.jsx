@@ -87,8 +87,14 @@ class Report extends React.Component {
           {report ? (
             <React.Fragment>
               <p style={{ width: '50%', display: 'inline-block' }}>
-                Institution: {report.respondentId} - {report.institutionName}
+                {report.respondentId ? (
+                  <span>
+                    Institution: {report.respondentId} -{' '}
+                    {report.institutionName}
+                  </span>
+                ) : null}
               </p>
+
               <p
                 style={{
                   width: '50%',
