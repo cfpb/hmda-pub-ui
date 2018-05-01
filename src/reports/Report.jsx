@@ -51,6 +51,7 @@ class Report extends React.Component {
 
   selectReport(report) {
     const table = report.table
+    if (table.match(/^i$/)) return <Tables.I report={report} />
     if (table.match(/^1$/)) return <Tables.One report={report} />
     if (table.match(/^2$/)) return <Tables.Two report={report} />
     if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
@@ -84,7 +85,7 @@ class Report extends React.Component {
       <div className="report" id="main-content">
         <Header type={4} headingText={headingText}>
           {report ? (
-            <>
+            <React.Fragment>
               <p style={{ width: '50%', display: 'inline-block' }}>
                 Institution: {report.respondentId} - {report.institutionName}
               </p>
@@ -99,7 +100,7 @@ class Report extends React.Component {
                   ? `MSA/MD: ${report.msa.id} - ${report.msa.name}`
                   : 'Nationwide'}
               </p>
-            </>
+            </React.Fragment>
           ) : null}
         </Header>
         {this.selectReport(report)}
