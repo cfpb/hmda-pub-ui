@@ -31,7 +31,6 @@ export const AGGREGATE_REPORTS = [
   { id: '8-6', name: 'Nonoccupant Loan Denials' },
   { id: '8-7', name: 'Manufactured Home Denials' },
   { id: '9', name: 'Loan by Med Age of Homes' },
-  { id: '10', name: 'Loan by Principal City vs. Non' },
   { id: '11-1', name: 'FHA Home-Pur Pricing Info First' },
   { id: '11-2', name: 'VA Home-Pur Pricing Info First' },
   { id: '11-3', name: 'Conv Home-Pur Pricing Info First' },
