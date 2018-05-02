@@ -12,7 +12,7 @@ class Aggregate extends React.Component {
 
   handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/state/${val}`
+      pathname: `${this.props.match.url}/2017/state/${val}`
     })
   }
 

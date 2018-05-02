@@ -20,27 +20,30 @@ const App = () => {
         <Route path="/modified-lar/*" component={NotFound} />
         <Route path="/modified-lar" component={ModifiedLar} />
         <Route
-          path="/disclosure-reports/institution/:institutionId/msa-md/:msaMdId/report/:reportId"
+          path="/disclosure-reports/2017/institution/:institutionId/msa-md/:msaMdId/report/:reportId"
           component={Report}
         />
         <Route
-          path="/disclosure-reports/institution/:institutionId/msa-md/:msaMdId"
+          path="/disclosure-reports/2017/institution/:institutionId/msa-md/:msaMdId"
           component={Reports}
         />
         <Route
-          path="/disclosure-reports/institution/:institutionId"
+          path="/disclosure-reports/2017/institution/:institutionId"
           component={MsaMds}
         />
         <Route path="/disclosure-reports" component={Disclosure} />
         <Route
-          path="/aggregate-reports/state/:stateId/msa-md/:msaMdId/report/:reportId"
+          path="/aggregate-reports/2017/state/:stateId/msa-md/:msaMdId/report/:reportId"
           component={Report}
         />
         <Route
-          path="/aggregate-reports/state/:stateId/msa-md/:msaMdId"
+          path="/aggregate-reports/2017/state/:stateId/msa-md/:msaMdId"
           component={Reports}
         />
-        <Route path="/aggregate-reports/state/:stateId" component={MsaMds} />
+        <Route
+          path="/aggregate-reports/2017/state/:stateId"
+          component={MsaMds}
+        />
         <Route path="/aggregate-reports" component={Aggregate} />
         <Route component={NotFound} />
       </Switch>
