@@ -4,19 +4,12 @@ import Results from './Results.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
-const defaultState = {
-  error: null,
-  status: { id: 1, message: 'loading' }, // 1:loading, 2:ready, 3:searching, -1:error
-  institutions: [],
-  institutionsFiltered: [],
-  textInputValue: ''
-}
+let INSTITUTIONS = null
 
 class Disclosure extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = defaultState
+    this.state = this.getDefaultState()
 
     this.handleTextInputChange = this.handleTextInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,26 +17,38 @@ class Disclosure extends React.Component {
   }
 
   componentDidMount() {
-    isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          return Promise.reject('Failed to fetch')
-        }
-      })
-      .then(result => {
-        this.setState({
-          status: { id: 2, message: 'ready' },
-          institutions: result.institutions
+    if (this.state.isLoading) {
+      isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
+        .then(response => {
+          if (response.ok) {
+            return response.json()
+          } else {
+            return Promise.reject('Failed to fetch')
+          }
         })
-      })
-      .catch(error => {
-        this.setState({
-          status: { id: -1, message: 'error' },
-          error
+        .then(result => {
+          INSTITUTIONS = result.institutions
+          this.setState({
+            isLoading: false,
+            institutions: result.institutions
+          })
         })
-      })
+        .catch(error => {
+          this.setState({
+            isLoading: false,
+            error
+          })
+        })
+    }
+  }
+  getDefaultState() {
+    return {
+      error: null,
+      isLoading: !INSTITUTIONS,
+      institutions: INSTITUTIONS || [],
+      institutionsFiltered: [],
+      textInputValue: ''
+    }
   }
 
   searchInstitutions(value) {
@@ -67,16 +72,14 @@ class Disclosure extends React.Component {
     }
 
     this.setState({
-      institutionsFiltered: institutionsFiltered,
-      status: { id: 2, message: 'ready' }
+      institutionsFiltered
     })
   }
 
   handleTextInputChange(event) {
     this.setState({
       textInputValue: event.target.value,
-      error: null,
-      status: { id: 3, message: 'searching' }
+      error: null
     })
 
     this.searchInstitutions(event.target.value)
@@ -91,9 +94,16 @@ class Disclosure extends React.Component {
     let inputClass = ''
     let inputLabelClass = ''
     let errorMessage = null
-    const { status } = this.state
+    let loading = null
+    let label = <span>Enter an institution name</span>
+    const {
+      isLoading,
+      error,
+      textInputValue,
+      institutionsFiltered
+    } = this.state
 
-    if (status.id === -1) {
+    if (error && error !== 'Not a filer') {
       disabled = true
       inputClass = 'usa-input-error'
       inputLabelClass = 'usa-input-error-label'
@@ -108,16 +118,13 @@ class Disclosure extends React.Component {
       )
     }
 
-    let loading = null
-    let label = <span>Enter an institution name</span>
-    if (status.id === 1 || status.id === 3) {
+    if (isLoading) {
+      disabled = true
       loading = <LoadingIcon className="LoadingInline" />
       label = (
         <span style={{ fontWeight: 'bold' }}>Loading Institutions...</span>
       )
     }
-
-    if (status.id === 1) disabled = true
 
     return (
       <div className="usa-grid disclosure" id="main-content">
@@ -138,7 +145,7 @@ class Disclosure extends React.Component {
                 id="institution-name"
                 name="institution-name"
                 type="text"
-                value={this.state.textInputValue}
+                value={textInputValue}
                 onChange={this.handleTextInputChange}
                 placeholder="Institution name"
                 disabled={disabled}
@@ -150,9 +157,8 @@ class Disclosure extends React.Component {
 
           <Results
             error={this.state.error}
-            institutions={this.state.institutionsFiltered}
-            inputValue={this.state.textInputValue}
-            status={this.state.status}
+            institutions={institutionsFiltered}
+            inputValue={textInputValue}
             match={this.props.match}
           />
         </div>
