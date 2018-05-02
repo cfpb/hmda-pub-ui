@@ -28,7 +28,7 @@ class Selector extends React.Component {
         <Select
           onChange={this.handleChange}
           placeholder={this.props.placeholder}
-          searchable={false}
+          searchable={true}
           autoFocus
           openOnFocus
           simpleValue
