@@ -49,10 +49,14 @@ class Report extends React.Component {
       )
   }
 
-  selectReport(report) {
+  selectReport(report, reportType) {
+    // reportType only needed for Table.One
+    // it renders extra columns for the aggregate version
+
     const table = report.table
     if (table.match(/^i$/)) return <Tables.I report={report} />
-    if (table.match(/^1$/)) return <Tables.One report={report} />
+    if (table.match(/^1$/))
+      return <Tables.One reportType={reportType} report={report} />
     if (table.match(/^2$/)) return <Tables.Two report={report} />
     if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
     if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
@@ -72,6 +76,9 @@ class Report extends React.Component {
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.report === null) return null
+
+    let reportType = 'disclosure'
+    if (this.props.match.params.stateId) reportType = 'aggregate'
 
     const report = this.state.report
     let table = report.table
@@ -109,7 +116,7 @@ class Report extends React.Component {
             </>
           ) : null}
         </Header>
-        {this.selectReport(report)}
+        {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}
         </p>
