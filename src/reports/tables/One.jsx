@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = tracts => {
+const renderData = (tracts, reportType) => {
   return tracts.map((tract, index) => {
     return [
       <tr key={index}>
@@ -12,22 +12,65 @@ const renderData = tracts => {
             textTransform: 'uppercase',
             backgroundColor: '#f1f1f1'
           }}
-          colSpan={17}
+          colSpan={15}
         >
           {tract.tract}
         </th>
+        {reportType === 'aggregate'
+          ? renderAggregateData(tract.dispositions)
+          : null}
       </tr>,
-      renderDispositions(tract.dispositions, index)
+      renderDispositions(tract.dispositions, reportType, index)
     ]
   })
 }
 
-const renderDispositions = (dispositions, key) => {
+const renderAggregateData = dispositions => {
+  let toRender = []
+  dispositions.map((disposition, index) => {
+    if (
+      disposition.title === '% Minority Population' ||
+      disposition.title === 'Median Income as PCT of MSA/MD Median'
+    ) {
+      const key = disposition.title + index
+      toRender.push(
+        <td
+          key={key}
+          style={{
+            borderTopWidth: '2px',
+            backgroundColor: '#f1f1f1'
+          }}
+        >
+          {disposition.values}
+        </td>
+      )
+    }
+  })
+
+  return toRender.map((render, index) => {
+    return render
+  })
+}
+
+const renderDispositions = (dispositions, reportType, key) => {
   return dispositions.map((disposition, index) => {
+    if (
+      disposition.title === '% Minority Population' ||
+      disposition.title === 'Median Income as PCT of MSA/MD Median'
+    ) {
+      return null
+    }
+
     return (
       <tr key={`${key}-${index}`}>
         <th>{disposition.title}</th>
         {renderDispositionValues(disposition.values, key, index)}
+        {reportType === 'aggregate' ? (
+          <React.Fragment>
+            <td />
+            <td />
+          </React.Fragment>
+        ) : null}
       </tr>
     )
   })
@@ -45,6 +88,9 @@ const renderDispositionValues = (values, key, key2) => {
 const One = props => {
   if (!props.report) return null
 
+  let colWidth = '5.7%'
+  if (props.reportType === 'aggregate') colWidth = '5%'
+
   return (
     <table style={{ fontSize: '.75em' }}>
       <thead>
@@ -58,34 +104,44 @@ const One = props => {
           <th colSpan={8}>
             Loans on 1- to 4-Family Manufactured Home Dwellings
           </th>
-          <th colSpan={6} />
+          <th colSpan={props.reportType === 'aggregate' ? 8 : 6} />
         </tr>
         <tr>
           <th colSpan={4}>Home Purchase Loans</th>
-          <th colSpan={10} />
+          <th colSpan={props.reportType === 'aggregate' ? 12 : 10} />
         </tr>
         <tr>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             FHA, FSA/RHS & VA
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Conventional
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Refinancings
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Home Improvement Loans
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Loans on Dwellings For 5 or More Families
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Nonoccupant Loans From Columns A, B, C, and D
           </th>
-          <th width="5%" colSpan={2}>
+          <th width={colWidth} colSpan={2}>
             Loans On Manufactured Home Dwellings From Columns A, B, C, & D
           </th>
+          {props.reportType === 'aggregate' ? (
+            <React.Fragment>
+              <th width={colWidth} rowSpan={3}>
+                % Min Pop
+              </th>
+              <th width={colWidth} rowSpan={3}>
+                Median Income As PCT of MSA/MD Median
+              </th>
+            </React.Fragment>
+          ) : null}
         </tr>
         <tr>
           <th colSpan={2}>A</th>
@@ -113,13 +169,14 @@ const One = props => {
           <th>$000's</th>
         </tr>
       </thead>
-      <tbody>{renderData(props.report.tracts)}</tbody>
+      <tbody>{renderData(props.report.tracts, props.reportType)}</tbody>
     </table>
   )
 }
 
 One.propTypes = {
-  report: PropTypes.object
+  report: PropTypes.object,
+  reportType: PropTypes.string
 }
 
 export default One
