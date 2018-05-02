@@ -91,8 +91,9 @@ class Disclosure extends React.Component {
     let inputClass = ''
     let inputLabelClass = ''
     let errorMessage = null
+    const { status } = this.state
 
-    if (this.state.status.id === -1) {
+    if (status.id === -1) {
       disabled = true
       inputClass = 'usa-input-error'
       inputLabelClass = 'usa-input-error-label'
@@ -108,9 +109,16 @@ class Disclosure extends React.Component {
     }
 
     let loading = null
-    if (this.state.status.id === 1 || this.state.status.id === 3) {
+    let label = <span>Enter an institution name</span>
+    if (status.id === 1 || status.id === 3) {
       loading = <LoadingIcon className="LoadingInline" />
+      label = (
+        <span style={{ fontWeight: 'bold' }}>Loading Institutions...</span>
+      )
     }
+
+    if (status.id === 1) disabled = true
+
     return (
       <div className="usa-grid disclosure" id="main-content">
         <div className="usa-width-one-whole">
@@ -123,7 +131,7 @@ class Disclosure extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className={inputClass}>
               <label className={inputLabelClass} htmlFor="institution-name">
-                Enter an institution name
+                {label}
               </label>
               {errorMessage}
               <input
