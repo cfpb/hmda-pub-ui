@@ -15,8 +15,8 @@ const Snapshot = () => {
           file specification files are available to download in PDF format."
         >
           <p className="usa-text-small">
-            Use caution when analyzing continuous variables, such as loan amount
-            and income, which may contain outliers.
+            Use caution when analyzing loan amount and income, which do not have
+            an upper limit and may contain outliers.
           </p>
         </Header>
         <div className="usa-grid-full">
@@ -27,10 +27,20 @@ const Snapshot = () => {
                   Loan/Application Records (LAR)
                   <ul style={{ marginTop: '.5em' }}>
                     <li>
-                      <a href="">CSV</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
+                      >
+                        CSV
+                      </a>
                     </li>
                     <li>
-                      <a href="">Pipe Delimited</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip"
+                      >
+                        Pipe Delimited
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -38,10 +48,20 @@ const Snapshot = () => {
                   Transmittal Sheet Records (TS)
                   <ul style={{ marginTop: '.5em' }}>
                     <li>
-                      <a href="">CSV</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
+                      >
+                        CSV
+                      </a>
                     </li>
                     <li>
-                      <a href="">Pipe Delimited</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip"
+                      >
+                        Pipe Delimited
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -49,10 +69,20 @@ const Snapshot = () => {
                   Reporter Panel
                   <ul style={{ marginTop: '.5em' }}>
                     <li>
-                      <a href="">CSV</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip"
+                      >
+                        CSV
+                      </a>
                     </li>
                     <li>
-                      <a href="">Pipe Delimited</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip"
+                      >
+                        Pipe Delimited
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -60,10 +90,20 @@ const Snapshot = () => {
                   MSA/MD Description
                   <ul style={{ marginTop: '.5em' }}>
                     <li>
-                      <a href="">CSV</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip"
+                      >
+                        CSV
+                      </a>
                     </li>
                     <li>
-                      <a href="">Pipe Delimited</a>
+                      <a
+                        download={true}
+                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip"
+                      >
+                        Pipe Delimited
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -74,10 +114,20 @@ const Snapshot = () => {
             <Header type="sub" headingText="2017 File Specifications">
               <ul>
                 <li>
-                  <a href="">LAR, TS and Reporter Panel</a>
+                  <a
+                    download={true}
+                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
+                  >
+                    LAR, TS and Reporter Panel
+                  </a>
                 </li>
                 <li>
-                  <a href="">LAR Code Sheet</a>
+                  <a
+                    download={true}
+                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
+                  >
+                    LAR Code Sheet
+                  </a>
                 </li>
               </ul>
             </Header>
