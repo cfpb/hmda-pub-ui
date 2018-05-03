@@ -13,15 +13,51 @@ class Report extends React.Component {
       isLoaded: false,
       report: null
     }
-    //this.selectReport = this.selectReport.bind(this)
+
+    this.selectReport = this.selectReport.bind(this)
+    this.generateCSV = this.generateCSV.bind(this)
     this.tableRef = React.createRef()
   }
 
-  componentDidMount() {
-    console.log('componentDidMount - this', this)
-    console.log('componentDidMount - tableRef', this.tableRef)
-    console.log('componentDidMount - tableRef.current', this.tableRef.current)
+  generateCSV() {
+    const report = this.state.report
+    const tHeadRows = this.tableRef.current.tHead.rows
+    const tHeadFirstRow = this.tableRef.current.tHead.rows[1]
+    const tHeadFirstRowCells = this.tableRef.current.tHead.rows[1].cells
+    let columnCount = 0
 
+    //console.log(this.tableRef.current)
+    console.log(tHeadFirstRowCells)
+
+    Array.from(tHeadFirstRowCells).forEach(row => {
+      if (row.hasAttribute('colspan')) {
+        columnCount += parseInt(row.getAttribute('colspan'))
+      } else {
+        columnCount++
+      }
+    })
+
+    console.log(columnCount)
+
+    let filename = `report-${report.table}`
+    if (report.respondentId) {
+      filename =
+        filename +
+        `-${report.respondentId}-${report.institutionName
+          .replace(',', '')
+          .replace(' ', '')}`
+    }
+    filename =
+      filename +
+      `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
+    console.log(filename)
+    /*fileSaver.saveAs(
+      new Blob([csv], { type: 'text/csv;charset=utf-16' }),
+      `${filename}.csv`
+    )*/
+  }
+
+  componentDidMount() {
     const { params } = this.props.match
 
     let msaMdId = params.msaMdId
@@ -55,21 +91,6 @@ class Report extends React.Component {
         }
       )
   }
-
-  saveAsCSV(report) {
-    let filename = `report-${report.table}`
-    if (report.respondentId) {
-      filename = filename + `-${report.respondentId}-${report.institutionName}`
-    }
-    filename = filename + `-${report.msa.id}-${report.msa.name}`
-
-    fileSaver.saveAs(
-      new Blob([csv], { type: 'text/csv;charset=utf-16' }),
-      `${filename}.csv`
-    )
-  }
-
-  createCSV() {}
 
   selectReport(report, reportType) {
     // reportType only needed for Table.One
@@ -117,7 +138,7 @@ class Report extends React.Component {
       : null
     return (
       <div className="report" id="main-content">
-        <button onClick={this.saveAsCSV}>Save as CSV</button>
+        <button onClick={this.generateCSV}>Save as CSV</button>
         <Header type={4} headingText={headingText}>
           {report ? (
             <>
