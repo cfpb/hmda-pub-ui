@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
+import fileSaver from 'file-saver'
 
 class Report extends React.Component {
   constructor(props) {
@@ -12,9 +13,14 @@ class Report extends React.Component {
       isLoaded: false,
       report: null
     }
+
+    this.setTableElement = element => (this.tableElement = element)
   }
 
   componentDidMount() {
+    console.log('componentDidMount', this)
+    console.log('componentDidMount', this.tableElement)
+
     const { params } = this.props.match
 
     let msaMdId = params.msaMdId
@@ -49,31 +55,72 @@ class Report extends React.Component {
       )
   }
 
+  saveAsCSV(report) {
+    let filename = `report-${report.table}`
+    if (report.respondentId) {
+      filename = filename + `-${report.respondentId}-${report.institutionName}`
+    }
+    filename = filename + `-${report.msa.id}-${report.msa.name}`
+
+    fileSaver.saveAs(
+      new Blob([csv], { type: 'text/csv;charset=utf-16' }),
+      `${filename}.csv`
+    )
+  }
+
+  createCSV() {}
+
   selectReport(report, reportType) {
     // reportType only needed for Table.One
     // it renders extra columns for the aggregate version
-
     const table = report.table
-    if (table.match(/^i$/)) return <Tables.I report={report} />
+    if (table.match(/^i$/))
+      return <Tables.I tableRef={this.setTableElement} report={report} />
     if (table.match(/^1$/))
-      return <Tables.One reportType={reportType} report={report} />
-    if (table.match(/^2$/)) return <Tables.Two report={report} />
-    if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
-    if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
-    if (table.match(/^4-/)) return <Tables.Four report={report} />
-    if (table.match(/^5-/)) return <Tables.Five report={report} />
-    if (table.match(/^7-/)) return <Tables.Seven report={report} />
-    if (table.match(/^8-/)) return <Tables.Eight report={report} />
-    if (table.match(/^9$/)) return <Tables.Nine report={report} />
-    if (table.match(/^11-/)) return <Tables.Eleven report={report} />
-    if (table.match(/^12-1$/)) return <Tables.TwelveOne report={report} />
-    if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
-    if (table.match(/^A/)) return <Tables.A report={report} />
-    if (table.match(/^B/)) return <Tables.B report={report} />
-    if (table.match(/^IRS/)) return <Tables.R report={report} />
+      return (
+        <Tables.One
+          tableRef={this.setTableElement}
+          reportType={reportType}
+          report={report}
+        />
+      )
+    if (table.match(/^2$/))
+      return <Tables.Two tableRef={this.setTableElement} report={report} />
+    if (table.match(/^3-1$/))
+      return <Tables.ThreeOne tableRef={this.setTableElement} report={report} />
+    if (table.match(/^3-2$/))
+      return <Tables.ThreeTwo tableRef={this.setTableElement} report={report} />
+    if (table.match(/^4-/))
+      return <Tables.Four tableRef={this.setTableElement} report={report} />
+    if (table.match(/^5-/))
+      return <Tables.Five tableRef={this.setTableElement} report={report} />
+    if (table.match(/^7-/))
+      return <Tables.Seven tableRef={this.setTableElement} report={report} />
+    if (table.match(/^8-/))
+      return <Tables.Eight tableRef={this.setTableElement} report={report} />
+    if (table.match(/^9$/))
+      return <Tables.Nine tableRef={this.setTableElement} report={report} />
+    if (table.match(/^11-/))
+      return <Tables.Eleven tableRef={this.setTableElement} report={report} />
+    if (table.match(/^12-1$/))
+      return (
+        <Tables.TwelveOne tableRef={this.setTableElement} report={report} />
+      )
+    if (table.match(/^12-2$/))
+      return (
+        <Tables.TwelveTwo tableRef={this.setTableElement} report={report} />
+      )
+    if (table.match(/^A/))
+      return <Tables.A tableRef={this.setTableElement} report={report} />
+    if (table.match(/^B/))
+      return <Tables.B tableRef={this.setTableElement} report={report} />
+    if (table.match(/^IRS/))
+      return <Tables.R tableRef={this.setTableElement} report={report} />
   }
 
   render() {
+    console.log('render', this)
+    console.log('render', this.tableElement)
     if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.report === null) return null
 
@@ -90,6 +137,7 @@ class Report extends React.Component {
       : null
     return (
       <div className="report" id="main-content">
+        <button onClick={this.saveAsCSV}>Save as CSV</button>
         <Header type={4} headingText={headingText}>
           {report ? (
             <>

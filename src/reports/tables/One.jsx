@@ -92,7 +92,7 @@ const One = props => {
   if (props.reportType === 'aggregate') colWidth = '5%'
 
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={props.tableRef} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={6}>
