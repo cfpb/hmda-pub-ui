@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const defaultState = {
   showAll: false
@@ -85,6 +84,24 @@ class Results extends React.Component {
     )
   }
 
+  makeListItem(institution, index) {
+    return (
+      <li key={index}>
+        <h4>{institution.name}</h4>
+        <p>Respondent ID: {institution.respondentId}</p>
+        <a
+          className="usa-font-small"
+          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${
+            institution.institutionId
+          }.txt`}
+          download
+        >
+          Download Modified LAR
+        </a>
+      </li>
+    )
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.inputValue !== this.props.inputValue) {
       this.setState(defaultState)
@@ -105,9 +122,12 @@ class Results extends React.Component {
       0,
       DEFAULT_NUMBER_OF_INSTITUTIONS
     )
+
     if (this.state.showAll === true) {
       visibleInstitutions = this.props.institutions
     }
+
+    const mapper = this.props.makeListItem || this.makeListItem
 
     return (
       <>
@@ -115,24 +135,7 @@ class Results extends React.Component {
           this.props.institutions.length,
           this.props.inputValue
         )}
-        <ul className="results">
-          {visibleInstitutions.map((institution, index) => {
-            let url = this.props.match.url
-            if (!url.match(/\/$/)) url += '/'
-            return (
-              <li key={index}>
-                <h4>{institution.name}</h4>
-                <p>Respondent ID: {institution.respondentId}</p>
-                <Link
-                  to={`${url}institution/${institution.institutionId}`}
-                  className="usa-font-small"
-                >
-                  View MSA/MDs
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <ul className="results">{visibleInstitutions.map(mapper)}</ul>
         {this.renderViewAllButton(this.props.institutions.length)}
       </>
     )

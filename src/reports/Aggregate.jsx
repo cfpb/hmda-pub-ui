@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
-import Header from '../../common/Header.jsx'
-import STATES from '../../constants/states.js'
+import Header from '../common/Header.jsx'
+import STATES from '../constants/states.js'
 
 class Aggregate extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Aggregate extends React.Component {
       <div className="usa-grid aggregate" id="main-content">
         <div className="usa-width-one-whole">
           <Header
-            type={1}
+            type={2}
             headingText="MSA/MD Aggregate Reports"
             paragraphText="These reports summarize lending activity by MSA/MD."
           />

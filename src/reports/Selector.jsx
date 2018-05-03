@@ -21,7 +21,7 @@ class Selector extends React.Component {
     return (
       <div className="usa-grid" id="main-content">
         <Header
-          type={1}
+          type={2}
           headingText={this.props.header}
           paragraphText={this.props.paragraphText}
         />
