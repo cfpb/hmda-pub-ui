@@ -85,14 +85,14 @@ const renderDispositionValues = (values, key, key2) => {
   })
 }
 
-const One = props => {
+const One = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   let colWidth = '5.7%'
   if (props.reportType === 'aggregate') colWidth = '5%'
 
   return (
-    <table ref={props.tableRef} style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={6}>
@@ -172,7 +172,7 @@ const One = props => {
       <tbody>{renderData(props.report.tracts, props.reportType)}</tbody>
     </table>
   )
-}
+})
 
 One.propTypes = {
   report: PropTypes.object,

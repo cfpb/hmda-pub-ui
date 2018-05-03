@@ -13,13 +13,14 @@ class Report extends React.Component {
       isLoaded: false,
       report: null
     }
-
-    this.setTableElement = element => (this.tableElement = element)
+    //this.selectReport = this.selectReport.bind(this)
+    this.tableRef = React.createRef()
   }
 
   componentDidMount() {
-    console.log('componentDidMount', this)
-    console.log('componentDidMount', this.tableElement)
+    console.log('componentDidMount - this', this)
+    console.log('componentDidMount - tableRef', this.tableRef)
+    console.log('componentDidMount - tableRef.current', this.tableRef.current)
 
     const { params } = this.props.match
 
@@ -74,53 +75,32 @@ class Report extends React.Component {
     // reportType only needed for Table.One
     // it renders extra columns for the aggregate version
     const table = report.table
-    if (table.match(/^i$/))
-      return <Tables.I tableRef={this.setTableElement} report={report} />
+    if (table.match(/^i$/)) return <Tables.I report={report} />
     if (table.match(/^1$/))
       return (
         <Tables.One
-          tableRef={this.setTableElement}
+          ref={this.tableRef}
           reportType={reportType}
           report={report}
         />
       )
-    if (table.match(/^2$/))
-      return <Tables.Two tableRef={this.setTableElement} report={report} />
-    if (table.match(/^3-1$/))
-      return <Tables.ThreeOne tableRef={this.setTableElement} report={report} />
-    if (table.match(/^3-2$/))
-      return <Tables.ThreeTwo tableRef={this.setTableElement} report={report} />
-    if (table.match(/^4-/))
-      return <Tables.Four tableRef={this.setTableElement} report={report} />
-    if (table.match(/^5-/))
-      return <Tables.Five tableRef={this.setTableElement} report={report} />
-    if (table.match(/^7-/))
-      return <Tables.Seven tableRef={this.setTableElement} report={report} />
-    if (table.match(/^8-/))
-      return <Tables.Eight tableRef={this.setTableElement} report={report} />
-    if (table.match(/^9$/))
-      return <Tables.Nine tableRef={this.setTableElement} report={report} />
-    if (table.match(/^11-/))
-      return <Tables.Eleven tableRef={this.setTableElement} report={report} />
-    if (table.match(/^12-1$/))
-      return (
-        <Tables.TwelveOne tableRef={this.setTableElement} report={report} />
-      )
-    if (table.match(/^12-2$/))
-      return (
-        <Tables.TwelveTwo tableRef={this.setTableElement} report={report} />
-      )
-    if (table.match(/^A/))
-      return <Tables.A tableRef={this.setTableElement} report={report} />
-    if (table.match(/^B/))
-      return <Tables.B tableRef={this.setTableElement} report={report} />
-    if (table.match(/^IRS/))
-      return <Tables.R tableRef={this.setTableElement} report={report} />
+    if (table.match(/^2$/)) return <Tables.Two report={report} />
+    if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
+    if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
+    if (table.match(/^4-/)) return <Tables.Four report={report} />
+    if (table.match(/^5-/)) return <Tables.Five report={report} />
+    if (table.match(/^7-/)) return <Tables.Seven report={report} />
+    if (table.match(/^8-/)) return <Tables.Eight report={report} />
+    if (table.match(/^9$/)) return <Tables.Nine report={report} />
+    if (table.match(/^11-/)) return <Tables.Eleven report={report} />
+    if (table.match(/^12-1$/)) return <Tables.TwelveOne report={report} />
+    if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
+    if (table.match(/^A/)) return <Tables.A report={report} />
+    if (table.match(/^B/)) return <Tables.B report={report} />
+    if (table.match(/^IRS/)) return <Tables.R report={report} />
   }
 
   render() {
-    console.log('render', this)
-    console.log('render', this.tableElement)
     if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.report === null) return null
 
