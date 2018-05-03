@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
-import NotFound from '../../common/NotFound.jsx'
 import LoadingIcon from '../../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
