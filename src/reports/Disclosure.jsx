@@ -1,6 +1,10 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
 import SearchList from './SearchList.jsx'
+import ProgressCard from './ProgressCard.jsx'
+import MsaMds from './MsaMds.jsx'
+import Reports from './Reports.jsx'
+import Report from './Report.jsx'
 import { Link } from 'react-router-dom'
 
 class Disclosure extends React.Component {
@@ -27,6 +31,7 @@ class Disclosure extends React.Component {
   }
 
   render() {
+    const { params } = this.props.match
     const header = (
       <Header
         type={2}
@@ -35,7 +40,20 @@ class Disclosure extends React.Component {
               institutions, both nationwide and by MSA/MD."
       />
     )
-    return <SearchList header={header} makeListItem={this.makeListItem} />
+
+    return (
+      <>
+        {header}
+        {params.institutionId ? (
+          <ProgressCard name id link />
+        ) : (
+          <SearchList makeListItem={this.makeListItem} />
+        )}
+        {params.msaMdId ? <ProgressCard name id link /> : <MsaMds />}
+        {params.reportId ? <ProgressCard name id link /> : <Reports />}
+        {params.reportId ? <Report /> : null}
+      </>
+    )
   }
 }
 

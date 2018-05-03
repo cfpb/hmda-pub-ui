@@ -37,7 +37,6 @@ const Reports = props => {
 
   return (
     <Selector
-      target="report"
       options={options}
       placeholder="Select report..."
       paragraphText="Listed below are the available reports"

@@ -50,25 +50,6 @@ class MsaMds extends React.Component {
     }
   }
 
-  getHeader() {
-    const { params } = this.props.match
-    let header = ''
-
-    // aggregate
-    if (params.stateId) {
-      header = `Choose an MSA/MD for state ${params.stateId}`
-    }
-
-    // disclosure
-    if (params.institutionId) {
-      header = `Choose an available MSA/MD for institution ${
-        params.institutionId
-      }`
-    }
-
-    return header
-  }
-
   getMsaUrl(params) {
     return `https://ffiec-api.cfpb.gov/public/filers/2017/${
       params.institutionId
@@ -77,7 +58,7 @@ class MsaMds extends React.Component {
 
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
-    if (this.state.error) return <p>{this.props.error}</p>
+    if (this.state.error) return <p>{this.state.error}</p>
 
     const options = this.state.msaMds.map(val => {
       let label = val.id
@@ -88,11 +69,9 @@ class MsaMds extends React.Component {
 
     return (
       <Selector
-        target="msa-md"
         options={options}
         placeholder="Select MSA/MD..."
-        paragraphText="Listed below are all the MSA/MDs for this institution"
-        header={this.getHeader()}
+        header="Choose an available MSA/MD"
         {...this.props}
       />
     )

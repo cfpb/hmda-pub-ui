@@ -13,18 +13,14 @@ class Selector extends React.Component {
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
     this.props.history.push({
-      pathname: `${url}${this.props.target}/${val}`
+      pathname: url + val
     })
   }
 
   render() {
     return (
       <div className="usa-grid" id="main-content">
-        <Header
-          type={2}
-          headingText={this.props.header}
-          paragraphText={this.props.paragraphText}
-        />
+        <Header type={3} headingText={this.props.header} />
         <Select
           onChange={this.handleChange}
           placeholder={this.props.placeholder}
