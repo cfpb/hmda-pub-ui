@@ -1,24 +1,50 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
+import LoadingIcon from '../common/LoadingIcon.jsx'
 import SearchList from './SearchList.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import MsaMds from './MsaMds.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
+import fetchMsas from './fetchMsas.js'
+import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 
-const defaultState = {
-  institution: null,
-  msa: null,
-  report: null
+const detailsCache = {
+  institutions: {},
+  msaMds: {},
+  reports: {}
 }
+
+let fetchedMsas = null
+
+Object.keys(DISCLOSURE_REPORTS).forEach(key =>
+  DISCLOSURE_REPORTS[key].forEach(v => (detailsCache.reports[v.id] = v))
+)
 
 class Disclosure extends React.Component {
   constructor(props) {
     super(props)
-    this.state = defaultState
+    this.state = { fetched: false }
     this.makeListItem = this.makeListItem.bind(this)
-    this.setMsa = this.setMsa.bind(this)
-    this.setReport = this.setReport.bind(this)
+  }
+
+  componentDidMount() {
+    const { params } = this.props.match
+    if (params.institutionId) {
+      fetchMsas(params.institutionId).then(result => {
+        this.setInstitution(result.institution)
+        if (params.msaMdId) {
+          result.msaMds.forEach(v => {
+            if (v.id === params.msaMdId) this.setMsaMd(v)
+          })
+        }
+        const msaMds = [...result.msaMds, { id: 'nationwide' }]
+        fetchedMsas = msaMds
+        this.setState({ fetched: true })
+      })
+    } else {
+      this.setState({ fetched: true })
+    }
   }
 
   makeListItem(institution, index) {
@@ -33,10 +59,10 @@ class Disclosure extends React.Component {
           className="usa-font-small"
           onClick={e => {
             e.preventDefault()
+            this.setInstitution(institution)
             this.props.history.push({
               pathname: url + institution.respondentId
             })
-            this.setInstitution(institution)
           }}
         >
           View MSA/MDs
@@ -46,20 +72,18 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
-    this.setState({ institution: institution })
+    detailsCache.institutions[institution.respondentId] = institution
   }
 
-  setMsa(msa) {
-    this.setState({ msa: msa })
-  }
-
-  setReport(report) {
-    this.setState({ report: report })
+  setMsaMd(msaMd) {
+    detailsCache.msaMds[msaMd.id] = msaMd
   }
 
   render() {
-    console.log(this.props, this.state)
-    const { institution, msa, report } = this.state
+    const { params } = this.props.match
+    const institution = detailsCache.institutions[params.institutionId]
+    const msaMd = detailsCache.msaMds[params.msaMdId]
+    const report = detailsCache.reports[params.reportId]
     const header = (
       <Header
         type={2}
@@ -68,71 +92,58 @@ class Disclosure extends React.Component {
               institutions, both nationwide and by MSA/MD."
       />
     )
-    return (
+
+    return this.state.fetched ? (
       <>
         <div className="usa-grid" id="main-content">
           {header}
-          {institution ? (
+          {params.institutionId ? (
             <>
               <ProgressCard
                 title="institution"
                 name={institution.name}
                 id={institution.respondentId}
-                goBack={() => {
-                  this.props.history.push({
-                    pathname: '/disclosure-reports'
-                  })
-                  this.setState(defaultState)
-                }}
+                link="/disclosure-reports"
               />
-              {msa ? (
+              {params.msaMdId ? (
                 <>
                   <ProgressCard
                     title="MSA/MD"
-                    name={msa.name}
-                    id={msa.id}
-                    goBack={() => {
-                      this.props.history.push({
-                        pathname: `/disclosure-reports/${
-                          institution.respondentId
-                        }`
-                      })
-                      this.setState({ ...this.state, msa: null, report: null })
-                    }}
+                    name={msaMd.name}
+                    id={msaMd.id}
+                    link={`/disclosure-reports/${institution.respondentId}`}
                   />
-                  {report ? (
+                  {params.reportId ? (
                     <>
                       <ProgressCard
                         title="report"
                         name={report.name}
                         id={report.id}
-                        goBack={() => {
-                          this.props.history.push({
-                            pathname: `/disclosure-reports/${
-                              institution.respondentId
-                            }/${msa.id}`
-                          })
-                          this.setState({ ...this.state, report: null })
-                        }}
+                        link={`/disclosure-reports/${
+                          institution.respondentId
+                        }/${msaMd.id}`}
                       />
                     </>
                   ) : (
-                    <Reports
-                      {...this.props}
-                      selectorCallback={this.setReport}
-                    />
+                    <Reports {...this.props} />
                   )}
                 </>
               ) : (
-                <MsaMds {...this.props} selectorCallback={this.setMsa} />
+                <MsaMds
+                  {...this.props}
+                  fetchedMsas={fetchedMsas}
+                  selectorCallback={this.setMsaMd}
+                />
               )}
             </>
           ) : (
             <SearchList makeListItem={this.makeListItem} />
           )}
         </div>
-        {report ? <Report {...this.props} /> : null}
+        {params.reportId ? <Report {...this.props} /> : null}
       </>
+    ) : (
+      <LoadingIcon />
     )
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const capitalize = str => str[0].toUpperCase() + str.slice(1)
 const ProgressCard = props => {
@@ -8,15 +9,7 @@ const ProgressCard = props => {
       <div>
         {props.name} - {props.id}
       </div>
-      <a
-        href="#"
-        onClick={e => {
-          e.preventDefault()
-          props.goBack()
-        }}
-      >
-        Select a different {props.title}
-      </a>
+      <Link to={props.link}>Select a different {props.title}</Link>
     </div>
   )
 }

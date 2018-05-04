@@ -10,19 +10,18 @@ class Selector extends React.Component {
   }
 
   handleChange(option) {
-    console.log('opt', option)
+    if (this.props.selectorCallback) this.props.selectorCallback(option.data)
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
     this.props.history.push({
       pathname: url + option.value
     })
-    this.props.selectorCallback(option.data)
   }
 
   render() {
     return (
       <>
-        <Header type={3} headingText={this.props.header} />
+        <Header type={4} headingText={this.props.header} />
         <Select
           onChange={this.handleChange}
           placeholder={this.props.placeholder}

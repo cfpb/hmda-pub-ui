@@ -2,6 +2,7 @@ import React from 'react'
 import Selector from './Selector.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import stateToMsas from '../constants/stateToMsas.js'
+import fetchMsas from './fetchMsas.js'
 
 const MSA_MDS = {}
 
@@ -10,12 +11,17 @@ class MsaMds extends React.Component {
     super(props)
     this.state = {
       error: null,
-      isLoaded: false,
-      msaMds: []
+      isLoaded: !!this.props.msaMds,
+      msaMds: this.props.msaMds || []
+    }
+    if (this.props.msaMds) {
+      MSA_MDS[props.match.params.institutionId] = this.props.msaMds
     }
   }
 
   componentDidMount() {
+    if (this.state.msaMds.length) return
+
     const { params } = this.props.match
     if (params.stateId) {
       this.setState({
@@ -29,31 +35,23 @@ class MsaMds extends React.Component {
           msaMds: MSA_MDS[params.institutionId]
         })
       }
-      fetch(this.getMsaUrl(params))
-        .then(res => res.json())
-        .then(
-          result => {
-            const msaMds = [...result.msaMds, { id: 'nationwide' }]
-            MSA_MDS[params.institutionId] = msaMds
-            this.setState({
-              isLoaded: true,
-              msaMds: msaMds
-            })
-          },
-          error => {
-            this.setState({
-              isLoaded: true,
-              error
-            })
-          }
-        )
+      fetchMsas(params.institutionId).then(
+        result => {
+          const msaMds = [...result.msaMds, { id: 'nationwide' }]
+          MSA_MDS[params.institutionId] = msaMds
+          this.setState({
+            isLoaded: true,
+            msaMds: msaMds
+          })
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          })
+        }
+      )
     }
-  }
-
-  getMsaUrl(params) {
-    return `https://ffiec-api.cfpb.gov/public/filers/2017/${
-      params.institutionId
-    }/msaMds`
   }
 
   render() {
