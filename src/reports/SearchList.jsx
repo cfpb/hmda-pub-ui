@@ -126,7 +126,7 @@ class SearchList extends React.Component {
     }
 
     return (
-      <div className="usa-grid SearchList" id="main-content">
+      <div className="SearchList">
         <div className="usa-width-one-whole">
           <form onSubmit={this.handleSubmit}>
             <div className={inputClass}>

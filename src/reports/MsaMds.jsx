@@ -64,7 +64,7 @@ class MsaMds extends React.Component {
       let label = val.id
       if (val.name) label += ' - ' + val.name
       else label = val.id.toUpperCase()
-      return { value: val.id, label }
+      return { value: val.id, label, data: val }
     })
 
     return (

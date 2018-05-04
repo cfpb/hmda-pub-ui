@@ -82,7 +82,7 @@ class Report extends React.Component {
         }`
       : null
     return (
-      <div className="report" id="main-content">
+      <div className="report">
         <Header type={4} headingText={headingText}>
           {report ? (
             <>

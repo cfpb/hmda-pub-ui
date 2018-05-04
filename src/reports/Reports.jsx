@@ -32,7 +32,7 @@ const Reports = props => {
   }
 
   const options = data.map(val => {
-    return { value: val.id, label: `${val.id} ${val.name}` }
+    return { value: val.id, label: `${val.id} ${val.name}`, data: val }
   })
 
   return (

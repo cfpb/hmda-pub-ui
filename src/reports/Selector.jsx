@@ -9,17 +9,19 @@ class Selector extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(val) {
+  handleChange(option) {
+    console.log('opt', option)
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
     this.props.history.push({
-      pathname: url + val
+      pathname: url + option.value
     })
+    this.props.selectorCallback(option.data)
   }
 
   render() {
     return (
-      <div className="usa-grid" id="main-content">
+      <>
         <Header type={3} headingText={this.props.header} />
         <Select
           onChange={this.handleChange}
@@ -27,11 +29,10 @@ class Selector extends React.Component {
           searchable={true}
           autoFocus
           openOnFocus
-          simpleValue
           options={this.props.options}
           optionComponent={Option}
         />
-      </div>
+      </>
     )
   }
 }
