@@ -40,9 +40,9 @@ pipeline {
       }
     }
 
-    stage('build & test') {
+    stage('build') {
       steps {
-        sh 'yarn && yarn test'
+        sh 'yarn'
       }
     }
 
