@@ -61,7 +61,7 @@ class Disclosure extends React.Component {
             e.preventDefault()
             this.setInstitution(institution)
             this.props.history.push({
-              pathname: url + institution.respondentId
+              pathname: url + institution.institutionId
             })
           }}
         >
@@ -72,7 +72,8 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
-    detailsCache.institutions[institution.respondentId] = institution
+    const institutionId = institution.institutionId || institution.id
+    detailsCache.institutions[institutionId] = institution
   }
 
   setMsaMd(msaMd) {
@@ -84,6 +85,8 @@ class Disclosure extends React.Component {
     const institution = detailsCache.institutions[params.institutionId]
     const msaMd = detailsCache.msaMds[params.msaMdId]
     const report = detailsCache.reports[params.reportId]
+    const institutionId =
+      institution && (institution.institutionId || institution.id)
     const header = (
       <Header
         type={2}
@@ -111,7 +114,7 @@ class Disclosure extends React.Component {
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
-                    link={`/disclosure-reports/${institution.respondentId}`}
+                    link={`/disclosure-reports/${institutionId}`}
                   />
                   {params.reportId ? (
                     <>
@@ -119,9 +122,9 @@ class Disclosure extends React.Component {
                         title="report"
                         name={report.name}
                         id={report.id}
-                        link={`/disclosure-reports/${
-                          institution.respondentId
-                        }/${msaMd.id}`}
+                        link={`/disclosure-reports/${institutionId}/${
+                          msaMd.id
+                        }`}
                       />
                     </>
                   ) : (
