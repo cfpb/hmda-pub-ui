@@ -21,9 +21,58 @@ class Report extends React.Component {
 
   generateCSV() {
     const report = this.state.report
+    // TODO: create a function for this, it's also used in render as the "headingText"
+    let theCSV =
+      `"Table ${report.table}: ${report.description}${
+        report.table === 'R1' ? '"' : `, ${report.year}"`
+      }` + '\n'
+    console.log(theCSV)
+    const msa = report.msa
+      ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"` + '\n'
+      : '"Nationwide"' + '\n'
+    theCSV = theCSV + msa
+    console.log(theCSV)
+    const institution = report.respondentId
+      ? `"Institution: ${report.respondentId} - ${report.institutionName}"` +
+        '\n'
+      : ''
+    theCSV = theCSV + institution
+    console.log(theCSV)
+
+    // loop through each header row
     const tHeadRows = this.tableRef.current.tHead.rows
-    const tHeadFirstRow = this.tableRef.current.tHead.rows[1]
-    const tHeadFirstRowCells = this.tableRef.current.tHead.rows[1].cells
+    Array.from(tHeadRows).forEach(row => {
+      // loop through the cells
+
+      Array.from(row.cells).forEach((cell, index) => {
+        //
+        // add the content
+        if (cell.innerHTML !== '') {
+          theCSV = theCSV + cell.innerHTML
+        }
+        if (cell.hasAttribute('colspan')) {
+          const spanCount = parseInt(cell.getAttribute('colspan'))
+          let i = 0
+          for (i; i < spanCount; i++) {
+            theCSV = theCSV + ','
+          }
+        }
+        // last child
+        //console.log(row.cells.length)
+        //console.log(index)
+        if (row.cells.length - 1 === index) {
+          console.log('newline')
+          theCSV = theCSV + '\n'
+        } else {
+          theCSV = theCSV + ','
+        }
+      })
+    })
+
+    console.log(theCSV)
+
+    /*const tHeadFirstRow = this.tableRef.current.tHead.rows[1]
+    const tHeadFirstRowCells = this.tableRef.current.tHead.rows[0].cells
     let columnCount = 0
 
     //console.log(this.tableRef.current)
@@ -35,9 +84,9 @@ class Report extends React.Component {
       } else {
         columnCount++
       }
-    })
 
     console.log(columnCount)
+    })*/
 
     let filename = `report-${report.table}`
     if (report.respondentId) {
