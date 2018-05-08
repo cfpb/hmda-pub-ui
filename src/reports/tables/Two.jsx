@@ -29,18 +29,16 @@ const renderValues = (values, key) => {
   })
 }
 
-const Two = props => {
+const Two = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={6}>
+          <th width="20%" rowSpan={5}>
             CENSUS TRACT OR COUNTY NAME (STATE/COUNTY/TRACT NUMBER)
           </th>
-        </tr>
-        <tr>
           <th colSpan={8}>
             Loans on 1- to 4-Family Manufactured Home Dwellings
           </th>
@@ -102,7 +100,7 @@ const Two = props => {
       <tbody>{renderData(props.report.tracts)}</tbody>
     </table>
   )
-}
+})
 
 Two.propTypes = {
   report: PropTypes.object

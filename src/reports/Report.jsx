@@ -20,6 +20,7 @@ class Report extends React.Component {
   }
 
   generateCSV() {
+    console.log(this)
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
     let theCSV =
@@ -179,7 +180,8 @@ class Report extends React.Component {
           report={report}
         />
       )
-    if (table.match(/^2$/)) return <Tables.Two report={report} />
+    if (table.match(/^2$/))
+      return <Tables.Two ref={this.tableRef} report={report} />
     if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
     if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
     if (table.match(/^4-/)) return <Tables.Four report={report} />
