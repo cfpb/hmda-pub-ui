@@ -57,6 +57,34 @@ class Results extends React.Component {
     )
   }
 
+  renderError(error) {
+    let headerText = 'List of institutions unavailable'
+    let body = (
+      <p className="usa-alert-text">
+        We're unable to load the institutions. Please try refreshing your
+        browser.
+      </p>
+    )
+    if (error === 'Not a filer') {
+      headerText = 'Institution not found'
+      body = (
+        <p className="usa-alert-text">
+          Sorry, that insitution isn't in our list of filers. If you think this
+          is incorrect please contact{' '}
+          <a href="mailto:hmdahelp@cfpb.gov">hmdahelp@cfpb.gov</a>.
+        </p>
+      )
+    }
+    return (
+      <div className="usa-alert usa-alert-error" role="alert">
+        <div className="usa-alert-body">
+          <h3 className="usa-alert-heading">{headerText}</h3>
+          {body}
+        </div>
+      </div>
+    )
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.inputValue !== this.props.inputValue) {
       this.setState(defaultState)
@@ -70,34 +98,7 @@ class Results extends React.Component {
   }
 
   render() {
-    if (this.props.status.id === -1)
-      return (
-        <div className="usa-alert usa-alert-error" role="alert">
-          <div className="usa-alert-body">
-            <h3 className="usa-alert-heading">
-              List of institutions unavailable
-            </h3>
-            <p className="usa-alert-text">
-              We're unable to load the institutions. Please try refreshing your
-              browser.
-            </p>
-          </div>
-        </div>
-      )
-    if (this.props.error === 'Not a filer')
-      return (
-        <div className="usa-alert usa-alert-error" role="alert">
-          <div className="usa-alert-body">
-            <h3 className="usa-alert-heading">Institution not found</h3>
-            <p className="usa-alert-text">
-              Sorry, that insitution isn't in our list of filers. If you think
-              this is incorrect please contact{' '}
-              <a href="mailto:hmdahelp@cfpb.gov">hmdahelp@cfpb.gov</a>.
-            </p>
-          </div>
-        </div>
-      )
-
+    if (this.props.error) return this.renderError(this.props.error)
     if (this.props.institutions.length === 0) return null
 
     let visibleInstitutions = this.props.institutions.slice(

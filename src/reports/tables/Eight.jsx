@@ -14,7 +14,9 @@ const renderData = applicantCharacteristics => {
           }}
           colSpan={21}
         >
-          {characteristic.characteristic}
+          {characteristic.characteristic === 'minorityStatus'
+            ? 'MINORITY STATUS'
+            : characteristic.characteristic}
         </th>
       </tr>,
       renderDetails(characteristic, index)

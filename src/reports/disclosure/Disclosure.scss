@@ -6,4 +6,8 @@
   .usa-alert {
     max-width: 46rem;
   }
+
+  input[disabled] {
+    background-color: $color-gray-lightest;
+  }
 }

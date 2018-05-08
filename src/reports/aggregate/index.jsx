@@ -31,7 +31,7 @@ class Aggregate extends React.Component {
           <Select
             onChange={this.handleChange}
             placeholder="Select a state..."
-            searchable={false}
+            searchable={true}
             autoFocus
             openOnFocus
             simpleValue
