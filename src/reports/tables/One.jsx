@@ -95,7 +95,7 @@ const One = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={6}>
+          <th width="20%" rowSpan={5}>
             CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
             (STATE/COUNTY/TRACT NUMBER)
           </th>

@@ -26,42 +26,67 @@ class Report extends React.Component {
       `"Table ${report.table}: ${report.description}${
         report.table === 'R1' ? '"' : `, ${report.year}"`
       }` + '\n'
-    console.log(theCSV)
     const msa = report.msa
       ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"` + '\n'
       : '"Nationwide"' + '\n'
     theCSV = theCSV + msa
-    console.log(theCSV)
     const institution = report.respondentId
       ? `"Institution: ${report.respondentId} - ${report.institutionName}"` +
         '\n'
       : ''
     theCSV = theCSV + institution
-    console.log(theCSV)
 
     // loop through each header row
     const tHeadRows = this.tableRef.current.tHead.rows
-    Array.from(tHeadRows).forEach(row => {
+    Array.from(tHeadRows).forEach((row, rowIndex) => {
+      // account for the rowSpan by adding an empty cell
+      if (rowIndex !== 0) theCSV = theCSV + ','
       // loop through the cells
-
-      Array.from(row.cells).forEach((cell, index) => {
+      Array.from(row.cells).forEach((cell, cellIndex) => {
         //
         // add the content
-        if (cell.innerHTML !== '') {
-          theCSV = theCSV + cell.innerHTML
-        }
+        //if (cell.innerHTML !== '') {
+        theCSV = theCSV + '"' + cell.innerHTML + '"'
+        //}
         if (cell.hasAttribute('colspan')) {
           const spanCount = parseInt(cell.getAttribute('colspan'))
           let i = 0
-          for (i; i < spanCount; i++) {
+          for (i; i < spanCount - 1; i++) {
             theCSV = theCSV + ','
           }
         }
         // last child
         //console.log(row.cells.length)
         //console.log(index)
-        if (row.cells.length - 1 === index) {
-          console.log('newline')
+        if (row.cells.length - 1 === cellIndex) {
+          theCSV = theCSV + '\n'
+        } else {
+          theCSV = theCSV + ','
+        }
+      })
+    })
+
+    // loop of tbody
+    const tBodyRows = this.tableRef.current.tBodies[0].rows
+    Array.from(tBodyRows).forEach((row, rowIndex) => {
+      // loop through the cells
+      Array.from(row.cells).forEach((cell, cellIndex) => {
+        //
+        // add the content
+        //if (cell.innerHTML !== '') {
+        theCSV = theCSV + '"' + cell.innerHTML + '"'
+        //}
+        if (cell.hasAttribute('colspan')) {
+          const spanCount = parseInt(cell.getAttribute('colspan'))
+          let i = 0
+          for (i; i < spanCount - 1; i++) {
+            theCSV = theCSV + ','
+          }
+        }
+        // last child
+        //console.log(row.cells.length)
+        //console.log(index)
+        if (row.cells.length - 1 === cellIndex) {
           theCSV = theCSV + '\n'
         } else {
           theCSV = theCSV + ','
