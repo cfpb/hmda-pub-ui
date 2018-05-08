@@ -124,7 +124,7 @@ class Results extends React.Component {
                 <h4>{institution.name}</h4>
                 <p>Respondent ID: {institution.respondentId}</p>
                 <Link
-                  to={`${url}institution/${institution.institutionId}`}
+                  to={`${url}2017/institution/${institution.institutionId}`}
                   className="usa-font-small"
                 >
                   View MSA/MDs
