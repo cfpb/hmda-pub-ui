@@ -108,7 +108,7 @@ class Disclosure extends React.Component {
                 title="institution"
                 name={institution.name}
                 id={institution.respondentId}
-                link="/disclosure-reports"
+                link={`/disclosure-reports/${params.year}`}
               />
               {params.msaMdId ? (
                 <>
@@ -116,7 +116,7 @@ class Disclosure extends React.Component {
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
-                    link={`/disclosure-reports/${institutionId}`}
+                    link={`/disclosure-reports/${params.year}/${institutionId}`}
                   />
                   {params.reportId ? (
                     <>
@@ -124,9 +124,9 @@ class Disclosure extends React.Component {
                         title="report"
                         name={report.name}
                         id={report.id}
-                        link={`/disclosure-reports/${institutionId}/${
-                          msaMd.id
-                        }`}
+                        link={`/disclosure-reports/${
+                          params.year
+                        }/${institutionId}/${msaMd.id}`}
                       />
                     </>
                   ) : (

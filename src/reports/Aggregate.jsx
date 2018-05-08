@@ -71,7 +71,7 @@ class Aggregate extends React.Component {
                 title="state"
                 name={state.name}
                 id={state.id}
-                link="/aggregate-reports"
+                link={`/aggregate-reports/${params.year}`}
               />
               {params.msaMdId ? (
                 <>
@@ -79,7 +79,7 @@ class Aggregate extends React.Component {
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
-                    link={`/aggregate-reports/${state.id}`}
+                    link={`/aggregate-reports/${params.year}/${state.id}`}
                   />
                   {params.reportId ? (
                     <>
@@ -87,7 +87,9 @@ class Aggregate extends React.Component {
                         title="report"
                         name={report.name}
                         id={report.id}
-                        link={`/aggregate-reports/${state.id}/${msaMd.id}`}
+                        link={`/aggregate-reports/${params.year}/${state.id}/${
+                          msaMd.id
+                        }`}
                       />
                     </>
                   ) : (

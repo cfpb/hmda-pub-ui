@@ -17,11 +17,11 @@ const App = () => {
         <Route path="/modified-lar/*" component={NotFound} />
         <Route path="/modified-lar" component={ModifiedLar} />
         <Route
-          path="/disclosure-reports/:institutionId?/:msaMdId?/:reportId?"
+          path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}
         />
         <Route
-          path="/aggregate-reports/:stateId?/:msaMdId?/:reportId?"
+          path="/aggregate-reports/:year/:stateId?/:msaMdId?/:reportId?"
           component={Aggregate}
         />
         <Route component={NotFound} />
