@@ -20,7 +20,6 @@ class Report extends React.Component {
   }
 
   generateCSV() {
-    console.log(this)
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
     let theCSV =
@@ -44,11 +43,8 @@ class Report extends React.Component {
       if (rowIndex !== 0) theCSV = theCSV + ','
       // loop through the cells
       Array.from(row.cells).forEach((cell, cellIndex) => {
-        //
         // add the content
-        //if (cell.innerHTML !== '') {
         theCSV = theCSV + '"' + cell.innerHTML + '"'
-        //}
         if (cell.hasAttribute('colspan')) {
           const spanCount = parseInt(cell.getAttribute('colspan'))
           let i = 0
@@ -57,8 +53,6 @@ class Report extends React.Component {
           }
         }
         // last child
-        //console.log(row.cells.length)
-        //console.log(index)
         if (row.cells.length - 1 === cellIndex) {
           theCSV = theCSV + '\n'
         } else {
@@ -72,11 +66,9 @@ class Report extends React.Component {
     Array.from(tBodyRows).forEach((row, rowIndex) => {
       // loop through the cells
       Array.from(row.cells).forEach((cell, cellIndex) => {
-        //
         // add the content
-        //if (cell.innerHTML !== '') {
         theCSV = theCSV + '"' + cell.innerHTML + '"'
-        //}
+
         if (cell.hasAttribute('colspan')) {
           const spanCount = parseInt(cell.getAttribute('colspan'))
           let i = 0
@@ -85,8 +77,6 @@ class Report extends React.Component {
           }
         }
         // last child
-        //console.log(row.cells.length)
-        //console.log(index)
         if (row.cells.length - 1 === cellIndex) {
           theCSV = theCSV + '\n'
         } else {
@@ -94,25 +84,6 @@ class Report extends React.Component {
         }
       })
     })
-
-    console.log(theCSV)
-
-    /*const tHeadFirstRow = this.tableRef.current.tHead.rows[1]
-    const tHeadFirstRowCells = this.tableRef.current.tHead.rows[0].cells
-    let columnCount = 0
-
-    //console.log(this.tableRef.current)
-    console.log(tHeadFirstRowCells)
-
-    Array.from(tHeadFirstRowCells).forEach(row => {
-      if (row.hasAttribute('colspan')) {
-        columnCount += parseInt(row.getAttribute('colspan'))
-      } else {
-        columnCount++
-      }
-
-    console.log(columnCount)
-    })*/
 
     let filename = `report-${report.table}`
     if (report.respondentId) {
@@ -122,14 +93,16 @@ class Report extends React.Component {
           .replace(',', '')
           .replace(' ', '')}`
     }
-    filename =
-      filename +
-      `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
-    console.log(filename)
-    /*fileSaver.saveAs(
-      new Blob([csv], { type: 'text/csv;charset=utf-16' }),
+    if (report.msa) {
+      filename =
+        filename +
+        `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
+    }
+
+    fileSaver.saveAs(
+      new Blob([theCSV], { type: 'text/csv;charset=utf-16' }),
       `${filename}.csv`
-    )*/
+    )
   }
 
   componentDidMount() {
@@ -171,7 +144,8 @@ class Report extends React.Component {
     // reportType only needed for Table.One
     // it renders extra columns for the aggregate version
     const table = report.table
-    if (table.match(/^i$/)) return <Tables.I report={report} />
+    if (table.match(/^i$/))
+      return <Tables.I ref={this.tableRef} report={report} />
     if (table.match(/^1$/))
       return (
         <Tables.One
@@ -182,19 +156,32 @@ class Report extends React.Component {
       )
     if (table.match(/^2$/))
       return <Tables.Two ref={this.tableRef} report={report} />
-    if (table.match(/^3-1$/)) return <Tables.ThreeOne report={report} />
-    if (table.match(/^3-2$/)) return <Tables.ThreeTwo report={report} />
-    if (table.match(/^4-/)) return <Tables.Four report={report} />
-    if (table.match(/^5-/)) return <Tables.Five report={report} />
-    if (table.match(/^7-/)) return <Tables.Seven report={report} />
-    if (table.match(/^8-/)) return <Tables.Eight report={report} />
-    if (table.match(/^9$/)) return <Tables.Nine report={report} />
-    if (table.match(/^11-/)) return <Tables.Eleven report={report} />
-    if (table.match(/^12-1$/)) return <Tables.TwelveOne report={report} />
-    if (table.match(/^12-2$/)) return <Tables.TwelveTwo report={report} />
-    if (table.match(/^A/)) return <Tables.A report={report} />
-    if (table.match(/^B/)) return <Tables.B report={report} />
-    if (table.match(/^IRS/)) return <Tables.R report={report} />
+    if (table.match(/^3-1$/))
+      return <Tables.ThreeOne ref={this.tableRef} report={report} />
+    if (table.match(/^3-2$/))
+      return <Tables.ThreeTwo ref={this.tableRef} report={report} />
+    if (table.match(/^4-/))
+      return <Tables.Four ref={this.tableRef} report={report} />
+    if (table.match(/^5-/))
+      return <Tables.Five ref={this.tableRef} report={report} />
+    if (table.match(/^7-/))
+      return <Tables.Seven ref={this.tableRef} report={report} />
+    if (table.match(/^8-/))
+      return <Tables.Eight ref={this.tableRef} report={report} />
+    if (table.match(/^9$/))
+      return <Tables.Nine ref={this.tableRef} report={report} />
+    if (table.match(/^11-/))
+      return <Tables.Eleven ref={this.tableRef} report={report} />
+    if (table.match(/^12-1$/))
+      return <Tables.TwelveOne ref={this.tableRef} report={report} />
+    if (table.match(/^12-2$/))
+      return <Tables.TwelveTwo ref={this.tableRef} report={report} />
+    if (table.match(/^A/))
+      return <Tables.A ref={this.tableRef} report={report} />
+    if (table.match(/^B/))
+      return <Tables.B ref={this.tableRef} report={report} />
+    if (table.match(/^IRS/))
+      return <Tables.R ref={this.tableRef} report={report} />
   }
 
   render() {

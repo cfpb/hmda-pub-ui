@@ -93,11 +93,11 @@ const renderCharacteristicDetails = characteristic => {
     })
 }
 
-const Five = props => {
+const Five = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
@@ -151,7 +151,7 @@ const Five = props => {
       </tfoot>
     </table>
   )
-}
+})
 
 Five.propTypes = {
   report: PropTypes.object

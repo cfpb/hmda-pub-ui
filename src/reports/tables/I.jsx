@@ -39,10 +39,10 @@ const getRows = institutions => {
   return toRender
 }
 
-const I = props => {
+const I = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th style={{ borderWidth: 0, textAlign: 'left' }} colSpan={3}>
@@ -53,7 +53,7 @@ const I = props => {
       <tbody>{renderData(props.report.institutions)}</tbody>
     </table>
   )
-}
+})
 
 I.propTypes = {
   report: PropTypes.object
