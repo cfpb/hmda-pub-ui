@@ -2,14 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const capitalize = str => str[0].toUpperCase() + str.slice(1)
-const ProgressCard = props => {
+const ProgressCard = ({ name, id, link, title }) => {
+  if (id === 'nationwide') {
+    name = ''
+    id = capitalize(id)
+  } else {
+    name = name + ' - '
+  }
+
   return (
     <div className="ProgressCard usa-width-one-third">
-      <h5>{capitalize(props.title)}</h5>
+      <h5>{capitalize(title)}</h5>
       <div>
-        {props.name} - {props.id}
+        {name}
+        {id}
       </div>
-      <Link to={props.link}>Select a different {props.title}</Link>
+      <Link to={link}>Select a different {title}</Link>
     </div>
   )
 }

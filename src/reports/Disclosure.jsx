@@ -34,6 +34,8 @@ class Disclosure extends React.Component {
       fetchMsas(params.institutionId).then(result => {
         this.setInstitution(result.institution)
         if (params.msaMdId) {
+          if (params.msaMdId === 'nationwide')
+            this.setMsaMd({ id: 'nationwide' })
           result.msaMds.forEach(v => {
             if (v.id === params.msaMdId) this.setMsaMd(v)
           })
