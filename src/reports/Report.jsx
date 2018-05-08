@@ -6,6 +6,7 @@ import fileSaver from 'file-saver'
 
 class Report extends React.Component {
   constructor(props) {
+    console.log(props)
     super(props)
 
     this.state = {
@@ -17,9 +18,12 @@ class Report extends React.Component {
     this.selectReport = this.selectReport.bind(this)
     this.generateCSV = this.generateCSV.bind(this)
     this.tableRef = React.createRef()
+    this.tableTwoRef = React.createRef()
   }
 
   generateCSV() {
+    console.log(this.tableRef)
+    console.log(this.tableTwoRef)
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
     let theCSV =
@@ -41,6 +45,15 @@ class Report extends React.Component {
 
     const tBodyRows = this.tableRef.current.tBodies[0].rows
     theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
+
+    if (this.tableTwoRef) {
+      theCSV = theCSV + '\n\n'
+      const tTwoHeadRows = this.tableTwoRef.current.tHead.rows
+      theCSV = theCSV + this.buildCSVRows(tTwoHeadRows, 'head')
+
+      const tTwoBodyRows = this.tableTwoRef.current.tBodies[0].rows
+      theCSV = theCSV + this.buildCSVRows(tTwoBodyRows, 'body')
+    }
 
     fileSaver.saveAs(
       new Blob([theCSV], { type: 'text/csv;charset=utf-16' }),
@@ -132,8 +145,15 @@ class Report extends React.Component {
   }
 
   selectReport(report, reportType) {
-    // reportType only needed for Table.One
-    // it renders extra columns for the aggregate version
+    /*
+      reportType only needed for Table.One
+      it renders extra columns for the aggregate version
+    */
+    /*
+      tables 1, 3-2, 11's, 12-2 have 2 tables, so we're going to pass different refs
+      https://reactjs.org/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components
+      https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
+    */
     const table = report.table
     if (table.match(/^i$/))
       return <Tables.I ref={this.tableRef} report={report} />
@@ -150,7 +170,13 @@ class Report extends React.Component {
     if (table.match(/^3-1$/))
       return <Tables.ThreeOne ref={this.tableRef} report={report} />
     if (table.match(/^3-2$/))
-      return <Tables.ThreeTwo ref={this.tableRef} report={report} />
+      return (
+        <Tables.ThreeTwo
+          tableOneRef={this.tableRef}
+          tableTwoRef={this.tableTwoRef}
+          report={report}
+        />
+      )
     if (table.match(/^4-/))
       return <Tables.Four ref={this.tableRef} report={report} />
     if (table.match(/^5-/))
@@ -162,11 +188,23 @@ class Report extends React.Component {
     if (table.match(/^9$/))
       return <Tables.Nine ref={this.tableRef} report={report} />
     if (table.match(/^11-/))
-      return <Tables.Eleven ref={this.tableRef} report={report} />
+      return (
+        <Tables.Eleven
+          tableOneRef={this.tableRef}
+          tableTwoRef={this.tableTwoRef}
+          report={report}
+        />
+      )
     if (table.match(/^12-1$/))
       return <Tables.TwelveOne ref={this.tableRef} report={report} />
     if (table.match(/^12-2$/))
-      return <Tables.TwelveTwo ref={this.tableRef} report={report} />
+      return (
+        <Tables.TwelveTwo
+          tableOneRef={this.tableRef}
+          tableTwoRef={this.tableTwoRef}
+          report={report}
+        />
+      )
     if (table.match(/^A/))
       return <Tables.A ref={this.tableRef} report={report} />
     if (table.match(/^B/))

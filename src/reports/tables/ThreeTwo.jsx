@@ -154,14 +154,14 @@ const renderDataDetails = (purchasers, key, countOrValue) => {
   })
 }
 
-const ThreeTwo = React.forwardRef((props, ref) => {
+const ThreeTwo = props => {
   if (!props.report) return null
 
   return [
-    renderData(props.report, 'count', ref),
-    renderData(props.report, 'value', ref)
+    renderData(props.report, 'count', props.tableOneRef),
+    renderData(props.report, 'value', props.tableTwoRef)
   ]
-})
+}
 
 ThreeTwo.propTypes = {
   report: PropTypes.object

@@ -115,17 +115,17 @@ const makeTable = (report, label, ref) => {
   )
 }
 
-const Eleven = React.forwardRef((props, ref) => {
-  const { report } = props
+const Eleven = props => {
+  const { report, tableOneRef, tableTwoRef } = props
   if (!report) return null
 
   return (
     <>
-      {makeTable(report, 'NUMBER', ref)}
-      {makeTable(report, "$000's", ref)}
+      {makeTable(report, 'NUMBER', tableOneRef)}
+      {makeTable(report, "$000's", tableTwoRef)}
     </>
   )
-})
+}
 
 Eleven.propTypes = {
   report: PropTypes.object

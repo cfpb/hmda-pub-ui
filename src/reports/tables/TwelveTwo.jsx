@@ -79,7 +79,7 @@ const renderCharacteristic = (characteristic, label) => {
   ]
 }
 
-const makeTable = (report, label) => {
+const makeTable = (report, label, ref) => {
   return (
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
@@ -115,17 +115,17 @@ const makeTable = (report, label) => {
   )
 }
 
-const TwelveTwo = React.forwardRef((props, ref) => {
-  const { report } = props
+const TwelveTwo = props => {
+  const { report, tableOneRef, tableTwoRef } = props
   if (!report) return null
 
   return (
     <>
-      {makeTable(report, 'NUMBER')}
-      {makeTable(report, "$000's")}
+      {makeTable(report, 'NUMBER', tableOneRef)}
+      {makeTable(report, "$000's", tableTwoRef)}
     </>
   )
-})
+}
 
 TwelveTwo.propTypes = {
   report: PropTypes.object
