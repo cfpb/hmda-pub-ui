@@ -36,55 +36,49 @@ class Report extends React.Component {
       : ''
     theCSV = theCSV + institution
 
-    // loop through each header row
     const tHeadRows = this.tableRef.current.tHead.rows
-    Array.from(tHeadRows).forEach((row, rowIndex) => {
-      // account for the rowSpan by adding an empty cell
-      if (rowIndex !== 0) theCSV = theCSV + ','
-      // loop through the cells
-      Array.from(row.cells).forEach((cell, cellIndex) => {
-        // add the content
-        theCSV = theCSV + '"' + cell.innerHTML + '"'
-        if (cell.hasAttribute('colspan')) {
-          const spanCount = parseInt(cell.getAttribute('colspan'))
-          let i = 0
-          for (i; i < spanCount - 1; i++) {
-            theCSV = theCSV + ','
-          }
-        }
-        // last child
-        if (row.cells.length - 1 === cellIndex) {
-          theCSV = theCSV + '\n'
-        } else {
-          theCSV = theCSV + ','
-        }
-      })
-    })
+    theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
 
-    // loop of tbody
     const tBodyRows = this.tableRef.current.tBodies[0].rows
-    Array.from(tBodyRows).forEach((row, rowIndex) => {
+    theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
+
+    fileSaver.saveAs(
+      new Blob([theCSV], { type: 'text/csv;charset=utf-16' }),
+      `${this.createFileName(report)}.csv`
+    )
+  }
+
+  buildCSVRows(rows, rowType) {
+    let theCSVRows = ''
+    Array.from(rows).forEach((row, rowIndex) => {
+      // in a thead, account for the rowSpan by adding an empty cell
+      if (rowType === 'head') {
+        if (rowIndex !== 0) theCSVRows = theCSVRows + ','
+      }
       // loop through the cells
       Array.from(row.cells).forEach((cell, cellIndex) => {
         // add the content
-        theCSV = theCSV + '"' + cell.innerHTML + '"'
-
+        theCSVRows = theCSVRows + '"' + cell.innerHTML + '"'
         if (cell.hasAttribute('colspan')) {
           const spanCount = parseInt(cell.getAttribute('colspan'))
           let i = 0
           for (i; i < spanCount - 1; i++) {
-            theCSV = theCSV + ','
+            theCSVRows = theCSVRows + ','
           }
         }
         // last child
         if (row.cells.length - 1 === cellIndex) {
-          theCSV = theCSV + '\n'
+          theCSVRows = theCSVRows + '\n'
         } else {
-          theCSV = theCSV + ','
+          theCSVRows = theCSVRows + ','
         }
       })
     })
 
+    return theCSVRows
+  }
+
+  createFileName(report) {
     let filename = `report-${report.table}`
     if (report.respondentId) {
       filename =
@@ -99,10 +93,7 @@ class Report extends React.Component {
         `-${report.msa.id}-${report.msa.name.replace(',', '').replace(' ', '')}`
     }
 
-    fileSaver.saveAs(
-      new Blob([theCSV], { type: 'text/csv;charset=utf-16' }),
-      `${filename}.csv`
-    )
+    return filename
   }
 
   componentDidMount() {
