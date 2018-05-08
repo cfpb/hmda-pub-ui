@@ -46,7 +46,7 @@ const I = props => {
       <thead>
         <tr>
           <th style={{ borderWidth: 0, textAlign: 'left' }} colSpan={3}>
-            INSTITUTIONS WHO HAVE A HOME OR BRANCH OFFICE IN THE MSA/MD
+            INSTITUTIONS
           </th>
         </tr>
       </thead>
