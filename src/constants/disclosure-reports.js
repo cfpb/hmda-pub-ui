@@ -28,6 +28,7 @@ export const DISCLOSURE_REPORTS = {
     { id: '8-2', name: 'Conv Home-Purchase Denials' },
     { id: '8-3', name: 'Refinancing Denials' },
     { id: '8-4', name: 'Home Improvement Denials' },
+    { id: '8-5', name: 'Multi-Family Denials' },
     { id: '8-6', name: 'Nonoccupant Loan Denials' },
     { id: '8-7', name: 'Manufactured Home Denials' },
     { id: '11-1', name: 'FHA Home-Pur Pricing Info First' },
