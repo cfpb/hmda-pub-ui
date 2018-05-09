@@ -6,7 +6,6 @@ import fileSaver from 'file-saver'
 
 class Report extends React.Component {
   constructor(props) {
-    console.log(props)
     super(props)
 
     this.state = {
@@ -22,8 +21,6 @@ class Report extends React.Component {
   }
 
   generateCSV() {
-    console.log(this.tableRef)
-    console.log(this.tableTwoRef)
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
     let theCSV =
@@ -46,7 +43,7 @@ class Report extends React.Component {
     const tBodyRows = this.tableRef.current.tBodies[0].rows
     theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
 
-    if (this.tableTwoRef) {
+    if (this.tableTwoRef.current) {
       theCSV = theCSV + '\n\n'
       const tTwoHeadRows = this.tableTwoRef.current.tHead.rows
       theCSV = theCSV + this.buildCSVRows(tTwoHeadRows, 'head')
