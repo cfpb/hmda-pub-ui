@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = (report, countOrValue) => {
+const renderData = (report, countOrValue, ref) => {
   return (
-    <table key={countOrValue} style={{ fontSize: '.75em' }}>
+    <table ref={ref} key={countOrValue} style={{ fontSize: '.75em' }}>
       {renderTHead(countOrValue)}
       <tbody>{renderRows(report, countOrValue)}</tbody>
     </table>
@@ -157,7 +157,10 @@ const renderDataDetails = (purchasers, key, countOrValue) => {
 const ThreeTwo = props => {
   if (!props.report) return null
 
-  return [renderData(props.report, 'count'), renderData(props.report, 'value')]
+  return [
+    renderData(props.report, 'count', props.tableOneRef),
+    renderData(props.report, 'value', props.tableTwoRef)
+  ]
 }
 
 ThreeTwo.propTypes = {

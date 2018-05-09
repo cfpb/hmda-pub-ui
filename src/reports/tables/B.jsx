@@ -74,10 +74,10 @@ const renderPricing = (data, i) => {
   ]
 }
 
-const B = props => {
+const B = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
@@ -108,7 +108,7 @@ const B = props => {
       <tbody>{renderData(props.report)}</tbody>
     </table>
   )
-}
+})
 
 B.propTypes = {
   report: PropTypes.object

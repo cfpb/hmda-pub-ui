@@ -18,10 +18,10 @@ const renderRow = (row, i) => {
   )
 }
 
-const R = props => {
+const R = React.forwardRef((props, ref) => {
   if (!props.report) return null
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th rowSpan={2}>MSA/MD</th>
@@ -49,7 +49,7 @@ const R = props => {
       <tfoot>{renderRow(props.report.total, 'foot')}</tfoot>
     </table>
   )
-}
+})
 
 R.propTypes = {
   report: PropTypes.object

@@ -85,7 +85,7 @@ const renderDispositionValues = (values, key, key2) => {
   })
 }
 
-const One = props => {
+const One = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   const sortedTracts = props.report.tracts.sort(function(tractA, tractB) {
@@ -106,15 +106,13 @@ const One = props => {
   if (props.reportType === 'aggregate') colWidth = '5%'
 
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={6}>
+          <th width="20%" rowSpan={5}>
             CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
             (STATE/COUNTY/TRACT NUMBER)
           </th>
-        </tr>
-        <tr>
           <th colSpan={8}>
             Loans on 1- to 4-Family Manufactured Home Dwellings
           </th>
@@ -203,7 +201,7 @@ const One = props => {
       </tbody>
     </table>
   )
-}
+})
 
 One.propTypes = {
   report: PropTypes.object,

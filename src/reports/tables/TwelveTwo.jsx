@@ -79,9 +79,9 @@ const renderCharacteristic = (characteristic, label) => {
   ]
 }
 
-const makeTable = (report, label) => {
+const makeTable = (report, label, ref) => {
   return (
-    <table style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
@@ -116,13 +116,13 @@ const makeTable = (report, label) => {
 }
 
 const TwelveTwo = props => {
-  const { report } = props
+  const { report, tableOneRef, tableTwoRef } = props
   if (!report) return null
 
   return (
     <>
-      {makeTable(report, 'NUMBER')}
-      {makeTable(report, "$000's")}
+      {makeTable(report, 'NUMBER', tableOneRef)}
+      {makeTable(report, "$000's", tableTwoRef)}
     </>
   )
 }
