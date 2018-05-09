@@ -88,6 +88,20 @@ const renderDispositionValues = (values, key, key2) => {
 const One = props => {
   if (!props.report) return null
 
+  const sortedTracts = props.report.tracts.sort(function(tractA, tractB) {
+    const idA = tractA.tract.toUpperCase()
+    const idB = tractB.tract.toUpperCase()
+
+    if (idA < idB) {
+      return -1
+    }
+    if (idA > idB) {
+      return 1
+    }
+
+    return 0
+  })
+
   let colWidth = '5.7%'
   if (props.reportType === 'aggregate') colWidth = '5%'
 
@@ -184,7 +198,7 @@ const One = props => {
             </td>
           </tr>
         ) : (
-          renderData(props.report.tracts, props.reportType)
+          renderData(sortedTracts, props.reportType)
         )}
       </tbody>
     </table>

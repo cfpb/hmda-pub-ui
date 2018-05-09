@@ -32,6 +32,20 @@ const renderValues = (values, key) => {
 const Two = props => {
   if (!props.report) return null
 
+  const sortedTracts = props.report.tracts.sort(function(tractA, tractB) {
+    const idA = tractA.tract.toUpperCase()
+    const idB = tractB.tract.toUpperCase()
+
+    if (idA < idB) {
+      return -1
+    }
+    if (idA > idB) {
+      return 1
+    }
+
+    return 0
+  })
+
   return (
     <table style={{ fontSize: '.75em' }}>
       <thead>
@@ -114,7 +128,7 @@ const Two = props => {
             </td>
           </tr>
         ) : (
-          renderData(props.report.tracts)
+          renderData(sortedTracts)
         )}
       </tbody>
     </table>
