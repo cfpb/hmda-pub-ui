@@ -228,7 +228,6 @@ class Report extends React.Component {
       : null
     return (
       <div className="report">
-        <button onClick={this.generateCSV}>Save as CSV</button>
         <Header type={4} headingText={headingText}>
           {report ? (
             <>
@@ -255,6 +254,7 @@ class Report extends React.Component {
             </>
           ) : null}
         </Header>
+        <button onClick={this.generateCSV}>Save as CSV</button>
         {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}
