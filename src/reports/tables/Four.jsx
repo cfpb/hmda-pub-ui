@@ -34,7 +34,7 @@ const renderCharacteristicTitle = key => {
           backgroundColor: '#f1f1f1'
         }}
       >
-        {key}
+        {key === 'minorityStatus' ? 'MINORITY STATUS' : key}
       </th>
     </tr>
   )
