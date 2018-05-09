@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const renderData = report => {
-  const { races, ethnicities } = report
+  const { races, ethnicities, minorityStatuses, incomes } = report
   return (
-    <>
+    <React.Fragment>
       {mapCharacteristic(races, 'race')}
       {mapCharacteristic(ethnicities, 'ethnicity')}
-    </>
+      {mapCharacteristic(minorityStatuses, 'minorityStatus')}
+      {mapCharacteristic(incomes, 'income')}
+    </React.Fragment>
   )
 }
 
@@ -40,6 +42,20 @@ const renderCharacteristicTitle = key => {
 
 const renderCharacteristic = (characteristic, key) => {
   const currChar = characteristic[key]
+
+  if (key === 'income') {
+    return (
+      <tr className="characteristic-title" key={currChar}>
+        <th>{currChar}</th>
+        {characteristic.dispositions.map(disposition => {
+          return [
+            <td key="count">{disposition.count}</td>,
+            <td key="value">{disposition.value}</td>
+          ]
+        })}
+      </tr>
+    )
+  }
 
   return [
     <tr className="characteristic-title" key={currChar}>
