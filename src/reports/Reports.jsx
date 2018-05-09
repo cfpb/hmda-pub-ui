@@ -32,12 +32,11 @@ const Reports = props => {
   }
 
   const options = data.map(val => {
-    return { value: val.id, label: `${val.id} ${val.name}` }
+    return { value: val.id, label: `${val.id} ${val.name}`, data: val }
   })
 
   return (
     <Selector
-      target="report"
       options={options}
       placeholder="Select report..."
       paragraphText="Listed below are the available reports"

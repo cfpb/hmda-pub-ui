@@ -14,7 +14,7 @@ const renderHeading = (type, heading) => {
 
 const renderParagraph = (type, paragraphText) => {
   if (type === 1) return <p className="usa-font-lead">{paragraphText}</p>
-  if (type === 4) return <p>{paragraphText}</p>
+  return <p>{paragraphText}</p>
 }
 
 const Header = props => {
