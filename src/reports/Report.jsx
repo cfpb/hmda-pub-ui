@@ -112,17 +112,18 @@ class Report extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
 
+    let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
-      url += `aggregate/2017/${msaMdId}/${reportId}.txt`
+      url += `aggregate/${year}/${msaMdId}/${reportId}.txt`
     } else {
       if (reportId === 'R1') {
         msaMdId = 'nationwide'
         reportId = 'IRS'
       }
-      url += `disclosure/2017/${
+      url += `disclosure/${year}/${
         params.institutionId
       }/${msaMdId}/${reportId}.txt`
     }
@@ -229,7 +230,7 @@ class Report extends React.Component {
         }`
       : null
     return (
-      <div className="report" id="main-content">
+      <div className="report">
         <button onClick={this.generateCSV}>Save as CSV</button>
         <Header type={4} headingText={headingText}>
           {report ? (

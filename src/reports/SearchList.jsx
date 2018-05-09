@@ -1,12 +1,11 @@
 import React from 'react'
-import Header from '../../common/Header.jsx'
 import Results from './Results.jsx'
-import LoadingIcon from '../../common/LoadingIcon.jsx'
+import LoadingIcon from '../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
 let INSTITUTIONS = null
 
-class Disclosure extends React.Component {
+class SearchList extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.getDefaultState()
@@ -127,14 +126,8 @@ class Disclosure extends React.Component {
     }
 
     return (
-      <div className="usa-grid disclosure" id="main-content">
+      <div className="SearchList">
         <div className="usa-width-one-whole">
-          <Header
-            type={1}
-            headingText="Disclosure reports"
-            paragraphText="These reports summarize lending activity for individual
-              institutions, both nationwide and by MSA/MD."
-          />
           <form onSubmit={this.handleSubmit}>
             <div className={inputClass}>
               <label className={inputLabelClass} htmlFor="institution-name">
@@ -159,7 +152,7 @@ class Disclosure extends React.Component {
             error={this.state.error}
             institutions={institutionsFiltered}
             inputValue={textInputValue}
-            match={this.props.match}
+            makeListItem={this.props.makeListItem}
           />
         </div>
       </div>
@@ -167,4 +160,4 @@ class Disclosure extends React.Component {
   }
 }
 
-export default Disclosure
+export default SearchList

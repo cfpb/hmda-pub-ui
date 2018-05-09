@@ -167,7 +167,24 @@ const One = React.forwardRef((props, ref) => {
           <th>$000's</th>
         </tr>
       </thead>
-      <tbody>{renderData(props.report.tracts, props.reportType)}</tbody>
+      <tbody>
+        {props.report.tracts.length === 0 ? (
+          <tr>
+            <td style={{ textAlign: 'center' }} colSpan={15}>
+              <p style={{ fontSize: '1.7rem' }}>
+                There were no loans purchased by{' '}
+                <strong>{props.report.institutionName}</strong> in{' '}
+                <strong>
+                  MSA/MD {props.report.msa.id} - {props.report.msa.name}
+                </strong>{' '}
+                for <strong>{props.report.year}</strong>.
+              </p>
+            </td>
+          </tr>
+        ) : (
+          renderData(props.report.tracts, props.reportType)
+        )}
+      </tbody>
     </table>
   )
 })
