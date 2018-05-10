@@ -6,7 +6,7 @@ const ModifiedLar = props => {
   return (
     <div className="usa-grid" id="main-content">
       <Header
-        type={2}
+        type={1}
         headingText="Modified Loan/Application Register (LAR)"
         paragraphText="A downloadable modified LAR file is available for every 
             financial institution that has completed a 2017 HMDA data submission. 

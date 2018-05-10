@@ -43,6 +43,8 @@ class Aggregate extends React.Component {
     detailsCache.msaMds[msaMd.id] = msaMd
   }
 
+  renderChoices(params) {}
+
   render() {
     const { params } = this.props.match
     const state = detailsCache.states[params.stateId]
@@ -55,51 +57,59 @@ class Aggregate extends React.Component {
 
     const header = (
       <Header
-        type={2}
+        type={1}
         headingText="MSA/MD Aggregate Reports"
         paragraphText="These reports summarize lending activity by MSA/MD."
       />
     )
 
     return (
-      <>
+      <React.Fragment>
         <div className="usa-grid" id="main-content">
           {header}
+
           {params.stateId ? (
-            <>
-              <ProgressCard
-                title="state"
-                name={state.name}
-                id={state.id}
-                link={`/aggregate-reports/${params.year}`}
-              />
-              {params.msaMdId ? (
-                <>
+            <React.Fragment>
+              <div className="ProgressCards usa-grid-full">
+                <ProgressCard
+                  title="state"
+                  name={state.name}
+                  id={state.id}
+                  link={`/aggregate-reports/${params.year}`}
+                />
+
+                {params.msaMdId ? (
                   <ProgressCard
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
                     link={`/aggregate-reports/${params.year}/${state.id}`}
                   />
-                  {params.reportId ? (
-                    <>
-                      <ProgressCard
-                        title="report"
-                        name={report.name}
-                        id={report.id}
-                        link={`/aggregate-reports/${params.year}/${state.id}/${
-                          msaMd.id
-                        }`}
-                      />
-                    </>
-                  ) : (
-                    <Reports {...this.props} />
-                  )}
-                </>
-              ) : (
-                <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
-              )}
-            </>
+                ) : null}
+
+                {params.reportId ? (
+                  <ProgressCard
+                    title="report"
+                    name={report.name}
+                    id={report.id}
+                    link={`/aggregate-reports/${params.year}/${state.id}/${
+                      msaMd.id
+                    }`}
+                  />
+                ) : null}
+              </div>
+              <hr />
+            </React.Fragment>
+          ) : null}
+
+          {params.stateId ? (
+            params.msaMdId ? (
+              params.reportId ? null : (
+                <Reports {...this.props} />
+              )
+            ) : (
+              <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
+            )
           ) : (
             <Select
               onChange={this.handleChange}
@@ -113,8 +123,9 @@ class Aggregate extends React.Component {
             />
           )}
         </div>
+
         {params.reportId ? <Report {...this.props} /> : null}
-      </>
+      </React.Fragment>
     )
   }
 }

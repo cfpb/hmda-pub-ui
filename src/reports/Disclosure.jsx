@@ -91,7 +91,7 @@ class Disclosure extends React.Component {
       institution && (institution.institutionId || institution.id)
     const header = (
       <Header
-        type={2}
+        type={1}
         headingText="Disclosure reports"
         paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
@@ -99,54 +99,63 @@ class Disclosure extends React.Component {
     )
 
     return this.state.fetched ? (
-      <>
+      <React.Fragment>
         <div className="usa-grid" id="main-content">
           {header}
+
           {params.institutionId ? (
-            <>
-              <ProgressCard
-                title="institution"
-                name={institution.name}
-                id={institution.respondentId}
-                link={`/disclosure-reports/${params.year}`}
-              />
-              {params.msaMdId ? (
-                <>
+            <React.Fragment>
+              <div className="ProgressCards usa-grid-full">
+                <ProgressCard
+                  title="institution"
+                  name={institution.name}
+                  id={institution.respondentId}
+                  link={`/disclosure-reports/${params.year}`}
+                />
+
+                {params.msaMdId ? (
                   <ProgressCard
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
                     link={`/disclosure-reports/${params.year}/${institutionId}`}
                   />
-                  {params.reportId ? (
-                    <>
-                      <ProgressCard
-                        title="report"
-                        name={report.name}
-                        id={report.id}
-                        link={`/disclosure-reports/${
-                          params.year
-                        }/${institutionId}/${msaMd.id}`}
-                      />
-                    </>
-                  ) : (
-                    <Reports {...this.props} />
-                  )}
-                </>
-              ) : (
-                <MsaMds
-                  {...this.props}
-                  fetchedMsas={fetchedMsas}
-                  selectorCallback={this.setMsaMd}
-                />
-              )}
-            </>
+                ) : null}
+
+                {params.reportId ? (
+                  <ProgressCard
+                    title="report"
+                    name={report.name}
+                    id={report.id}
+                    link={`/disclosure-reports/${
+                      params.year
+                    }/${institutionId}/${msaMd.id}`}
+                  />
+                ) : null}
+              </div>
+              <hr />
+            </React.Fragment>
+          ) : null}
+
+          {params.institutionId ? (
+            params.msaMdId ? (
+              params.reportId ? null : (
+                <Reports {...this.props} />
+              )
+            ) : (
+              <MsaMds
+                {...this.props}
+                fetchedMsas={fetchedMsas}
+                selectorCallback={this.setMsaMd}
+              />
+            )
           ) : (
             <SearchList makeListItem={this.makeListItem} />
           )}
         </div>
+
         {params.reportId ? <Report {...this.props} /> : null}
-      </>
+      </React.Fragment>
     ) : (
       <LoadingIcon />
     )

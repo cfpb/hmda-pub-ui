@@ -227,7 +227,7 @@ class Report extends React.Component {
         }`
       : null
     return (
-      <div className="report">
+      <div className="Report">
         <Header type={4} headingText={headingText}>
           {report ? (
             <>

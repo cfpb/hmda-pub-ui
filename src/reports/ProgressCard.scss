@@ -1,9 +1,18 @@
-.ProgressCard {
-  background: $color-gray-lightest;
-  padding: 0.5em;
-  margin-bottom: 1em;
+.ProgressCards {
+  margin-bottom: 2em !important;
 
-  h5 {
-    margin-bottom: 0.25em;
+  hr {
+    border-top-color: $color-gray-lightest;
+    border-bottom: none;
+  }
+
+  .ProgressCard {
+    .header {
+      margin-bottom: 0;
+      h4 {
+        margin-top: 0;
+        text-transform: capitalize;
+      }
+    }
   }
 }
