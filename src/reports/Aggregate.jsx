@@ -69,25 +69,29 @@ class Aggregate extends React.Component {
           {header}
 
           {params.stateId ? (
-            <React.Fragment>
-              <div className="ProgressCards usa-grid-full">
+            <ol className="ProgressCards usa-grid-full">
+              <li>
                 <ProgressCard
                   title="state"
                   name={state.name}
                   id={state.id}
                   link={`/aggregate-reports/${params.year}`}
                 />
+              </li>
 
-                {params.msaMdId ? (
+              {params.msaMdId ? (
+                <li>
                   <ProgressCard
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
                     link={`/aggregate-reports/${params.year}/${state.id}`}
                   />
-                ) : null}
+                </li>
+              ) : null}
 
-                {params.reportId ? (
+              {params.reportId ? (
+                <li>
                   <ProgressCard
                     title="report"
                     name={report.name}
@@ -96,10 +100,9 @@ class Aggregate extends React.Component {
                       msaMd.id
                     }`}
                   />
-                ) : null}
-              </div>
-              <hr />
-            </React.Fragment>
+                </li>
+              ) : null}
+            </ol>
           ) : null}
 
           {params.stateId ? (

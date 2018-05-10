@@ -104,25 +104,29 @@ class Disclosure extends React.Component {
           {header}
 
           {params.institutionId ? (
-            <React.Fragment>
-              <div className="ProgressCards usa-grid-full">
+            <ol className="ProgressCards usa-grid-full">
+              <li>
                 <ProgressCard
                   title="institution"
                   name={institution.name}
                   id={institution.respondentId}
                   link={`/disclosure-reports/${params.year}`}
                 />
+              </li>
 
-                {params.msaMdId ? (
+              {params.msaMdId ? (
+                <li>
                   <ProgressCard
                     title="MSA/MD"
                     name={msaMd.name}
                     id={msaMd.id}
                     link={`/disclosure-reports/${params.year}/${institutionId}`}
                   />
-                ) : null}
+                </li>
+              ) : null}
 
-                {params.reportId ? (
+              {params.reportId ? (
+                <li>
                   <ProgressCard
                     title="report"
                     name={report.name}
@@ -131,10 +135,9 @@ class Disclosure extends React.Component {
                       params.year
                     }/${institutionId}/${msaMd.id}`}
                   />
-                ) : null}
-              </div>
-              <hr />
-            </React.Fragment>
+                </li>
+              ) : null}
+            </ol>
           ) : null}
 
           {params.institutionId ? (

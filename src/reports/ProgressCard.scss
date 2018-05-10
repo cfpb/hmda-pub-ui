@@ -1,11 +1,6 @@
 .ProgressCards {
   margin-bottom: 2em !important;
-
-  hr {
-    border-top-color: $color-gray-lightest;
-    border-bottom: none;
-  }
-
+  margin-left: 1em;
   .ProgressCard {
     .header {
       margin-bottom: 0;
@@ -14,5 +9,10 @@
         text-transform: capitalize;
       }
     }
+  }
+
+  li {
+    float: left;
+    width: 33.333%;
   }
 }
