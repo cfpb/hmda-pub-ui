@@ -87,27 +87,26 @@ const makeTable = (report, label, ref) => {
           <th width="20%" rowSpan={2}>
             {`BORROWER OR CENSUS TRACT CHARACTERISTICS (${label})`}
           </th>
-          <th rowSpan={2} width="6.667%">
+          <th rowSpan={2} width="8%">
             No Reported Pricing Data
           </th>
-          <th rowSpan={2} width="6.667%">
+          <th rowSpan={2} width="8%">
             Reported Pricing Data
           </th>
-          <th colSpan={9} width="60%">
+          <th colSpan={8} width="64%">
             Percentage Points above Average Prime Offer Rate (Only Includes
             Loans with Apr above the Threshold)
           </th>
         </tr>
         <tr>
-          <th width="6.667%">1.50 - 1.99</th>
-          <th width="6.667%">2.00 - 2.49</th>
-          <th width="6.667%">2.50 - 2.99</th>
-          <th width="6.667%">3.00 - 3.99</th>
-          <th width="6.667%">4.00 - 4.99</th>
-          <th width="6.667%">5.00 - 5.99</th>
-          <th width="6.667%">6 or More</th>
-          <th width="6.667%">Mean</th>
-          <th width="6.667%">Median</th>
+          <th width="8%">1.50 - 1.99</th>
+          <th width="8%">2.00 - 2.49</th>
+          <th width="8%">2.50 - 2.99</th>
+          <th width="8%">3.00 - 3.99</th>
+          <th width="8%">4.00 - 4.99</th>
+          <th width="8%">5 or More</th>
+          <th width="8%">Mean</th>
+          <th width="8%">Median</th>
         </tr>
       </thead>
       <tbody>{renderData(report, label)}</tbody>
