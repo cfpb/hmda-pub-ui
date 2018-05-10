@@ -104,40 +104,45 @@ class Disclosure extends React.Component {
           {header}
 
           {params.institutionId ? (
-            <ol className="ProgressCards usa-grid-full">
-              <li>
-                <ProgressCard
-                  title="institution"
-                  name={institution.name}
-                  id={institution.respondentId}
-                  link={`/disclosure-reports/${params.year}`}
-                />
-              </li>
-
-              {params.msaMdId ? (
+            <React.Fragment>
+              <ol className="ProgressCards usa-grid-full">
                 <li>
                   <ProgressCard
-                    title="MSA/MD"
-                    name={msaMd.name}
-                    id={msaMd.id}
-                    link={`/disclosure-reports/${params.year}/${institutionId}`}
+                    title="institution"
+                    name={institution.name}
+                    id={institution.respondentId}
+                    link={`/disclosure-reports/${params.year}`}
                   />
                 </li>
-              ) : null}
 
-              {params.reportId ? (
-                <li>
-                  <ProgressCard
-                    title="report"
-                    name={report.name}
-                    id={report.id}
-                    link={`/disclosure-reports/${
-                      params.year
-                    }/${institutionId}/${msaMd.id}`}
-                  />
-                </li>
-              ) : null}
-            </ol>
+                {params.msaMdId ? (
+                  <li>
+                    <ProgressCard
+                      title="MSA/MD"
+                      name={msaMd.name}
+                      id={msaMd.id}
+                      link={`/disclosure-reports/${
+                        params.year
+                      }/${institutionId}`}
+                    />
+                  </li>
+                ) : null}
+
+                {params.reportId ? (
+                  <li>
+                    <ProgressCard
+                      title="report"
+                      name={report.name}
+                      id={report.id}
+                      link={`/disclosure-reports/${
+                        params.year
+                      }/${institutionId}/${msaMd.id}`}
+                    />
+                  </li>
+                ) : null}
+              </ol>
+              <hr />
+            </React.Fragment>
           ) : null}
 
           {params.institutionId ? (
