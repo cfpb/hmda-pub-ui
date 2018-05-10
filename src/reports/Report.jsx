@@ -228,33 +228,29 @@ class Report extends React.Component {
       : null
     return (
       <div className="Report">
-        <Header type={4} headingText={headingText}>
-          {report ? (
-            <>
-              <p style={{ width: '50%', display: 'inline-block' }}>
+        <div className="usa-grid">
+          <Header type={3} headingText={headingText}>
+            {report ? (
+              <>
                 {report.respondentId ? (
-                  <span>
+                  <p>
                     Institution: {report.respondentId} -{' '}
                     {report.institutionName}
-                  </span>
+                  </p>
                 ) : null}
-              </p>
 
-              <p
-                style={{
-                  width: '50%',
-                  display: 'inline-block',
-                  textAlign: 'right'
-                }}
-              >
-                {report.msa
-                  ? `MSA/MD: ${report.msa.id} - ${report.msa.name}`
-                  : 'Nationwide'}
-              </p>
-            </>
-          ) : null}
-        </Header>
-        <button onClick={this.generateCSV}>Save as CSV</button>
+                {report.msa ? (
+                  <p>
+                    MSA/MD: {report.msa.id} - {report.msa.name}
+                  </p>
+                ) : (
+                  <p>Nationwide</p>
+                )}
+              </>
+            ) : null}
+          </Header>
+          <button onClick={this.generateCSV}>Save as CSV</button>
+        </div>
         {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}

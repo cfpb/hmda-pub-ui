@@ -11,9 +11,12 @@ const ProgressCard = ({ name, id, link, title }) => {
 
   return (
     <div className="ProgressCard">
-      <Header type={4} headingText={title} paragraphText={name + id}>
-        <Link to={link}>Select a different {title}</Link>
-      </Header>
+      <Header
+        type={4}
+        headingText={title}
+        paragraphText={name + id}
+        headingLink={link}
+      />
     </div>
   )
 }

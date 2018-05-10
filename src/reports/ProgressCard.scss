@@ -13,6 +13,10 @@
 
   li {
     float: left;
-    width: 33.333%;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
