@@ -1,23 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../common/Header.jsx'
 
-const capitalize = str => str[0].toUpperCase() + str.slice(1)
 const ProgressCard = ({ name, id, link, title }) => {
   if (id === 'nationwide') {
     name = ''
-    id = capitalize(id)
   } else {
     name = name + ' - '
   }
 
   return (
-    <div className="ProgressCard usa-width-one-third">
-      <h5>{capitalize(title)}</h5>
-      <div>
-        {name}
-        {id}
-      </div>
-      <Link to={link}>Select a different {title}</Link>
+    <div className="ProgressCard">
+      <Header
+        type={4}
+        headingText={title}
+        paragraphText={name + id}
+        headingLink={link}
+      />
     </div>
   )
 }

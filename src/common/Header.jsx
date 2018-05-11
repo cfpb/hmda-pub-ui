@@ -9,6 +9,7 @@ const makeHeadingLink = (headingText, headingLink) => {
 const renderHeading = (type, heading) => {
   if (type === 1) return <h1>{heading}</h1>
   if (type === 2) return <h2>{heading}</h2>
+  if (type === 3) return <h3>{heading}</h3>
   if (type === 4) return <h4>{heading}</h4>
 }
 
@@ -39,7 +40,7 @@ const Header = props => {
 }
 
 Header.propTypes = {
-  type: PropTypes.oneOf([1, 2, 4]),
+  type: PropTypes.oneOf([1, 2, 3, 4]),
   headingText: PropTypes.string,
   paragraphText: PropTypes.string,
   headingLink: PropTypes.string
