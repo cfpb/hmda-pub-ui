@@ -14,4 +14,10 @@
     color: $color-gray;
     margin-top: 0;
   }
+
+  &.disabled {
+    h4 {
+      color: $color-gray;
+    }
+  }
 }

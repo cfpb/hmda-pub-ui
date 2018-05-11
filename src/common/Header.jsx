@@ -22,6 +22,11 @@ const Header = props => {
   let style = { marginBottom: '1em' }
   if (props.type === 1) style = { marginBottom: '3em' }
 
+  let headerClass = 'header'
+  if (props.disabled) {
+    headerClass = headerClass + ' disabled'
+  }
+
   let heading = props.headingText
   if (props.headingLink)
     heading = makeHeadingLink(props.headingText, props.headingLink)
@@ -31,7 +36,7 @@ const Header = props => {
     paragraphText = renderParagraph(props.type, props.paragraphText)
 
   return (
-    <header className="header" style={style}>
+    <header className={headerClass} style={style}>
       {renderHeading(props.type, heading)}
       {paragraphText}
       {props.children}
@@ -43,7 +48,8 @@ Header.propTypes = {
   type: PropTypes.oneOf([1, 2, 3, 4]),
   headingText: PropTypes.string,
   paragraphText: PropTypes.string,
-  headingLink: PropTypes.string
+  headingLink: PropTypes.string,
+  disabled: PropTypes.bool
 }
 
 export default Header
