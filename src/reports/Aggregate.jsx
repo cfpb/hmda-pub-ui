@@ -69,40 +69,43 @@ class Aggregate extends React.Component {
           {header}
 
           {params.stateId ? (
-            <ol className="ProgressCards usa-grid-full">
-              <li>
-                <ProgressCard
-                  title="state"
-                  name={state.name}
-                  id={state.id}
-                  link={`/aggregate-reports/${params.year}`}
-                />
-              </li>
-
-              {params.msaMdId ? (
+            <React.Fragment>
+              <ol className="ProgressCards usa-grid-full">
                 <li>
                   <ProgressCard
-                    title="MSA/MD"
-                    name={msaMd.name}
-                    id={msaMd.id}
-                    link={`/aggregate-reports/${params.year}/${state.id}`}
+                    title="state"
+                    name={state.name}
+                    id={state.id}
+                    link={`/aggregate-reports/${params.year}`}
                   />
                 </li>
-              ) : null}
 
-              {params.reportId ? (
-                <li>
-                  <ProgressCard
-                    title="report"
-                    name={report.name}
-                    id={report.id}
-                    link={`/aggregate-reports/${params.year}/${state.id}/${
-                      msaMd.id
-                    }`}
-                  />
-                </li>
-              ) : null}
-            </ol>
+                {params.msaMdId ? (
+                  <li>
+                    <ProgressCard
+                      title="MSA/MD"
+                      name={msaMd.name}
+                      id={msaMd.id}
+                      link={`/aggregate-reports/${params.year}/${state.id}`}
+                    />
+                  </li>
+                ) : null}
+
+                {params.reportId ? (
+                  <li>
+                    <ProgressCard
+                      title="report"
+                      name={report.name}
+                      id={report.id}
+                      link={`/aggregate-reports/${params.year}/${state.id}/${
+                        msaMd.id
+                      }`}
+                    />
+                  </li>
+                ) : null}
+              </ol>
+              <hr />
+            </React.Fragment>
           ) : null}
 
           {params.stateId ? (
