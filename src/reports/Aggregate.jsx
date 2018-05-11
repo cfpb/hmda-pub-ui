@@ -131,17 +131,19 @@ class Aggregate extends React.Component {
               <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
             )
           ) : (
-            // TODO: needs a <Header> here
-            <Select
-              onChange={this.handleChange}
-              placeholder="Select a state..."
-              searchable={true}
-              autoFocus
-              openOnFocus
-              simpleValue
-              options={options}
-              optionComponent={Option}
-            />
+            <React.Fragment>
+              <Header type={4} headingText="Select a state" />
+              <Select
+                onChange={this.handleChange}
+                placeholder="Select a state..."
+                searchable={true}
+                autoFocus
+                openOnFocus
+                simpleValue
+                options={options}
+                optionComponent={Option}
+              />
+            </React.Fragment>
           )}
         </div>
 
