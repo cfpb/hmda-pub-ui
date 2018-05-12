@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 window.HMDA_ENV = {
-  APP_URL: '##APP_URL##',
+  HOMEPAGE_URL: '##HOMEPAGE_URL##',
   HMDA_API: '##HMDA_API##'
 }
 
