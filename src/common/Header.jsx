@@ -20,7 +20,7 @@ const renderParagraph = (type, paragraphText) => {
 
 const Header = props => {
   let style = { marginBottom: '1em' }
-  if (props.type === 1) style = { marginBottom: '3em' }
+  if (props.type === 1) style = { marginBottom: '2em' }
 
   let headerClass = 'header'
   if (props.disabled) {
