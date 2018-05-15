@@ -108,9 +108,6 @@ class Disclosure extends React.Component {
       />
     )
 
-    console.log(report)
-    console.log(detailsCache.reports)
-
     return this.state.fetched ? (
       <React.Fragment>
         <div className="usa-grid" id="main-content">

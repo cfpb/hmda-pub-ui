@@ -19,7 +19,6 @@ class Selector extends React.Component {
   }
 
   render() {
-    console.log(this.props.options)
     return (
       <>
         <Header type={4} headingText={this.props.header} />
