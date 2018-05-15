@@ -1,56 +1,236 @@
 export const DISCLOSURE_REPORTS = {
-  msa: [
-    { id: '1', name: 'Appliations by Tract' },
-    { id: '2', name: 'Loans Purchased by Tract' },
-    { id: '3-1', name: 'Loans Sold by Tract' },
-    { id: '3-2', name: 'Loans Sold by Purchaser Type' },
-    { id: '4-1', name: 'FHA, FSA/RHS and VA Purchases by Race' },
-    { id: '4-2', name: 'Conventional Purchases by Race' },
-    { id: '4-3', name: 'Refinancings by Race' },
-    { id: '4-4', name: 'Home Improvements by Race' },
-    { id: '4-5', name: 'Multi-Family Loans by Race' },
-    { id: '4-6', name: 'Nonoccupant Loans by Race' },
-    { id: '4-7', name: 'Manufactured Homes by Race' },
-    { id: '5-1', name: 'FHA, FSA/RHS and VA by App Income' },
-    { id: '5-2', name: 'Conv Purchases by App Income' },
-    { id: '5-3', name: 'Refinancings by App Income' },
-    { id: '5-4', name: 'Home Improvements by App Income' },
-    { id: '5-6', name: 'Nonoccupant Loans by Income' },
-    { id: '5-7', name: 'Manufactured Homes by Income' },
-    { id: '7-1', name: 'FHA, FSA/RHS and VA by Tract Income' },
-    { id: '7-2', name: 'Conv Purchases by Tract Income' },
-    { id: '7-3', name: 'Refinancings by Tract Income' },
-    { id: '7-4', name: 'Home Improvements by Tract Income' },
-    { id: '7-5', name: 'Multi-Family Loans by Tract Income' },
-    { id: '7-6', name: 'Nonoccupant Loans by Tract Income' },
-    { id: '7-7', name: 'Manufactured Homes by Tract Income' },
-    { id: '8-1', name: 'FHA, FSA/RHS and VA Purchase Denials' },
-    { id: '8-2', name: 'Conv Home-Purchase Denials' },
-    { id: '8-3', name: 'Refinancing Denials' },
-    { id: '8-4', name: 'Home Improvement Denials' },
-    { id: '8-5', name: 'Multi-Family Denials' },
-    { id: '8-6', name: 'Nonoccupant Loan Denials' },
-    { id: '8-7', name: 'Manufactured Home Denials' },
-    { id: '11-1', name: 'FHA Home-Pur Pricing Info First' },
-    { id: '11-2', name: 'VA Home-Pur Pricing Info First' },
-    { id: '11-3', name: 'Conv Home-Pur Pricing Info First' },
-    { id: '11-5', name: 'FHA Refi Pricing Info First' },
-    { id: '11-6', name: 'VA Refi Pricing Info First' },
-    { id: '11-7', name: 'Conv Refi Pricing Info First' },
-    { id: '11-9', name: 'Conv Home-Imp Pricing Info First' },
-    { id: '12-1', name: 'Conv Manuf Home-Pur First' },
-    { id: '12-2', name: 'Conv Manuf Home-Pur Pricing Info First' },
-    { id: 'R1', name: 'IRS Table' },
-    { id: 'A1', name: 'Loan Sale by Loan Type 1 to 4 Families' },
-    { id: 'A2', name: 'Loan Sale by Loan Type Manufactured' },
-    { id: 'A3', name: 'Loan Sale by Loan Type Multi-Family' },
-    { id: 'B', name: 'Conv Price Info by Incidence and Level' }
-  ],
-  nationwide: [
-    { id: 'A1W', name: 'Loan Sale by Loan Type 1 to 4 Families - Nationwide' },
-    { id: 'A2W', name: 'Loan Sale by Loan Type Manufactured - Nationwide' },
-    { id: 'A3W', name: 'Loan Sale by Loan Type Multi-Family - Nationwide' },
-    { id: 'BW', name: 'Conv Price Info by Incidence and Level - Nationwide' },
-    { id: 'R1', name: 'IRS Table' }
-  ]
+    msa: [
+        { value: '1', label: 'Appliations by Tract' },
+        { value: '2', label: 'Loans Purchased by Tract' },
+        {
+            label: 'Loans Sold',
+            options: [
+                {
+                    value: '3-1',
+                    label: 'Loans Sold by Tract'
+                },
+                {
+                    value: '3-2',
+                    label: 'Loans Sold by Purchaser Type'
+                }
+            ]
+        },
+        {
+            label: 'By Race',
+            options: [
+                {
+                    value: '4-1',
+                    label: 'FHA, FSA/RHS and VA Purchases by Race'
+                },
+                {
+                    value: '4-2',
+                    label: 'Conventional Purchases by Race'
+                },
+                {
+                    value: '4-3',
+                    label: 'Refinancings by Race'
+                },
+                {
+                    value: '4-4',
+                    label: 'Home Improvements by Race'
+                },
+                {
+                    value: '4-5',
+                    label: 'Multi-Family Loans by Race'
+                },
+                {
+                    value: '4-6',
+                    label: 'Nonoccupant Loans by Race'
+                },
+                {
+                    value: '4-7',
+                    label: 'Manufactured Homes by Race'
+                }
+            ]
+        },
+        {
+            label: 'By App Income',
+            options: [
+                {
+                    value: '5-1',
+                    label: 'FHA, FSA/RHS and VA by App Income'
+                },
+                {
+                    value: '5-2',
+                    label: 'Conv Purchases by App Income'
+                },
+                {
+                    value: '5-3',
+                    label: 'Refinancings by App Income'
+                },
+                {
+                    value: '5-4',
+                    label: 'Home Improvements by App Income'
+                },
+                {
+                    value: '5-6',
+                    label: 'Nonoccupant Loans by Income'
+                },
+                {
+                    value: '5-7',
+                    label: 'Manufactured Homes by Income'
+                }
+            ]
+        },
+        {
+            label: 'By Tract Income',
+            options: [
+                {
+                    value: '7-1',
+                    label: 'FHA, FSA/RHS and VA by Tract Income'
+                },
+                {
+                    value: '7-2',
+                    label: 'Conv Purchases by Tract Income'
+                },
+                {
+                    value: '7-3',
+                    label: 'Refinancings by Tract Income'
+                },
+                {
+                    value: '7-4',
+                    label: 'Home Improvements by Tract Income'
+                },
+                {
+                    value: '7-5',
+                    label: 'Multi-Family Loans by Tract Income'
+                },
+                {
+                    value: '7-6',
+                    label: 'Nonoccupant Loans by Tract Income'
+                },
+                {
+                    value: '7-7',
+                    label: 'Manufactured Homes by Tract Income'
+                }
+            ]
+        },
+        {
+            label: 'Denials',
+            options: [
+                {
+                    value: '8-1',
+                    label: 'FHA, FSA/RHS and VA Purchase Denials'
+                },
+                {
+                    value: '8-2',
+                    label: 'Conv Home-Purchase Denials'
+                },
+                {
+                    value: '8-3',
+                    label: 'Refinancing Denials'
+                },
+                {
+                    value: '8-4',
+                    label: 'Home Improvement Denials'
+                },
+                {
+                    value: '8-5',
+                    label: 'Multi-Family Denials'
+                },
+                {
+                    value: '8-6',
+                    label: 'Nonoccupant Loan Denials'
+                },
+                {
+                    value: '8-7',
+                    label: 'Manufactured Home Denials'
+                }
+            ]
+        },
+        {
+            label: 'Pricing Info First',
+            options: [
+                {
+                    value: '11-1',
+                    label: 'FHA Home-Pur Pricing Info First'
+                },
+                {
+                    value: '11-2',
+                    label: 'VA Home-Pur Pricing Info First'
+                },
+                {
+                    value: '11-3',
+                    label: 'Conv Home-Pur Pricing Info First'
+                },
+                {
+                    value: '11-5',
+                    label: 'FHA Refi Pricing Info First'
+                },
+                {
+                    value: '11-6',
+                    label: 'VA Refi Pricing Info First'
+                },
+                {
+                    value: '11-7',
+                    label: 'Conv Refi Pricing Info First'
+                },
+                {
+                    value: '11-9',
+                    label: 'Conv Home-Imp Pricing Info First'
+                }
+            ]
+        },
+        {
+            label: 'Conv Manuf Home-Pur',
+            options: [
+                {
+                    value: '12-1',
+                    label: 'Conv Manuf Home-Pur First'
+                },
+                {
+                    value: '12-2',
+                    label: 'Conv Manuf Home-Pur Pricing Info First'
+                }
+            ]
+        },
+        { value: 'R1', label: 'IRS Table' },
+        {
+            label: 'Loan Sale by Loan Type',
+            options: [
+                {
+                    value: 'A1',
+                    label: 'Loan Sale by Loan Type 1 to 4 Families'
+                },
+                {
+                    value: 'A2',
+                    label: 'Loan Sale by Loan Type Manufactured'
+                },
+                {
+                    value: 'A3',
+                    label: 'Loan Sale by Loan Type Multi-Family'
+                }
+            ]
+        },
+        { value: 'B', label: 'Conv Price Info by Incvalueence and Level' }
+    ],
+    nationwide: [
+        {
+            label: 'Loan Sale by Loan Type',
+            options: [
+                {
+                    value: 'A1W',
+                    label: 'Loan Sale by Loan Type 1 to 4 Families - Nationwide'
+                },
+                {
+                    value: 'A2W',
+                    label: 'Loan Sale by Loan Type Manufactured - Nationwide'
+                },
+                {
+                    value: 'A3W',
+                    label: 'Loan Sale by Loan Type Multi-Family - Nationwide'
+                }
+            ]
+        },
+        {
+            value: 'BW',
+            label: 'Conv Price Info by Incvalueence and Level - Nationwide'
+        },
+        { value: 'R1', label: 'IRS Table' }
+    ]
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select from 'react-select-plus'
 import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 
@@ -19,6 +19,7 @@ class Selector extends React.Component {
   }
 
   render() {
+    console.log(this.props.options)
     return (
       <>
         <Header type={4} headingText={this.props.header} />

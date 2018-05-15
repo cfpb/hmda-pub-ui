@@ -31,13 +31,41 @@ const Reports = props => {
         : DISCLOSURE_REPORTS.msa
   }
 
-  const options = data.map(val => {
-    return { value: val.id, label: `${val.id} ${val.name}`, data: val }
+  data.forEach(option => {
+    if (option.value) {
+      option.label = `${option.value} - ${option.label}`
+    }
+
+    if (option.options) {
+      option.options.forEach(subOption => {
+        subOption.label = `${subOption.value} - ${subOption.label}`
+      })
+    }
   })
+
+  console.log(data)
+
+  /*const options = data.map(option => {
+    if (option.value) {
+      return { value: option.value, label: `${option.value} - ${option.label}` }
+    } else {
+      return option.options.map(subOption => {
+        return {
+          lable: option.label
+          options: {
+
+          }
+
+        }
+      })
+    }
+  })*/
+
+  //console.log(options)
 
   return (
     <Selector
-      options={options}
+      options={data}
       placeholder="Select report..."
       paragraphText="Listed below are the available reports"
       header={getHeader(params)}

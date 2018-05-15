@@ -18,7 +18,17 @@ const detailsCache = {
 let fetchedMsas = null
 
 Object.keys(DISCLOSURE_REPORTS).forEach(key =>
-  DISCLOSURE_REPORTS[key].forEach(v => (detailsCache.reports[v.id] = v))
+  DISCLOSURE_REPORTS[key].forEach(v => {
+    if (v.value) {
+      detailsCache.reports[v.value] = v
+    }
+
+    if (v.options) {
+      v.options.forEach(option => {
+        detailsCache.reports[option.value] = option
+      })
+    }
+  })
 )
 
 class Disclosure extends React.Component {
@@ -98,6 +108,9 @@ class Disclosure extends React.Component {
       />
     )
 
+    console.log(report)
+    console.log(detailsCache.reports)
+
     return this.state.fetched ? (
       <React.Fragment>
         <div className="usa-grid" id="main-content">
@@ -132,8 +145,8 @@ class Disclosure extends React.Component {
                   <li>
                     <ProgressCard
                       title="report"
-                      name={report.name}
-                      id={report.id}
+                      name={report.label}
+                      id={report.value}
                       link={`/disclosure-reports/${
                         params.year
                       }/${institutionId}/${msaMd.id}`}
