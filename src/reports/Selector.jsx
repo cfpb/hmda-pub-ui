@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select from 'react-select-plus'
 import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 

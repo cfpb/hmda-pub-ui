@@ -21,7 +21,7 @@ const getHeader = params => {
 
 const Reports = props => {
   const { params } = props.match
-  let data
+  let data = []
   if (params.stateId) {
     data = AGGREGATE_REPORTS
   } else {
@@ -31,8 +31,19 @@ const Reports = props => {
         : DISCLOSURE_REPORTS.msa
   }
 
-  const options = data.map(val => {
-    return { value: val.id, label: `${val.id} ${val.name}`, data: val }
+  const options = data.map(option => {
+    if (option.value)
+      return { value: option.value, label: `${option.value} - ${option.label}` }
+
+    return {
+      label: option.label,
+      options: option.options.map(subOption => {
+        return {
+          label: `${subOption.value} - ${subOption.label}`,
+          value: subOption.value
+        }
+      })
+    }
   })
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from 'react-select'
+import Select from 'react-select-plus'
 import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 import ProgressCard from './ProgressCard.jsx'
@@ -17,7 +17,17 @@ const detailsCache = {
 }
 
 STATES.forEach(v => (detailsCache.states[v.id] = v))
-AGGREGATE_REPORTS.forEach(v => (detailsCache.reports[v.id] = v))
+AGGREGATE_REPORTS.forEach(v => {
+  if (v.value) {
+    detailsCache.reports[v.value] = v
+  }
+
+  if (v.options) {
+    v.options.forEach(option => {
+      detailsCache.reports[option.value] = option
+    })
+  }
+})
 
 class Aggregate extends React.Component {
   constructor(props) {
@@ -67,7 +77,6 @@ class Aggregate extends React.Component {
       <React.Fragment>
         <div className="usa-grid" id="main-content">
           {header}
-
           <ol className="ProgressCards usa-grid-full">
             <li>
               <ProgressCard
@@ -102,14 +111,14 @@ class Aggregate extends React.Component {
                 title="report"
                 name={
                   params.reportId
-                    ? report.name
+                    ? report.label
                     : params.msaMdId
                       ? 'Select a report'
                       : params.stateId
                         ? ''
                         : ''
                 }
-                id={params.reportId ? report.id : ''}
+                id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
                     ? `/aggregate-reports/${params.year}/${state.id}/${
