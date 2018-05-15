@@ -203,6 +203,9 @@ class Report extends React.Component {
           report={report}
         />
       )
+
+    if (table.match(/^A4/))
+      return <Tables.A4 ref={this.tableRef} report={report} />
     if (table.match(/^A/))
       return <Tables.A ref={this.tableRef} report={report} />
     if (table.match(/^B/))

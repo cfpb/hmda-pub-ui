@@ -22,7 +22,7 @@ const renderCharacteristicTitle = key => {
   return (
     <tr className="characteristic-grey-title" key={key}>
       <th
-        colSpan={15}
+        colSpan={13}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
@@ -46,7 +46,7 @@ const renderCharacteristic = (characteristic, label) => {
   return [
     <tr className="characteristic-title" key={name}>
       <th
-        colSpan={15}
+        colSpan={13}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
@@ -57,21 +57,20 @@ const renderCharacteristic = (characteristic, label) => {
       </th>
     </tr>,
     currChar.map((detailObj, index) => {
-      let detail, pricing
+      let detail, statuses
       Object.keys(detailObj).forEach(key => {
-        if (key === 'pricingInformation') pricing = detailObj[key]
+        if (key === 'preapprovalStatuses') statuses = detailObj[key]
         else detail = detailObj[key]
       })
 
       return (
         <tr key={name + index}>
           <th>{detail}</th>
-          {pricing.map((priceObj, index) => {
-            return (
-              <td key={index}>
-                {label === 'NUMBER' ? priceObj.count : priceObj.value}
-              </td>
-            )
+          {statuses.map((disObj, i) => {
+            return [
+              <td key={i + 'count'}>{disObj.count}</td>,
+              <td key={i + 'value'}>{disObj.value}</td>
+            ]
           })}
         </tr>
       )
@@ -79,55 +78,42 @@ const renderCharacteristic = (characteristic, label) => {
   ]
 }
 
-const makeTable = (report, label, ref) => {
+const A4 = React.forwardRef((props, ref) => {
+  if (!props.report) return null
+
   return (
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
-            {`BORROWER OR CENSUS TRACT CHARACTERISTICS (${label})`}
+          <th width="25%" rowSpan={2}>
+            BORROWER OR CENSUS TRACT CHARACTERISTICS
           </th>
-          <th rowSpan={2} width="8%">
-            No Reported Pricing Data
+          <th colSpan={2} width="25%">
+            Preapprovals Resulting in Originations
           </th>
-          <th rowSpan={2} width="8%">
-            Reported Pricing Data
+          <th colSpan={2} width="25%">
+            Preapprovals Approved but not Accepted
           </th>
-          <th colSpan={8} width="64%">
-            Percentage Points above Average Prime Offer Rate (Only Includes
-            Loans with Apr above the Threshold)
+          <th colSpan={2} width="25%">
+            Preapprovals Denied
           </th>
         </tr>
         <tr>
-          <th width="8%">1.50 - 1.99</th>
-          <th width="8%">2.00 - 2.49</th>
-          <th width="8%">2.50 - 2.99</th>
-          <th width="8%">3.00 - 3.99</th>
-          <th width="8%">4.00 - 4.99</th>
-          <th width="8%">5 or More</th>
-          <th width="8%">Mean</th>
-          <th width="8%">Median</th>
+          <th>Number</th>
+          <th>$000's</th>
+          <th>Number</th>
+          <th>$000's</th>
+          <th>Number</th>
+          <th>$000's</th>
         </tr>
       </thead>
-      <tbody>{renderData(report, label)}</tbody>
+      <tbody>{renderData(props.report)}</tbody>
     </table>
   )
-}
+})
 
-const TwelveTwo = props => {
-  const { report, tableOneRef, tableTwoRef } = props
-  if (!report) return null
-
-  return (
-    <>
-      {makeTable(report, 'NUMBER', tableOneRef)}
-      {makeTable(report, "$000's", tableTwoRef)}
-    </>
-  )
-}
-
-TwelveTwo.propTypes = {
+A4.propTypes = {
   report: PropTypes.object
 }
 
-export default TwelveTwo
+export default A4
