@@ -33,7 +33,7 @@ var _react = require('react')
 
 var _react2 = _interopRequireDefault(_react)
 
-var _blockEvent = require('../node_modules/react-select/lib/utils/blockEvent')
+var _blockEvent = require('../node_modules/react-select-plus/lib/utils/blockEvent')
 
 var _blockEvent2 = _interopRequireDefault(_blockEvent)
 
