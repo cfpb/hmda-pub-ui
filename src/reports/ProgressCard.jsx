@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom'
 import Header from '../common/Header.jsx'
 
 const ProgressCard = ({ name, id, link, title }) => {
+  if (id !== '') {
+    name = name + ' - '
+  }
+
   if (id === 'nationwide') {
     name = ''
-  } else {
-    name = name + ' - '
+  }
+
+  let disabled = false
+  if (link === null) {
+    disabled = true
   }
 
   return (
@@ -16,6 +23,7 @@ const ProgressCard = ({ name, id, link, title }) => {
         headingText={title}
         paragraphText={name + id}
         headingLink={link}
+        disabled={disabled}
       />
     </div>
   )

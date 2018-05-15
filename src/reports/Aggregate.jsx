@@ -77,46 +77,59 @@ class Aggregate extends React.Component {
       <React.Fragment>
         <div className="usa-grid" id="main-content">
           {header}
+          <ol className="ProgressCards usa-grid-full">
+            <li>
+              <ProgressCard
+                title="state"
+                name={params.stateId ? state.name : 'Select a state'}
+                id={params.stateId ? state.id : ''}
+                link={`/aggregate-reports/${params.year}`}
+              />
+            </li>
 
-          {params.stateId ? (
-            <React.Fragment>
-              <ol className="ProgressCards usa-grid-full">
-                <li>
-                  <ProgressCard
-                    title="state"
-                    name={state.name}
-                    id={state.id}
-                    link={`/aggregate-reports/${params.year}`}
-                  />
-                </li>
+            <li>
+              <ProgressCard
+                title="MSA/MD"
+                name={
+                  params.msaMdId
+                    ? msaMd.name
+                    : params.stateId
+                      ? 'Select a MSA/MD'
+                      : ''
+                }
+                id={params.msaMdId ? msaMd.id : ''}
+                link={
+                  params.stateId
+                    ? `/aggregate-reports/${params.year}/${state.id}`
+                    : null
+                }
+              />
+            </li>
 
-                {params.msaMdId ? (
-                  <li>
-                    <ProgressCard
-                      title="MSA/MD"
-                      name={msaMd.name}
-                      id={msaMd.id}
-                      link={`/aggregate-reports/${params.year}/${state.id}`}
-                    />
-                  </li>
-                ) : null}
-
-                {params.reportId ? (
-                  <li>
-                    <ProgressCard
-                      title="report"
-                      name={report.label}
-                      id={report.value}
-                      link={`/aggregate-reports/${params.year}/${state.id}/${
+            <li>
+              <ProgressCard
+                title="report"
+                name={
+                  params.reportId
+                    ? report.label
+                    : params.msaMdId
+                      ? 'Select a report'
+                      : params.stateId
+                        ? ''
+                        : ''
+                }
+                id={params.reportId ? report.value : ''}
+                link={
+                  params.msaMdId
+                    ? `/aggregate-reports/${params.year}/${state.id}/${
                         msaMd.id
-                      }`}
-                    />
-                  </li>
-                ) : null}
-              </ol>
-              <hr />
-            </React.Fragment>
-          ) : null}
+                      }`
+                    : null
+                }
+              />
+            </li>
+          </ol>
+          <hr />
 
           {params.stateId ? (
             params.msaMdId ? (
@@ -127,16 +140,19 @@ class Aggregate extends React.Component {
               <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
             )
           ) : (
-            <Select
-              onChange={this.handleChange}
-              placeholder="Select a state..."
-              searchable={true}
-              autoFocus
-              openOnFocus
-              simpleValue
-              options={options}
-              optionComponent={Option}
-            />
+            <React.Fragment>
+              <Header type={4} headingText="Select a state" />
+              <Select
+                onChange={this.handleChange}
+                placeholder="Select a state..."
+                searchable={true}
+                autoFocus
+                openOnFocus
+                simpleValue
+                options={options}
+                optionComponent={Option}
+              />
+            </React.Fragment>
           )}
         </div>
 
