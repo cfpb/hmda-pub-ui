@@ -225,5 +225,5 @@ export const AGGREGATE_REPORTS = [
     ]
   },
 
-  { value: 'B', label: 'Conv Price Info by Incvalueence and Level' }
+  { value: 'B', label: 'Conv Price Info by Incidence and Level' }
 ]
