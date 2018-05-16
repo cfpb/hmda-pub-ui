@@ -1,6 +1,6 @@
 export const DISCLOSURE_REPORTS = {
     msa: [
-        { value: '1', label: 'Appliations by Tract' },
+        { value: '1', label: 'Applications by Tract' },
         { value: '2', label: 'Loans Purchased by Tract' },
         {
             label: 'Loans Sold',
