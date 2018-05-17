@@ -39,7 +39,6 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/disclosure-reports/2017"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
@@ -55,7 +54,6 @@ class Home extends Component {
               paragraphText="These reports summarize lending activity by MSA/MD."
               type={4}
             />
-            <span className="usa-label">Coming Soon</span>
           </div>
 
           <div className="card">
