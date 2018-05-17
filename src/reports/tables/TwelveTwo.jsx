@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 const renderData = (report, label) => {
   return (
-    <>
+    <React.Fragment>
       {renderCharacteristicTitle('Borrower Characteristics')}
       {mapCharacteristic(report.borrowerCharacteristics, label)}
       {renderCharacteristicTitle('Census Tract Characteristics')}
       {mapCharacteristic(report.censusTractCharacteristics, label)}
-    </>
+    </React.Fragment>
   )
 }
 
@@ -22,7 +22,7 @@ const renderCharacteristicTitle = key => {
   return (
     <tr className="characteristic-grey-title" key={key}>
       <th
-        colSpan={15}
+        colSpan={11}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
@@ -46,7 +46,7 @@ const renderCharacteristic = (characteristic, label) => {
   return [
     <tr className="characteristic-title" key={name}>
       <th
-        colSpan={15}
+        colSpan={11}
         style={{
           borderTopWidth: '2px',
           textTransform: 'uppercase',
@@ -67,6 +67,7 @@ const renderCharacteristic = (characteristic, label) => {
         <tr key={name + index}>
           <th>{detail}</th>
           {pricing.map((priceObj, index) => {
+            if (priceObj.pricing === 'HOEPA Loans') return null
             return (
               <td key={index}>
                 {label === 'NUMBER' ? priceObj.count : priceObj.value}
@@ -93,7 +94,7 @@ const makeTable = (report, label, ref) => {
           <th rowSpan={2} width="8%">
             Reported Pricing Data
           </th>
-          <th colSpan={8} width="64%">
+          <th colSpan={9} width="64%">
             Percentage Points above Average Prime Offer Rate (Only Includes
             Loans with Apr above the Threshold)
           </th>
