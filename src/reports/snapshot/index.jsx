@@ -6,7 +6,7 @@ const Snapshot = () => {
     <div className="usa-grid snapshot" id="main-content">
       <div className="usa-width-one-whole">
         <Header
-          type="main"
+          type={1}
           headingText="Snapshot National Loan Level Dataset"
           paragraphText="The snapshot files contain the national HMDA datasets as of 
           April 18th, 2018 for all HMDA reporters, as modified by the Bureau to 

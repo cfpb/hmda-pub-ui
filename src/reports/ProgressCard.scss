@@ -1,0 +1,22 @@
+.ProgressCards {
+  margin-left: 1em;
+
+  .ProgressCard {
+    .header {
+      margin-bottom: 0;
+      h4 {
+        margin-top: 0;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  li {
+    float: left;
+    margin-right: 2.35765%;
+    width: 31.76157%;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

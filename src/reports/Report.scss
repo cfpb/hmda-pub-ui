@@ -1,0 +1,46 @@
+.Report {
+  margin-top: 2em;
+  padding: 0 1em;
+  overflow-x: auto;
+  .report-date {
+    color: $color-gray;
+    text-align: right;
+  }
+
+  .header {
+    h3 {
+      margin-top: 0;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  table {
+    margin-top: 3em;
+    width: 100%;
+    thead th {
+      text-align: center;
+    }
+    td {
+      text-align: right;
+    }
+
+    tfoot {
+      th,
+      td {
+        border-top: 2px solid;
+      }
+
+      th {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .table-large td,
+  .table-large th {
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,10 +1,23 @@
 .header {
   h1,
+  h2,
+  h3,
   h4 {
     margin-bottom: 0;
   }
-  .usa-font-lead {
+  h4 {
+    margin-top: 3em;
+  }
+
+  .usa-font-lead,
+  p {
     color: $color-gray;
     margin-top: 0;
+  }
+
+  &.disabled {
+    h4 {
+      color: $color-gray;
+    }
   }
 }
