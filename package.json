@@ -17,7 +17,7 @@
     "fonts": "cp node_modules/uswds/src/fonts/sourcesanspro-* ./data-publication/fonts",
     "sass:prefix": "postcss -u autoprefixer -r ./data-publication/css/*.css",
     "html": "html-minifier --collapse-whitespace ./src/index.html -o ./data-publication/index.html",
-    "img": "cp -r ./node_modules/uswds/dist/img/* ./data-publication/img && cp ./src/img/* ./data-publication/img",
+    "img": "cp -r ./node_modules/uswds/dist/img/* ./data-publication/img",
     "postinstall": "yarn run clearDist && yarn run build",
     "watch:js": "yarn run js:dev -- --watch",
     "watch:sass": "node-sass-chokidar --watch --quiet --output-style=compressed --source-map=./data-publication/css/ ./src/sass/app.scss ./data-publication/css/app.min.css",
@@ -38,6 +38,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "file-saver": "1.3.8",
+    "hmda-ui": "0.0.6",
     "isomorphic-fetch": "2.2.1",
     "prop-types": "15.6.0",
     "react": "16.3.2",

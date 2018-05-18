@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import AppHeader from './common/AppHeader.jsx'
-import Footer from './common/Footer.jsx'
+import { Header, Footer } from 'hmda-ui'
 import Home from './Home.jsx'
 import ModifiedLar from './reports/ModifiedLar.jsx'
 import Disclosure from './reports/Disclosure.jsx'
@@ -12,7 +11,7 @@ import NotFound from './common/NotFound.jsx'
 const App = () => {
   return (
     <>
-      <AppHeader />
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/modified-lar/*" component={NotFound} />
