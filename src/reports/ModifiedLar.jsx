@@ -19,7 +19,7 @@ const ModifiedLar = props => {
           The{' '}
           <a
             title="Modified LAR file specification"
-            href="https://github.com/cfpb/hmda-platform/blob/master/Documents/2017_Modified_LAR_Spec.csv"
+            href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Spec.csv"
           >
             modified LAR file specification
           </a>{' '}
