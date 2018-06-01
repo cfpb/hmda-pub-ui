@@ -16,10 +16,10 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/modified-lar/*" component={NotFound} />
         <Route path="/modified-lar" component={ModifiedLar} />
-        {/*<Route
+        <Route
           path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}
-        />*/}
+        />
         <Route
           path="/aggregate-reports/:year/:stateId?/:msaMdId?/:reportId?"
           component={Aggregate}
