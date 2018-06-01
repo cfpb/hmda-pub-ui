@@ -9,7 +9,7 @@ class Report extends React.Component {
     super(props)
 
     this.state = {
-      error: null,
+      error: false,
       isLoaded: false,
       report: null
     }
@@ -126,7 +126,6 @@ class Report extends React.Component {
     }
     fetch(url)
       .then(response => {
-        console.log('response', response)
         if (response.ok) return response.json()
         throw new Error('Network response was not ok.')
       })
@@ -139,10 +138,8 @@ class Report extends React.Component {
       .catch(error => {
         this.setState({
           isLoaded: true,
-          error:
-            'Sorry, something went wrong with the upload. Please try again.'
+          error: true
         })
-        console.log('error', error)
       })
   }
 
