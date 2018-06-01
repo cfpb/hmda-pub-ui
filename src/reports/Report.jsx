@@ -125,21 +125,25 @@ class Report extends React.Component {
       }/${msaMdId}/${reportId}.txt`
     }
     fetch(url)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            report: result
-          })
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
+      .then(response => {
+        console.log('response', response)
+        if (response.ok) return response.json()
+        throw new Error('Network response was not ok.')
+      })
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          report: result
+        })
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error:
+            'Sorry, something went wrong with the upload. Please try again.'
+        })
+        console.log('error', error)
+      })
   }
 
   selectReport(report, reportType) {
@@ -216,25 +220,37 @@ class Report extends React.Component {
 
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
-    if (this.state.report === null) return null
 
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
-    const report = this.state.report
-    let table = report.table
-    if (table === 'IRS') table = 'R1'
-    const headingText = report
-      ? `Table ${table}: ${report.description}${
-          table === 'R1' ? '' : `, ${report.year}`
-        }`
-      : null
+    if (this.state.report) {
+      const report = this.state.report
+      let table = report.table
+      if (table === 'IRS') table = 'R1'
+      const headingText = report
+        ? `Table ${table}: ${report.description}${
+            table === 'R1' ? '' : `, ${report.year}`
+          }`
+        : null
+    }
+
     return (
       <div className="Report">
         <div className="usa-grid">
-          <Header type={3} headingText={headingText}>
-            {report ? (
-              <>
+          {this.state.error ? (
+            <div className="usa-alert usa-alert-error">
+              <div className="usa-alert-body">
+                <h3 className="usa-alert-heading">Report not found</h3>
+                <p className="usa-alert-text">
+                  Sorry, it doesn't look like this report has been generated
+                  yet. Please try again later.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <React.Fragment>
+              <Header type={3} headingText={headingText}>
                 {report.respondentId ? (
                   <p>
                     Institution: {report.respondentId} -{' '}
@@ -249,15 +265,19 @@ class Report extends React.Component {
                 ) : (
                   <p>Nationwide</p>
                 )}
-              </>
-            ) : null}
-          </Header>
-          <button onClick={this.generateCSV}>Save as CSV</button>
+              </Header>
+              <button onClick={this.generateCSV}>Save as CSV</button>
+            </React.Fragment>
+          )}
         </div>
-        {this.selectReport(report, reportType)}
-        <p className="usa-text-small report-date">
-          Report date: {report.reportDate}
-        </p>
+        {this.state.report ? (
+          <React.Fragment>
+            {this.selectReport(report, reportType)}
+            <p className="usa-text-small report-date">
+              Report date: {report.reportDate}
+            </p>
+          </React.Fragment>
+        ) : null}
       </div>
     )
   }
