@@ -221,63 +221,58 @@ class Report extends React.Component {
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
 
+    if (this.state.error)
+      return (
+        <div className="Report usa-grid">
+          <div className="usa-alert usa-alert-error">
+            <div className="usa-alert-body">
+              <h3 className="usa-alert-heading">Report not found</h3>
+              <p className="usa-alert-text">
+                Sorry, it doesn't look like this report has been generated yet.
+                Please try again later.
+              </p>
+            </div>
+          </div>
+        </div>
+      )
+
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
-    if (this.state.report) {
-      const report = this.state.report
-      let table = report.table
-      if (table === 'IRS') table = 'R1'
-      const headingText = report
-        ? `Table ${table}: ${report.description}${
-            table === 'R1' ? '' : `, ${report.year}`
-          }`
-        : null
-    }
+    const report = this.state.report
+    let table = report.table
+    if (table === 'IRS') table = 'R1'
+    const headingText = report
+      ? `Table ${table}: ${report.description}${
+          table === 'R1' ? '' : `, ${report.year}`
+        }`
+      : null
 
     return (
       <div className="Report">
         <div className="usa-grid">
-          {this.state.error ? (
-            <div className="usa-alert usa-alert-error">
-              <div className="usa-alert-body">
-                <h3 className="usa-alert-heading">Report not found</h3>
-                <p className="usa-alert-text">
-                  Sorry, it doesn't look like this report has been generated
-                  yet. Please try again later.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <React.Fragment>
-              <Header type={3} headingText={headingText}>
-                {report.respondentId ? (
-                  <p>
-                    Institution: {report.respondentId} -{' '}
-                    {report.institutionName}
-                  </p>
-                ) : null}
+          <Header type={3} headingText={headingText}>
+            {report.respondentId ? (
+              <p>
+                Institution: {report.respondentId} - {report.institutionName}
+              </p>
+            ) : null}
 
-                {report.msa ? (
-                  <p>
-                    MSA/MD: {report.msa.id} - {report.msa.name}
-                  </p>
-                ) : (
-                  <p>Nationwide</p>
-                )}
-              </Header>
-              <button onClick={this.generateCSV}>Save as CSV</button>
-            </React.Fragment>
-          )}
+            {report.msa ? (
+              <p>
+                MSA/MD: {report.msa.id} - {report.msa.name}
+              </p>
+            ) : (
+              <p>Nationwide</p>
+            )}
+          </Header>
+          <button onClick={this.generateCSV}>Save as CSV</button>
         </div>
-        {this.state.report ? (
-          <React.Fragment>
-            {this.selectReport(report, reportType)}
-            <p className="usa-text-small report-date">
-              Report date: {report.reportDate}
-            </p>
-          </React.Fragment>
-        ) : null}
+
+        {this.selectReport(report, reportType)}
+        <p className="usa-text-small report-date">
+          Report date: {report.reportDate}
+        </p>
       </div>
     )
   }
