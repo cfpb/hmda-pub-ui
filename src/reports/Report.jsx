@@ -226,7 +226,8 @@ class Report extends React.Component {
               <h3 className="usa-alert-heading">Report not found</h3>
               <p className="usa-alert-text">
                 Sorry, it doesn't look like this report has been generated yet.
-                Please try again later.
+                Reports are being added as they are available. Please try again
+                later.
               </p>
             </div>
           </div>
