@@ -9,7 +9,7 @@ class Report extends React.Component {
     super(props)
 
     this.state = {
-      error: null,
+      error: false,
       isLoaded: false,
       report: null
     }
@@ -125,21 +125,22 @@ class Report extends React.Component {
       }/${msaMdId}/${reportId}.txt`
     }
     fetch(url)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            report: result
-          })
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        }
-      )
+      .then(response => {
+        if (response.ok) return response.json()
+        throw new Error('Network response was not ok.')
+      })
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          report: result
+        })
+      })
+      .catch(error => {
+        this.setState({
+          isLoaded: true,
+          error: true
+        })
+      })
   }
 
   selectReport(report, reportType) {
@@ -216,7 +217,22 @@ class Report extends React.Component {
 
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
-    if (this.state.report === null) return null
+
+    if (this.state.error)
+      return (
+        <div className="Report usa-grid">
+          <div className="usa-alert usa-alert-error">
+            <div className="usa-alert-body">
+              <h3 className="usa-alert-heading">Report not found</h3>
+              <p className="usa-alert-text">
+                Sorry, it doesn't look like this report has been generated yet.
+                Reports are being added as they are available. Please try again
+                later.
+              </p>
+            </div>
+          </div>
+        </div>
+      )
 
     let reportType = 'disclosure'
     if (this.props.match.params.stateId) reportType = 'aggregate'
@@ -229,31 +245,28 @@ class Report extends React.Component {
           table === 'R1' ? '' : `, ${report.year}`
         }`
       : null
+
     return (
       <div className="Report">
         <div className="usa-grid">
           <Header type={3} headingText={headingText}>
-            {report ? (
-              <>
-                {report.respondentId ? (
-                  <p>
-                    Institution: {report.respondentId} -{' '}
-                    {report.institutionName}
-                  </p>
-                ) : null}
-
-                {report.msa ? (
-                  <p>
-                    MSA/MD: {report.msa.id} - {report.msa.name}
-                  </p>
-                ) : (
-                  <p>Nationwide</p>
-                )}
-              </>
+            {report.respondentId ? (
+              <p>
+                Institution: {report.respondentId} - {report.institutionName}
+              </p>
             ) : null}
+
+            {report.msa ? (
+              <p>
+                MSA/MD: {report.msa.id} - {report.msa.name}
+              </p>
+            ) : (
+              <p>Nationwide</p>
+            )}
           </Header>
           <button onClick={this.generateCSV}>Save as CSV</button>
         </div>
+
         {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">
           Report date: {report.reportDate}
