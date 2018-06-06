@@ -15,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 render(
-  <BrowserRouter>
+  <BrowserRouter basename="/data-publication">
     <App />
   </BrowserRouter>,
   document.getElementById('app')
