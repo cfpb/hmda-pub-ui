@@ -23,4 +23,4 @@ After building your desired project, you can visit it by running a static webser
 or
 `docker run -it -p "3000:80" -v "$(pwd):/usr/share/nginx/html" nginx:1.12`
 
-You'd then visit each project at `http://localhost:8081/data-publication/` or `192.168.99.100:3000/data-publication/` respectively.
+You'd then visit each project at `http://localhost:8081/dist/` or `192.168.99.100:3000/dist/` respectively.

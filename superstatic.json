@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/data-publication/**",
-      "destination": "/data-publication/index.html"
+      "source": "/dist/**",
+      "destination": "/dist/index.html"
     }
   ]
 }
