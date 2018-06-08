@@ -3565,9 +3565,9 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hmda-ui@0.0.14:
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/hmda-ui/-/hmda-ui-0.0.14.tgz#7feff9b5d6a86cfae76852e374ebfce0f49b9288"
+hmda-ui@0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/hmda-ui/-/hmda-ui-0.0.15.tgz#a9647e834cfc4a58d8388d9957365cb02bf91ebb"
   dependencies:
     babel-loader "8.0.0-beta.0"
     file-loader "1.1.11"
