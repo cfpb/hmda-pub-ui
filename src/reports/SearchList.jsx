@@ -42,6 +42,7 @@ class SearchList extends React.Component {
         })
     }
   }
+
   getDefaultState() {
     return {
       error: null,
@@ -62,7 +63,11 @@ class SearchList extends React.Component {
 
       for (let i = 0; i < len; i++) {
         const institution = institutions[i]
-        if (institution.name.indexOf(val) !== -1) {
+        if (
+          institution.name.indexOf(val) !== -1 &&
+          institution.respondentId !== 'Bank0_RID' &&
+          institution.respondentId !== 'Bank1_RID'
+        ) {
           institutionsFiltered.push(institution)
         }
       }
