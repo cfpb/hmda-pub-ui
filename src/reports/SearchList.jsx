@@ -29,7 +29,9 @@ class SearchList extends React.Component {
           INSTITUTIONS = result.institutions
           this.setState({
             isLoading: false,
-            institutions: result.institutions
+            institutions: result.institutions.map(institution => {
+              return { ...institution, name: institution.name.toUpperCase() }
+            })
           })
         })
         .catch(error => {
