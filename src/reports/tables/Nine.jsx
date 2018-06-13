@@ -66,7 +66,7 @@ const Nine = React.forwardRef((props, ref) => {
             CENSUS TRACTS BY MEDIAN AGE OF HOMES
           </th>
           <th colSpan={8}>
-            Loans on 1- to 4-Family Manufactured Home Dwellings
+            Loans on 1- to 4-Family and Manufactured Home Dwellings
           </th>
           <th colSpan={6} />
         </tr>

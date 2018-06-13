@@ -114,7 +114,7 @@ const One = React.forwardRef((props, ref) => {
             (STATE/COUNTY/TRACT NUMBER)
           </th>
           <th colSpan={8}>
-            Loans on 1- to 4-Family Manufactured Home Dwellings
+            Loans on 1- to 4-Family and Manufactured Home Dwellings
           </th>
           <th colSpan={props.reportType === 'aggregate' ? 8 : 6} />
         </tr>
