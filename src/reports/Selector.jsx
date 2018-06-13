@@ -20,7 +20,7 @@ class Selector extends React.Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <Header type={4} headingText={this.props.header} />
         <Select
           onChange={this.handleChange}
@@ -30,8 +30,16 @@ class Selector extends React.Component {
           openOnFocus
           options={this.props.options}
           optionComponent={Option}
+          noResultsText={
+            <div className="usa-alert usa-alert-error" role="alert">
+              <div className="usa-alert-body">
+                <h3 className="usa-alert-heading">No results found!</h3>
+                Sorry, there doesn't seem to be a match found. Please try again.
+              </div>
+            </div>
+          }
         />
-      </>
+      </React.Fragment>
     )
   }
 }
