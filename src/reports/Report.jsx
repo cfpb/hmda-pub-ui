@@ -115,7 +115,7 @@ class Report extends React.Component {
     let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}.txt`
-    } else {
+    } else if (params.institutionId) {
       if (reportId === 'R1') {
         msaMdId = 'nationwide'
         reportId = 'IRS'
@@ -123,6 +123,8 @@ class Report extends React.Component {
       url += `disclosure/${year}/${
         params.institutionId
       }/${msaMdId}/${reportId}.txt`
+    } else {
+      url += `national/${year}/${reportId}.txt`
     }
     fetch(url)
       .then(response => {
