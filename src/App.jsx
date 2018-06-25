@@ -5,6 +5,7 @@ import Home from './Home.jsx'
 import ModifiedLar from './reports/ModifiedLar.jsx'
 import Disclosure from './reports/Disclosure.jsx'
 import Aggregate from './reports/Aggregate.jsx'
+import NationalAggregate from './reports/NationalAggregate.jsx'
 import Snapshot from './reports/snapshot/index.jsx'
 import NotFound from './common/NotFound.jsx'
 
@@ -23,6 +24,10 @@ const App = () => {
         <Route
           path="/aggregate-reports/:year/:stateId?/:msaMdId?/:reportId?"
           component={Aggregate}
+        />
+        <Route
+          path="/national-aggregate-reports/:year/:reportId?"
+          component={NationalAggregate}
         />
         <Route
           path="/snapshot-national-loan-level-dataset"

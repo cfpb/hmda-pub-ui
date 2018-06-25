@@ -58,13 +58,13 @@ class Home extends Component {
 
           <div className="card">
             <Header
+              headingLink="/national-aggregate-reports/2017"
               headingText="National Aggregate Reports"
               paragraphText="These reports summarize nationwide lending activity. 
                 They indicate the number and dollar amounts of loan applications, 
                 cross-tabulated by loan, borrower and geographic characteristics."
               type={4}
             />
-            <span className="usa-label">Coming Soon</span>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Selector from './Selector.jsx'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
+import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
 
 const getHeader = params => {
   let header = ''
@@ -10,10 +11,12 @@ const getHeader = params => {
     header = `Choose a generated report for state ${
       params.stateId
     } and MSA/MD ${params.msaMdId}`
-  } else {
+  } else if (params.institutionId) {
     header = `Choose a generated report for institution ${
       params.institutionId
     } and MSA/MD ${params.msaMdId}`
+  } else {
+    header = 'Choose a generated report'
   }
 
   return header
@@ -24,11 +27,13 @@ const Reports = props => {
   let data = []
   if (params.stateId) {
     data = AGGREGATE_REPORTS
-  } else {
+  } else if (params.institutionId) {
     data =
       params.msaMdId === 'nationwide'
         ? DISCLOSURE_REPORTS.nationwide
         : DISCLOSURE_REPORTS.msa
+  } else {
+    data = NATIONAL_AGGREGATE_REPORTS
   }
 
   const options = data.map(option => {
