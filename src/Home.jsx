@@ -84,9 +84,9 @@ class Home extends Component {
             <Header
               headingLink="/dynamic-national-loan-level-dataset"
               headingText="Dynamic National Loan-Level Dataset"
-              paragraphText="The dynamic LAR and Transmittal Sheet files contain the 
-              national HMDA datasets, modified by the Bureau to protect applicant and 
-              borrower privacy, updated weekly for all HMDA reporters."
+              paragraphText="The dynamic files contain the national HMDA datasets, 
+              modified by the Bureau to protect applicant and borrower privacy, 
+              updated weekly for all HMDA reporters."
               type={4}
             />
           </div>

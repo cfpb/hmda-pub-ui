@@ -8,12 +8,12 @@ const DynamicDataset = () => {
         <Header
           type={1}
           headingText="Dynamic National Loan-Level Dataset"
-          paragraphText="The dynamic LAR and Transmittal Sheet files contain the 
-          national HMDA datasets, modified by the Bureau to protect applicant and 
-          borrower privacy, updated weekly for all HMDA reporters. The snapshot 
-          files are available to download in a pipe delimited text file format. 
-          The dynamic datasets are updated on Mondays with HMDA submissions received 
-          through the previous Sunday night."
+          paragraphText="The dynamic files contain the national HMDA datasets, 
+          modified by the Bureau to protect applicant andborrower privacy, updated 
+          weekly for all HMDA reporters. The snapshot files are available to 
+          download in a pipe delimited text file format. The dynamic datasets are 
+          updated on Mondays with HMDA submissions received through the previous 
+          Sunday night."
         />
         <div className="usa-grid-full">
           <div className="usa-width-one-half">
@@ -44,7 +44,7 @@ const DynamicDataset = () => {
               <li>
                 <a
                   download={true}
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
+                  href="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_LAR_Spec.csv"
                 >
                   Loan/Application Records (LAR)
                 </a>
@@ -52,7 +52,7 @@ const DynamicDataset = () => {
               <li>
                 <a
                   download={true}
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
+                  href="https://github.com/cfpb/hmda-platform/blob/v1.x/Documents/2017_Dynamic_TS_Spec.csv"
                 >
                   Transmittal Sheet Records (TS)
                 </a>
