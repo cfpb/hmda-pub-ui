@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../common/Header.jsx'
+import Header from '../common/Header.jsx'
 
 const DynamicDataset = () => {
   return (
@@ -17,58 +17,47 @@ const DynamicDataset = () => {
         />
         <div className="usa-grid-full">
           <div className="usa-width-one-half">
-            <Header type={4} headingText="2017 Dynamic Datasets">
-              <ul>
-                <li>
+            <Header type={4} headingText="2017 Dynamic Datasets" />
+            <ul>
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
+                >
                   Loan/Application Records (LAR)
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
+                >
                   Transmittal Sheet Records (TS)
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </Header>
+                </a>
+              </li>
+            </ul>
           </div>
           <div className="usa-width-one-half">
-            <Header type={4} headingText="2017 Dynamic File Specifications">
-              <ul>
-                <li>
-                  <a
-                    download={true}
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
-                  >
-                    Loan/Application Records (LAR)
-                  </a>
-                </li>
-                <li>
-                  <a
-                    download={true}
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
-                  >
-                    Transmittal Sheet Records (TS)
-                  </a>
-                </li>
-              </ul>
-            </Header>
+            <Header type={4} headingText="2017 Dynamic File Specifications" />
+            <ul>
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
+                >
+                  Loan/Application Records (LAR)
+                </a>
+              </li>
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
+                >
+                  Transmittal Sheet Records (TS)
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
