@@ -21,116 +21,114 @@ const Snapshot = () => {
         </Header>
         <div className="usa-grid-full">
           <div className="usa-width-one-half">
-            <Header type="sub" headingText="2017 Datasets">
-              <ul>
-                <li>
-                  Loan/Application Records (LAR)
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip"
-                      >
-                        Pipe Delimited
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  Transmittal Sheet Records (TS)
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip"
-                      >
-                        Pipe Delimited
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  Reporter Panel
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip"
-                      >
-                        Pipe Delimited
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  MSA/MD Description
-                  <ul style={{ marginTop: '.5em' }}>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip"
-                      >
-                        CSV
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        download={true}
-                        href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip"
-                      >
-                        Pipe Delimited
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </Header>
+            <Header type={4} headingText="2017 Datasets" />
+            <ul>
+              <li>
+                Loan/Application Records (LAR)
+                <ul style={{ marginTop: '.5em' }}>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
+                    >
+                      CSV
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip"
+                    >
+                      Pipe Delimited
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Transmittal Sheet Records (TS)
+                <ul style={{ marginTop: '.5em' }}>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
+                    >
+                      CSV
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip"
+                    >
+                      Pipe Delimited
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Reporter Panel
+                <ul style={{ marginTop: '.5em' }}>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip"
+                    >
+                      CSV
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip"
+                    >
+                      Pipe Delimited
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                MSA/MD Description
+                <ul style={{ marginTop: '.5em' }}>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip"
+                    >
+                      CSV
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      download={true}
+                      href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip"
+                    >
+                      Pipe Delimited
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
           <div className="usa-width-one-half">
-            <Header type="sub" headingText="2017 File Specifications">
-              <ul>
-                <li>
-                  <a
-                    download={true}
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
-                  >
-                    LAR, TS and Reporter Panel
-                  </a>
-                </li>
-                <li>
-                  <a
-                    download={true}
-                    href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
-                  >
-                    LAR Code Sheet
-                  </a>
-                </li>
-              </ul>
-            </Header>
+            <Header type={4} headingText="2017 File Specifications" />
+            <ul>
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
+                >
+                  LAR, TS and Reporter Panel
+                </a>
+              </li>
+              <li>
+                <a
+                  download={true}
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
+                >
+                  LAR Code Sheet
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

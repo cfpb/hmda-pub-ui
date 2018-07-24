@@ -7,6 +7,7 @@ import Disclosure from './reports/Disclosure.jsx'
 import Aggregate from './reports/Aggregate.jsx'
 import NationalAggregate from './reports/NationalAggregate.jsx'
 import Snapshot from './reports/snapshot/index.jsx'
+import DynamicDataset from './reports/DynamicDataset.jsx'
 import NotFound from './common/NotFound.jsx'
 
 const App = () => {
@@ -32,6 +33,10 @@ const App = () => {
         <Route
           path="/snapshot-national-loan-level-dataset"
           component={Snapshot}
+        />
+        <Route
+          path="/dynamic-national-loan-level-dataset"
+          component={DynamicDataset}
         />
         <Route component={NotFound} />
       </Switch>
