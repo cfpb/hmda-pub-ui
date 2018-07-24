@@ -22,7 +22,7 @@ const DynamicDataset = () => {
               <li>
                 <a
                   download={true}
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip"
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2017_lar.txt"
                 >
                   Loan/Application Records (LAR)
                 </a>
@@ -31,7 +31,7 @@ const DynamicDataset = () => {
               <li>
                 <a
                   download={true}
-                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip"
+                  href="https://s3.amazonaws.com/cfpb-hmda-public/prod/dynamic-data/2017_ts.txt"
                 >
                   Transmittal Sheet Records (TS)
                 </a>
