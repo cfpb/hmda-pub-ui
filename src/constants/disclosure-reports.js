@@ -204,6 +204,10 @@ export const DISCLOSURE_REPORTS = {
         {
           value: 'A3',
           label: 'Loan Sale by Loan Type Multi-Family'
+        },
+        {
+          value: 'A4',
+          label: 'Preapproval Conv-Home-Pur First'
         }
       ]
     },
@@ -224,6 +228,10 @@ export const DISCLOSURE_REPORTS = {
         {
           value: 'A3W',
           label: 'Loan Sale by Loan Type Multi-Family - Nationwide'
+        },
+        {
+          value: 'A4W',
+          label: 'Preapproval Conv-Home-Pur First - Nationwide'
         }
       ]
     },
