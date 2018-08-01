@@ -8,11 +8,11 @@ const DynamicDataset = () => {
         <Header
           type={1}
           headingText="Dynamic National Loan-Level Dataset"
-          paragraphText="The dynamic files contain the national HMDA datasets, 
-          modified by the Bureau to protect applicant andborrower privacy, updated 
-          weekly for all HMDA reporters. The snapshot files are available to 
-          download in a pipe delimited text file format. The dynamic datasets are 
-          updated on Mondays with HMDA submissions received through the previous 
+          paragraphText="The dynamic files contain the national HMDA datasets,
+          modified by the Bureau to protect applicant and borrower privacy, updated
+          weekly for all HMDA reporters. The dynamic files are available to
+          download in a pipe delimited text file format. The dynamic datasets are
+          updated on Mondays with HMDA submissions received through the previous
           Sunday night."
         />
         <div className="usa-grid-full">
