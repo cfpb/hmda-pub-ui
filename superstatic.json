@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/dist/**",
-      "destination": "/dist/index.html"
-    }
-  ]
-}
