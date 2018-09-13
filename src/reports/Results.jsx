@@ -91,9 +91,7 @@ class Results extends React.Component {
         <p>Respondent ID: {institution.respondentId}</p>
         <a
           className="usa-font-small"
-          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${
-            institution.institutionId
-          }.txt`}
+          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${institution.institutionId}.txt`}
           download
         >
           Download Modified LAR
@@ -130,14 +128,14 @@ class Results extends React.Component {
     const mapper = this.props.makeListItem || this.makeListItem
 
     return (
-      <>
+      <React.Fragment>
         {this.renderHeading(
           this.props.institutions.length,
           this.props.inputValue
         )}
         <ul className="results">{visibleInstitutions.map(mapper)}</ul>
         {this.renderViewAllButton(this.props.institutions.length)}
-      </>
+      </React.Fragment>
     )
   }
 }

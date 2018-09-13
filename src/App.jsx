@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Header, Footer } from 'hmda-ui'
+
 import Home from './Home.jsx'
 import ModifiedLar from './reports/ModifiedLar.jsx'
 import Disclosure from './reports/Disclosure.jsx'
@@ -13,7 +13,7 @@ import NotFound from './common/NotFound.jsx'
 const App = () => {
   return (
     <React.Fragment>
-      <Header />
+      {/*<Header />*/}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/modified-lar/*" component={NotFound} />
@@ -40,7 +40,7 @@ const App = () => {
         />
         <Route component={NotFound} />
       </Switch>
-      <Footer />
+      {/*<Footer />*/}
     </React.Fragment>
   )
 }
