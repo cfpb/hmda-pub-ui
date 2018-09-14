@@ -1,0 +1,62 @@
+@font-face {
+  font-family: SourceSansPro;
+  src: url(/fonts/sourcesanspro-regular-webfont.woff);
+}
+@font-face {
+  font-family: SourceSansProBold;
+  src: url(/fonts/sourcesanspro-bold-webfont.woff);
+}
+@font-face {
+  font-family: SourceSansProItalic;
+  src: url(/fonts/sourcesanspro-italic-webfont.woff);
+}
+html {
+  font-family: SourceSansPro;
+  font-size: 10px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: SourceSansPro;
+  font-size: 1.6rem;
+}
+.skipnav {
+  background: transparent;
+  color: #212121;
+  left: 0;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  top: -4.2rem;
+  transition: all 0.2s ease-in-out;
+  z-index: 100;
+}
+
+a {
+  color: #0071bc;
+  text-decoration: underline;
+}
+a:visited {
+  color: #4c2c92;
+}
+a:hover,
+a:active {
+  color: #205493;
+}
+
+p {
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: SourceSansProBold;
+}
+
+hr {
+  border-bottom: none;
+  border-top: 1px solid $color-gray-light;
+}

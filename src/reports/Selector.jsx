@@ -2,6 +2,8 @@ import React from 'react'
 import Select from 'react-select'
 import Header from '../common/Header.jsx'
 
+import './Selector.css'
+
 class Selector extends React.Component {
   constructor(props) {
     super(props)

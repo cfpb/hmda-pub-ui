@@ -1,0 +1,61 @@
+.home {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.home h1 {
+  font-size: 4rem;
+  margin-top: 1.5em;
+}
+
+.home .lead {
+  color: #5b616b;
+  font-size: 2rem;
+  line-height: 1.7;
+  max-width: 77rem;
+}
+.home hr {
+  border-color: #aeb0b5;
+  border-top: none;
+  margin: 0 auto 3rem;
+  max-width: 1040px;
+}
+.home .header {
+  border-bottom: none;
+}
+.home .card-container {
+  align-items: stretch;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 3rem 0;
+}
+.home .card {
+  flex: 1;
+  margin: 0 20px;
+}
+.home .card:first-child {
+  margin-left: 0;
+}
+.home .card:last-child {
+  margin-right: 0;
+}
+.home .card.quarter {
+  max-width: 24%;
+}
+
+.home h4 {
+  margin: 0;
+}
+.home p {
+  margin-top: 0;
+}
+.home .usa-button-secondary {
+  margin-top: 0;
+}
+.home .usa-label {
+  background-color: #f9c642;
+  color: #212121;
+  font-size: 0.8em;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}

@@ -3,6 +3,8 @@ import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
+import './SearchList.css'
+
 let INSTITUTIONS = null
 
 class SearchList extends React.Component {

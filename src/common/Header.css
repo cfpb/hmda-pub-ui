@@ -1,23 +1,23 @@
-.header {
-  h1,
-  h2,
-  h3,
-  h4 {
+
+  .header h1,
+  .header h2,
+  .header h3,
+  .header h4 {
     margin-bottom: 0;
   }
-  h4 {
+  .header h4 {
     margin-top: 3em;
   }
 
-  .usa-font-lead,
-  p {
+  .header .usa-font-lead,
+  .header p {
     color: $color-gray;
     margin-top: 0;
   }
 
-  &.disabled {
+  .header .disabled {
     h4 {
       color: $color-gray;
     }
   }
-}
+

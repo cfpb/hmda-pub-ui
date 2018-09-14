@@ -2,6 +2,8 @@ import React from 'react'
 
 import Header from '../common/Header.jsx'
 
+import './ProgressCard.css'
+
 const ProgressCard = ({ name, id, link, title }) => {
   if (id !== '') {
     name = name + ' - '

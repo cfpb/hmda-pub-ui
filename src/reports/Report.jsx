@@ -4,6 +4,8 @@ import LoadingIcon from '../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
 import fileSaver from 'file-saver'
 
+import './Report.css'
+
 class Report extends React.Component {
   constructor(props) {
     super(props)

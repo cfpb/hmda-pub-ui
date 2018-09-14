@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Results.css'
+
 const defaultState = {
   showAll: false
 }
