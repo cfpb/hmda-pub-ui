@@ -23,17 +23,16 @@ class Report extends React.Component {
   generateCSV() {
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
-    let theCSV =
-      `"Table ${report.table}: ${report.description}${
-        report.table === 'R1' ? '"' : `, ${report.year}"`
-      }` + '\n'
+    let theCSV = `"Table ${report.table}: ${report.description}${report.table ===
+    'R1'
+      ? '"'
+      : `, ${report.year}"`}\n`
     const msa = report.msa
-      ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"` + '\n'
-      : '"Nationwide"' + '\n'
+      ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"\n`
+      : '"Nationwide"\n'
     theCSV = theCSV + msa
     const institution = report.respondentId
-      ? `"Institution: ${report.respondentId} - ${report.institutionName}"` +
-        '\n'
+      ? `"Institution: ${report.respondentId} - ${report.institutionName}"\n`
       : ''
     theCSV = theCSV + institution
 
@@ -70,7 +69,7 @@ class Report extends React.Component {
         // add the content
         theCSVRows = theCSVRows + '"' + cell.innerHTML + '"'
         if (cell.hasAttribute('colspan')) {
-          const spanCount = parseInt(cell.getAttribute('colspan'))
+          const spanCount = parseInt(cell.getAttribute('colspan'), 10)
           let i = 0
           for (i; i < spanCount - 1; i++) {
             theCSVRows = theCSVRows + ','
@@ -120,9 +119,7 @@ class Report extends React.Component {
         msaMdId = 'nationwide'
         reportId = 'IRS'
       }
-      url += `disclosure/${year}/${
-        params.institutionId
-      }/${msaMdId}/${reportId}.txt`
+      url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}.txt`
     } else {
       url += `national/${year}/${reportId}.txt`
     }
@@ -243,9 +240,9 @@ class Report extends React.Component {
     let table = report.table
     if (table === 'IRS') table = 'R1'
     const headingText = report
-      ? `Table ${table}: ${report.description}${
-          table === 'R1' ? '' : `, ${report.year}`
-        }`
+      ? `Table ${table}: ${report.description}${table === 'R1'
+          ? ''
+          : `, ${report.year}`}`
       : null
 
     return (

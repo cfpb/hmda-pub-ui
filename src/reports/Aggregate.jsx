@@ -1,6 +1,5 @@
 import React from 'react'
-import Select from 'react-select-plus'
-import Option from '../Option.js'
+import Select from 'react-select'
 import Header from '../common/Header.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import MsaMds from './MsaMds.jsx'
@@ -93,9 +92,7 @@ class Aggregate extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.stateId
-                      ? 'Select a MSA/MD'
-                      : ''
+                    : params.stateId ? 'Select a MSA/MD' : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -114,16 +111,12 @@ class Aggregate extends React.Component {
                     ? report.label
                     : params.msaMdId
                       ? 'Select a report'
-                      : params.stateId
-                        ? ''
-                        : ''
+                      : params.stateId ? '' : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/aggregate-reports/${params.year}/${state.id}/${
-                        msaMd.id
-                      }`
+                    ? `/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
                     : null
                 }
               />
@@ -150,7 +143,6 @@ class Aggregate extends React.Component {
                 openOnFocus
                 simpleValue
                 options={options}
-                optionComponent={Option}
               />
             </React.Fragment>
           )}

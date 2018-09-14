@@ -1,6 +1,4 @@
 import React from 'react'
-import Select from 'react-select-plus'
-import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
@@ -28,8 +26,6 @@ class NationalAggregate extends React.Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
-
-    const { params } = this.props.match
   }
 
   handleChange(val) {

@@ -117,7 +117,7 @@ const renderRows = (report, countOrValue) => {
               </th>
             </tr>
           )
-        report[key].map((dataType, index) => {
+        report[key].forEach((dataType, index) => {
           toRender.push(
             <tr key={key + index}>
               <th style={style}>{dataType.pricing}</th>

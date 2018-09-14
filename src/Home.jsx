@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+
 import Header from './common/Header.jsx'
 
 class Home extends Component {
@@ -13,7 +13,9 @@ class Home extends Component {
                 The HMDA data and reports are the most comprehensive publicly
                 available information on mortgage market activity. The data and
                 reports can be used along with the{' '}
-                <a href="https://www.ffiec.gov/censusproducts.htm">Census</a>{' '}
+                <a href="https://www.ffiec.gov/censusproducts.htm">
+                  Census
+                </a>{' '}
                 demographic information for data analysis purposes. Available
                 below are the data and reports for HMDA data collected in or
                 after 2017. For HMDA data and reports for prior years, visit{' '}
