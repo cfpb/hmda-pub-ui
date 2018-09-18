@@ -5,6 +5,8 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
 
+import './NationalAggregate.css'
+
 const detailsCache = {
   reports: {}
 }
@@ -50,7 +52,7 @@ class NationalAggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="usa-grid" id="main-content">
+        <div className="NationalAggregate" id="main-content">
           {header}
           <ol className="ProgressCards usa-grid-full">
             <li>
