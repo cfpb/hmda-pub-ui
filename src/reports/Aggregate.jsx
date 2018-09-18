@@ -9,6 +9,8 @@ import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 
+import './Aggregate.css'
+
 const detailsCache = {
   states: {},
   msaMds: {},
@@ -44,7 +46,7 @@ class Aggregate extends React.Component {
 
   handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/${val}`
+      pathname: `${this.props.match.url}/${val.value}`
     })
   }
 
@@ -74,9 +76,9 @@ class Aggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="usa-grid" id="main-content">
+        <div className="Aggregate" id="main-content">
           {header}
-          <ol className="ProgressCards usa-grid-full">
+          <ol className="ProgressCards">
             <li>
               <ProgressCard
                 title="state"
