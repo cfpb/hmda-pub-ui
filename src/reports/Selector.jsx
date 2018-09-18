@@ -28,7 +28,7 @@ class Selector extends React.Component {
           placeholder={this.props.placeholder}
           searchable={true}
           autoFocus
-          openOnFocus
+          menuIsOpen
           options={this.props.options}
           noResultsText={
             <div className="usa-alert usa-alert-error" role="alert">

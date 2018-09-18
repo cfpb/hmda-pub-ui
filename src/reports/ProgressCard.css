@@ -1,5 +1,8 @@
 .ProgressCards {
-  margin-left: 1em;
+  align-items: stretch;
+  display: flex;
+  margin: 0;
+  padding: 0 0 0 1em;
 }
 
 .ProgressCards .ProgressCard .header {
@@ -11,9 +14,11 @@
 }
 
 .ProgressCards li {
-  float: left;
-  margin-right: 2.35765%;
-  width: 31.76157%;
+  flex: 1;
+  margin: 0 20px;
+}
+.ProgressCards li:first-child {
+  margin-left: 0;
 }
 .ProgressCards li:last-child {
   margin-right: 0;

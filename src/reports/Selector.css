@@ -1,11 +1,11 @@
 .Select {
   clear: both;
+}
 
-  .Select-control {
-    margin-bottom: 450px;
-  }
+.Select .Select-control {
+  margin-bottom: 450px;
+}
 
-  .usa-alert {
-    color: $color-base !important;
-  }
+.Select .usa-alert {
+  color: #212121 !important;
 }

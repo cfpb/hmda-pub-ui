@@ -221,11 +221,11 @@ class Report extends React.Component {
 
     if (this.state.error)
       return (
-        <div className="Report usa-grid">
-          <div className="usa-alert usa-alert-error">
-            <div className="usa-alert-body">
-              <h3 className="usa-alert-heading">Report not found</h3>
-              <p className="usa-alert-text">
+        <div className="Report">
+          <div className="alert alert-error">
+            <div className="alert-body">
+              <h3 className="alert-heading">Report not found</h3>
+              <p className="alert-text">
                 Sorry, it doesn't look like this report has been generated yet.
                 Reports are being added as they are available. Please try again
                 later.
@@ -249,24 +249,22 @@ class Report extends React.Component {
 
     return (
       <div className="Report">
-        <div className="usa-grid">
-          <Header type={3} headingText={headingText}>
-            {report.respondentId ? (
-              <p>
-                Institution: {report.respondentId} - {report.institutionName}
-              </p>
-            ) : null}
+        <Header type={3} headingText={headingText}>
+          {report.respondentId ? (
+            <p>
+              Institution: {report.respondentId} - {report.institutionName}
+            </p>
+          ) : null}
 
-            {report.msa ? (
-              <p>
-                MSA/MD: {report.msa.id} - {report.msa.name}
-              </p>
-            ) : (
-              <p>Nationwide</p>
-            )}
-          </Header>
+          {report.msa ? (
+            <p>
+              MSA/MD: {report.msa.id} - {report.msa.name}
+            </p>
+          ) : (
+            <p>Nationwide</p>
+          )}
           <button onClick={this.generateCSV}>Save as CSV</button>
-        </div>
+        </Header>
 
         {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">

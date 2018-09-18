@@ -29,7 +29,7 @@ class Results extends React.Component {
       length > DEFAULT_NUMBER_OF_INSTITUTIONS
     ) {
       return (
-        <button onClick={this.handleShowAllClick} className="usa-button">
+        <button onClick={this.handleShowAllClick} className="button">
           View all {length} results
         </button>
       )
@@ -135,7 +135,7 @@ class Results extends React.Component {
           this.props.institutions.length,
           this.props.inputValue
         )}
-        <ul className="results">{visibleInstitutions.map(mapper)}</ul>
+        <ul className="Results">{visibleInstitutions.map(mapper)}</ul>
         {this.renderViewAllButton(this.props.institutions.length)}
       </React.Fragment>
     )
