@@ -1,14 +1,14 @@
 @font-face {
   font-family: SourceSansPro;
-  src: url(/fonts/sourcesanspro-regular-webfont.woff);
+  src: url(./fonts/sourcesanspro-regular-webfont.woff);
 }
 @font-face {
   font-family: SourceSansProBold;
-  src: url(/fonts/sourcesanspro-bold-webfont.woff);
+  src: url(./fonts/sourcesanspro-bold-webfont.woff);
 }
 @font-face {
   font-family: SourceSansProItalic;
-  src: url(/fonts/sourcesanspro-italic-webfont.woff);
+  src: url(./fonts/sourcesanspro-italic-webfont.woff);
 }
 html {
   font-family: SourceSansPro;

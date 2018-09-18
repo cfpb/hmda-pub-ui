@@ -27,7 +27,7 @@ coverage/
 # Front-End #
 #############
 node_modules/
-dist/
+build/
 env.json
 yarn-error.log
 
