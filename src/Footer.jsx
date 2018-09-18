@@ -5,11 +5,11 @@ import logo from './images/ffiec-logo.svg'
 
 const Footer = () => {
   return (
-    <React.Fragment>
+    <footer className="Footer" role="contentinfo">
       <div className="return-to-top">
         <a href="#">Return to top</a>
       </div>
-      <footer className="Footer footer footer-slim" role="contentinfo">
+      <div className="content-wrapper">
         <div className="grid">
           <div className="item">
             <a className="home-link" href="/" aria-label="Home">
@@ -41,8 +41,8 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-      </footer>
-    </React.Fragment>
+      </div>
+    </footer>
   )
 }
 

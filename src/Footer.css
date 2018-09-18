@@ -1,4 +1,10 @@
 .Footer {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.Footer .content-wrapper {
   background: #f1f1f1;
 }
 .Footer .home-link {
