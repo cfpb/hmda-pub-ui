@@ -1,7 +1,7 @@
 import isomorphicFetch from 'isomorphic-fetch'
 
 function getMsaUrl(institutionId) {
-  return `https://ffiec-api.cfpb.gov/public/filers/2017/${institutionId}/msaMds`
+  return `/v2/public/filers/2017/${institutionId}/msaMds`
 }
 
 export default function(institutionId) {
