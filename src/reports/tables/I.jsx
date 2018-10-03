@@ -10,7 +10,7 @@ const getRows = institutions => {
   let toRender = []
   let institutionsToRender = []
 
-  institutions.map((institution, index) => {
+  institutions.forEach((institution, index) => {
     institutionsToRender.push(institution)
 
     if (

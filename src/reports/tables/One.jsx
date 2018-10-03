@@ -27,7 +27,7 @@ const renderData = (tracts, reportType) => {
 
 const renderAggregateData = dispositions => {
   let toRender = []
-  dispositions.map((disposition, index) => {
+  dispositions.forEach((disposition, index) => {
     if (
       disposition.title === '% Minority Population' ||
       disposition.title === 'Median Income as PCT of MSA/MD Median'

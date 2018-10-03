@@ -1,6 +1,5 @@
 import React from 'react'
-import Select from 'react-select-plus'
-import Option from '../Option.js'
+import Select from 'react-select'
 import Header from '../common/Header.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import MsaMds from './MsaMds.jsx'
@@ -9,6 +8,8 @@ import Report from './Report.jsx'
 import STATES from '../constants/states.js'
 import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
+
+import './Aggregate.css'
 
 const detailsCache = {
   states: {},
@@ -45,7 +46,7 @@ class Aggregate extends React.Component {
 
   handleChange(val) {
     this.props.history.push({
-      pathname: `${this.props.match.url}/${val}`
+      pathname: `${this.props.match.url}/${val.value}`
     })
   }
 
@@ -75,9 +76,9 @@ class Aggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="usa-grid" id="main-content">
+        <div className="Aggregate" id="main-content">
           {header}
-          <ol className="ProgressCards usa-grid-full">
+          <ol className="ProgressCards">
             <li>
               <ProgressCard
                 title="state"
@@ -93,9 +94,7 @@ class Aggregate extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.stateId
-                      ? 'Select a MSA/MD'
-                      : ''
+                    : params.stateId ? 'Select a MSA/MD' : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -114,16 +113,12 @@ class Aggregate extends React.Component {
                     ? report.label
                     : params.msaMdId
                       ? 'Select a report'
-                      : params.stateId
-                        ? ''
-                        : ''
+                      : params.stateId ? '' : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/aggregate-reports/${params.year}/${state.id}/${
-                        msaMd.id
-                      }`
+                    ? `/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
                     : null
                 }
               />
@@ -150,7 +145,6 @@ class Aggregate extends React.Component {
                 openOnFocus
                 simpleValue
                 options={options}
-                optionComponent={Option}
               />
             </React.Fragment>
           )}

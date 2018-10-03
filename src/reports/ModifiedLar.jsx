@@ -2,9 +2,11 @@ import React from 'react'
 import Header from '../common/Header.jsx'
 import SearchList from './SearchList.jsx'
 
+import './ModifiedLar.css'
+
 const ModifiedLar = props => {
   return (
-    <div className="usa-grid" id="main-content">
+    <div className="ModifiedLar" id="main-content">
       <Header
         type={1}
         headingText="Modified Loan/Application Register (LAR)"

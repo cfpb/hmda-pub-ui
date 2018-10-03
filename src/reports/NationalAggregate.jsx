@@ -1,11 +1,11 @@
 import React from 'react'
-import Select from 'react-select-plus'
-import Option from '../Option.js'
 import Header from '../common/Header.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
+
+import './NationalAggregate.css'
 
 const detailsCache = {
   reports: {}
@@ -28,8 +28,6 @@ class NationalAggregate extends React.Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
-
-    const { params } = this.props.match
   }
 
   handleChange(val) {
@@ -54,7 +52,7 @@ class NationalAggregate extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="usa-grid" id="main-content">
+        <div className="NationalAggregate" id="main-content">
           {header}
           <ol className="ProgressCards usa-grid-full">
             <li>

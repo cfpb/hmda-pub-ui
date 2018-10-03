@@ -4,6 +4,8 @@ import LoadingIcon from '../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
 import fileSaver from 'file-saver'
 
+import './Report.css'
+
 class Report extends React.Component {
   constructor(props) {
     super(props)
@@ -23,17 +25,16 @@ class Report extends React.Component {
   generateCSV() {
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
-    let theCSV =
-      `"Table ${report.table}: ${report.description}${
-        report.table === 'R1' ? '"' : `, ${report.year}"`
-      }` + '\n'
+    let theCSV = `"Table ${report.table}: ${report.description}${report.table ===
+    'R1'
+      ? '"'
+      : `, ${report.year}"`}\n`
     const msa = report.msa
-      ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"` + '\n'
-      : '"Nationwide"' + '\n'
+      ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"\n`
+      : '"Nationwide"\n'
     theCSV = theCSV + msa
     const institution = report.respondentId
-      ? `"Institution: ${report.respondentId} - ${report.institutionName}"` +
-        '\n'
+      ? `"Institution: ${report.respondentId} - ${report.institutionName}"\n`
       : ''
     theCSV = theCSV + institution
 
@@ -70,7 +71,7 @@ class Report extends React.Component {
         // add the content
         theCSVRows = theCSVRows + '"' + cell.innerHTML + '"'
         if (cell.hasAttribute('colspan')) {
-          const spanCount = parseInt(cell.getAttribute('colspan'))
+          const spanCount = parseInt(cell.getAttribute('colspan'), 10)
           let i = 0
           for (i; i < spanCount - 1; i++) {
             theCSVRows = theCSVRows + ','
@@ -120,9 +121,7 @@ class Report extends React.Component {
         msaMdId = 'nationwide'
         reportId = 'IRS'
       }
-      url += `disclosure/${year}/${
-        params.institutionId
-      }/${msaMdId}/${reportId}.txt`
+      url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}.txt`
     } else {
       url += `national/${year}/${reportId}.txt`
     }
@@ -222,11 +221,11 @@ class Report extends React.Component {
 
     if (this.state.error)
       return (
-        <div className="Report usa-grid">
-          <div className="usa-alert usa-alert-error">
-            <div className="usa-alert-body">
-              <h3 className="usa-alert-heading">Report not found</h3>
-              <p className="usa-alert-text">
+        <div className="Report">
+          <div className="alert alert-error">
+            <div className="alert-body">
+              <h3 className="alert-heading">Report not found</h3>
+              <p className="alert-text">
                 Sorry, it doesn't look like this report has been generated yet.
                 Reports are being added as they are available. Please try again
                 later.
@@ -243,31 +242,29 @@ class Report extends React.Component {
     let table = report.table
     if (table === 'IRS') table = 'R1'
     const headingText = report
-      ? `Table ${table}: ${report.description}${
-          table === 'R1' ? '' : `, ${report.year}`
-        }`
+      ? `Table ${table}: ${report.description}${table === 'R1'
+          ? ''
+          : `, ${report.year}`}`
       : null
 
     return (
       <div className="Report">
-        <div className="usa-grid">
-          <Header type={3} headingText={headingText}>
-            {report.respondentId ? (
-              <p>
-                Institution: {report.respondentId} - {report.institutionName}
-              </p>
-            ) : null}
+        <Header type={3} headingText={headingText}>
+          {report.respondentId ? (
+            <p>
+              Institution: {report.respondentId} - {report.institutionName}
+            </p>
+          ) : null}
 
-            {report.msa ? (
-              <p>
-                MSA/MD: {report.msa.id} - {report.msa.name}
-              </p>
-            ) : (
-              <p>Nationwide</p>
-            )}
-          </Header>
+          {report.msa ? (
+            <p>
+              MSA/MD: {report.msa.id} - {report.msa.name}
+            </p>
+          ) : (
+            <p>Nationwide</p>
+          )}
           <button onClick={this.generateCSV}>Save as CSV</button>
-        </div>
+        </Header>
 
         {this.selectReport(report, reportType)}
         <p className="usa-text-small report-date">

@@ -1,18 +1,22 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { Header, Footer } from 'hmda-ui'
-import Home from './Home.jsx'
-import ModifiedLar from './reports/ModifiedLar.jsx'
-import Disclosure from './reports/Disclosure.jsx'
-import Aggregate from './reports/Aggregate.jsx'
-import NationalAggregate from './reports/NationalAggregate.jsx'
-import Snapshot from './reports/snapshot/index.jsx'
-import DynamicDataset from './reports/DynamicDataset.jsx'
-import NotFound from './common/NotFound.jsx'
+
+import Header from './Header'
+import Home from './Home'
+import ModifiedLar from './reports/ModifiedLar'
+import Disclosure from './reports/Disclosure'
+import Aggregate from './reports/Aggregate'
+import NationalAggregate from './reports/NationalAggregate'
+import Snapshot from './reports/snapshot/index'
+import DynamicDataset from './reports/DynamicDataset'
+import NotFound from './common/NotFound'
+import Footer from './Footer'
+
+import './app.css'
 
 const App = () => {
   return (
-    <>
+    <React.Fragment>
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -41,7 +45,7 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
       <Footer />
-    </>
+    </React.Fragment>
   )
 }
 

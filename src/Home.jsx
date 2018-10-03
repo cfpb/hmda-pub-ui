@@ -1,28 +1,28 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+
 import Header from './common/Header.jsx'
+
+import './Home.css'
 
 class Home extends Component {
   render() {
     return (
       <div className="home">
-        <div className="usa-grid">
-          <div className="usa-width-one-whole">
-            <Header type={1} headingText="HMDA Data Publication">
-              <p className="usa-font-lead">
-                The HMDA data and reports are the most comprehensive publicly
-                available information on mortgage market activity. The data and
-                reports can be used along with the{' '}
-                <a href="https://www.ffiec.gov/censusproducts.htm">Census</a>{' '}
-                demographic information for data analysis purposes. Available
-                below are the data and reports for HMDA data collected in or
-                after 2017. For HMDA data and reports for prior years, visit{' '}
-                <a href="https://www.ffiec.gov/hmda/hmdaproducts.htm">
-                  https://www.ffiec.gov/hmda/hmdaproducts.htm
-                </a>.
-              </p>
-            </Header>
-          </div>
+        <div className="intro">
+          <Header type={1} headingText="HMDA Data Publication">
+            <p className="lead">
+              The HMDA data and reports are the most comprehensive publicly
+              available information on mortgage market activity. The data and
+              reports can be used along with the{' '}
+              <a href="https://www.ffiec.gov/censusproducts.htm">Census</a>{' '}
+              demographic information for data analysis purposes. Available
+              below are the data and reports for HMDA data collected in or after
+              2017. For HMDA data and reports for prior years, visit{' '}
+              <a href="https://www.ffiec.gov/hmda/hmdaproducts.htm">
+                https://www.ffiec.gov/hmda/hmdaproducts.htm
+              </a>.
+            </p>
+          </Header>
         </div>
 
         <div className="card-container">
