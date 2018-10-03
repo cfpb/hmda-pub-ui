@@ -1,6 +1,6 @@
 {
   "name": "hmda-platform-reports",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "UI for getting HMDA report data",
   "keywords": ["HMDA", "publication", "reports", "data"],
   "author": "Consumer Financial Protection Bureau",
