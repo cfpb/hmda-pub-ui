@@ -1,6 +1,6 @@
 {
   "name": "hmda-platform-reports",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "UI for getting HMDA report data",
   "keywords": ["HMDA", "publication", "reports", "data"],
   "author": "Consumer Financial Protection Bureau",
@@ -12,16 +12,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
     "file-saver": "1.3.8",
     "react": "16.4.2",
+    "react-app-polyfill": "0.1.3",
     "react-dom": "16.4.2",
     "react-router-dom": "4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.3",
     "react-select": "2.0.0"
   },
-  "homepage": "/data-publication"
+  "homepage": "/data-publication",
+  "browserslist": [">0.2%", "not dead", "not ie < 11", "not op_mini all"]
 }
