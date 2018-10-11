@@ -61,7 +61,7 @@ class Results extends React.Component {
   renderError(error) {
     let headerText = 'List of institutions unavailable'
     let body = (
-      <p className="usa-alert-text">
+      <p className="alert-text">
         We're unable to load the institutions. Please try refreshing your
         browser.
       </p>
@@ -69,7 +69,7 @@ class Results extends React.Component {
     if (error === 'Not a filer') {
       headerText = 'Institution not found'
       body = (
-        <p className="usa-alert-text">
+        <p className="alert-text">
           Sorry, that insitution isn't in our list of filers. If you think this
           is incorrect please contact{' '}
           <a href="mailto:hmdahelp@cfpb.gov">hmdahelp@cfpb.gov</a>.
@@ -77,9 +77,9 @@ class Results extends React.Component {
       )
     }
     return (
-      <div className="usa-alert usa-alert-error" role="alert">
-        <div className="usa-alert-body">
-          <h3 className="usa-alert-heading">{headerText}</h3>
+      <div className="alert alert-error" role="alert">
+        <div className="alert-body">
+          <h3 className="alert-heading">{headerText}</h3>
           {body}
         </div>
       </div>
@@ -92,8 +92,10 @@ class Results extends React.Component {
         <h4>{institution.name}</h4>
         <p>Respondent ID: {institution.respondentId}</p>
         <a
-          className="usa-font-small"
-          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${institution.institutionId}.txt`}
+          className="font-small"
+          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${
+            institution.institutionId
+          }.txt`}
           download
         >
           Download Modified LAR
