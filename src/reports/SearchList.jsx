@@ -113,11 +113,11 @@ class SearchList extends React.Component {
 
     if (error && error !== 'Not a filer') {
       disabled = true
-      inputClass = 'usa-input-error'
-      inputLabelClass = 'usa-input-error-label'
+      inputClass = 'input-error'
+      inputLabelClass = 'input-error-label'
       errorMessage = (
         <span
-          className="usa-input-error-message"
+          className="input-error-message"
           id="input-error-message"
           role="alert"
         >
