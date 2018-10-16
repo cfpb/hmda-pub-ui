@@ -5,7 +5,7 @@ podTemplate(label: 'buildDockerContainer', containers: [
 volumes: [
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
 ]) {
-   node('buildHmdaHelp') {
+   node('buildDockerContainer') {
      def repo = checkout scm
      def gitCommit = repo.GIT_COMMIT
      def gitBranch = repo.GIT_BRANCH
