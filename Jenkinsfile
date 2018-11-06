@@ -19,13 +19,13 @@ volumes: [
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'hmda-platform-jenkins-service',
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')])
-              if (gitTag != "" or gitBranch == "v2") {
+              sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
+              if (gitTag != "" || gitBranch == "v2") {
                 if (gitBranch == "v2") {
                   def dockerTag = "latest"
                 } else {
                   def dockerTag = gitTag
                 }
-                sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
                 sh "docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui ${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
                 sh "docker login -u ${env.DOCKER_HUB_USER} -p ${env.DOCKER_HUB_PASSWORD} "
                 sh "docker push ${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
