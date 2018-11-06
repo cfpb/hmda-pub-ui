@@ -9,6 +9,7 @@ volumes: [
      def repo = checkout scm
      def gitCommit = repo.GIT_COMMIT
      def gitBranch = repo.GIT_BRANCH
+     def gitTag = repo.GIT_TAG
      def shortGitCommit = "${gitCommit[0..10]}"
 
     stage('Build And Publish Docker Image') {
@@ -17,21 +18,25 @@ volumes: [
             usernameVariable: 'DOCKER_HUB_USER', passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'hmda-platform-jenkins-service',
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
-              withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')])
-              sh 'env | sort'
-              sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
-              if (gitTag != "" || gitBranch == "v2") {
-                if (gitBranch == "v2") {
-                  def dockerTag = "latest"
-                } else {
-                  def dockerTag = gitTag
+              withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
+                sh 'env | sort'
+                println gitTag
+                sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
+                if (gitTag != "null" || gitBranch == "v2") {
+                  if (gitBranch == "v2") {
+                    env.DOCKER_TAG = "latest"
+                  } else {
+                    env.DOCKER_TAG = gitTag
+                  }
+                  sh """
+                    docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui ${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
+                    docker login -u ${env.DOCKER_HUB_USER} -p ${env.DOCKER_HUB_PASSWORD} 
+                    docker push ${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
+                    docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG} ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
+                    docker login ${DOCKER_REGISTRY_URL} -u ${env.DTR_USER} -p ${env.DTR_PASSWORD} 
+                    docker push ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
+                  """
                 }
-                sh "docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui ${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
-                sh "docker login -u ${env.DOCKER_HUB_USER} -p ${env.DOCKER_HUB_PASSWORD} "
-                sh "docker push ${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
-                sh "docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag} ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
-                sh "docker login ${DOCKER_REGISTRY_URL} -u ${env.DOCKER_HUB_USER} -p ${env.DOCKER_HUB_PASSWORD} "
-                sh "docker push ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${dockerTag}"
               }
             }
           }
