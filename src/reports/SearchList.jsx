@@ -19,7 +19,7 @@ class SearchList extends React.Component {
 
   componentDidMount() {
     if (this.state.isLoading) {
-      isomorphicFetch('/v2/public/filers')
+      isomorphicFetch('/v2/public/filers/')
         .then(response => {
           if (response.ok) {
             return response.json()
