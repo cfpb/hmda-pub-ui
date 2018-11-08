@@ -46,7 +46,7 @@ volumes: [
           sh "helm upgrade --install --force \
           --namespace=default \
           --values=kubernetes/hmda-pub-ui/values.yaml \
-          --set image.tag=${gitBranch} \
+          --set image.tag=latest \
           hmda-pub-ui \
           kubernetes/hmda-pub-ui"
         }
