@@ -9,7 +9,6 @@ volumes: [
      def repo = checkout scm
      def gitCommit = repo.GIT_COMMIT
      def gitBranch = repo.GIT_BRANCH
-     env.GIT_TAG = repo.GIT_TAG
      def shortGitCommit = "${gitCommit[0..10]}"
 
     stage('Build And Publish Docker Image') {
@@ -20,11 +19,11 @@ volumes: [
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
                 sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
-                if (env.GIT_TAG != "null" || gitBranch == "v2") {
+                if (env.TAG_NAME != "null" || gitBranch == "v2") {
                   if (gitBranch == "v2") {
                     env.DOCKER_TAG = "latest"
                   } else {
-                    env.DOCKER_TAG = gitTag
+                    env.DOCKER_TAG = env.TAG_NAME
                   }
                   sh """
                     docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui ${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
