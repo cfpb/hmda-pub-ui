@@ -19,8 +19,6 @@ volumes: [
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'hmda-platform-jenkins-service',
               usernameVariable: 'DTR_USER', passwordVariable: 'DTR_PASSWORD']]) {
               withCredentials([string(credentialsId: 'internal-docker-registry', variable: 'DOCKER_REGISTRY_URL')]){
-                sh 'env | sort'
-                println env.GIT_TAG
                 sh "docker build --rm -t=${env.DOCKER_HUB_USER}/hmda-pub-ui ."
                 if (env.GIT_TAG != "null" || gitBranch == "v2") {
                   if (gitBranch == "v2") {
