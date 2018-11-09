@@ -32,6 +32,7 @@ volumes: [
                     docker tag ${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG} ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
                     docker login ${DOCKER_REGISTRY_URL} -u ${env.DTR_USER} -p ${env.DTR_PASSWORD} 
                     docker push ${DOCKER_REGISTRY_URL}/${env.DOCKER_HUB_USER}/hmda-pub-ui:${env.DOCKER_TAG}
+                    docker image prune -f
                   """
                 }
               }
