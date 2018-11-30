@@ -19,7 +19,7 @@ class SearchList extends React.Component {
 
   componentDidMount() {
     if (this.state.isLoading) {
-      isomorphicFetch('/v2/public/filers/')
+      isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
         .then(response => {
           if (response.ok) {
             return response.json()
