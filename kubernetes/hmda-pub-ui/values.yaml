@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: hmda/hmda-pub-ui
-  tag: latest
+  tag: v2.1.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""
