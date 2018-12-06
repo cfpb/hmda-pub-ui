@@ -6,7 +6,7 @@ import logo from './images/ffiec-logo.svg'
 
 const links = [
   { name: 'Home', href: '/' },
-  { name: 'Filing', href: '/filing/' },
+  { name: 'Filing', href: '/filing/2018/' },
   { name: 'Data Publication', href: '/data-publication/' },
   { name: 'Tools', href: '/tools/' }
 ]
