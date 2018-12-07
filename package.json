@@ -1,8 +1,13 @@
 {
   "name": "hmda-platform-reports",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "UI for getting HMDA report data",
-  "keywords": ["HMDA", "publication", "reports", "data"],
+  "keywords": [
+    "HMDA",
+    "publication",
+    "reports",
+    "data"
+  ],
   "author": "Consumer Financial Protection Bureau",
   "license": "CC0-1.0",
   "main": "index.js",
@@ -25,5 +30,10 @@
     "react-select": "2.0.0"
   },
   "homepage": "/data-publication",
-  "browserslist": [">0.2%", "not dead", "not ie < 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie < 11",
+    "not op_mini all"
+  ]
 }
