@@ -120,10 +120,10 @@ const TwelveTwo = props => {
   if (!report) return null
 
   return (
-    <>
+    <React.Fragment>
       {makeTable(report, 'NUMBER', tableOneRef)}
       {makeTable(report, "$000's", tableTwoRef)}
-    </>
+    </React.Fragment>
   )
 }
 

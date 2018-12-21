@@ -1,7 +1,8 @@
 import React from 'react'
-import Select from 'react-select-plus'
-import Option from '../Option.js'
+import Select from 'react-select'
 import Header from '../common/Header.jsx'
+
+import './Selector.css'
 
 class Selector extends React.Component {
   constructor(props) {
@@ -27,9 +28,8 @@ class Selector extends React.Component {
           placeholder={this.props.placeholder}
           searchable={true}
           autoFocus
-          openOnFocus
+          menuIsOpen
           options={this.props.options}
-          optionComponent={Option}
           noResultsText={
             <div className="usa-alert usa-alert-error" role="alert">
               <div className="usa-alert-body">

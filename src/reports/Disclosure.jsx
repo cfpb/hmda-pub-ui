@@ -9,6 +9,8 @@ import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 
+import './Disclosure.css'
+
 const detailsCache = {
   institutions: {},
   msaMds: {},
@@ -110,9 +112,9 @@ class Disclosure extends React.Component {
 
     return this.state.fetched ? (
       <React.Fragment>
-        <div className="usa-grid" id="main-content">
+        <div className="Disclosure" id="main-content">
           {header}
-          <ol className="ProgressCards usa-grid-full">
+          <ol className="ProgressCards">
             <li>
               <ProgressCard
                 title="institution"
@@ -132,9 +134,7 @@ class Disclosure extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.institutionId
-                      ? 'Select a MSA/MD'
-                      : ''
+                    : params.institutionId ? 'Select a MSA/MD' : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -153,16 +153,12 @@ class Disclosure extends React.Component {
                     ? report.label
                     : params.msaMdId
                       ? 'Select a report'
-                      : params.institutionId
-                        ? ''
-                        : ''
+                      : params.institutionId ? '' : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/disclosure-reports/${params.year}/${institutionId}/${
-                        msaMd.id
-                      }`
+                    ? `/disclosure-reports/${params.year}/${institutionId}/${msaMd.id}`
                     : null
                 }
               />

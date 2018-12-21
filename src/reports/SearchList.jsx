@@ -3,6 +3,8 @@ import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import isomorphicFetch from 'isomorphic-fetch'
 
+import './SearchList.css'
+
 let INSTITUTIONS = null
 
 class SearchList extends React.Component {
@@ -111,11 +113,11 @@ class SearchList extends React.Component {
 
     if (error && error !== 'Not a filer') {
       disabled = true
-      inputClass = 'usa-input-error'
-      inputLabelClass = 'usa-input-error-label'
+      inputClass = 'input-error'
+      inputLabelClass = 'input-error-label'
       errorMessage = (
         <span
-          className="usa-input-error-message"
+          className="input-error-message"
           id="input-error-message"
           role="alert"
         >
@@ -134,34 +136,32 @@ class SearchList extends React.Component {
 
     return (
       <div className="SearchList">
-        <div className="usa-width-one-whole">
-          <form onSubmit={this.handleSubmit}>
-            <div className={inputClass}>
-              <label className={inputLabelClass} htmlFor="institution-name">
-                {label}
-              </label>
-              {errorMessage}
-              <input
-                id="institution-name"
-                name="institution-name"
-                type="text"
-                value={textInputValue}
-                onChange={this.handleTextInputChange}
-                placeholder="Institution name"
-                disabled={disabled}
-                style={{ display: 'inline-block' }}
-              />
-              {loading}
-            </div>
-          </form>
+        <form onSubmit={this.handleSubmit}>
+          <div className={inputClass}>
+            <label className={inputLabelClass} htmlFor="institution-name">
+              {label}
+            </label>
+            {errorMessage}
+            <input
+              id="institution-name"
+              name="institution-name"
+              type="text"
+              value={textInputValue}
+              onChange={this.handleTextInputChange}
+              placeholder="Institution name"
+              disabled={disabled}
+              style={{ display: 'inline-block' }}
+            />
+            {loading}
+          </div>
+        </form>
 
-          <Results
-            error={this.state.error}
-            institutions={institutionsFiltered}
-            inputValue={textInputValue}
-            makeListItem={this.props.makeListItem}
-          />
-        </div>
+        <Results
+          error={this.state.error}
+          institutions={institutionsFiltered}
+          inputValue={textInputValue}
+          makeListItem={this.props.makeListItem}
+        />
       </div>
     )
   }

@@ -1,26 +1,42 @@
-# HMDA Publication
+# HMDA Publication UI
 
-### This repository is a work in progress.
-
-Information and code contained in this repository should be considered provisional and a work in progress unless otherwise indicated.
+The front-end for HMDA data publication, https://ffiec.cfpb.gov/data-publication/.
 
 ## Dependencies
 
 * [yarn](https://yarnpkg.com)
 
+_This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find the most recent information on how to perform common tasks in [this guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)._
+
 ## Install
 
-To install the publication UI, clone this repo and run the following:
+Clone this repo and run the following:
 
 ```
 yarn
 ```
 
-## Run locally
+## Getting started
 
-After building your desired project, you can visit it by running a static webserver from the project root directory
-`yarn start`
-or
-`docker run -it -p "3000:80" -v "$(pwd):/usr/share/nginx/html" nginx:1.12`
+### Create React App
 
-You'd then visit each project at `http://localhost:8081/dist/` or `192.168.99.100:3000/dist/` respectively.
+For local development you can run:
+
+```
+yarn start
+```
+
+`yarn start` will run the application in development mode, opening a browser window to http://localhost:3000.
+
+The page will automatically reload if you make changes to the code.
+You will see the build errors and lint warnings in the console.
+
+### Docker
+
+To see the application running in a container you can run:
+
+```
+docker run -p 80:80 hmda/hmda-pub-ui
+```
+
+Open http://192.168.99.100/ (or your Docker Machine IP) to view the application.
