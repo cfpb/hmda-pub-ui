@@ -21,7 +21,7 @@
   align-items: stretch;
   display: flex;
   margin: 0 auto;
-  padding: 3rem 0;
+  padding: 3rem;
   max-width: 1040px;
 }
 
@@ -44,6 +44,10 @@
   list-style-type: none;
   margin-top: 0;
   padding-left: 0;
+}
+
+.Footer .unstyled-list li {
+  margin-bottom: 0;
 }
 
 .return-to-top {
