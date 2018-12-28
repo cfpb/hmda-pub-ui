@@ -78,7 +78,6 @@
 }
 @media screen and (min-width: 481px) {
   .banner-header p {
-    margin-top: 2px;
     margin-bottom: 2px;
     display: inline-block;
   }
@@ -86,7 +85,7 @@
 .banner-header img {
   float: left;
   margin-right: 1rem;
-  margin-top: 1px;
+  margin-top: 0;
   width: 2.4rem;
 }
 @media screen and (min-width: 481px) {
