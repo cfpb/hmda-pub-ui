@@ -3,10 +3,11 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
+commitId: ''
 
 image:
   repository: hmda/hmda-pub-ui
-  tag: v2.5.0
+  tag: v2.6.0
   pullPolicy: IfNotPresent
 
 nameOverride: ''
