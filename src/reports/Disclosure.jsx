@@ -8,6 +8,7 @@ import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import fetchMsas from './fetchMsas.js'
 import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
+import YearSelector from '../common/YearSelector.jsx'
 
 import './Disclosure.css'
 
@@ -96,6 +97,7 @@ class Disclosure extends React.Component {
 
   render() {
     const { params } = this.props.match
+    const year = this.props.location.pathname.split('/')[2]
     const institution = detailsCache.institutions[params.institutionId]
     const msaMd = detailsCache.msaMds[params.msaMdId]
     const report = detailsCache.reports[params.reportId]
@@ -114,6 +116,7 @@ class Disclosure extends React.Component {
       <React.Fragment>
         <div className="Disclosure" id="main-content">
           {header}
+          <YearSelector />
           <ol className="ProgressCards">
             <li>
               <ProgressCard
@@ -134,7 +137,9 @@ class Disclosure extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.institutionId ? 'Select a MSA/MD' : ''
+                    : params.institutionId
+                    ? 'Select a MSA/MD'
+                    : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -152,13 +157,17 @@ class Disclosure extends React.Component {
                   params.reportId
                     ? report.label
                     : params.msaMdId
-                      ? 'Select a report'
-                      : params.institutionId ? '' : ''
+                    ? 'Select a report'
+                    : params.institutionId
+                    ? ''
+                    : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/disclosure-reports/${params.year}/${institutionId}/${msaMd.id}`
+                    ? `/disclosure-reports/${params.year}/${institutionId}/${
+                        msaMd.id
+                      }`
                     : null
                 }
               />
@@ -179,7 +188,7 @@ class Disclosure extends React.Component {
               />
             )
           ) : (
-            <SearchList makeListItem={this.makeListItem} />
+            <SearchList makeListItem={this.makeListItem} year={year} />
           )}
         </div>
 

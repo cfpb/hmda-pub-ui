@@ -10,6 +10,7 @@ import stateToMsas from '../constants/stateToMsas.js'
 import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 
 import './Aggregate.css'
+import YearSelector from '../common/YearSelector.jsx'
 
 const detailsCache = {
   states: {},
@@ -78,6 +79,7 @@ class Aggregate extends React.Component {
       <React.Fragment>
         <div className="Aggregate" id="main-content">
           {header}
+          <YearSelector />
           <ol className="ProgressCards">
             <li>
               <ProgressCard
@@ -94,7 +96,9 @@ class Aggregate extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.stateId ? 'Select a MSA/MD' : ''
+                    : params.stateId
+                    ? 'Select a MSA/MD'
+                    : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -112,13 +116,17 @@ class Aggregate extends React.Component {
                   params.reportId
                     ? report.label
                     : params.msaMdId
-                      ? 'Select a report'
-                      : params.stateId ? '' : ''
+                    ? 'Select a report'
+                    : params.stateId
+                    ? ''
+                    : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
+                    ? `/aggregate-reports/${params.year}/${state.id}/${
+                        msaMd.id
+                      }`
                     : null
                 }
               />

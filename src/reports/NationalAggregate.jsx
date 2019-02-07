@@ -4,6 +4,7 @@ import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
 import { NATIONAL_AGGREGATE_REPORTS } from '../constants/national-aggregate-reports.js'
+import YearSelector from '../common/YearSelector.jsx'
 
 import './NationalAggregate.css'
 
@@ -54,6 +55,7 @@ class NationalAggregate extends React.Component {
       <React.Fragment>
         <div className="NationalAggregate" id="main-content">
           {header}
+          <YearSelector />
           <ol className="ProgressCards usa-grid-full">
             <li>
               <ProgressCard

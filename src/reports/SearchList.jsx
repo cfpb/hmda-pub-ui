@@ -17,8 +17,13 @@ class SearchList extends React.Component {
   }
 
   componentDidMount() {
+    // TODO: update API call based on `this.props.year`
+    const fetchURL =
+      this.props.year === '2017'
+        ? 'https://ffiec-api.cfpb.gov/public/filers'
+        : '/public/filers'
     if (this.state.isLoading) {
-      fetch('https://ffiec-api.cfpb.gov/public/filers')
+      fetch(fetchURL)
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -42,6 +47,12 @@ class SearchList extends React.Component {
           })
         })
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.year !== this.props.year) return true
+
+    return false
   }
 
   getDefaultState() {
@@ -160,6 +171,7 @@ class SearchList extends React.Component {
           institutions={institutionsFiltered}
           inputValue={textInputValue}
           makeListItem={this.props.makeListItem}
+          year={this.props.year}
         />
       </div>
     )
