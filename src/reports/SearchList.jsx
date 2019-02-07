@@ -1,7 +1,6 @@
 import React from 'react'
 import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
-import isomorphicFetch from 'isomorphic-fetch'
 
 import './SearchList.css'
 
@@ -19,7 +18,7 @@ class SearchList extends React.Component {
 
   componentDidMount() {
     if (this.state.isLoading) {
-      isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
+      fetch('https://ffiec-api.cfpb.gov/public/filers')
         .then(response => {
           if (response.ok) {
             return response.json()

@@ -20,8 +20,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/modified-lar/*" component={NotFound} />
-        <Route path="/modified-lar" component={ModifiedLar} />
+        <Route path="/modified-lar/:year" component={ModifiedLar} />
         <Route
           path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}

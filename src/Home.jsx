@@ -20,7 +20,8 @@ class Home extends Component {
               2017. For HMDA data and reports for prior years, visit{' '}
               <a href="https://www.ffiec.gov/hmda/hmdaproducts.htm">
                 https://www.ffiec.gov/hmda/hmdaproducts.htm
-              </a>.
+              </a>
+              .
             </p>
           </Header>
         </div>
@@ -28,7 +29,7 @@ class Home extends Component {
         <div className="card-container">
           <div className="card">
             <Header
-              headingLink="/modified-lar"
+              headingLink="/modified-lar/2018"
               headingText="Modified Loan/Application Register (LAR)"
               paragraphText="The modified LAR provides loan-level data for an individual
               financial institution, as modified by the Bureau to protect applicant and
@@ -39,7 +40,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/disclosure-reports/2017"
+              headingLink="/disclosure-reports/2018"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
@@ -49,7 +50,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/aggregate-reports/2017"
+              headingLink="/aggregate-reports/2018"
               headingText="MSA/MD Aggregate Reports"
               paragraphText="These reports summarize lending activity by MSA/MD."
               type={4}
@@ -58,7 +59,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/national-aggregate-reports/2017"
+              headingLink="/national-aggregate-reports/2018"
               headingText="National Aggregate Reports"
               paragraphText="These reports summarize nationwide lending activity. 
                 They indicate the number and dollar amounts of loan applications, 
