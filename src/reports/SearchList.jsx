@@ -1,10 +1,9 @@
 import React from 'react'
 import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
+import YEARS from '../constants/years'
 
 import './SearchList.css'
-
-let INSTITUTIONS = null
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -16,12 +15,12 @@ class SearchList extends React.Component {
     this.searchInstitutions = this.searchInstitutions.bind(this)
   }
 
-  componentDidMount() {
-    // TODO: update API call based on `this.props.year`
+  getData() {
     const fetchURL =
       this.props.year === '2017'
         ? 'https://ffiec-api.cfpb.gov/public/filers'
-        : '/public/filers'
+        : //: '/public/filers'
+          'https://ffiec-api.cfpb.gov/public/filers'
     if (this.state.isLoading) {
       fetch(fetchURL)
         .then(response => {
@@ -32,7 +31,6 @@ class SearchList extends React.Component {
           }
         })
         .then(result => {
-          INSTITUTIONS = result.institutions
           this.setState({
             isLoading: false,
             institutions: result.institutions.map(institution => {
@@ -49,17 +47,21 @@ class SearchList extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.year !== this.props.year) return true
+  componentDidMount() {
+    this.getData()
+  }
 
-    return false
+  componentDidUpdate(prevProps) {
+    if (this.props.year !== prevProps.year) {
+      this.setState(this.getDefaultState(), this.getData)
+    }
   }
 
   getDefaultState() {
     return {
       error: null,
-      isLoading: !INSTITUTIONS,
-      institutions: INSTITUTIONS || [],
+      isLoading: true,
+      institutions: [],
       institutionsFiltered: [],
       textInputValue: ''
     }
