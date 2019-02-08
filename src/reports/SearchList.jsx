@@ -1,7 +1,6 @@
 import React from 'react'
 import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
-import YEARS from '../constants/years'
 
 import './SearchList.css'
 
