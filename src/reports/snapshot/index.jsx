@@ -15,7 +15,14 @@ const Snapshot = () => {
           to download in both .csv and pipe delimited text file formats, and the 
           file specification files are available to download in PDF format."
       >
-        <p className="usa-text-small">
+        <p className="text-small">
+          Snapshot data has preserved some elements of historic LAR data files
+          that are not present in the Dynamic Data. These columns are "As of
+          Date", "Edit Status", "Sequence Number", and "Application Date
+          Indicator". Be aware that data load procedures that handle both files
+          will need to recognize this difference.
+        </p>
+        <p className="text-small">
           Use caution when analyzing loan amount and income, which do not have
           an upper limit and may contain outliers.
         </p>
