@@ -70,7 +70,6 @@ class Disclosure extends React.Component {
         <p>Respondent ID: {institution.respondentId}</p>
         <a
           href="#"
-          className="usa-font-small"
           onClick={e => {
             e.preventDefault()
             this.setInstitution(institution)
@@ -134,7 +133,9 @@ class Disclosure extends React.Component {
                 name={
                   params.msaMdId
                     ? msaMd.name
-                    : params.institutionId ? 'Select a MSA/MD' : ''
+                    : params.institutionId
+                    ? 'Select a MSA/MD'
+                    : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
                 link={
@@ -152,13 +153,17 @@ class Disclosure extends React.Component {
                   params.reportId
                     ? report.label
                     : params.msaMdId
-                      ? 'Select a report'
-                      : params.institutionId ? '' : ''
+                    ? 'Select a report'
+                    : params.institutionId
+                    ? ''
+                    : ''
                 }
                 id={params.reportId ? report.value : ''}
                 link={
                   params.msaMdId
-                    ? `/disclosure-reports/${params.year}/${institutionId}/${msaMd.id}`
+                    ? `/disclosure-reports/${params.year}/${institutionId}/${
+                        msaMd.id
+                      }`
                     : null
                 }
               />

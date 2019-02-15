@@ -8,10 +8,15 @@
   margin-top: 3em;
 }
 
-.header .usa-font-lead,
+.header .font-lead,
 .header p {
   color: #5b616b;
   margin-top: 0;
+}
+
+.header .text-small {
+  font-size: 1.6rem;
+  max-width: 77rem;
 }
 
 .header.disabled h4 {

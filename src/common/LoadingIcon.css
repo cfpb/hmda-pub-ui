@@ -44,8 +44,3 @@
   height: 30px;
   animation: loading-spin 1.2s linear infinite;
 }
-
-.usa-alert .LoadingIcon {
-  border: 4px solid #d6d7d9;
-  border-left-color: #0071bc;
-}
