@@ -54,7 +54,7 @@ class NationalAggregate extends React.Component {
       <React.Fragment>
         <div className="NationalAggregate" id="main-content">
           {header}
-          <ol className="ProgressCards usa-grid-full">
+          <ol className="ProgressCards">
             <li>
               <ProgressCard
                 title="report"

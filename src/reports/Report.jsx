@@ -25,10 +25,9 @@ class Report extends React.Component {
   generateCSV() {
     const report = this.state.report
     // TODO: create a function for this, it's also used in render as the "headingText"
-    let theCSV = `"Table ${report.table}: ${report.description}${report.table ===
-    'R1'
-      ? '"'
-      : `, ${report.year}"`}\n`
+    let theCSV = `"Table ${report.table}: ${report.description}${
+      report.table === 'R1' ? '"' : `, ${report.year}"`
+    }\n`
     const msa = report.msa
       ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"\n`
       : '"Nationwide"\n'
@@ -121,7 +120,9 @@ class Report extends React.Component {
         msaMdId = 'nationwide'
         reportId = 'IRS'
       }
-      url += `disclosure/${year}/${params.institutionId}/${msaMdId}/${reportId}.txt`
+      url += `disclosure/${year}/${
+        params.institutionId
+      }/${msaMdId}/${reportId}.txt`
     } else {
       url += `national/${year}/${reportId}.txt`
     }
@@ -242,9 +243,9 @@ class Report extends React.Component {
     let table = report.table
     if (table === 'IRS') table = 'R1'
     const headingText = report
-      ? `Table ${table}: ${report.description}${table === 'R1'
-          ? ''
-          : `, ${report.year}`}`
+      ? `Table ${table}: ${report.description}${
+          table === 'R1' ? '' : `, ${report.year}`
+        }`
       : null
 
     return (
@@ -267,9 +268,7 @@ class Report extends React.Component {
         </Header>
 
         {this.selectReport(report, reportType)}
-        <p className="usa-text-small report-date">
-          Report date: {report.reportDate}
-        </p>
+        <p className="report-date">Report date: {report.reportDate}</p>
       </div>
     )
   }
