@@ -18,8 +18,7 @@ class SearchList extends React.Component {
     const fetchURL =
       this.props.year === '2017'
         ? 'https://ffiec-api.cfpb.gov/public/filers'
-        : //: '/public/filers'
-          'https://ffiec-api.cfpb.gov/public/filers'
+        : `/v2/reporting/filers/${this.props.year}`
     if (this.state.isLoading) {
       fetch(fetchURL)
         .then(response => {

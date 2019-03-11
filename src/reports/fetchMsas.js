@@ -1,6 +1,7 @@
 function getMsaUrl(institutionId, year) {
-  console.log('getMsaUrl', year)
-  return `https://ffiec-api.cfpb.gov/public/filers/2017/${institutionId}/msaMds`
+  if (year === '2017')
+    return `https://ffiec-api.cfpb.gov/public/filers/2017/${institutionId}/msaMds`
+  return `/v2/reporting/filers/${year}/${institutionId}/msaMds`
 }
 
 export default function(institutionId, year) {

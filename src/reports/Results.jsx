@@ -88,13 +88,22 @@ class Results extends React.Component {
   }
 
   makeListItem(institution, index) {
+    const yearObj =
+      this.props.year === '2017'
+        ? {
+            title: 'Respondent ID',
+            id: institution.institutionId
+          }
+        : { title: 'LEI', id: institution.lei }
     const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${
       this.props.year
-    }/${institution.institutionId}.txt`
+    }/${yearObj.id}.txt`
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
-        <p>Respondent ID: {institution.respondentId}</p>
+        <p>
+          {yearObj.title}: {yearObj.id}
+        </p>
         <a className="font-small" href={href} download>
           Download Modified LAR
         </a>

@@ -44,7 +44,7 @@ class Disclosure extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
     if (params.institutionId) {
-      fetchMsas(params.institutionId).then(result => {
+      fetchMsas(params.institutionId, params.year).then(result => {
         this.setInstitution(result.institution)
         if (params.msaMdId) {
           if (params.msaMdId === 'nationwide')
@@ -63,12 +63,22 @@ class Disclosure extends React.Component {
   }
 
   makeListItem(institution, index) {
+    const yearObj =
+      this.props.match.params.year === '2017'
+        ? {
+            title: 'Respondent ID',
+            id: institution.institutionId
+          }
+        : { title: 'LEI', id: institution.lei }
+
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
-        <p>Respondent ID: {institution.respondentId}</p>
+        <p>
+          {yearObj.title}: {yearObj.id}
+        </p>
         <a
           href="#"
           className="usa-font-small"
@@ -76,7 +86,7 @@ class Disclosure extends React.Component {
             e.preventDefault()
             this.setInstitution(institution)
             this.props.history.push({
-              pathname: url + institution.institutionId
+              pathname: url + yearObj.id
             })
           }}
         >
@@ -87,7 +97,8 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
-    const institutionId = institution.institutionId || institution.id
+    const institutionId =
+      institution.institutionId || institution.id || institution.lei
     detailsCache.institutions[institutionId] = institution
   }
 
