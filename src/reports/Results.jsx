@@ -17,6 +17,7 @@ class Results extends React.Component {
     this.handleShowAllClick = this.handleShowAllClick.bind(this)
     this.renderViewAllButton = this.renderViewAllButton.bind(this)
     this.renderHeading = this.renderHeading.bind(this)
+    this.makeListItem = this.makeListItem.bind(this)
   }
 
   handleShowAllClick() {
@@ -87,17 +88,23 @@ class Results extends React.Component {
   }
 
   makeListItem(institution, index) {
+    const yearObj =
+      this.props.year === '2017'
+        ? {
+            title: 'Respondent ID',
+            id: institution.institutionId
+          }
+        : { title: 'LEI', id: institution.lei }
+    const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${
+      this.props.year
+    }/${yearObj.id}.txt`
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
-        <p>Respondent ID: {institution.respondentId}</p>
-        <a
-          className="font-small"
-          href={`https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/2017/${
-            institution.institutionId
-          }.txt`}
-          download
-        >
+        <p>
+          {yearObj.title}: {yearObj.id}
+        </p>
+        <a className="font-small" href={href} download>
           Download Modified LAR
         </a>
       </li>
@@ -112,6 +119,7 @@ class Results extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.inputValue !== this.props.inputValue) return true
+    if (nextProps.year !== this.props.year) return true
     if (nextState.showAll !== this.state.showAll) return true
     return false
   }

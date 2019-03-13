@@ -1,0 +1,18 @@
+.YearSelector a {
+  color: #212121;
+  font-family: SourceSansProBold;
+  margin-right: 1em;
+  text-decoration: none;
+}
+.YearSelector a:visited {
+  color: #212121;
+}
+.YearSelector a:hover {
+  color: #0071bc;
+}
+.YearSelector a:last-child {
+  margin-right: 0;
+}
+.YearSelector a.active {
+  border-bottom: 2px solid;
+}

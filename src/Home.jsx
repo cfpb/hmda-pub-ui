@@ -20,7 +20,8 @@ class Home extends Component {
               2017. For HMDA data and reports for prior years, visit{' '}
               <a href="https://www.ffiec.gov/hmda/hmdaproducts.htm">
                 https://www.ffiec.gov/hmda/hmdaproducts.htm
-              </a>.
+              </a>
+              .
             </p>
           </Header>
         </div>
@@ -28,7 +29,7 @@ class Home extends Component {
         <div className="card-container">
           <div className="card">
             <Header
-              headingLink="/modified-lar"
+              headingLink="/modified-lar/2018"
               headingText="Modified Loan/Application Register (LAR)"
               paragraphText="The modified LAR provides loan-level data for an individual
               financial institution, as modified by the Bureau to protect applicant and

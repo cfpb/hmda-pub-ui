@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Header from './Header'
 import Home from './Home'
@@ -20,8 +20,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/modified-lar/*" component={NotFound} />
-        <Route path="/modified-lar" component={ModifiedLar} />
+        <Redirect exact from="/modified-lar" to="/modified-lar/2018" />
+        <Route path="/modified-lar/:year" component={ModifiedLar} />
         <Route
           path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}

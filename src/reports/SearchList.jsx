@@ -1,11 +1,8 @@
 import React from 'react'
 import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
-import isomorphicFetch from 'isomorphic-fetch'
 
 import './SearchList.css'
-
-let INSTITUTIONS = null
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -17,9 +14,14 @@ class SearchList extends React.Component {
     this.searchInstitutions = this.searchInstitutions.bind(this)
   }
 
-  componentDidMount() {
+  getData() {
+    console.log('Searchlist getData', this.props)
+    const fetchURL =
+      this.props.year === '2017'
+        ? 'https://ffiec-api.cfpb.gov/public/filers'
+        : `/v2/reporting/filers/${this.props.year}`
     if (this.state.isLoading) {
-      isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
+      fetch(fetchURL)
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -28,7 +30,6 @@ class SearchList extends React.Component {
           }
         })
         .then(result => {
-          INSTITUTIONS = result.institutions
           this.setState({
             isLoading: false,
             institutions: result.institutions.map(institution => {
@@ -45,11 +46,21 @@ class SearchList extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.year !== prevProps.year) {
+      this.setState(this.getDefaultState(), this.getData)
+    }
+  }
+
   getDefaultState() {
     return {
       error: null,
-      isLoading: !INSTITUTIONS,
-      institutions: INSTITUTIONS || [],
+      isLoading: true,
+      institutions: [],
       institutionsFiltered: [],
       textInputValue: ''
     }
@@ -155,13 +166,15 @@ class SearchList extends React.Component {
             {loading}
           </div>
         </form>
-
-        <Results
-          error={this.state.error}
-          institutions={institutionsFiltered}
-          inputValue={textInputValue}
-          makeListItem={this.props.makeListItem}
-        />
+        {!isLoading ? (
+          <Results
+            error={this.state.error}
+            institutions={institutionsFiltered}
+            inputValue={textInputValue}
+            makeListItem={this.props.makeListItem}
+            year={this.props.year}
+          />
+        ) : null}
       </div>
     )
   }
