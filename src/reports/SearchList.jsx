@@ -4,8 +4,7 @@ import LoadingIcon from '../common/LoadingIcon.jsx'
 
 import './SearchList.css'
 
-let institutions2018 = null
-let institutions2017 = null
+let institutions = { 2017: null, 2018: null }
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class SearchList extends React.Component {
       this.props.year === '2017'
         ? 'https://ffiec-api.cfpb.gov/public/filers'
         : `/v2/reporting/filers/${this.props.year}`
-    if (this.state.isLoading2017 || this.state.isLoading2018) {
+    if (this.state.isLoading[this.props.year]) {
       fetch(fetchURL)
         .then(response => {
           if (response.ok) {
@@ -32,34 +31,23 @@ class SearchList extends React.Component {
           }
         })
         .then(result => {
-          this.props.year === '2017'
-            ? (institutions2017 = result.institutions)
-            : (institutions2018 = result.institutions)
-          this.props.year === '2017'
-            ? this.setState({
-                isLoading2017: false,
-                institutions2017: result.institutions.map(institution => {
-                  return {
-                    ...institution,
-                    name: institution.name.toUpperCase()
-                  }
-                })
-              })
-            : this.setState({
-                isLoading2018: false,
-                institutions2018: result.institutions.map(institution => {
-                  return {
-                    ...institution,
-                    name: institution.name.toUpperCase()
-                  }
-                })
-              })
+          let { isLoading, institutions } = { ...this.state }
+          isLoading[this.props.year] = false
+          institutions[this.props.year] = result.institutions.map(
+            institution => {
+              return {
+                ...institution,
+                name: institution.name.toUpperCase()
+              }
+            }
+          )
+
+          this.setState({ institutions, isLoading })
         })
         .catch(error => {
-          this.setState({
-            isLoading: false,
-            error
-          })
+          let isLoading = { ...this.state.isLoading }
+          isLoading[this.props.year] = false
+          this.setState({ error, isLoading })
         })
     }
   }
@@ -70,10 +58,7 @@ class SearchList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.year !== prevProps.year) {
-      if (
-        (this.props.year === '2017' && institutions2017 === null) ||
-        (this.props.year === '2018' && institutions2018 === null)
-      ) {
+      if (institutions[this.props.year] === null) {
         this.getData()
       }
       this.setState({ institutionsFiltered: [], textInputValue: '' })
@@ -83,10 +68,8 @@ class SearchList extends React.Component {
   getDefaultState() {
     return {
       error: null,
-      isLoading2018: true,
-      isLoading2017: true,
-      institutions2018: institutions2018 || [],
-      institutions2017: institutions2017 || [],
+      isLoading: { 2017: true, 2018: true },
+      institutions: { 2017: [], 2018: [] },
       institutionsFiltered: [],
       textInputValue: ''
     }
@@ -96,15 +79,12 @@ class SearchList extends React.Component {
     let institutionsFiltered = []
 
     if (value.length !== 0) {
-      const institutions =
-        this.props.year === '2017'
-          ? this.state['institutions2017']
-          : this.state['institutions2018']
-      const len = institutions.length
+      const institutionsByYear = this.state.institutions[this.props.year]
+      const len = institutionsByYear.length
       const val = value.toUpperCase()
 
       for (let i = 0; i < len; i++) {
-        const institution = institutions[i]
+        const institution = institutionsByYear[i]
         if (
           institution.name.indexOf(val) !== -1 &&
           institution.respondentId !== 'Bank0_RID' &&
@@ -166,10 +146,7 @@ class SearchList extends React.Component {
       )
     }
 
-    if (
-      (this.state.isLoading2018 && this.props.year === '2018') ||
-      (this.state.isLoading2017 && this.props.year === '2017')
-    ) {
+    if (this.state.isLoading[this.props.year]) {
       disabled = true
       loading = <LoadingIcon className="LoadingInline" />
       label = (
@@ -198,7 +175,7 @@ class SearchList extends React.Component {
             {loading}
           </div>
         </form>
-        {!isLoading ? (
+        {!isLoading[this.props.year] ? (
           <Results
             error={this.state.error}
             institutions={institutionsFiltered}
