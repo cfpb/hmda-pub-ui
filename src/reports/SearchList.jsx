@@ -1,11 +1,10 @@
 import React from 'react'
 import Results from './Results.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
-import isomorphicFetch from 'isomorphic-fetch'
 
 import './SearchList.css'
 
-let INSTITUTIONS = null
+let institutions = { 2017: null, 2018: null }
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -17,9 +16,13 @@ class SearchList extends React.Component {
     this.searchInstitutions = this.searchInstitutions.bind(this)
   }
 
-  componentDidMount() {
-    if (this.state.isLoading) {
-      isomorphicFetch('https://ffiec-api.cfpb.gov/public/filers')
+  getData() {
+    const fetchURL =
+      this.props.year === '2017'
+        ? 'https://ffiec-api.cfpb.gov/public/filers'
+        : `/v2/reporting/filers/${this.props.year}`
+    if (this.state.isLoading[this.props.year]) {
+      fetch(fetchURL)
         .then(response => {
           if (response.ok) {
             return response.json()
@@ -28,28 +31,45 @@ class SearchList extends React.Component {
           }
         })
         .then(result => {
-          INSTITUTIONS = result.institutions
-          this.setState({
-            isLoading: false,
-            institutions: result.institutions.map(institution => {
-              return { ...institution, name: institution.name.toUpperCase() }
-            })
-          })
+          let { isLoading, institutions } = { ...this.state }
+          isLoading[this.props.year] = false
+          institutions[this.props.year] = result.institutions.map(
+            institution => {
+              return {
+                ...institution,
+                name: institution.name.toUpperCase()
+              }
+            }
+          )
+
+          this.setState({ institutions, isLoading })
         })
         .catch(error => {
-          this.setState({
-            isLoading: false,
-            error
-          })
+          let isLoading = { ...this.state.isLoading }
+          isLoading[this.props.year] = false
+          this.setState({ error, isLoading })
         })
+    }
+  }
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.year !== prevProps.year) {
+      if (institutions[this.props.year] === null) {
+        this.getData()
+      }
+      this.setState({ institutionsFiltered: [], textInputValue: '' })
     }
   }
 
   getDefaultState() {
     return {
       error: null,
-      isLoading: !INSTITUTIONS,
-      institutions: INSTITUTIONS || [],
+      isLoading: { 2017: true, 2018: true },
+      institutions: { 2017: [], 2018: [] },
       institutionsFiltered: [],
       textInputValue: ''
     }
@@ -59,12 +79,12 @@ class SearchList extends React.Component {
     let institutionsFiltered = []
 
     if (value.length !== 0) {
-      const institutions = this.state.institutions
-      const len = institutions.length
+      const institutionsByYear = this.state.institutions[this.props.year]
+      const len = institutionsByYear.length
       const val = value.toUpperCase()
 
       for (let i = 0; i < len; i++) {
-        const institution = institutions[i]
+        const institution = institutionsByYear[i]
         if (
           institution.name.indexOf(val) !== -1 &&
           institution.respondentId !== 'Bank0_RID' &&
@@ -126,7 +146,7 @@ class SearchList extends React.Component {
       )
     }
 
-    if (isLoading) {
+    if (this.state.isLoading[this.props.year]) {
       disabled = true
       loading = <LoadingIcon className="LoadingInline" />
       label = (
@@ -155,13 +175,15 @@ class SearchList extends React.Component {
             {loading}
           </div>
         </form>
-
-        <Results
-          error={this.state.error}
-          institutions={institutionsFiltered}
-          inputValue={textInputValue}
-          makeListItem={this.props.makeListItem}
-        />
+        {!isLoading[this.props.year] ? (
+          <Results
+            error={this.state.error}
+            institutions={institutionsFiltered}
+            inputValue={textInputValue}
+            makeListItem={this.props.makeListItem}
+            year={this.props.year}
+          />
+        ) : null}
       </div>
     )
   }

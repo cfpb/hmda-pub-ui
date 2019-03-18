@@ -184,7 +184,7 @@ class Disclosure extends React.Component {
               />
             )
           ) : (
-            <SearchList makeListItem={this.makeListItem} />
+            <SearchList makeListItem={this.makeListItem} year="2017" />
           )}
         </div>
 
