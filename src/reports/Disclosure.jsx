@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
+import YearSelector from '../common/YearSelector.jsx'
 import SearchList from './SearchList.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import MsaMds from './MsaMds.jsx'
@@ -43,7 +44,7 @@ class Disclosure extends React.Component {
   componentDidMount() {
     const { params } = this.props.match
     if (params.institutionId) {
-      fetchMsas(params.institutionId).then(result => {
+      fetchMsas(params.institutionId, params.year).then(result => {
         this.setInstitution(result.institution)
         if (params.msaMdId) {
           if (params.msaMdId === 'nationwide')
@@ -64,17 +65,23 @@ class Disclosure extends React.Component {
   makeListItem(institution, index) {
     let url = this.props.match.url
     if (!url.match(/\/$/)) url += '/'
+    const normalizedInstitution = this.props.match.params.year === '2017'
+        ? {
+            title: 'Respondent ID',
+            id: institution.institutionId
+          }
+        : { title: 'LEI', id: institution.lei }
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
-        <p>Respondent ID: {institution.respondentId}</p>
+        <p>{normalizedInstitution.title}: {normalizedInstitution.id}</p>
         <a
           href="#"
           onClick={e => {
             e.preventDefault()
             this.setInstitution(institution)
             this.props.history.push({
-              pathname: url + institution.institutionId
+              pathname: url + normalizedInstitution.id
             })
           }}
         >
@@ -85,7 +92,7 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
-    const institutionId = institution.institutionId || institution.id
+    const institutionId = institution.lei || institution.institutionId || institution.id
     detailsCache.institutions[institutionId] = institution
   }
 
@@ -99,7 +106,7 @@ class Disclosure extends React.Component {
     const msaMd = detailsCache.msaMds[params.msaMdId]
     const report = detailsCache.reports[params.reportId]
     const institutionId =
-      institution && (institution.institutionId || institution.id)
+      institution && (institution.lei || institution.institutionId || institution.id)
     const header = (
       <Header
         type={1}
@@ -116,14 +123,32 @@ class Disclosure extends React.Component {
           <ol className="ProgressCards">
             <li>
               <ProgressCard
+                title="year"
+                name={
+                  params.year
+                    ? params.year
+                    : 'Select a year'
+                }
+                id=''
+                link={'/disclosure-reports/'}
+              />
+            </li>
+
+            <li>
+              <ProgressCard
                 title="institution"
                 name={
                   params.institutionId
                     ? institution.name
-                    : 'Select an institution'
+                    : params.year
+                    ? 'Select an institution'
+                    : ''
                 }
-                id={params.institutionId ? institution.respondentId : ''}
-                link={`/disclosure-reports/${params.year}`}
+                id={params.institutionId ? (institution.lei || institution.respondentId) : ''}
+                link={ params.year
+                  ? `/disclosure-reports/${params.year}`
+                  : null
+                }
               />
             </li>
 
@@ -171,20 +196,24 @@ class Disclosure extends React.Component {
           </ol>
           <hr />
 
-          {params.institutionId ? (
-            params.msaMdId ? (
-              params.reportId ? null : (
-                <Reports {...this.props} />
+          {params.year ? (
+            params.institutionId ? (
+              params.msaMdId ? (
+                params.reportId ? null : (
+                  <Reports {...this.props} />
+                )
+              ) : (
+                <MsaMds
+                  {...this.props}
+                  fetchedMsas={fetchedMsas}
+                  selectorCallback={this.setMsaMd}
+                />
               )
             ) : (
-              <MsaMds
-                {...this.props}
-                fetchedMsas={fetchedMsas}
-                selectorCallback={this.setMsaMd}
-              />
+              <SearchList makeListItem={this.makeListItem} year={params.year} />
             )
           ) : (
-            <SearchList makeListItem={this.makeListItem} year="2017" />
+            <YearSelector />
           )}
         </div>
 

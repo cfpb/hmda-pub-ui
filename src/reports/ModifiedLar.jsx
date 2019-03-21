@@ -32,7 +32,7 @@ const ModifiedLar = props => {
             is now available.
           </p>
         </Header>
-        <YearSelector />
+        <YearSelector standalone={true} />
         <SearchList year={year} />
       </div>
     </React.Fragment>

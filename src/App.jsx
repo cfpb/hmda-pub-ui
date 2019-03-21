@@ -23,7 +23,7 @@ const App = () => {
         <Redirect exact from="/modified-lar" to="/modified-lar/2018" />
         <Route path="/modified-lar/:year" component={ModifiedLar} />
         <Route
-          path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
+          path="/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}
         />
         <Route

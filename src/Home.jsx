@@ -40,7 +40,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/disclosure-reports/2017"
+              headingLink="/disclosure-reports"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."

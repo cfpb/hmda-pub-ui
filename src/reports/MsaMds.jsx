@@ -35,7 +35,7 @@ class MsaMds extends React.Component {
           msaMds: MSA_MDS[params.institutionId]
         })
       }
-      fetchMsas(params.institutionId).then(
+      fetchMsas(params.institutionId, params.year).then(
         result => {
           const msaMds = [...result.msaMds, { id: 'nationwide' }]
           MSA_MDS[params.institutionId] = msaMds
