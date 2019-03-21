@@ -30,6 +30,7 @@ node_modules/
 build/
 env.json
 yarn-error.log
+setupProxy.js
 
 .snyk
 .yarnclean

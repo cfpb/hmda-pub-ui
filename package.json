@@ -36,5 +36,9 @@
     "Firefox >= 54",
     "Edge >= 15",
     "ie >= 11"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-plugin-prettier": "3.0.1",
+    "http-proxy-middleware": "0.19.1"
+  }
 }
