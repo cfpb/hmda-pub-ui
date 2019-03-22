@@ -228,11 +228,9 @@ class Report extends React.Component {
         <div className="Report">
           <div className="alert alert-error">
             <div className="alert-body">
-              <h3 className="alert-heading">Report not found</h3>
+              <h3 className="alert-heading">No report exists</h3>
               <p className="alert-text">
-                Sorry, it doesn't look like this report has been generated yet.
-                Reports are being added as they are available. Please try again
-                later.
+                No data that meets the criteria of this table was reported by the institution.
               </p>
             </div>
           </div>
