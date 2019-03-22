@@ -7,7 +7,11 @@ const Footer = () => {
   return (
     <footer className="Footer" role="contentinfo">
       <div className="return-to-top">
-        <a href="#">Return to top</a>
+        <button className="button-link" onClick={e=> {
+          e.preventDefault()
+          e.target.blur()
+          window.scrollTo(0,0)
+        }}>Return to top</button>
       </div>
       <div className="content-wrapper">
         <div className="grid">
