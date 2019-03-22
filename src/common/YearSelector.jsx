@@ -4,13 +4,13 @@ import YEARS from '../constants/years'
 
 import './YearSelector.css'
 
-const YearSelector = withRouter(({ history }) => {
+const YearSelector = withRouter(({ history, standalone }) => {
   const { pathname } = history.location
   const pathApp = pathname.split('/')[1]
   const pathYear = pathname.split('/')[2]
 
   return (
-    <div className="YearSelector">
+    <div className={'YearSelector' + (standalone ? ' standalone' : '')}>
       <h4>Select a year</h4>
       {YEARS.map((year, i) => {
         const className = year === pathYear ? 'active' : ''

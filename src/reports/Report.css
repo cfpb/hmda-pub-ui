@@ -3,6 +3,12 @@
   padding: 0 1em;
   overflow-x: auto;
 }
+.Report .alert {
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 3rem;
+}
+
 .Report .report-date {
   color: #5b616b;
   font-size: 1.3rem;

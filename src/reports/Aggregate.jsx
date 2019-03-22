@@ -1,6 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import Header from '../common/Header.jsx'
+import YearSelector from '../common/YearSelector.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import MsaMds from './MsaMds.jsx'
 import Reports from './Reports.jsx'
@@ -81,10 +82,27 @@ class Aggregate extends React.Component {
           <ol className="ProgressCards">
             <li>
               <ProgressCard
+                title="year"
+                name={
+                  params.year
+                    ? params.year
+                    : 'Select a year'
+                }
+                id=''
+                link={'/aggregate-reports/'}
+              />
+            </li>
+            <li>
+              <ProgressCard
                 title="state"
-                name={params.stateId ? state.name : 'Select a state'}
+                name={params.stateId
+                  ? state.name
+                  : params.year
+                  ? 'Select a state'
+                  : ''
+                }
                 id={params.stateId ? state.id : ''}
-                link={`/aggregate-reports/${params.year}`}
+                link={ params.year ? `/aggregate-reports/${params.year}` : null }
               />
             </li>
 
@@ -126,27 +144,31 @@ class Aggregate extends React.Component {
           </ol>
           <hr />
 
-          {params.stateId ? (
-            params.msaMdId ? (
-              params.reportId ? null : (
-                <Reports {...this.props} />
+          {params.year ? (
+            params.stateId ? (
+              params.msaMdId ? (
+                params.reportId ? null : (
+                  <Reports {...this.props} />
+                )
+              ) : (
+                <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
               )
             ) : (
-              <MsaMds {...this.props} selectorCallback={this.setMsaMd} />
-            )
-          ) : (
-            <React.Fragment>
-              <Header type={4} headingText="Select a state" />
-              <Select
-                onChange={this.handleChange}
-                placeholder="Select a state..."
-                searchable={true}
-                autoFocus
-                openOnFocus
-                simpleValue
-                options={options}
-              />
-            </React.Fragment>
+              <React.Fragment>
+                <Header type={4} headingText="Select a state" />
+                <Select
+                  onChange={this.handleChange}
+                  placeholder="Select a state..."
+                  searchable={true}
+                  autoFocus
+                  openOnFocus
+                  simpleValue
+                  options={options}
+                />
+              </React.Fragment>
+              )
+            ) : (
+            <YearSelector />
           )}
         </div>
 

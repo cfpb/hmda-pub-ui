@@ -112,9 +112,12 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    let url = 'https://s3.amazonaws.com/cfpb-hmda-public/prod/reports/'
+    //FIXME; temporary til 2018 reports are generated in prod
+    const env = year === '2017' ? 'prod' : 'dev'
+    const ext = year === '2017' ? '.txt' : '.json'
+    let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
-      url += `aggregate/${year}/${msaMdId}/${reportId}.txt`
+      url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
       if (reportId === 'R1') {
         msaMdId = 'nationwide'
@@ -122,9 +125,9 @@ class Report extends React.Component {
       }
       url += `disclosure/${year}/${
         params.institutionId
-      }/${msaMdId}/${reportId}.txt`
+      }/${msaMdId}/${reportId}${ext}`
     } else {
-      url += `national/${year}/${reportId}.txt`
+      url += `national/${year}/${reportId}${ext}`
     }
     fetch(url)
       .then(response => {
@@ -225,11 +228,9 @@ class Report extends React.Component {
         <div className="Report">
           <div className="alert alert-error">
             <div className="alert-body">
-              <h3 className="alert-heading">Report not found</h3>
+              <h3 className="alert-heading">No report exists</h3>
               <p className="alert-text">
-                Sorry, it doesn't look like this report has been generated yet.
-                Reports are being added as they are available. Please try again
-                later.
+                No data that meets the criteria of this table was reported by the institution.
               </p>
             </div>
           </div>

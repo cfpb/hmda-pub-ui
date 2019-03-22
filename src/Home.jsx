@@ -40,7 +40,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/disclosure-reports/2017"
+              headingLink="/disclosure-reports"
               headingText="Disclosure Reports"
               paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
@@ -50,7 +50,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/aggregate-reports/2017"
+              headingLink="/aggregate-reports"
               headingText="MSA/MD Aggregate Reports"
               paragraphText="These reports summarize lending activity by MSA/MD."
               type={4}
@@ -59,7 +59,7 @@ class Home extends Component {
 
           <div className="card">
             <Header
-              headingLink="/national-aggregate-reports/2017"
+              headingLink="/national-aggregate-reports"
               headingText="National Aggregate Reports"
               paragraphText="These reports summarize nationwide lending activity. 
                 They indicate the number and dollar amounts of loan applications, 

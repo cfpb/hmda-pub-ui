@@ -88,7 +88,7 @@ class Results extends React.Component {
   }
 
   makeListItem(institution, index) {
-    const yearObj =
+    const normalizedInstitution =
       this.props.year === '2017'
         ? {
             title: 'Respondent ID',
@@ -97,12 +97,12 @@ class Results extends React.Component {
         : { title: 'LEI', id: institution.lei }
     const href = `https://s3.amazonaws.com/cfpb-hmda-public/prod/modified-lar/${
       this.props.year
-    }/${yearObj.id}.txt`
+    }/${normalizedInstitution.id}.txt`
     return (
       <li key={index}>
         <h4>{institution.name}</h4>
         <p>
-          {yearObj.title}: {yearObj.id}
+          {normalizedInstitution.title}: {normalizedInstitution.id}
         </p>
         <a className="font-small" href={href} download>
           Download Modified LAR

@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../common/Header.jsx'
+import YearSelector from '../common/YearSelector.jsx'
 import ProgressCard from './ProgressCard.jsx'
 import Reports from './Reports.jsx'
 import Report from './Report.jsx'
@@ -44,8 +45,8 @@ class NationalAggregate extends React.Component {
       <Header
         type={1}
         headingText="National Aggregate Reports"
-        paragraphText="These reports summarize nationwide lending activity. 
-          They indicate the number and dollar amounts of loan applications, 
+        paragraphText="These reports summarize nationwide lending activity.
+          They indicate the number and dollar amounts of loan applications,
           cross-tabulated by loan, borrower and geographic characteristics."
       />
     )
@@ -57,11 +58,28 @@ class NationalAggregate extends React.Component {
           <ol className="ProgressCards">
             <li>
               <ProgressCard
+                title="year"
+                name={
+                  params.year
+                    ? params.year
+                    : 'Select a year'
+                }
+                id=''
+                link={'/national-aggregate-reports/'}
+              />
+            </li>
+            <li>
+              <ProgressCard
                 title="report"
-                name={params.reportId ? report.label : 'Select a report'}
+                name={params.reportId
+                  ? report.label
+                  : params.year
+                  ? 'Select a report'
+                  : ''
+                }
                 id={params.reportId ? report.value : ''}
                 link={
-                  params.reportId
+                  params.year
                     ? `/national-aggregate-reports/${params.year}`
                     : null
                 }
@@ -69,7 +87,11 @@ class NationalAggregate extends React.Component {
             </li>
           </ol>
           <hr />
-          {params.reportId ? null : <Reports {...this.props} />}
+          {params.year ?
+           params.reportId ? null :
+            <Reports {...this.props} />
+           : <YearSelector />
+          }
         </div>
 
         {params.reportId ? <Report {...this.props} /> : null}

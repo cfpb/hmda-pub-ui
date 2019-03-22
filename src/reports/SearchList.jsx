@@ -4,7 +4,7 @@ import LoadingIcon from '../common/LoadingIcon.jsx'
 
 import './SearchList.css'
 
-let institutions = { 2017: null, 2018: null }
+let INSTITUTIONS = { 2017: null, 2018: null }
 
 class SearchList extends React.Component {
   constructor(props) {
@@ -17,59 +17,61 @@ class SearchList extends React.Component {
   }
 
   getData() {
+    this.setState({isLoading: true})
+    const year = this.props.year
     const fetchURL =
-      this.props.year === '2017'
+      year === '2017'
         ? 'https://ffiec-api.cfpb.gov/public/filers'
-        : `/v2/reporting/filers/${this.props.year}`
-    if (this.state.isLoading[this.props.year]) {
-      fetch(fetchURL)
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-          } else {
-            return Promise.reject('Failed to fetch')
-          }
-        })
-        .then(result => {
-          let { isLoading, institutions } = { ...this.state }
-          isLoading[this.props.year] = false
-          institutions[this.props.year] = result.institutions.map(
-            institution => {
-              return {
-                ...institution,
-                name: institution.name.toUpperCase()
-              }
+        : `/v2/reporting/filers/${year}`
+    fetch(fetchURL)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          return Promise.reject('Failed to fetch')
+        }
+      })
+      .then(result => {
+        INSTITUTIONS[year] = result.institutions.map(
+          institution => {
+            return {
+              ...institution,
+              name: institution.name.toUpperCase()
             }
-          )
+          })
 
-          this.setState({ institutions, isLoading })
+        this.setState({
+          isLoading: false,
+          institutions: INSTITUTIONS[year]
         })
-        .catch(error => {
-          let isLoading = { ...this.state.isLoading }
-          isLoading[this.props.year] = false
-          this.setState({ error, isLoading })
-        })
-    }
+      })
+      .catch(error => {
+        this.setState({ error, isLoading: false })
+      })
   }
 
   componentDidMount() {
-    this.getData()
+    if (INSTITUTIONS[this.props.year] === null) {
+      this.getData()
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.year !== prevProps.year) {
-      if (institutions[this.props.year] === null) {
-        this.getData()
-      }
       this.setState({ institutionsFiltered: [], textInputValue: '' })
+      if (INSTITUTIONS[this.props.year] === null) {
+        this.getData()
+      }else{
+        this.setState({institutions: INSTITUTIONS[this.props.year]})
+      }
     }
   }
 
   getDefaultState() {
     return {
       error: null,
-      isLoading: { 2017: true, 2018: true },
-      institutions: { 2017: [], 2018: [] },
+      isLoading: !INSTITUTIONS[this.props.year],
+      institutions: INSTITUTIONS[this.props.year] || [],
       institutionsFiltered: [],
       textInputValue: ''
     }
@@ -79,12 +81,12 @@ class SearchList extends React.Component {
     let institutionsFiltered = []
 
     if (value.length !== 0) {
-      const institutionsByYear = this.state.institutions[this.props.year]
-      const len = institutionsByYear.length
+      const institutions = this.state.institutions
+      const len = institutions.length
       const val = value.toUpperCase()
 
       for (let i = 0; i < len; i++) {
-        const institution = institutionsByYear[i]
+        const institution = institutions[i]
         if (
           institution.name.indexOf(val) !== -1 &&
           institution.respondentId !== 'Bank0_RID' &&
@@ -141,12 +143,12 @@ class SearchList extends React.Component {
           id="input-error-message"
           role="alert"
         >
-          Sorry, we're unable to load the list of institutions that have filed.
+          Sorry, we&#39;re unable to load the list of institutions that have filed.
         </span>
       )
     }
 
-    if (this.state.isLoading[this.props.year]) {
+    if (isLoading) {
       disabled = true
       loading = <LoadingIcon className="LoadingInline" />
       label = (
@@ -175,7 +177,7 @@ class SearchList extends React.Component {
             {loading}
           </div>
         </form>
-        {!isLoading[this.props.year] ? (
+        {!isLoading ? (
           <Results
             error={this.state.error}
             institutions={institutionsFiltered}

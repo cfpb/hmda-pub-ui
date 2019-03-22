@@ -23,15 +23,15 @@ const App = () => {
         <Redirect exact from="/modified-lar" to="/modified-lar/2018" />
         <Route path="/modified-lar/:year" component={ModifiedLar} />
         <Route
-          path="/disclosure-reports/:year/:institutionId?/:msaMdId?/:reportId?"
+          path="/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?"
           component={Disclosure}
         />
         <Route
-          path="/aggregate-reports/:year/:stateId?/:msaMdId?/:reportId?"
+          path="/aggregate-reports/:year?/:stateId?/:msaMdId?/:reportId?"
           component={Aggregate}
         />
         <Route
-          path="/national-aggregate-reports/:year/:reportId?"
+          path="/national-aggregate-reports/:year?/:reportId?"
           component={NationalAggregate}
         />
         <Route
