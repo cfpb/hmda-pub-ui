@@ -27,11 +27,11 @@ const App = () => {
           component={Disclosure}
         />
         <Route
-          path="/aggregate-reports/:year/:stateId?/:msaMdId?/:reportId?"
+          path="/aggregate-reports/:year?/:stateId?/:msaMdId?/:reportId?"
           component={Aggregate}
         />
         <Route
-          path="/national-aggregate-reports/:year/:reportId?"
+          path="/national-aggregate-reports/:year?/:reportId?"
           component={NationalAggregate}
         />
         <Route
