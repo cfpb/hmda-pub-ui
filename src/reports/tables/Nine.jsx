@@ -30,6 +30,7 @@ const renderRows = (loanCategories, key) => {
     rows.push(
       <tr key={loanCategories[0].dispositions[i].disposition + key}>
         <th>{loanCategories[0].dispositions[i].disposition}</th>
+        {/*eslint-disable-next-line*/}
         {loanCategories.map((loanCategory, index) => {
           return [
             <td
