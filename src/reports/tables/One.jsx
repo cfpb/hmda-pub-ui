@@ -166,19 +166,19 @@ const One = React.forwardRef((props, ref) => {
         </tr>
         <tr>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
           <th>Number</th>
-          <th>$000's</th>
+          <th>$</th>
         </tr>
       </thead>
       <tbody>
