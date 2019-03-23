@@ -24,7 +24,7 @@ const Header = () => {
             <span className="logo-text">
               <a className="nav-link" href="/" aria-label="Home">
                 <img alt="FFIEC" src={logo} height="32" />
-                Home Mortgage Disclosure Act
+                <span>Home Mortgage Disclosure Act</span>
               </a>
             </span>
           </div>
