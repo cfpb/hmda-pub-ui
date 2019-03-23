@@ -75,8 +75,8 @@ class Disclosure extends React.Component {
       <li key={index}>
         <h4>{institution.name}</h4>
         <p>{normalizedInstitution.title}: {normalizedInstitution.id}</p>
-        <a
-          href="#"
+        <button
+          className="button-link"
           onClick={e => {
             e.preventDefault()
             this.setInstitution(institution)
@@ -86,7 +86,7 @@ class Disclosure extends React.Component {
           }}
         >
           View MSA/MDs
-        </a>
+        </button>
       </li>
     )
   }
