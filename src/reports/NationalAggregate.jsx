@@ -87,14 +87,17 @@ class NationalAggregate extends React.Component {
             </li>
           </ol>
           <hr />
-          {params.year ?
-           params.reportId ? null :
+          {params.year ? (
+           params.year !== '2017'
+            ? <h3>National Aggregate reports are not produced for data collected in or after 2018.</h3>
+            : params.reportId ? null :
             <Reports {...this.props} />
-           : <YearSelector />
+          )
+          : <YearSelector />
           }
         </div>
 
-        {params.reportId ? <Report {...this.props} /> : null}
+        {params.reportId && params.year === '2017' ? <Report {...this.props} /> : null}
       </React.Fragment>
     )
   }
