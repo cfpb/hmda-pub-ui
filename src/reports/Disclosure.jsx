@@ -197,6 +197,9 @@ class Disclosure extends React.Component {
           <hr />
 
           {params.year ? (
+           params.year !== '2017'
+            ? <h3>Disclosure reports are not yet available for 2018.</h3>
+            :
             params.institutionId ? (
               params.msaMdId ? (
                 params.reportId ? null : (

@@ -112,8 +112,7 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    //FIXME; temporary til 2018 reports are generated in prod
-    const env = year === '2017' ? 'prod' : 'dev'
+    const env = 'prod'
     const ext = year === '2017' ? '.txt' : '.json'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
