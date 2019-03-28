@@ -71,7 +71,7 @@ class Results extends React.Component {
       headerText = 'Institution not found'
       body = (
         <p className="alert-text">
-          Sorry, that insitution isn't in our list of filers. If you think this
+          Sorry, that institution isn't in our list of filers. If you think this
           is incorrect please contact{' '}
           <a href="mailto:hmdahelp@cfpb.gov">hmdahelp@cfpb.gov</a>.
         </p>
