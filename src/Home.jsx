@@ -61,21 +61,19 @@ class Home extends Component {
             <Header
               headingLink="/national-aggregate-reports"
               headingText="National Aggregate Reports"
-              paragraphText="These reports summarize nationwide lending activity. 
-                They indicate the number and dollar amounts of loan applications, 
+              paragraphText="These reports summarize nationwide lending activity.
+                They indicate the number and dollar amounts of loan applications,
                 cross-tabulated by loan, borrower and geographic characteristics."
               type={4}
             />
           </div>
-        </div>
 
-        <div className="card-container">
           <div className="card">
             <Header
               headingLink="/snapshot-national-loan-level-dataset"
               headingText="Snapshot National Loan-Level Dataset"
-              paragraphText="The snapshot files contain the national HMDA datasets as of 
-                April 18th, 2018 for all HMDA reporters, as modified by the Bureau to 
+              paragraphText="The snapshot files contain the national HMDA datasets as of
+                April 18th, 2018 for all HMDA reporters, as modified by the Bureau to
                 protect applicant and borrower privacy."
               type={4}
             />
@@ -85,8 +83,8 @@ class Home extends Component {
             <Header
               headingLink="/dynamic-national-loan-level-dataset"
               headingText="Dynamic National Loan-Level Dataset"
-              paragraphText="The dynamic files contain the national HMDA datasets, 
-              modified by the Bureau to protect applicant and borrower privacy, 
+              paragraphText="The dynamic files contain the national HMDA datasets,
+              modified by the Bureau to protect applicant and borrower privacy,
               updated weekly for all HMDA reporters."
               type={4}
             />
