@@ -26,24 +26,14 @@
 .home .card-container {
   align-items: stretch;
   display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
   max-width: 1040px;
-  padding: 3rem 0;
 }
 .home .card {
-  flex: 1;
-  margin: 0 20px;
+  flex: 1 1 215px;
+  margin: 3rem 40px 3rem 0;
 }
-.home .card:first-child {
-  margin-left: 0;
-}
-.home .card:last-child {
-  margin-right: 0;
-}
-.home .card.quarter {
-  max-width: 24%;
-}
-
 .home h4 {
   margin: 0;
 }
