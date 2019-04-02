@@ -45,6 +45,7 @@
   display: inline-block;
   font-weight: bold;
   line-height: 0;
+  width: 491px;
 }
 
 .logo a:hover {
@@ -135,10 +136,13 @@
   display: inline-block;
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 890px) {
   .nav-container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .logo {
+    width: 116px;
   }
   .logo-text span {
     display: none;
