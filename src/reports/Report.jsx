@@ -24,10 +24,7 @@ class Report extends React.Component {
 
   generateCSV() {
     const report = this.state.report
-    // TODO: create a function for this, it's also used in render as the "headingText"
-    let theCSV = `"Table ${report.table}: ${report.description}${
-      report.table === 'R1' ? '"' : `, ${report.year}"`
-    }\n`
+    let theCSV = '"' + this.makeHeadingText(report) + '"\n'
     const msa = report.msa
       ? `"MSA/MD: ${report.msa.id} - ${report.msa.name}"\n`
       : '"Nationwide"\n'
@@ -219,6 +216,17 @@ class Report extends React.Component {
       return <Tables.R ref={this.tableRef} report={report} />
   }
 
+  makeHeadingText(report) {
+    if (!report) return null
+    const suppressTable = report.year !== '2017' && this.props.match.params.institutionId
+    let table = report.table
+    if (table === 'IRS') table = 'R1'
+    let tableText = suppressTable ? '' : `Table ${table}: `
+    return `${tableText}${report.description}${
+          table === 'R1' ? '' : `, ${report.year}`
+        }`
+  }
+
   render() {
     if (!this.state.isLoaded) return <LoadingIcon />
 
@@ -240,13 +248,7 @@ class Report extends React.Component {
     if (this.props.match.params.stateId) reportType = 'aggregate'
 
     const report = this.state.report
-    let table = report.table
-    if (table === 'IRS') table = 'R1'
-    const headingText = report
-      ? `Table ${table}: ${report.description}${
-          table === 'R1' ? '' : `, ${report.year}`
-        }`
-      : null
+    const headingText = this.makeHeadingText(report)
 
     return (
       <div className="Report">

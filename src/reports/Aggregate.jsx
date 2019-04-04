@@ -19,17 +19,19 @@ const detailsCache = {
 }
 
 STATES.forEach(v => (detailsCache.states[v.id] = v))
-AGGREGATE_REPORTS.forEach(v => {
-  if (v.value) {
-    detailsCache.reports[v.value] = v
-  }
+Object.keys(AGGREGATE_REPORTS).forEach(year =>
+  AGGREGATE_REPORTS[year].forEach(v => {
+    if (v.value) {
+      detailsCache.reports[v.value] = v
+    }
 
-  if (v.options) {
-    v.options.forEach(option => {
-      detailsCache.reports[option.value] = option
-    })
-  }
-})
+    if (v.options) {
+      v.options.forEach(option => {
+        detailsCache.reports[option.value] = option
+      })
+    }
+  })
+)
 
 class Aggregate extends React.Component {
   constructor(props) {

@@ -26,19 +26,21 @@ const Reports = props => {
   const { params } = props.match
   let data = []
   if (params.stateId) {
-    data = AGGREGATE_REPORTS
+    data = AGGREGATE_REPORTS[params.year]
   } else if (params.institutionId) {
     data =
       params.msaMdId === 'nationwide'
-        ? DISCLOSURE_REPORTS.nationwide
-        : DISCLOSURE_REPORTS.msa
+        ? DISCLOSURE_REPORTS[params.year].nationwide
+        : DISCLOSURE_REPORTS[params.year].msa
   } else {
     data = NATIONAL_AGGREGATE_REPORTS
   }
 
   const options = data.map(option => {
-    if (option.value)
-      return { value: option.value, label: `${option.value} - ${option.label}` }
+    if (option.value) {
+      const label = params.year !== '2017' && params.institutionId ? option.label : `${option.value} - ${option.label}`
+      return { value: option.value, label }
+    }
 
     return {
       label: option.label,
