@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../common/Header.jsx'
 import LoadingIcon from '../common/LoadingIcon.jsx'
 import Tables from './tables/index.jsx'
+import parse from 'csv-parse'
 import fileSaver from 'file-saver'
 
 import './Report.css'
@@ -110,7 +111,8 @@ class Report extends React.Component {
     let msaMdId = params.msaMdId
     let reportId = params.reportId
     const env = 'prod'
-    const ext = year === '2017' ? '.txt' : '.json'
+    let ext = year === '2017' ? '.txt' : '.json'
+    if(reportId === 'IRS') ext = '.csv'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
       url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
@@ -127,14 +129,27 @@ class Report extends React.Component {
     }
     fetch(url)
       .then(response => {
-        if (response.ok) return response.json()
-        throw new Error('Network response was not ok.')
+        if (!response.ok) throw new Error('Network response was not ok.')
+        if(ext === '.csv') return response.text()
+        return response.json()
       })
       .then(result => {
-        this.setState({
-          isLoaded: true,
-          report: result
-        })
+        if(ext === '.csv') {
+          parse(result, {cast: v => v.trim()}, (err, output) => {
+            this.setState({
+              isLoaded: true,
+              report: {
+                table: 'IRSCSV',
+                csv: output
+              }
+            })
+          })
+        }else{
+          this.setState({
+            isLoaded: true,
+            report: result
+          })
+        }
       })
       .catch(error => {
         this.setState({
@@ -161,6 +176,8 @@ class Report extends React.Component {
       if(table.match(/^B$/))
         return <Tables.AggregateB ref={this.tableRef} report={report}/>
     }
+    if(table.match(/^IRSCSV$/))
+      return <Tables.IRSCSV ref={this.tableRef} report={report}/>
     if (table.match(/^i$/))
       return <Tables.I ref={this.tableRef} report={report} />
     if (table.match(/^1$/))
