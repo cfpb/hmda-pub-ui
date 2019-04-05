@@ -15,6 +15,8 @@ import A from './A.jsx'
 import A4 from './A4.jsx'
 import B from './B.jsx'
 import R from './R.jsx'
+import AggregateA from './AggregateA.jsx'
+import AggregateB from './AggregateA.jsx'
 
 export default {
   I,
@@ -33,5 +35,7 @@ export default {
   A,
   A4,
   B,
-  R
+  R,
+  AggregateA,
+  AggregateB
 }

@@ -25,7 +25,7 @@ class MsaMds extends React.Component {
     const { params } = this.props.match
     if (params.stateId) {
       this.setState({
-        msaMds: stateToMsas[params.stateId],
+        msaMds: stateToMsas[params.year][params.stateId],
         isLoaded: true
       })
     } else {

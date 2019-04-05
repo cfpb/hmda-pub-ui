@@ -155,6 +155,12 @@ class Report extends React.Component {
       https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
     */
     const table = report.table
+    if(reportType === 'aggregate'){
+      if(table.match(/^A$/))
+        return <Tables.AggregateA ref={this.tableRef} report={report}/>
+      if(table.match(/^B$/))
+        return <Tables.AggregateB ref={this.tableRef} report={report}/>
+    }
     if (table.match(/^i$/))
       return <Tables.I ref={this.tableRef} report={report} />
     if (table.match(/^1$/))

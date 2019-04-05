@@ -13,21 +13,33 @@ import { AGGREGATE_REPORTS } from '../constants/aggregate-reports.js'
 import './Aggregate.css'
 
 const detailsCache = {
-  states: {},
-  msaMds: {},
-  reports: {}
+  2018: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  },
+  2017: {
+    states: {},
+    msaMds: {},
+    reports: {}
+  }
 }
 
-STATES.forEach(v => (detailsCache.states[v.id] = v))
+STATES.forEach(v => {
+  Object.keys(detailsCache).forEach(year => {
+    detailsCache[year].states[v.id] = v
+  })
+})
+
 Object.keys(AGGREGATE_REPORTS).forEach(year =>
   AGGREGATE_REPORTS[year].forEach(v => {
     if (v.value) {
-      detailsCache.reports[v.value] = v
+      detailsCache[year].reports[v.value] = v
     }
 
     if (v.options) {
       v.options.forEach(option => {
-        detailsCache.reports[option.value] = option
+        detailsCache[year].reports[option.value] = option
       })
     }
   })
@@ -38,10 +50,11 @@ class Aggregate extends React.Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
+    this.setMsaMd = this.setMsaMd.bind(this)
 
     const { params } = this.props.match
     if (params.stateId && params.msaMdId) {
-      stateToMsas[params.stateId].forEach(v => {
+      stateToMsas[params.year][params.stateId].forEach(v => {
         if (v.id === +params.msaMdId) this.setMsaMd(v)
       })
     }
@@ -54,16 +67,17 @@ class Aggregate extends React.Component {
   }
 
   setMsaMd(msaMd) {
-    detailsCache.msaMds[msaMd.id] = msaMd
+    const year = this.props.match.params.year
+    detailsCache[year].msaMds[msaMd.id] = msaMd
   }
-
-  renderChoices(params) {}
 
   render() {
     const { params } = this.props.match
-    const state = detailsCache.states[params.stateId]
-    const msaMd = detailsCache.msaMds[params.msaMdId]
-    const report = detailsCache.reports[params.reportId]
+    const year = params.year
+    const details = detailsCache[year]
+    const state = year && details.states[params.stateId]
+    const msaMd = year && details.msaMds[params.msaMdId]
+    const report = year && details.reports[params.reportId]
 
     const options = STATES.map(state => {
       return { value: state.id, label: state.name }
