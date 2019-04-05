@@ -18,7 +18,7 @@ const IRSCSV = React.forwardRef((props, ref) => {
   const report = props.report
   if (!report) return null
 
-  const csv = report.csv
+  const csv = report.parsed
   const head = csv[0]
   const foot = csv[csv.length - 1]
 

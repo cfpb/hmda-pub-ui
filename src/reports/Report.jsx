@@ -35,19 +35,24 @@ class Report extends React.Component {
       : ''
     theCSV = theCSV + institution
 
-    const tHeadRows = this.tableRef.current.tHead.rows
-    theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
+    if(report.table === 'IRSCSV') {
+      theCSV += `Institution: ${this.props.match.params.institutionId}\n`
+      theCSV += report.csv
+    }else{
+      const tHeadRows = this.tableRef.current.tHead.rows
+      theCSV = theCSV + this.buildCSVRows(tHeadRows, 'head')
 
-    const tBodyRows = this.tableRef.current.tBodies[0].rows
-    theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
+      const tBodyRows = this.tableRef.current.tBodies[0].rows
+      theCSV = theCSV + this.buildCSVRows(tBodyRows, 'body')
 
-    if (this.tableTwoRef.current) {
-      theCSV = theCSV + '\n\n'
-      const tTwoHeadRows = this.tableTwoRef.current.tHead.rows
-      theCSV = theCSV + this.buildCSVRows(tTwoHeadRows, 'head')
+      if (this.tableTwoRef.current) {
+        theCSV = theCSV + '\n\n'
+        const tTwoHeadRows = this.tableTwoRef.current.tHead.rows
+        theCSV = theCSV + this.buildCSVRows(tTwoHeadRows, 'head')
 
-      const tTwoBodyRows = this.tableTwoRef.current.tBodies[0].rows
-      theCSV = theCSV + this.buildCSVRows(tTwoBodyRows, 'body')
+        const tTwoBodyRows = this.tableTwoRef.current.tBodies[0].rows
+        theCSV = theCSV + this.buildCSVRows(tTwoBodyRows, 'body')
+      }
     }
 
     fileSaver.saveAs(
@@ -87,7 +92,9 @@ class Report extends React.Component {
   }
 
   createFileName(report) {
-    let filename = `report-${report.table}`
+    let name = report.table
+    if(name === 'IRSCSV') name = 'IRS'
+    let filename = `report-${name}`
     if (report.respondentId) {
       filename =
         filename +
@@ -140,7 +147,8 @@ class Report extends React.Component {
               isLoaded: true,
               report: {
                 table: 'IRSCSV',
-                csv: output
+                csv: result,
+                parsed: output
               }
             })
           })
@@ -243,6 +251,7 @@ class Report extends React.Component {
     if (!report) return null
     const suppressTable = report.year !== '2017' && this.props.match.params.institutionId
     let table = report.table
+    if(table === 'IRSCSV') return 'Home Mortgage Disclosure Act Institution Register Summary for 2018'
     if (table === 'IRS') table = 'R1'
     let tableText = suppressTable ? '' : `Table ${table}: `
     return `${tableText}${report.description}${
@@ -276,6 +285,12 @@ class Report extends React.Component {
     return (
       <div className="Report">
         <Header type={3} headingText={headingText}>
+          {report.table === 'IRSCSV' ? (
+            <p>
+              Institution: {this.props.match.params.institutionId}
+            </p>
+          ) : null
+          }
           {report.respondentId ? (
             <p>
               Institution: {report.respondentId} - {report.institutionName}
@@ -293,7 +308,10 @@ class Report extends React.Component {
         </Header>
 
         {this.selectReport(report, reportType)}
-        <p className="report-date">Report date: {report.reportDate}</p>
+        {report.reportDate
+          ? <p className="report-date">Report date: {report.reportDate}</p>
+          : null
+        }
       </div>
     )
   }
