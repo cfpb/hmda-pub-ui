@@ -38,7 +38,7 @@ const Reports = props => {
 
   const options = data.map(option => {
     if (option.value) {
-      const label = params.year !== '2017' && params.institutionId ? option.label : `${option.value} - ${option.label}`
+      const label = params.year !== '2017' ? option.label : `${option.value} - ${option.label}`
       return { value: option.value, label }
     }
 

@@ -1,48 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const renderData = (tracts) => {
+const renderData = tracts => {
   return tracts.map((tract, index) => {
-    return [
+    return (
       <tr key={index}>
         <th
           style={{
-            borderTopWidth: '2px',
             fontWeight: 'bold',
             textTransform: 'uppercase',
             backgroundColor: '#f1f1f1'
           }}
-          colSpan={15}
         >
           {tract.tract}
         </th>
-      </tr>,
-      renderDispositions(tract.dispositions, index)
-    ]
-  })
-}
-
-const renderDispositions = (dispositions, key) => {
-  return dispositions.map((disposition, index) => {
-    return (
-      <tr key={`${key}-${index}`}>
-        <th>{disposition.title}</th>
-        {renderDispositionValues(disposition.values, key, index)}
+        {renderValues(tract.values, index)}
       </tr>
     )
   })
 }
 
-const renderDispositionValues = (values, key, key2) => {
+const renderValues = (values, key) => {
   return values.map((value, index) => {
     return [
-      <td key={`count-${key}-${key2}-${index}`}>{value.count}</td>,
-      <td key={`value-${key}-${key2}-${index}`}>{value.value}</td>
+      <td key={`count-${key}-${index}`}>{value.count}</td>,
+      <td key={`value-${key}-${index}`}>{value.value}</td>
     ]
   })
 }
 
-const A = React.forwardRef((props, ref) => {
+const Aggregate2 = React.forwardRef((props, ref) => {
   if (!props.report) return null
 
   const sortedTracts = props.report.tracts.sort(function(tractA, tractB) {
@@ -59,15 +46,12 @@ const A = React.forwardRef((props, ref) => {
     return 0
   })
 
-  let colWidth = '5.7%'
-
   return (
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={5}>
-            CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
-            (STATE/COUNTY/TRACT NUMBER)
+            CENSUS TRACT OR COUNTY NAME (STATE/COUNTY/TRACT NUMBER)
           </th>
           <th colSpan={8}>
             Loans on 1- to 4-Family and Manufactured Home Dwellings
@@ -88,29 +72,28 @@ const A = React.forwardRef((props, ref) => {
           <th colSpan={2}>G</th>
         </tr>
         <tr>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             FHA, FSA/RHS & VA
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Conventional
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Refinancings
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Home Improvement Loans
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Loans on Dwellings For 5 or More Families
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Nonoccupant Loans From Columns A, B, C, and D
           </th>
-          <th width={colWidth} colSpan={2}>
+          <th width="5%" colSpan={2}>
             Loans On Manufactured Home Dwellings From Columns A, B, C, & D
           </th>
         </tr>
-
         <tr>
           <th>Number</th>
           <th>$Amount</th>
@@ -150,8 +133,8 @@ const A = React.forwardRef((props, ref) => {
   )
 })
 
-A.propTypes = {
+Aggregate2.propTypes = {
   report: PropTypes.object
 }
 
-export default A
+export default Aggregate2

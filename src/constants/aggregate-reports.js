@@ -1,7 +1,7 @@
 export const AGGREGATE_REPORTS = {
   2018: [
-    { value: 'A', label: 'Applications by Tract' },
-    { value: 'B', label: 'Loans Purchased by Tract' }
+    { value: '1', label: 'Applications by Tract' },
+    { value: '2', label: 'Loans Purchased by Tract' }
   ],
   2017: [
     { value: 'i', label: 'Reporting Institutions' },

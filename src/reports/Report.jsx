@@ -117,7 +117,7 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    const env = 'prod'
+    const env = 'dev'
     let ext = year === '2017' ? '.txt' : '.json'
     if(reportId === 'IRS') ext = '.csv'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
@@ -178,11 +178,11 @@ class Report extends React.Component {
       https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
     */
     const table = report.table
-    if(reportType === 'aggregate'){
-      if(table.match(/^A$/))
-        return <Tables.AggregateA ref={this.tableRef} report={report}/>
-      if(table.match(/^B$/))
-        return <Tables.AggregateB ref={this.tableRef} report={report}/>
+    if(reportType === 'aggregate' && report.year !== 2017){
+      if(table.match(/^1$/))
+        return <Tables.Aggregate1 ref={this.tableRef} report={report}/>
+      if(table.match(/^2$/))
+        return <Tables.Aggregate2 ref={this.tableRef} report={report}/>
     }
     if(table.match(/^IRSCSV$/))
       return <Tables.IRSCSV ref={this.tableRef} report={report}/>
@@ -249,7 +249,7 @@ class Report extends React.Component {
 
   makeHeadingText(report) {
     if (!report) return null
-    const suppressTable = report.year !== '2017' && this.props.match.params.institutionId
+    const suppressTable = report.year !== '2017'
     let table = report.table
     if(table === 'IRSCSV') return 'Home Mortgage Disclosure Act Institution Register Summary for 2018'
     if (table === 'IRS') table = 'R1'

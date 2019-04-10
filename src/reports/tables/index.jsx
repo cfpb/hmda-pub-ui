@@ -16,8 +16,8 @@ import A4 from './A4.jsx'
 import B from './B.jsx'
 import R from './R.jsx'
 import IRSCSV from './IRSCSV.jsx'
-import AggregateA from './AggregateA.jsx'
-import AggregateB from './AggregateA.jsx'
+import Aggregate1 from './Aggregate1.jsx'
+import Aggregate2 from './Aggregate2.jsx'
 
 export default {
   I,
@@ -38,6 +38,6 @@ export default {
   B,
   R,
   IRSCSV,
-  AggregateA,
-  AggregateB
+  Aggregate1,
+  Aggregate2
 }

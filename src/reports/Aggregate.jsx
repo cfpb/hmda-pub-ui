@@ -149,7 +149,7 @@ class Aggregate extends React.Component {
                       ? 'Select a report'
                       : params.stateId ? '' : ''
                 }
-                id={params.reportId ? report.value : ''}
+                id={params.reportId && params.year === '2017' ? report.value : ''}
                 link={
                   params.msaMdId
                     ? `/aggregate-reports/${params.year}/${state.id}/${msaMd.id}`
