@@ -553,7 +553,8 @@
     { id: 43580, name: 'SIOUX CITY' },
     { id: 43620, name: 'SIOUX FALLS' }
   ],
-  DC: [{ id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }]
+  DC: [{ id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }],
+  NA: [{ id: 99999, name: 'N/A OR OUTSIDE MSA/MD' }]
 }
 
 const data2018 = {
