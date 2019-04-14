@@ -183,6 +183,16 @@ class Report extends React.Component {
         return <Tables.Aggregate1 ref={this.tableRef} report={report}/>
       if(table.match(/^2$/))
         return <Tables.Aggregate2 ref={this.tableRef} report={report}/>
+      if(table.match(/^3$/))
+        return <Tables.Aggregate3 ref={this.tableRef} report={report}/>
+      if(table.match(/^4$/))
+        return <Tables.Aggregate4 ref={this.tableRef} report={report}/>
+      if(table.match(/^5$/))
+        return <Tables.Aggregate5 ref={this.tableRef} report={report}/>
+      if(table.match(/^9$/))
+        return <Tables.Aggregate9 ref={this.tableRef} report={report}/>
+      if(table.match(/^i$/))
+        return <Tables.AggregateI ref={this.tableRef} report={report}/>
     }
     if(table.match(/^IRSCSV$/))
       return <Tables.IRSCSV ref={this.tableRef} report={report}/>
