@@ -112,7 +112,7 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    const env = 'prod'
+    const env = 'dev'
     const ext = year === '2017' ? '.txt' : '.json'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
@@ -251,10 +251,10 @@ class Report extends React.Component {
     return (
       <div className="Report">
         <Header type={3} headingText={headingText}>
-          {report.respondentId ? (
-            <p>
-              Institution: {report.respondentId} - {report.institutionName}
-            </p>
+          {report.institutions ? report.institutions.map((institution, index)=>(
+              <p key={index}>
+              Institution: {institution}
+            </p>)
           ) : null}
 
           {report.msa ? (
