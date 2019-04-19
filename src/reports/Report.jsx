@@ -112,7 +112,7 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    const env = 'dev'
+    const env = 'prod'
     const ext = year === '2017' ? '.txt' : '.json'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
