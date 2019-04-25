@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 const renderData = applicantIncomes => {
   return applicantIncomes.map((applicantIncome, index) => {
     return [
       renderApplicantIncome(applicantIncome.applicantIncome, index),
       renderCharacteristics(applicantIncome.borrowerCharacteristics)
-    ]
-  })
-}
+    ];
+  });
+};
 
 const renderApplicantIncome = (applicantIncome, index) => {
   return (
@@ -16,38 +16,50 @@ const renderApplicantIncome = (applicantIncome, index) => {
       <th
         colSpan={13}
         style={{
-          borderTopWidth: '2px',
-          fontWeight: 'bold',
-          textTransform: 'uppercase',
-          backgroundColor: '#f1f1f1'
+          borderTopWidth: "2px",
+          fontWeight: "bold",
+          textTransform: "uppercase",
+          backgroundColor: "#f1f1f1"
         }}
       >
         {applicantIncome}
       </th>
     </tr>
-  )
-}
+  );
+};
+
+const convertObjToArray = obj => {
+  return Object.entries(obj).map(([key, value]) => ({ [key]: value }));
+};
+
 const renderCharacteristics = borrowerCharacteristics => {
-  return borrowerCharacteristics.map((characteristic, index) => {
+  let convertedBorrowerCharacteristics = convertObjToArray(
+    borrowerCharacteristics
+  );
+  return convertedBorrowerCharacteristics.map((borrower, index) => {
     return [
       <tr key={index}>
         <th
           colSpan={13}
           style={{
-            textTransform: 'uppercase',
-            fontWeight: 'bold'
+            textTransform: "uppercase",
+            fontWeight: "bold"
           }}
         >
-          {characteristic.characteristic}
+          {borrower.race
+            ? borrower.race.characteristic
+            : borrower.ethnicity.characteristic}
         </th>
       </tr>,
-      renderCharacteristicDetails(characteristic)
-    ]
-  })
-}
+      renderCharacteristicDetails(
+        borrower.race ? borrower.race : borrower.ethnicity
+      )
+    ];
+  });
+};
 
 const renderCharacteristicDetails = characteristic => {
-  if (characteristic.characteristic === 'Race')
+  if (characteristic.characteristic === "Race")
     return characteristic.races.map((race, index) => {
       return (
         <tr key={index}>
@@ -56,28 +68,29 @@ const renderCharacteristicDetails = characteristic => {
             return [
               <td key="count">{disposition.count}</td>,
               <td key="value">{disposition.value}</td>
-            ]
+            ];
           })}
         </tr>
-      )
-    })
+      );
+    });
 
-  if (characteristic.characteristic === 'Ethnicity')
+  if (characteristic.characteristic === "Ethnicity")
     return characteristic.ethnicities.map((ethnicity, index) => {
+      console.log(ethnicity);
       return (
         <tr key={index}>
-          <th>{ethnicity.ethnicity}</th>
+          <th>{ethnicity.ethnicityName}</th>
           {ethnicity.dispositions.map((disposition, index) => {
             return [
               <td key="count">{disposition.count}</td>,
               <td key="value">{disposition.value}</td>
-            ]
+            ];
           })}
         </tr>
-      )
-    })
+      );
+    });
 
-  if (characteristic.characteristic === 'Minority Status')
+  if (characteristic.characteristic === "Minority Status")
     return characteristic.minorityStatus.map((minorityStatus, index) => {
       return (
         <tr key={index}>
@@ -86,18 +99,18 @@ const renderCharacteristicDetails = characteristic => {
             return [
               <td key="count">{disposition.count}</td>,
               <td key="value">{disposition.value}</td>
-            ]
+            ];
           })}
         </tr>
-      )
-    })
-}
+      );
+    });
+};
 
 const Aggregate5 = React.forwardRef((props, ref) => {
-  if (!props.report) return null
+  if (!props.report) return null;
 
   return (
-    <table ref={ref} style={{ fontSize: '.75em' }}>
+    <table ref={ref} style={{ fontSize: ".75em" }}>
       <thead>
         <tr>
           <th width="20%" rowSpan={2}>
@@ -143,23 +156,13 @@ const Aggregate5 = React.forwardRef((props, ref) => {
         </tr>
       </thead>
       <tbody>{renderData(props.report.applicantIncomes)}</tbody>
-      <tfoot>
-        <tr>
-          <th>Total</th>
-          {props.report.total.map((total, index) => {
-            return [
-              <td key="count">{total.count}</td>,
-              <td key="value">{total.value}</td>
-            ]
-          })}
-        </tr>
-      </tfoot>
+      <tfoot />
     </table>
-  )
-})
+  );
+});
 
 Aggregate5.propTypes = {
   report: PropTypes.object
-}
+};
 
-export default Aggregate5
+export default Aggregate5;

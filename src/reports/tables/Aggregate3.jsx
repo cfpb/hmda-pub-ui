@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const renderData = report => {
+
   const { races, ethnicities, minorityStatuses, incomes } = report
   return (
     <React.Fragment>
@@ -12,7 +13,6 @@ const renderData = report => {
 
 const mapCharacteristic = (arr, key) => {
   return [
-    renderCharacteristicTitle(key),
     arr.map(characteristic => {
       return renderCharacteristic(characteristic, key)
     })
@@ -67,7 +67,7 @@ const renderCharacteristic = (characteristic, key) => {
         {currChar}
       </th>
     </tr>,
-    characteristic.genders.map((gender, index) => {
+    characteristic.gender.map((gender, index) => {
       const key = currChar + index
       return (
         <tr key={key}>
@@ -100,7 +100,7 @@ const Aggregate3 = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%" rowSpan={2}>
+          <th width="20%">
             RACE AND SEX
           </th>
           <th colSpan={2} width="13.333%">
@@ -123,6 +123,7 @@ const Aggregate3 = React.forwardRef((props, ref) => {
           </th>
         </tr>
         <tr>
+          <th>Race</th>
           <th>Number</th>
           <th>$Amount</th>
           <th>Number</th>
@@ -139,22 +140,12 @@ const Aggregate3 = React.forwardRef((props, ref) => {
       </thead>
       <tbody>{renderData(props.report)}</tbody>
       <tfoot>
-        <tr>
-          <th>Total</th>
-          {props.report.total.map((total, index) => {
-            return [
-              <td key={'count' + index}>{total.count}</td>,
-              <td key={'value' + index}>{total.value}</td>
-            ]
-          })}
-        </tr>
+
       </tfoot>
     </table>
   )
 })
-
 Aggregate3.propTypes = {
   report: PropTypes.object
 }
-
 export default Aggregate3
