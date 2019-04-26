@@ -14,7 +14,7 @@ const renderApplicantIncome = (applicantIncome, index) => {
   return (
     <tr key={index}>
       <th
-        colSpan={13}
+        colSpan={15}
         style={{
           borderTopWidth: "2px",
           fontWeight: "bold",
@@ -40,7 +40,7 @@ const renderCharacteristics = borrowerCharacteristics => {
     return [
       <tr key={index}>
         <th
-          colSpan={13}
+          colSpan={15}
           style={{
             textTransform: "uppercase",
             fontWeight: "bold"
@@ -76,7 +76,6 @@ const renderCharacteristicDetails = characteristic => {
 
   if (characteristic.characteristic === "Ethnicity")
     return characteristic.ethnicities.map((ethnicity, index) => {
-      console.log(ethnicity);
       return (
         <tr key={index}>
           <th>{ethnicity.ethnicityName}</th>
@@ -95,7 +94,7 @@ const renderCharacteristicDetails = characteristic => {
       return (
         <tr key={index}>
           <th>{minorityStatus.minorityStatus}</th>
-          {minorityStatus.dispositions.map((disposition, index) => {
+          {minorityStatus.dispositions.sort.map((disposition, index) => {
             return [
               <td key="count">{disposition.count}</td>,
               <td key="value">{disposition.value}</td>

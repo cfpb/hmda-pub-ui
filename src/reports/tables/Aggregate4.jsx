@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 const renderData = report => {
   const { races, ethnicities, minorityStatuses, incomes } = report
-  console.log(ethnicities)
   return (
     <React.Fragment>
       {mapCharacteristic(ethnicities, 'ethnicityName')}
@@ -12,15 +11,31 @@ const renderData = report => {
 }
 
 const mapCharacteristic = (arr, key) => {
-  console.log(key)
   return [
-     arr.map(characteristic => {
+    renderCharacteristicTitle(key),
+    arr.map(characteristic => {
       return renderCharacteristic(characteristic, key)
     })
   ]
 }
 
-
+const renderCharacteristicTitle = key => {
+  return (
+    <tr className="characteristic-grey-title" key={key}>
+      <th
+        colSpan={13}
+        style={{
+          borderTopWidth: '2px',
+          fontWeight: 'bold',
+          textTransform: 'uppercase',
+          backgroundColor: '#f1f1f1'
+        }}
+      >
+      {'Ethnicity'}
+      </th>
+    </tr>
+  )
+}
 
 const renderCharacteristic = (characteristic, key) => {
   const currChar = characteristic[key]
@@ -84,7 +99,7 @@ const Aggregate4 = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%">
+          <th width="20%" rowSpan={2}>
             ETHNICITY AND SEX
           </th>
           <th colSpan={2} width="13.333%">
@@ -107,7 +122,6 @@ const Aggregate4 = React.forwardRef((props, ref) => {
           </th>
         </tr>
         <tr>
-          <th>Ethnicity</th>
           <th>Number</th>
           <th>$Amount</th>
           <th>Number</th>

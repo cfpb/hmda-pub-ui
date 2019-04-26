@@ -13,6 +13,7 @@ const renderData = report => {
 
 const mapCharacteristic = (arr, key) => {
   return [
+    renderCharacteristicTitle(key),
     arr.map(characteristic => {
       return renderCharacteristic(characteristic, key)
     })
@@ -43,7 +44,7 @@ const renderCharacteristic = (characteristic, key) => {
   if (key === 'income') {
     return (
       <tr className="characteristic-title" key={currChar}>
-        <th>{currChar}</th>
+      <th>{currChar}</th>
         {characteristic.dispositions.map(disposition => {
           return [
             <td key="count">{disposition.count}</td>,
@@ -100,7 +101,7 @@ const Aggregate3 = React.forwardRef((props, ref) => {
     <table ref={ref} style={{ fontSize: '.75em' }}>
       <thead>
         <tr>
-          <th width="20%">
+          <th width="20%" rowSpan={2}>
             RACE AND SEX
           </th>
           <th colSpan={2} width="13.333%">
@@ -123,7 +124,6 @@ const Aggregate3 = React.forwardRef((props, ref) => {
           </th>
         </tr>
         <tr>
-          <th>Race</th>
           <th>Number</th>
           <th>$Amount</th>
           <th>Number</th>
@@ -140,12 +140,16 @@ const Aggregate3 = React.forwardRef((props, ref) => {
       </thead>
       <tbody>{renderData(props.report)}</tbody>
       <tfoot>
+        <tr>
 
+        </tr>
       </tfoot>
     </table>
   )
 })
+
 Aggregate3.propTypes = {
   report: PropTypes.object
 }
+
 export default Aggregate3
