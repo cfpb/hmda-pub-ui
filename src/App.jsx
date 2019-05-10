@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Header from './Header'
 import Home from './Home'
 import ModifiedLar from './reports/ModifiedLar'
+import ModifiedLarDocs from './reports/ModifiedLarDocs'
 import Disclosure from './reports/Disclosure'
 import Aggregate from './reports/Aggregate'
 import NationalAggregate from './reports/NationalAggregate'
@@ -21,6 +22,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Redirect exact from="/modified-lar" to="/modified-lar/2018" />
+        <Route path="/modified-lar/documents" component={ModifiedLarDocs} />
         <Route path="/modified-lar/:year" component={ModifiedLar} />
         <Route
           path="/disclosure-reports/:year?/:institutionId?/:msaMdId?/:reportId?"
