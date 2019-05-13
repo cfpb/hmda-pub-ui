@@ -42,15 +42,15 @@ const ModifiedLarDocs = props => {
         </p>
         <p>
           <a
-            title="Details for Changed Fields in 2018 Modified LAR"
-            href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/UsingModifiedLar.md#new-fields-added-to-modified-lar"
-          >Details for Changed Fields in 2018 Modified LAR</a>
+            title="Modified LAR Field information"
+            href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/AboutModifiedLAR.md"
+          >Modified LAR Field information</a>
         </p>
         <p>
           <a
-            title="Modified LAR Excel Load Instructions"
-            href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/UsingModifiedLar.md#using-modified-lar-data"
-          >Modified LAR Excel Load Instructions</a>
+            title="Opening Modified LAR Text Files With Excel"
+            href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/ModifiedLarWithExcel.md"
+          >Opening Modified LAR Text Files With Excel</a>
         </p>
     </div>
   )
