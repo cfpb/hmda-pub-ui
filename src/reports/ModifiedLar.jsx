@@ -23,7 +23,7 @@ const ModifiedLar = props => {
             may not have completed its HMDA data submission."
         >
           <p>
-            <Link to="/modified-lar/documents">
+            <Link to="/documents#modified-lar">
               Modified LAR file specifications, schemas, and instructions
             </Link>
           </p>
