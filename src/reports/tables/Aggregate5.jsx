@@ -28,16 +28,13 @@ const renderApplicantIncome = (applicantIncome, index) => {
   )
 }
 
-  function entries( obj ){
-    const keys = Object.keys(obj)
-
-      const keyValuePairs = keys.map(key => {
-          const value = obj[key]
-
-          return { [key]: value }
-      })
-
-      return keyValuePairs
+function entries( obj ){
+  const keys = Object.keys(obj)
+  const keyValuePairs = keys.map(key => {
+    const value = obj[key]
+    return { [key]: value }
+  })
+  return keyValuePairs
 }
 
 const renderCharacteristics = borrowerCharacteristics => {
