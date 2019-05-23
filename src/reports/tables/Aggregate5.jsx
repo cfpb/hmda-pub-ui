@@ -14,7 +14,7 @@ const renderApplicantIncome = (applicantIncome, index) => {
   return (
     <tr key={index}>
       <th
-        colSpan={13}
+        colSpan={15}
         style={{
           borderTopWidth: '2px',
           fontWeight: 'bold',
@@ -27,21 +27,39 @@ const renderApplicantIncome = (applicantIncome, index) => {
     </tr>
   )
 }
+
+function entries( obj ){
+  const keys = Object.keys(obj)
+  const keyValuePairs = keys.map(key => {
+    const value = obj[key]
+    return { [key]: value }
+  })
+  return keyValuePairs
+}
+
 const renderCharacteristics = borrowerCharacteristics => {
-  return borrowerCharacteristics.map((characteristic, index) => {
+  let convertedBorrowerCharacteristics = entries(
+    borrowerCharacteristics
+  )
+
+  return convertedBorrowerCharacteristics.map((borrower, index) => {
     return [
       <tr key={index}>
         <th
-          colSpan={13}
+          colSpan={15}
           style={{
             textTransform: 'uppercase',
             fontWeight: 'bold'
           }}
         >
-          {characteristic.characteristic}
+          {borrower.race
+            ? borrower.race.characteristic
+            : borrower.ethnicity.characteristic}
         </th>
       </tr>,
-      renderCharacteristicDetails(characteristic)
+      renderCharacteristicDetails(
+        borrower.race ? borrower.race : borrower.ethnicity
+      )
     ]
   })
 }
@@ -66,7 +84,7 @@ const renderCharacteristicDetails = characteristic => {
     return characteristic.ethnicities.map((ethnicity, index) => {
       return (
         <tr key={index}>
-          <th>{ethnicity.ethnicity}</th>
+          <th>{ethnicity.ethnicityName}</th>
           {ethnicity.dispositions.map((disposition, index) => {
             return [
               <td key="count">{disposition.count}</td>,
@@ -82,7 +100,7 @@ const renderCharacteristicDetails = characteristic => {
       return (
         <tr key={index}>
           <th>{minorityStatus.minorityStatus}</th>
-          {minorityStatus.dispositions.map((disposition, index) => {
+          {minorityStatus.dispositions.sort().map((disposition, index) => {
             return [
               <td key="count">{disposition.count}</td>,
               <td key="value">{disposition.value}</td>
@@ -143,20 +161,12 @@ const Aggregate5 = React.forwardRef((props, ref) => {
         </tr>
       </thead>
       <tbody>{renderData(props.report.applicantIncomes)}</tbody>
-      <tfoot>
-        <tr>
-          <th>Total</th>
-          {props.report.total.map((total, index) => {
-            return [
-              <td key="count">{total.count}</td>,
-              <td key="value">{total.value}</td>
-            ]
-          })}
-        </tr>
-      </tfoot>
+      <tfoot />
     </table>
   )
 })
+
+Aggregate5.displayName = 'Aggregate5'
 
 Aggregate5.propTypes = {
   report: PropTypes.object

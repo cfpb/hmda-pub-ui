@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const renderData = report => {
-  const { races, ethnicities, minorityStatuses, incomes } = report
+
+  const  races  = report
   return (
     <React.Fragment>
       {mapCharacteristic(races, 'race')}
@@ -43,7 +44,7 @@ const renderCharacteristic = (characteristic, key) => {
   if (key === 'income') {
     return (
       <tr className="characteristic-title" key={currChar}>
-        <th>{currChar}</th>
+      <th>{currChar}</th>
         {characteristic.dispositions.map(disposition => {
           return [
             <td key="count">{disposition.count}</td>,
@@ -67,7 +68,7 @@ const renderCharacteristic = (characteristic, key) => {
         {currChar}
       </th>
     </tr>,
-    characteristic.genders.map((gender, index) => {
+    characteristic.gender.map((gender, index) => {
       const key = currChar + index
       return (
         <tr key={key}>
@@ -140,18 +141,15 @@ const Aggregate3 = React.forwardRef((props, ref) => {
       <tbody>{renderData(props.report)}</tbody>
       <tfoot>
         <tr>
-          <th>Total</th>
-          {props.report.total.map((total, index) => {
-            return [
-              <td key={'count' + index}>{total.count}</td>,
-              <td key={'value' + index}>{total.value}</td>
-            ]
-          })}
+
         </tr>
       </tfoot>
     </table>
   )
 })
+
+Aggregate3.displayName = 'Aggregate3'
+
 
 Aggregate3.propTypes = {
   report: PropTypes.object
