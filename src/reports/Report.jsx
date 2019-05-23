@@ -191,7 +191,7 @@ class Report extends React.Component {
         return <Tables.Aggregate5 ref={this.tableRef} report={report}/>
       if(table.match(/^9$/))
         return <Tables.Aggregate9 ref={this.tableRef} report={report}/>
-      if(table.match(/^i$/) || table.match(/^I$/))
+      if(table.match(/^i$/i))
         return <Tables.AggregateI ref={this.tableRef} report={report}/>
     }
     if(table.match(/^IRSCSV$/))

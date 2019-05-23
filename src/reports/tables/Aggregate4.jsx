@@ -144,6 +144,8 @@ const Aggregate4 = React.forwardRef((props, ref) => {
   )
 })
 
+Aggregate4.displayName = 'Aggregate4'
+
 Aggregate4.propTypes = {
   report: PropTypes.object
 }
