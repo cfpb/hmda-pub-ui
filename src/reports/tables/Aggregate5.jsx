@@ -28,14 +28,23 @@ const renderApplicantIncome = (applicantIncome, index) => {
   )
 }
 
-const convertObjToArray = obj => {
-  return Object.entries(obj).map(([key, value]) => ({ [key]: value }))
+  function entries( obj ){
+    const keys = Object.keys(obj)
+
+      const keyValuePairs = keys.map(key => {
+          const value = obj[key]
+
+          return { [key]: value }
+      })
+
+      return keyValuePairs
 }
 
 const renderCharacteristics = borrowerCharacteristics => {
-  let convertedBorrowerCharacteristics = convertObjToArray(
+  let convertedBorrowerCharacteristics = entries(
     borrowerCharacteristics
   )
+
   return convertedBorrowerCharacteristics.map((borrower, index) => {
     return [
       <tr key={index}>

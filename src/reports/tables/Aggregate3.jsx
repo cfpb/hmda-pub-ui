@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const renderData = report => {
 
-  const { races, ethnicities, minorityStatuses, incomes } = report
+  const  races  = report
   return (
     <React.Fragment>
       {mapCharacteristic(races, 'race')}
@@ -147,6 +147,9 @@ const Aggregate3 = React.forwardRef((props, ref) => {
     </table>
   )
 })
+
+Aggregate3.displayName = 'Aggregate3'
+
 
 Aggregate3.propTypes = {
   report: PropTypes.object
