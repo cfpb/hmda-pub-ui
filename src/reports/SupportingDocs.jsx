@@ -25,33 +25,33 @@ const ModifiedLarDocs = props => {
           <p>
             Modified LAR header for CSV files: <a
               title="Modified LAR header for 2018 csv file"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/schemas/mlar/headers/mlar_header_2018.csv"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Header.csv"
             >2018</a>,{' '}
             <a
               title="Modified LAR header for 2017 csv file"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/schemas/mlar/headers/mlar_header_2017.csv"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Header.csv"
             >2017</a>
           </p>
           <p>
             Modified LAR Data Dictionaries: <a
               title="Modified LAR 2018 data dictionary"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/schemas/mlar/schemas/mlar_schema_2018.csv"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2018_Modified_LAR_Data_Dictionary.csv"
             >2018</a>,{' '}
             <a
               title="Modified LAR 2017 data dictionary"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/schemas/mlar/schemas/mlar_schema_2017.csv"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/2017_Modified_LAR_Data_Dictionary.csv"
             >2017</a>
           </p>
           <p>
             <a
               title="Modified LAR Field information"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/AboutModifiedLAR.md"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/UsingModifiedLar.md"
             >Modified LAR Field information</a>
           </p>
           <p>
             <a
               title="Opening Modified LAR Text Files With Excel"
-              href="https://github.com/cfpb/HMDA_Data_Science_Kit/blob/master/documentation_resources/ModifiedLarWithExcel.md"
+              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/ModifiedLarWithExcel.md"
             >Opening Modified LAR Text Files With Excel</a>
           </p>
       </div>
