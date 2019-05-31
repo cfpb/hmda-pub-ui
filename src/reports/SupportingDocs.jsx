@@ -55,6 +55,7 @@ const ModifiedLarDocs = props => {
             >Opening Modified LAR Text Files With Excel</a>
           </p>
       </div>
+      {/*
       <div className="DocSection">
         <h2>Disclosure</h2>
           <p>
@@ -64,6 +65,7 @@ const ModifiedLarDocs = props => {
             Another thing
           </p>
       </div>
+      */}
     </div>
   )
 }
