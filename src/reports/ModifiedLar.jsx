@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../common/Header.jsx'
 import SearchList from './SearchList.jsx'
 import YearSelector from '../common/YearSelector.jsx'
@@ -22,14 +23,9 @@ const ModifiedLar = props => {
             may not have completed its HMDA data submission."
         >
           <p>
-            Modified LAR file specifications: <a
-              title="Modified LAR 2018 file specification"
-              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v2/spec/Modified%20LAR%20Schema.csv"
-            >2018</a>,{' '}
-            <a
-              title="Modified LAR 2017 file specification"
-              href="https://github.com/cfpb/hmda-platform/blob/master/docs/v1/2017_Modified_LAR_Spec.csv"
-            >2017</a>
+            <Link to="/documents#modified-lar">
+              Modified LAR file specifications, schemas, and instructions
+            </Link>
           </p>
         </Header>
         <YearSelector standalone={true} />
