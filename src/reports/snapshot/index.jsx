@@ -123,7 +123,7 @@ const Snapshot = () => {
             <li>
               <a
                 download={true}
-                href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.zip"
+                href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf"
               >
                 LAR, TS and Reporter Panel
               </a>
@@ -131,7 +131,7 @@ const Snapshot = () => {
             <li>
               <a
                 download={true}
-                href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.zip"
+                href="https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf"
               >
                 LAR Code Sheet
               </a>
