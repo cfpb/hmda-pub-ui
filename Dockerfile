@@ -13,7 +13,7 @@ COPY public ./public
 
 RUN yarn build
 
-FROM nginx:1.15.12-alpine
+FROM nginx:1.16-alpine
 
 RUN rm -rf /etc/nginx/conf.d
 COPY nginx /etc/nginx
