@@ -47,7 +47,7 @@ class MsaMds extends React.Component {
         error => {
           this.setState({
             isLoaded: true,
-            error
+            error: `${error.status}: ${error.statusText}`
           })
         }
       )
@@ -55,8 +55,8 @@ class MsaMds extends React.Component {
   }
 
   render() {
-    if (!this.state.isLoaded) return <LoadingIcon />
     if (this.state.error) return <p>{this.state.error}</p>
+    if (!this.state.isLoaded) return <LoadingIcon />
 
     const options = this.state.msaMds.map(val => {
       let label = val.id

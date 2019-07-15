@@ -5,5 +5,8 @@ function getMsaUrl(institutionId, year) {
 }
 
 export default function(institutionId, year) {
-  return fetch(getMsaUrl(institutionId, year)).then(res => res.json())
+  return fetch(getMsaUrl(institutionId, year)).then(res => {
+    if(res.status > 399) throw res
+    return res.json()
+  })
 }
