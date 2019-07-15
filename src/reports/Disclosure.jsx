@@ -46,7 +46,7 @@ Object.keys(DISCLOSURE_REPORTS).forEach(year =>
 class Disclosure extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { fetched: false }
+    this.state = { fetched: false, error: null }
     this.makeListItem = this.makeListItem.bind(this)
     this.setMsaMd = this.setMsaMd.bind(this)
   }
@@ -66,6 +66,8 @@ class Disclosure extends React.Component {
         const msaMds = [...result.msaMds, { id: 'nationwide' }]
         fetchedMsas = msaMds
         this.setState({ fetched: true })
+      }).catch(e => {
+        this.setState({fetched: true, error: `${e.status}: ${e.statusText}`})
       })
     } else {
       this.setState({ fetched: true })
@@ -129,6 +131,15 @@ class Disclosure extends React.Component {
               institutions, both nationwide and by MSA/MD."
       />
     )
+
+    if(this.state.error) {
+      return (
+        <div className="Disclosure" id="main-content">
+          {header}
+          <p>{this.state.error}</p>
+        </div>
+      )
+    }
 
     return this.state.fetched ? (
       <React.Fragment>
