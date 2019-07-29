@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 const renderData = report => {
 
-  const  races  = report
+  const  {races}  = report
+  
   return (
     <React.Fragment>
       {mapCharacteristic(races, 'race')}
