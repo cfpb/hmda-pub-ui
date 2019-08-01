@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 const renderData = report => {
 
   const  {ethnicities}  = report
-  console.log(report)
-  console.log(ethnicities)
 
   return (
     <React.Fragment>
