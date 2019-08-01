@@ -67,7 +67,7 @@ const Aggregate1 = React.forwardRef((props, ref) => {
         <tr>
           <th width="20%" rowSpan={5}>
             CENSUS TRACT OR COUNTY NAME AND DISPOSITION OF APPLICATION
-            (STATE/COUNTY/TRACT NUMBER)
+            (COUNTY/STATE/TRACT NUMBER)
           </th>
           <th colSpan={8}>
             Loans on 1- to 4-Family and Manufactured Home Dwellings
