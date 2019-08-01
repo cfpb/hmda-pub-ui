@@ -178,7 +178,7 @@ class Report extends React.Component {
       https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509
     */
     const table = report.table
-    if(reportType === 'aggregate' && report.year !== 2017){
+    if(reportType === 'aggregate' && report.year !== '2017'){
       if(table.match(/^1$/))
         return <Tables.Aggregate1 ref={this.tableRef} report={report}/>
       if(table.match(/^2$/))
