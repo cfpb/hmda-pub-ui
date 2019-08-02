@@ -48,6 +48,8 @@ const renderDetails = (characteristic, key) => {
 
 const renderDenialReasons = (denialReasons, key, key2) => {
   return denialReasons.map((denialReason, index) => {
+    //remove duplicate total row
+    if(index === 10) return null
     return [
       <td key={`count-${index}-${key}-${key2}`}>{denialReason.count}</td>,
       <td key={`percentage-${index}-${key}-${key2}`}>
