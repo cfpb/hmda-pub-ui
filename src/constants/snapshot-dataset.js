@@ -1,47 +1,58 @@
 export const SNAPSHOT_DATASET = {
-  // '2019':
-  //   {
-  //      snapshot_date: "???",
-  //      public_lar_csv : "2019_public_lar_csv.zip",
-  //      public_lar_txt : "2019_public_lar_txt.zip",
-  //      public_ts_csv : "2019_public_ts_csv.zip",
-  //      public_ts_txt : "2019_public_ts_txt.zip",
-  //      public_panel_csv : "2019_public_panel_csv.zip",
-  //      public_panel_txt : "2019_public_panel_txt.zip",
-  //      public_msamd_csv : "2019_public_msamd_csv.zip",
-  //      public_msamd_txt : "2019_public_msamd_txt.zip",
-  //      publicstatic_dataformat : "2019_publicstatic_dataformat.pdf",
-  //      publicstatic_codesheet : "2019_publicstatic_codesheet.pdf"
-  //   },
-  //
-  '2018':
-    {
-       snapshot_date: "???",
-       public_lar_csv : "2018_public_lar_csv.zip",
-       public_lar_txt : "2018_public_lar_txt.zip",
-       public_ts_csv : "2018_public_ts_csv.zip",
-       public_ts_txt : "2018_public_ts_txt.zip",
-       public_panel_csv : "2018_public_panel_csv.zip",
-       public_panel_txt : "2018_public_panel_txt.zip",
-       public_msamd_csv : "2018_public_msamd_csv.zip",
-       public_msamd_txt : "2018_public_msamd_txt.zip",
-       publicstatic_dataformat : "2018_publicstatic_dataformat.pdf",
-       publicstatic_codesheet : "2018_publicstatic_codesheet.pdf"
-    },
-
-  '2017':
-    {
-       snapshot_date: "April 18th, 2018",
-       public_lar_csv : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip",
-       public_lar_txt : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip",
-       public_ts_csv : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip",
-       public_ts_txt : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip",
-       public_panel_csv : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip",
-       public_panel_txt : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip",
-       public_msamd_csv : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip",
-       public_msamd_txt : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip",
-       publicstatic_dataformat : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf",
-       publicstatic_codesheet : "https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf"
-    }
+  2018: {
+    snapshot_date: '???',
+    dataformat : '2018_publicstatic_dataformat.pdf',
+    codesheet : '2018_publicstatic_codesheet.pdf',
+    datasets: [
+      {
+        csv: '2018_public_lar_csv.zip',
+        txt: '2018_public_lar_txt.zip',
+        label: 'Loan/Application Records (LAR)'
+      },
+      {
+        csv : '2018_public_ts_csv.zip',
+        txt : '2018_public_ts_txt.zip',
+        label: 'Transmittal Sheet Records (TS)'
+      },
+      {
+        csv : '2018_public_panel_csv.zip',
+        txt : '2018_public_panel_txt.zip',
+        label: 'Reporter Panel'
+      },
+      {
+        csv : '2018_public_msamd_csv.zip',
+        txt : '2018_public_msamd_txt.zip',
+        label: 'MSA/MD Description'
+      }
+    ]
+  },
+  2017: {
+    snapshot_date: 'April 18th, 2018',
+    dataformat : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_dataformat.pdf',
+    codesheet : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_publicstatic_codesheet.pdf',
+    datasets: [
+      {
+        csv: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_csv.zip',
+        txt: 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_lar_txt.zip',
+        label: 'Loan/Application Records (LAR)'
+      },
+      {
+        csv : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_csv.zip',
+        txt : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_ts_txt.zip',
+        label: 'Transmittal Sheet Records (TS)'
+      },
+      {
+        csv : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_csv.zip',
+        txt : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_panel_txt.zip',
+        label: 'Reporter Panel'
+      },
+      {
+        csv : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_csv.zip',
+        txt : 'https://s3.amazonaws.com/cfpb-hmda-public/prod/snapshot-data/2017_public_msamd_txt.zip',
+        label: 'MSA/MD Description'
+      }
+    ]
+  },
+  displayedYears: ['2018', '2017']
 
 }
