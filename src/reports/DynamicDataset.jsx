@@ -20,9 +20,9 @@ class DynamicDataset extends React.Component {
   render() {
     const { params } = this.props.match
     const years = Object.keys(DYNAMIC_DATASET).map( v => parseInt(v))
-
+    console.log(DYNAMIC_DATASET.hasOwnProperty(params.year))
     // if no year selected or a year that dosen't exist in constants, default to most recent
-    if(typeof params.year === 'undefined' || !DYNAMIC_DATASET.hasOwnProperty(params.year))
+    if(typeof params.year != 'undefined' && !DYNAMIC_DATASET.hasOwnProperty(params.year))
       params.year = Math.max.apply(Math, years)
 
     // load links
@@ -42,52 +42,54 @@ class DynamicDataset extends React.Component {
         />
         {years.length > 1 ? <YearSelector years={years} /> : null }
 
-        <div className="grid">
-          <div className="item">
-            <Header type={4} headingText={params.year + " Dynamic Datasets"} />
-            <ul>
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.lar}
-                >
-                  Loan/Application Records (LAR)
-                </a>
-              </li>
+        {typeof params.year != 'undefined' ?
+          <div className="grid">
+            <div className="item">
+              <Header type={4} headingText={params.year + " Dynamic Datasets"} />
+              <ul>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.lar}
+                  >
+                    Loan/Application Records (LAR)
+                  </a>
+                </li>
 
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.ts}
-                >
-                  Transmittal Sheet Records (TS)
-                </a>
-              </li>
-            </ul>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.ts}
+                  >
+                    Transmittal Sheet Records (TS)
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="item">
+              <Header type={4} headingText={params.year + " Dynamic File Specifications"} />
+              <ul>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.lar_spec}
+                  >
+                    Loan/Application Records (LAR)
+                  </a>
+                </li>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.ts_spec}
+                  >
+                    Transmittal Sheet Records (TS)
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="item">
-            <Header type={4} headingText={params.year + " Dynamic File Specifications"} />
-            <ul>
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.lar_spec}
-                >
-                  Loan/Application Records (LAR)
-                </a>
-              </li>
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.ts_spec}
-                >
-                  Transmittal Sheet Records (TS)
-                </a>
-              </li>
-            </ul>
-          </div>
+          : null }
         </div>
-      </div>
     )
   }
 }

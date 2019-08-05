@@ -20,8 +20,8 @@ class Snapshot extends React.Component {
     const { params } = this.props.match
     const years = Object.keys(SNAPSHOT_DATASET).map( v => parseInt(v))
 
-    // if no year selected or a year that dosen't exist in constants, default to most recent
-    if(typeof params.year === 'undefined' || !SNAPSHOT_DATASET.hasOwnProperty(params.year))
+    // if year selected and a year that dosen't exist in constants, default to most recent
+    if(typeof params.year != 'undefined' && !SNAPSHOT_DATASET.hasOwnProperty(params.year))
       params.year = Math.max.apply(Math, years)
 
     // load links
@@ -52,118 +52,120 @@ class Snapshot extends React.Component {
 
         {years.length > 1 ? <YearSelector years={years} /> : null }
 
-        <div className="grid">
-          <div className="item">
-            <Header type={4} headingText={params.year + " Datasets"} />
-            <ul>
-              <li>
-                Loan/Application Records (LAR)
-                <ul style={{ marginTop: '.5em' }}>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_lar_csv}
-                    >
-                      CSV
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_lar_txt}
-                    >
-                      Pipe Delimited
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                Transmittal Sheet Records (TS)
-                <ul style={{ marginTop: '.5em' }}>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_ts_csv}
-                    >
-                      CSV
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_ts_txt}
-                    >
-                      Pipe Delimited
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                Reporter Panel
-                <ul style={{ marginTop: '.5em' }}>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_panel_csv}
-                    >
-                      CSV
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_panel_txt}
-                    >
-                      Pipe Delimited
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                MSA/MD Description
-                <ul style={{ marginTop: '.5em' }}>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_msamd_csv}
-                    >
-                      CSV
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      download={true}
-                      href={dynamicLinks.public_panel_txt}
-                    >
-                      Pipe Delimited
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+        {typeof params.year != 'undefined' ?
+          <div className="grid">
+            <div className="item">
+              <Header type={4} headingText={params.year + " Datasets"} />
+              <ul>
+                <li>
+                  Loan/Application Records (LAR)
+                  <ul style={{ marginTop: '.5em' }}>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_lar_csv}
+                      >
+                        CSV
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_lar_txt}
+                      >
+                        Pipe Delimited
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Transmittal Sheet Records (TS)
+                  <ul style={{ marginTop: '.5em' }}>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_ts_csv}
+                      >
+                        CSV
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_ts_txt}
+                      >
+                        Pipe Delimited
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Reporter Panel
+                  <ul style={{ marginTop: '.5em' }}>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_panel_csv}
+                      >
+                        CSV
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_panel_txt}
+                      >
+                        Pipe Delimited
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  MSA/MD Description
+                  <ul style={{ marginTop: '.5em' }}>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_msamd_csv}
+                      >
+                        CSV
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        download={true}
+                        href={dynamicLinks.public_panel_txt}
+                      >
+                        Pipe Delimited
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div className="item">
+              <Header type={4} headingText={params.years + " File Specifications"} />
+              <ul>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.publicstatic_dataformat}
+                  >
+                    LAR, TS and Reporter Panel
+                  </a>
+                </li>
+                <li>
+                  <a
+                    download={true}
+                    href={dynamicLinks.publicstatic_codesheet}
+                  >
+                    LAR Code Sheet
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="item">
-            <Header type={4} headingText={params.years + " File Specifications"} />
-            <ul>
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.publicstatic_dataformat}
-                >
-                  LAR, TS and Reporter Panel
-                </a>
-              </li>
-              <li>
-                <a
-                  download={true}
-                  href={dynamicLinks.publicstatic_codesheet}
-                >
-                  LAR Code Sheet
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+          : null }
       </div>
     )
   }
