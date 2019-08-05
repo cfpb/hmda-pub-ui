@@ -20,8 +20,8 @@ class DynamicDataset extends React.Component {
   render() {
     const { params } = this.props.match
     const years = Object.keys(DYNAMIC_DATASET).map( v => parseInt(v))
-    console.log(DYNAMIC_DATASET.hasOwnProperty(params.year))
-    // if no year selected or a year that dosen't exist in constants, default to most recent
+
+    // if year selected and a year that dosen't exist in constants, default to most recent
     if(typeof params.year != 'undefined' && !DYNAMIC_DATASET.hasOwnProperty(params.year))
       params.year = Math.max.apply(Math, years)
 
