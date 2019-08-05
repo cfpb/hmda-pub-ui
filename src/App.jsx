@@ -37,11 +37,11 @@ const App = () => {
           component={NationalAggregate}
         />
         <Route
-          path="/snapshot-national-loan-level-dataset"
+          path="/snapshot-national-loan-level-dataset/:year?"
           component={Snapshot}
         />
         <Route
-          path="/dynamic-national-loan-level-dataset"
+          path="/dynamic-national-loan-level-dataset/:year?"
           component={DynamicDataset}
         />
         <Route component={NotFound} />
