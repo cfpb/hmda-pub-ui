@@ -13,25 +13,34 @@ import { DISCLOSURE_REPORTS } from '../constants/disclosure-reports.js'
 import './Disclosure.css'
 
 const detailsCache = {
-  institutions: {},
-  msaMds: {},
-  reports: {}
+  2018: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  },
+  2017: {
+    institutions: {},
+    msaMds: {},
+    reports: {}
+  }
 }
 
 let fetchedMsas = null
 
-Object.keys(DISCLOSURE_REPORTS).forEach(key =>
-  DISCLOSURE_REPORTS[key].forEach(v => {
-    if (v.value) {
-      detailsCache.reports[v.value] = v
-    }
+Object.keys(DISCLOSURE_REPORTS).forEach(year =>
+  Object.keys(DISCLOSURE_REPORTS[year]).forEach(key =>
+    DISCLOSURE_REPORTS[year][key].forEach(v => {
+      if (v.value) {
+        detailsCache[year].reports[v.value] = v
+      }
 
-    if (v.options) {
-      v.options.forEach(option => {
-        detailsCache.reports[option.value] = option
-      })
-    }
-  })
+      if (v.options) {
+        v.options.forEach(option => {
+          detailsCache[year].reports[option.value] = option
+        })
+      }
+    })
+  )
 )
 
 class Disclosure extends React.Component {
@@ -39,6 +48,7 @@ class Disclosure extends React.Component {
     super(props)
     this.state = { fetched: false, error: null }
     this.makeListItem = this.makeListItem.bind(this)
+    this.setMsaMd = this.setMsaMd.bind(this)
   }
 
   componentDidMount() {
@@ -94,19 +104,23 @@ class Disclosure extends React.Component {
   }
 
   setInstitution(institution) {
+    const year = this.props.match.params.year
     const institutionId = institution.lei || institution.institutionId || institution.id
-    detailsCache.institutions[institutionId] = institution
+    detailsCache[year].institutions[institutionId] = institution
   }
 
   setMsaMd(msaMd) {
-    detailsCache.msaMds[msaMd.id] = msaMd
+    const year = this.props.match.params.year
+    detailsCache[year].msaMds[msaMd.id] = msaMd
   }
 
   render() {
     const { params } = this.props.match
-    const institution = detailsCache.institutions[params.institutionId]
-    const msaMd = detailsCache.msaMds[params.msaMdId]
-    const report = detailsCache.reports[params.reportId]
+    const year = params.year
+    const details = detailsCache[year]
+    const institution = year && details.institutions[params.institutionId]
+    const msaMd = year && details.msaMds[params.msaMdId]
+    const report = year && details.reports[params.reportId]
     const institutionId =
       institution && (institution.lei || institution.institutionId || institution.id)
     const header = (
@@ -170,7 +184,7 @@ class Disclosure extends React.Component {
                   params.msaMdId
                     ? msaMd.name
                     : params.institutionId
-                    ? 'Select a MSA/MD'
+                    ? 'Select an MSA/MD'
                     : ''
                 }
                 id={params.msaMdId ? msaMd.id : ''}
@@ -194,7 +208,7 @@ class Disclosure extends React.Component {
                     ? ''
                     : ''
                 }
-                id={params.reportId ? report.value : ''}
+                id={params.reportId && params.year === '2017' ? report.value : ''}
                 link={
                   params.msaMdId
                     ? `/disclosure-reports/${params.year}/${institutionId}/${
@@ -208,9 +222,6 @@ class Disclosure extends React.Component {
           <hr />
 
           {params.year ? (
-           params.year !== '2017'
-            ? <h3>Disclosure reports are not yet available for 2018.</h3>
-            :
             params.institutionId ? (
               params.msaMdId ? (
                 params.reportId ? null : (

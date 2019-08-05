@@ -15,6 +15,14 @@ import A from './A.jsx'
 import A4 from './A4.jsx'
 import B from './B.jsx'
 import R from './R.jsx'
+import IRSCSV from './IRSCSV.jsx'
+import Aggregate1 from './Aggregate1.jsx'
+import Aggregate2 from './Aggregate2.jsx'
+import Aggregate3 from './Aggregate3.jsx'
+import Aggregate4 from './Aggregate4.jsx'
+import Aggregate5 from './Aggregate5.jsx'
+import Aggregate9 from './Aggregate9.jsx'
+import AggregateI from './AggregateI.jsx'
 
 export default {
   I,
@@ -33,5 +41,13 @@ export default {
   A,
   A4,
   B,
-  R
+  R,
+  IRSCSV,
+  Aggregate1,
+  Aggregate2,
+  Aggregate3,
+  Aggregate4,
+  Aggregate5,
+  Aggregate9,
+  AggregateI
 }

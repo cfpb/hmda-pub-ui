@@ -1,5 +1,5 @@
-export default {
-  TX: [
+  const data2017 = {
+    TX: [
     { id: 10180, name: 'ABILENE' },
     { id: 11100, name: 'AMARILLO' },
     { id: 12420, name: 'AUSTIN-ROUND ROCK' },
@@ -553,5 +553,17 @@ export default {
     { id: 43580, name: 'SIOUX CITY' },
     { id: 43620, name: 'SIOUX FALLS' }
   ],
-  DC: [{ id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }]
+  DC: [{ id: 47894, name: 'WASHINGTON-ARLINGTON-ALEXANDRIA' }],
+  NA: [{ id: 99999, name: 'N/A OR OUTSIDE MSA/MD' }]
+}
+
+const data2018 = {
+  ...data2017
+}
+
+data2018.ID.push({ id: 46300, name: 'TWIN FALLS'})
+
+export default {
+  2017: data2017,
+  2018: data2018
 }
