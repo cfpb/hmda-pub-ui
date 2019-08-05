@@ -33,11 +33,10 @@ class Snapshot extends React.Component {
           type={1}
           headingText="Snapshot National Loan Level Dataset"
           paragraphText="The snapshot files contain the national HMDA datasets as of
-            April 18th, 2018 for all HMDA reporters, as modified by the Bureau to
+            {dynamicLinks.snapshot_date} for all HMDA reporters, as modified by the Bureau to
             protect applicant and borrower privacy. The snapshot files are available
             to download in both .csv and pipe delimited text file formats, and the
-            file specification files are available to download in PDF format."
-        >
+            file specification files are available to download in PDF format.">
           <p className="text-small">
             Snapshot data has preserved some elements of historic LAR data files
             that are not present in the Dynamic Data. These columns are "As of
@@ -50,6 +49,9 @@ class Snapshot extends React.Component {
             an upper limit and may contain outliers.
           </p>
         </Header>
+
+        {years.length > 1 ? <YearSelector years={years} /> : null }
+
         <div className="grid">
           <div className="item">
             <Header type={4} headingText={params.year + " Datasets"} />

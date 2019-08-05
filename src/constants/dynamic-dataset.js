@@ -7,13 +7,13 @@ export const DYNAMIC_DATASET = {
   //      ts_spec : "2019-ts-spec"
   //   },
   //
-  // '2018':
-  //   {
-  //      lar : "2018-lar",
-  //      ts : "2018-ts",
-  //      lar_spec : "2018-lar-specs",
-  //      ts_spec : "2018-ts-spec"
-  //   },
+  '2018':
+    {
+       lar : "2018-lar",
+       ts : "2018-ts",
+       lar_spec : "2018-lar-specs",
+       ts_spec : "2018-ts-spec"
+    },
 
   '2017':
     {
