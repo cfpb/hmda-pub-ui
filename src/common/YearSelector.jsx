@@ -4,15 +4,19 @@ import YEARS from '../constants/years'
 
 import './YearSelector.css'
 
-const YearSelector = withRouter(({ history, standalone }) => {
+const YearSelector = withRouter(({ history, standalone, years='' }) => {
   const { pathname } = history.location
   const pathApp = pathname.split('/')[1]
   const pathYear = pathname.split('/')[2]
+  let renderYears = YEARS
+
+  if(years !== '')
+    renderYears = years.sort((a, b) => b - a)
 
   return (
     <div className={'YearSelector' + (standalone ? ' standalone' : '')}>
       <h4>Select a year</h4>
-      {YEARS.map((year, i) => {
+      {renderYears.map((year, i) => {
         const className = year === pathYear ? 'active' : ''
         // just link to the current path if its the selected year
         // if it's a different year, jump back to the start for that year
