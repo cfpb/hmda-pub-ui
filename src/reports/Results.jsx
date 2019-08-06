@@ -91,7 +91,7 @@ class Results extends React.Component {
     const normalizedInstitution =
       this.props.year === '2017'
         ? {
-            title: 'Respondent ID',
+            title: 'Institution ID',
             id: institution.institutionId
           }
         : { title: 'LEI', id: institution.lei }
