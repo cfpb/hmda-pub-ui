@@ -82,13 +82,15 @@ class SearchList extends React.Component {
 
     if (value.length !== 0) {
       const institutions = this.state.institutions
+      const identifier = this.props.year === '2017' ? 'institutionId' : 'lei'
       const len = institutions.length
       const val = value.toUpperCase()
 
       for (let i = 0; i < len; i++) {
         const institution = institutions[i]
         if (
-          institution.name.indexOf(val) !== -1 &&
+          (institution.name.indexOf(val) !== -1 ||
+          institution[identifier].indexOf(val) !== -1) &&
           institution.respondentId !== 'Bank0_RID' &&
           institution.respondentId !== 'Bank1_RID'
         ) {
@@ -125,7 +127,8 @@ class SearchList extends React.Component {
     let inputLabelClass = ''
     let errorMessage = null
     let loading = null
-    let label = <span>Enter an institution name</span>
+    let identifier = this.props.year === '2017' ? 'ID' : 'LEI'
+    let label = <span>Enter an institution name or {identifier}</span>
     const {
       isLoading,
       error,
@@ -170,7 +173,7 @@ class SearchList extends React.Component {
               type="text"
               value={textInputValue}
               onChange={this.handleTextInputChange}
-              placeholder="Institution name"
+              placeholder={`Institution name or ${identifier}`}
               disabled={disabled}
               style={{ display: 'inline-block' }}
             />
