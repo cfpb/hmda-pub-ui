@@ -1,6 +1,9 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
+import { DYNAMIC_DATASET } from './constants/dynamic-dataset'
+import { SNAPSHOT_DATASET } from './constants/snapshot-dataset'
+
 import Header from './Header'
 import Home from './Home'
 import ModifiedLar from './reports/ModifiedLar'
@@ -38,11 +41,23 @@ const App = () => {
         />
         <Route
           path="/snapshot-national-loan-level-dataset/:year?"
-          component={Snapshot}
+          render={ props => {
+            const { year } = props.match.params
+            if(year && SNAPSHOT_DATASET.displayedYears.indexOf(year) === -1){
+              return <NotFound/>
+            }
+            return <Snapshot {...props}/>
+          }}
         />
         <Route
           path="/dynamic-national-loan-level-dataset/:year?"
-          component={DynamicDataset}
+          render={ props => {
+            const { year } = props.match.params
+            if(year && DYNAMIC_DATASET.displayedYears.indexOf(year) === -1){
+              return <NotFound/>
+            }
+            return <DynamicDataset {...props}/>
+          }}
         />
         <Route component={NotFound} />
       </Switch>

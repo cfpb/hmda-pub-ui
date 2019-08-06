@@ -35,3 +35,7 @@
 .Snapshot .item:last-child {
   margin-right: 0;
 }
+
+.Snapshot .item li > ul {
+  margin-top: 0.5em;
+}
