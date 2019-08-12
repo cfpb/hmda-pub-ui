@@ -46,13 +46,16 @@ const Snapshot = props => {
           protect applicant and borrower privacy. The snapshot files are available
           to download in both .csv and pipe delimited text file formats, and the
           file specification files are available to download in PDF format.`}>
-        <p className="text-small">
-          Snapshot data has preserved some elements of historic LAR data files
-          that are not present in the Dynamic Data. These columns are &quot;As of
-          Date&quot;, &quot;Edit Status&quot;, &quot;Sequence Number&quot;, and &quot;Application Date
-          Indicator&quot;. Be aware that data load procedures that handle both files
-          will need to recognize this difference.
-        </p>
+        {params.year === '2017'
+          ? <p className="text-small">
+              Snapshot data has preserved some elements of historic LAR data files
+              that are not present in the Dynamic Data. These columns are &quot;As of
+              Date&quot;, &quot;Edit Status&quot;, &quot;Sequence Number&quot;, and &quot;Application Date
+              Indicator&quot;. Be aware that data load procedures that handle both files
+              will need to recognize this difference.
+            </p>
+          : null
+        }
         <p className="text-small">
           Use caution when analyzing loan amount and income, which do not have
           an upper limit and may contain outliers.
