@@ -73,7 +73,7 @@ class Home extends Component {
               headingLink="/snapshot-national-loan-level-dataset"
               headingText="Snapshot National Loan-Level Dataset"
               paragraphText="The snapshot files contain the national HMDA datasets as of
-                April 18th, 2018 for all HMDA reporters, as modified by the Bureau to
+                a fixed date for all HMDA reporters, as modified by the Bureau to
                 protect applicant and borrower privacy."
               type={4}
             />
