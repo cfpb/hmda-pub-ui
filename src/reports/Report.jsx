@@ -116,12 +116,13 @@ class Report extends React.Component {
     let year = params.year
     let msaMdId = params.msaMdId
     let reportId = params.reportId
-    const env = year === '2018' && params.institutionId ? 'dev' : 'prod'
+    const env = year === '2018' /*&& params.institutionId*/ ? 'dev' : 'prod'
     let ext = year === '2017' ? '.txt' : '.json'
     if(reportId === 'IRS') ext = '.csv'
     let url = `https://s3.amazonaws.com/cfpb-hmda-public/${env}/reports/`
     if (params.stateId) {
-      url += `aggregate/${year}/${msaMdId}/${reportId}${ext}`
+      const forProd = year === '2018' ? 'for_production/' : ''
+      url += `aggregate/${year}/${forProd}${msaMdId}/${reportId}${ext}`
     } else if (params.institutionId) {
       if (reportId === 'R1') {
         msaMdId = 'nationwide'
