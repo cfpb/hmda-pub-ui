@@ -1,5 +1,5 @@
 .hmda-header nav {
-  margin: 0;
+  margin: 0 -10px 0 0;
   padding: 0;
 }
 .hmda-header .logo a {
@@ -136,15 +136,32 @@
   display: inline-block;
 }
 
-@media screen and (max-width: 890px) {
+
+@media screen and (max-width: 1279px) {
+  .nav-primary > li > a {
+    margin: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
   .nav-container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .hmda-header nav {
+    margin: 0;
   }
   .logo {
     width: 116px;
   }
   .logo-text span {
     display: none;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .nav {
+    float: none;
   }
 }
