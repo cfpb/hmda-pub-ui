@@ -7,11 +7,14 @@ import logo from './images/ffiec-logo.svg'
 const links = [
   { name: 'Home', href: '/' },
   { name: 'Filing', href: '/filing/2018/' },
+  { name: 'Data Browser', href: '/data-browser/' },
   { name: 'Data Publication', href: '/data-publication/' },
-  { name: 'Tools', href: '/tools/' }
+  { name: 'Tools', href: '/tools/' },
+  { name: 'Documentation', href: '/documentation/' }
 ]
 
-const Header = () => {
+const Header = props => {
+  const currentLinks = props.links || links
   return (
     <React.Fragment>
       <a className="skipnav" href="#main-content">
@@ -30,13 +33,17 @@ const Header = () => {
           </div>
           <nav className="nav">
             <ul className="nav-primary">
-              {links.map(link => {
+              {currentLinks.map(link => {
+                const path = window.location.pathname
+                let isActive = path.match(link.href)
+                if(link.href === '/') isActive = link.href === path
+
                 return (
                   <li key={link.name}>
                     <a
                       href={link.href}
                       className={
-                        link.name === 'Data Publication'
+                          isActive
                           ? 'nav-link active'
                           : 'nav-link'
                       }
