@@ -51,7 +51,7 @@ const ModifiedLarDocs = props => {
           <p>
             <h4>Data Dictionaries</h4>
             <div>
-              A simplified version of the file specificaiton intended for easy conversion to SQL statements
+              A simplified version of the file specification intended for easy conversion to SQL statements
               <ul>
                 <li>
                   <a
