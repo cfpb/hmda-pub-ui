@@ -14,9 +14,9 @@ function makeListLink(href, val) {
 
 function linkToDocs(){
   return [
-    makeListLink('/documentation/2018/public-lar-schema/', 'Public LAR Schema'),
-    makeListLink('/documentation/2018/public-ts-schema/', 'Public Transmittal Sheet Schema'),
-    makeListLink('/documentation/2018/public-panel-schema/', 'Public Panel Schema'),
+    <li key="0"><a href="/documentation/2018/public-lar-schema/">Public LAR Schema</a></li>,
+    <li key="1"><a href="/documentation/2018/public-ts-schema/">Public Transmittal Sheet Schema</a></li>,
+    <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>
   ]
 }
 
