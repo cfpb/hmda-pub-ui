@@ -6,10 +6,18 @@ import './Snapshot.css'
 
 function makeListLink(href, val) {
   return (
-    <li>
+    <li key={href}>
       <a download={true} href={href}>{val}</a>
     </li>
   )
+}
+
+function linkToDocs(){
+  return [
+    makeListLink('/documentation/2018/public-lar-schema/', 'Public LAR Schema'),
+    makeListLink('/documentation/2018/public-ts-schema/', 'Public Transmittal Sheet Schema'),
+    makeListLink('/documentation/2018/public-panel-schema/', 'Public Panel Schema'),
+  ]
 }
 
 function renderDatasets(datasets){
@@ -73,7 +81,10 @@ const Snapshot = props => {
           <div className="item">
             <Header type={4} headingText={params.year + ' File Specifications'} />
             <ul>
-              {makeListLink(dataForYear.dataformat, 'LAR, TS and Reporter Panel')}
+              {params.year === '2017'
+                ? makeListLink(dataForYear.dataformat, 'LAR, TS and Reporter Panel')
+                : linkToDocs()
+              }
               {makeListLink(dataForYear.codesheet, 'LAR Code Sheet')}
             </ul>
           </div>

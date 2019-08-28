@@ -1,7 +1,6 @@
 export const SNAPSHOT_DATASET = {
   2018: {
     snapshot_date: 'August 7th, 2019',
-    dataformat: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2018_Public_LAR_Data_Dictionary.pdf',
     codesheet: 'https://github.com/cfpb/hmda-platform/raw/master/docs/v2/spec/2018_Public_LAR_Code_Sheet_PDF.pdf',
     datasets: [
       {

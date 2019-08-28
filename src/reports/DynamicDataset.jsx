@@ -7,10 +7,18 @@ import './DynamicDataset.css'
 
 function makeListLink(href, val) {
   return (
-    <li>
+    <li key={href}>
       <a download={true} href={href}>{val}</a>
     </li>
   )
+}
+
+function linkToDocs(){
+  return [
+    makeListLink('/documentation/2018/public-lar-schema/', 'Public LAR Schema'),
+    makeListLink('/documentation/2018/public-ts-schema/', 'Public Transmittal Sheet Schema'),
+    makeListLink('/documentation/2018/public-panel-schema/', 'Public Panel Schema'),
+  ]
 }
 
 const DynamicDataset = props => {
@@ -45,8 +53,9 @@ const DynamicDataset = props => {
           <div className="item">
             <Header type={4} headingText={params.year + ' Dynamic File Specifications'} />
             <ul>
-              {makeListLink(dataForYear.lar_spec, 'Loan/Application Records (LAR)')}
-              {makeListLink(dataForYear.ts_spec, 'Transmittal Sheet Records (TS)')}
+              {params.year === '2017' ? makeListLink(dataForYear.lar_spec, 'Loan/Application Records (LAR)') : null}
+              {params.year === '2017' ? makeListLink(dataForYear.ts_spec, 'Transmittal Sheet Records (TS)') : null}
+              {params.year !== '2017' ? linkToDocs() : null}
             </ul>
           </div>
         </div>
