@@ -16,7 +16,8 @@ function linkToDocs(){
   return [
     <li key="0"><a href="/documentation/2018/public-lar-schema/">Public LAR Schema</a></li>,
     <li key="1"><a href="/documentation/2018/public-ts-schema/">Public Transmittal Sheet Schema</a></li>,
-    <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>
+    <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>,
+    <li key="3"><a href="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</a></li>
   ]
 }
 
@@ -85,7 +86,6 @@ const Snapshot = props => {
                 ? makeListLink(dataForYear.dataformat, 'LAR, TS and Reporter Panel')
                 : linkToDocs()
               }
-              {makeListLink(dataForYear.codesheet, 'LAR Code Sheet')}
             </ul>
           </div>
         </div>
