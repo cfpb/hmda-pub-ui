@@ -129,7 +129,10 @@ class Disclosure extends React.Component {
         headingText="Disclosure reports"
         paragraphText="These reports summarize lending activity for individual
               institutions, both nationwide and by MSA/MD."
-      />
+      >
+          <p>To learn about modifications to these reports over the years, visit the{' '}
+          <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&D Report Changes</a> page.</p>
+      </Header>
     )
 
     if(this.state.error) {

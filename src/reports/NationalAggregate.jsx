@@ -48,7 +48,10 @@ class NationalAggregate extends React.Component {
         paragraphText="These reports summarize nationwide lending activity.
           They indicate the number and dollar amounts of loan applications,
           cross-tabulated by loan, borrower and geographic characteristics."
-      />
+      >
+          <p>To learn about modifications to these reports over the years, visit the{' '}
+          <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&D Report Changes</a> page.</p>
+      </Header>
     )
 
     return (

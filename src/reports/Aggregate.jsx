@@ -88,7 +88,10 @@ class Aggregate extends React.Component {
         type={1}
         headingText="MSA/MD Aggregate Reports"
         paragraphText="These reports summarize lending activity by MSA/MD."
-      />
+      >
+          <p>To learn about modifications to these reports over the years, visit the{' '}
+          <a target="_blank" rel="noopener noreferrer" href="/documentation/2018/ad-changes/">A&D Report Changes</a> page.</p>
+      </Header>
     )
 
     return (
