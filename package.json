@@ -21,7 +21,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "csv-parse": "4.3.4",
+    "csv-parse": "4.4.6",
     "file-saver": "1.3.8",
     "react": "16.8.4",
     "react-app-polyfill": "0.1.3",
