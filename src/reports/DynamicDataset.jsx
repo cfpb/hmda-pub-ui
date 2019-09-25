@@ -18,7 +18,8 @@ function linkToDocs(){
     <li key="0"><a href="/documentation/2018/public-lar-schema/">Public LAR Schema</a></li>,
     <li key="1"><a href="/documentation/2018/public-ts-schema/">Public Transmittal Sheet Schema</a></li>,
     <li key="2"><a href="/documentation/2018/public-panel-schema/">Public Panel Schema</a></li>,
-    <li key="3"><a href="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</a></li>
+    <li key="3"><a href="/documentation/2018/lar-data-fields/">Public HMDA Data Fields with Values and Definitions</a></li>,
+    <li key="4"><a href="/documentation/2018/panel-data-fields/">Public Panel Values and Definitions</a></li>
   ]
 }
 
