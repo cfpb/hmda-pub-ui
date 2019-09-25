@@ -53,8 +53,7 @@ const Snapshot = props => {
         paragraphText={`The snapshot files contain the national HMDA datasets as of
           ${snapshotDate} for all HMDA reporters, as modified by the Bureau to
           protect applicant and borrower privacy. The snapshot files are available
-          to download in both .csv and pipe delimited text file formats, and the
-          file specification files are available to download in PDF format.`}>
+          to download in both .csv and pipe delimited text file formats.`}>
         {params.year === '2017'
           ? <p className="text-small">
               Snapshot data has preserved some elements of historic LAR data files
