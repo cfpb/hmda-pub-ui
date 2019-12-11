@@ -15,7 +15,7 @@ import Snapshot from './reports/snapshot/index'
 import DynamicDataset from './reports/DynamicDataset'
 import NotFound from './common/NotFound'
 import Footer from './Footer'
-import { fetchEnvConfig, findObjIndex } from './configUtils'
+import { fetchEnvConfig, findObjIndex, getEnvConfig } from './configUtils'
 import { links } from './links'
 
 import './app.css'
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   componentDidMount() {
     fetchEnvConfig()
-      .then(config => this.updateFilingLink(config))
+      .then(config => this.updateFilingLink(getEnvConfig(config, window.location.host)))
       .catch(() => null)
   }
 
