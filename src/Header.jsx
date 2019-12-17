@@ -1,17 +1,9 @@
 import React from 'react'
 import BannerUSA from './BannerUSA'
+import { links } from './links'
 
 import './Header.css'
 import logo from './images/ffiec-logo.svg'
-
-const links = [
-  { name: 'Home', href: '/' },
-  { name: 'Filing', href: '/filing/2018/' },
-  { name: 'Data Browser', href: '/data-browser/' },
-  { name: 'Data Publication', href: '/data-publication/' },
-  { name: 'Tools', href: '/tools/' },
-  { name: 'Documentation', href: '/documentation/' }
-]
 
 const Header = props => {
   const currentLinks = props.links || links
